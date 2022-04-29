@@ -1,0 +1,82 @@
+<title>R E G I S T E R</title>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+	integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<div class="body">
+	<div id="int-form">
+		<div class="brand_logo_container">
+			<!-- <img src="../../../assets/images/logo.png" class="brand_logo" alt="Logo"> -->
+		</div>
+		<form>
+			<div class="login">
+				<h1 class="head-title">Ingresar</h1>
+				<div class="uid">
+					<input [(ngModel)]="usuario" id="usuario" type="text" id="username" placeholder="Usuario"
+						name="username">
+				</div>
+				<div class="pwd">
+					<input type="password" id="password" [(ngModel)]="contrasena" id="password" placeholder="Contraseña"
+						name="password">
+				</div>
+				<button (click)="inicio()">Iniciar sesión</button>
+			</div>
+			<!-- <div class="register">
+				<span class="clopen">Register</span>
+				<h1 class="head-title">Register</h1>
+				<div class="mail">
+					<label>Email</label>
+					<input type="text" name="">
+				</div>
+				<div class="uid">
+					<label>Username</label>
+					<input type="text" name="">
+				</div>
+				<div class="mobile">
+					<label>Mobile Number</label>
+					<input type="text" name="">
+				</div>dvg
+				<div class="pwd">
+					<label>Password</label>
+					<input type="password" name="">
+				</div>			
+				<div class="c-pwd">
+					<label>Confirm Password</label>
+					<input type="password" name="">
+				</div>
+				<div class="gender">
+					<input id="male" type="radio" name="customer[gender]">
+					<label for="male">Male</label>
+					<input id="female" type="radio" name="customer[gender]">
+					<label  for="female">Female</label>
+				</div>
+				<button type="submit">Register</button>
+			</div>	 -->
+		</form>
+	</div>
+</div>
+<style type="text/css">
+	.site-link {
+		padding: 5px 15px;
+		position: fixed;
+		z-index: 99999;
+		background: #fff;
+		box-shadow: 0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28);
+		right: 30px;
+		bottom: 30px;
+		border-radius: 10px;
+	}
+
+	.site-link a {
+		text-decoration: none;
+		color: #0af !important;
+		display: inline-block;
+	}
+
+	.site-link img {
+		width: 30px;
+		height: 30px;
+	}
+</style>

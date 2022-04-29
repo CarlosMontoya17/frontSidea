@@ -1,0 +1,551 @@
+<app-sidebar></app-sidebar>
+<div class="card mx-auto" style="background-color: rgb(240, 240, 240); width: 80%;">
+    <div  class="card-body">
+      <div class="card-title text-center" style="margin-bottom: 2em;">
+        <h5>EDITAR USUARIO</h5>
+      </div>
+      <div class="row">
+        <div class="col align-self-start">
+          <div class="d-flex justify-content-between">
+            <span>
+              <fa-icon [icon]="fa1" class="stepper-on" *ngIf="currentStep==0"></fa-icon>
+              <fa-icon [icon]="fa1" class="stepper-passed" (click)="restart(0)" style="cursor: pointer;"
+                *ngIf="currentStep > 0"></fa-icon>
+            </span>
+            <span>
+              <fa-icon [icon]="faD" style="color: rgb(68, 68, 68);"></fa-icon>
+            </span>
+            <span>
+              <fa-icon [icon]="fa2" class="stepper-off" *ngIf="currentStep==0"></fa-icon>
+              <fa-icon [icon]="fa2" class="stepper-on" *ngIf="currentStep==1"></fa-icon>
+              <fa-icon [icon]="fa2" class="stepper-passed" *ngIf="currentStep==2" style="cursor: pointer;"
+                (click)="restart(1)"></fa-icon>
+            </span>
+            <span>
+              <fa-icon [icon]="faD" style="color: rgb(68, 68, 68);"></fa-icon>
+            </span>
+            <span>
+              <fa-icon [icon]="fa3" class="stepper-off" *ngIf="currentStep!=2"></fa-icon>
+              <fa-icon [icon]="fa3" class="stepper-on" *ngIf="currentStep==2"></fa-icon>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="col" style="margin-top: 2em;">
+        <div class="alert alert-danger" role="alert" *ngIf="alert[0]!">
+          {{ alert[1] }}
+        </div>
+        <!-- FIRST FORM -->
+        <form *ngIf="currentStep==0">
+          <small id="emailHelp" class="form-text text-muted">Datos generales</small>
+          <div class="form-group">
+            <label>Nombre de usuario</label>
+            <input type="username" class="form-control" placeholder="Escribe el nombre de usuario"
+              [(ngModel)]="newUsername" name="newUsername">
+
+
+
+          </div>
+         
+          <div class="form-group">
+            <label>Nueva Contraseña</label>
+            <input type="password" class="form-control" placeholder="Escribe la contraseña del usuario"
+              [(ngModel)]="newPassword" name="newPassword">
+          </div>
+          <div class="form-group">
+            <label>Rol actual</label>
+          
+            <div class="card" >
+              <div class="card-body" >
+                {{ usuarios?.rol }}
+              </div>
+            </div>
+          </div>
+
+          
+          <div class="form-group">
+            <label>Rol nuevo</label>
+            <div class="input-group">
+              <select class="custom-select" placeholder="Selecciona un rol" style="width: 100em; height: 2.4rem;"
+                id="inputGroupSelect04" (click)="getAllProviders()" [(ngModel)]="newRol" name="newRol">
+                <option value="Supervisor" selected>Supervisor</option>
+                <option value="Asesor">Asesor</option>
+                <option value="Cliente">Cliente</option>
+                <option value="Sucursal">Sucursal</option>
+                <option value="Empleado">Empleado</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label *ngIf="newRol!= 'Supervisor'">Responsable</label>
+            <input type="text" class="form-control" placeholder="Busca al responsable del usuario"
+              [(ngModel)]="responsableSearch" name="responsableSearch"
+              *ngIf="newResponsable == undefined && newRol!= 'Supervisor'">
+            <div class="card" *ngIf="newResponsable != undefined">
+              <div class="card-body" style="cursor: pointer;" (click)="clearresponsable()">
+                {{ newResponsable?.nombre }} - {{ newResponsable?.rol }}
+              </div>
+            </div>
+          </div>
+
+          <ul class="list-group" *ngIf='newResponsable == undefined && responsableSearch.length > 0'>
+            <li class="list-group-item active">Resultados:</li>
+            <li class="list-group-item selectionable" (click)="selectProvider(provider)" style="cursor: pointer;"
+              *ngFor="let provider of providers | buscarciber: responsableSearch">
+              {{ provider.nombre }} - {{ provider.rol }}
+            </li>
+          </ul>
+        </form>
+        <!-- FIRST FORM -->
+        <!-- SECOND FORM -->
+        <form *ngIf="currentStep==1">
+          <small id="emailHelp" class="form-text text-muted">Precios</small>
+          <div class="form-row align-items-center">
+            <div class="row">
+              <div class="col-sm">
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">A. Nacimiento</div>
+                  </div>
+                  <input [(ngModel)]="nac" name="nac" type="number" class="form-control" id="inlineFormInputGroup"
+                    placeholder="$" *ngIf="!porEstados">
+                  <input class="form-control" placeholder="Precio por estado" disabled *ngIf="porEstados">
+                  <button type="submit" class="btn btn-primary" (click)="estados()" *ngIf="!porEstados">Estados</button>
+                  <button type="submit" class="btn btn-primary" (click)="estados()" *ngIf="porEstados">Unitario</button>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="porEstados">
+              <div class="row">
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Baja California</div>
+                    </div>
+                    <input [(ngModel)]="BAJACALIFORNIA" name="BAJACALIFORNIA" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Baja California Sur</div>
+                    </div>
+                    <input [(ngModel)]="BAJACALIFORNIASUR" name="iv" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Yucatan</div>
+                    </div>
+                    <input [(ngModel)]="YUCATAN" name="YUCATAN" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Veracruz</div>
+                    </div>
+                    <input [(ngModel)]="VERACURZ" name="VERACURZ" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Coahuila</div>
+                    </div>
+                    <input [(ngModel)]="COAHUILA" name="COAHUILA" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Michoacan</div>
+                    </div>
+                    <input [(ngModel)]="MICHOACAN" name="MICHOACAN" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Tlaxcala</div>
+                    </div>
+                    <input [(ngModel)]="TLAXCALA" name="TLAXCALA" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Durango</div>
+                    </div>
+                    <input [(ngModel)]="DURANGO" name="DURANGO" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Aguascalientes</div>
+                    </div>
+                    <input [(ngModel)]="AGUASCALIENTES" name="AGUASCALIENTES" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Chiapas</div>
+                    </div>
+                    <input [(ngModel)]="CHIAPAS" name="CHIAPAS" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Hidalgo</div>
+                    </div>
+                    <input [(ngModel)]="HIDALGO" name="HIDALGO" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Puebla</div>
+                    </div>
+                    <input [(ngModel)]="PUEBLA" name="PUEBLA" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Queretaro</div>
+                    </div>
+                    <input [(ngModel)]="QUERETARO" name="QUERETARO" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Chihuahua</div>
+                    </div>
+                    <input [(ngModel)]="CHIHUAHA" name="CHIHUAHA" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Oaxaca</div>
+                    </div>
+                    <input [(ngModel)]="OAXACA" name="OAXACA" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Sonora</div>
+                    </div>
+                    <input [(ngModel)]="SONORA" name="SONORA" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">San Luis Potosi</div>
+                    </div>
+                    <input [(ngModel)]="SANLUISPOTOSI" name="SANLUISPOTOSI" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Sinaloa</div>
+                    </div>
+                    <input [(ngModel)]="SINALOA" name="SINALOA" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Guerrero</div>
+                    </div>
+                    <input [(ngModel)]="GUERRERO" name="GUERRERO" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Zacatecas</div>
+                    </div>
+                    <input [(ngModel)]="ZACATECAS" name="ZACATECAS" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Tamaulipas</div>
+                    </div>
+                    <input [(ngModel)]="TAMAULIPAS" name="TAMAULIPAS" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Morelos</div>
+                    </div>
+                    <input [(ngModel)]="MORELOS" name="MORELOS" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Tabasco</div>
+                    </div>
+                    <input [(ngModel)]="TABASCO" name="TABASCO" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Guanajuato</div>
+                    </div>
+                    <input [(ngModel)]="GUANAJUATO" name="GUANAJUTO" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Colima</div>
+                    </div>
+                    <input [(ngModel)]="COLIMA" name="COLIMA" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Jalisco</div>
+                    </div>
+                    <input [(ngModel)]="JALISCO" name="JALISCO" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">CDMX</div>
+                    </div>
+                    <input [(ngModel)]="CDMX" name="CDMX" type="number" class="form-control" id="inlineFormInputGroup"
+                      placeholder="$">
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Nayarit</div>
+                    </div>
+                    <input [(ngModel)]="NAYARIT" name="NAYRIT" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Campeche</div>
+                    </div>
+                    <input [(ngModel)]="CAMPECHE" name="CAMPECHE" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Nuevo León</div>
+                    </div>
+                    <input [(ngModel)]="NUEVOLEON" name="NUEVOLEON" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">México</div>
+                    </div>
+                    <input [(ngModel)]="MEXICO" name="MEXICO" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Quintana Roo</div>
+                    </div>
+                    <input [(ngModel)]="QUINTANAROO" name="QUINTANAROO" type="number" class="form-control"
+                      id="inlineFormInputGroup" placeholder="$">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">A. Matrimonio</div>
+                </div>
+                <input [(ngModel)]="mat" name="mat" type="number" class="form-control" id="inlineFormInputGroup"
+                  placeholder="$">
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">A. Divorcio</div>
+                </div>
+                <input [(ngModel)]="div" name="div" type="number" class="form-control" id="inlineFormInputGroup"
+                  placeholder="$">
+              </div>
+            </div>
+          </div>
+          <div class="form-row align-items-center">
+            <div class="row">
+              <div class="col-sm">
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">A. Defunción</div>
+                  </div>
+                  <input [(ngModel)]="def" name="def" type="number" class="form-control" id="inlineFormInputGroup"
+                    placeholder="$">
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">Semanas cotizadas</div>
+                  </div>
+                  <input [(ngModel)]="cot" name="cot" type="number" class="form-control" id="inlineFormInputGroup"
+                    placeholder="$">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row align-items-center">
+            <div class="row">
+              <div class="col-sm">
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">Vigencia de derechos</div>
+                  </div>
+                  <input [(ngModel)]="der " name="der" type="number" class="form-control" id="inlineFormInputGroup"
+                    placeholder="$">
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">NSS</div>
+                  </div>
+                  <input [(ngModel)]="nss" name="nss" type="number" class="form-control" id="inlineFormInputGroup"
+                    placeholder="$">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row align-items-center">
+            <div class="row">
+              <div class="col-sm">
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">RFC</div>
+                  </div>
+                  <input [(ngModel)]="rfc" name="rfc" type="number" class="form-control" id="inlineFormInputGroup"
+                    placeholder="$">
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">Const. Inhabilitación</div>
+                  </div>
+                  <input [(ngModel)]="inh" name="inh" type="number" class="form-control" id="inlineFormInputGroup"
+                    placeholder="$">
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <!-- SECOND FORM -->
+        <!-- THIRD FORM -->
+        <form *ngIf="currentStep==2">
+          <small id="emailHelp" class="form-text text-muted">Finalizar</small>
+          <div class="form-row align-items-center">
+            <div class="form-group">
+              <label>Nombre de negocio</label>
+              <input type="text" class="form-control" placeholder="Escribe el nombre de tu negocio"
+                [(ngModel)]="Negocio" name="Negocio">
+            </div>
+            <div class="form-group">
+              <label>Tipo de negocio</label>
+              <input type="text" class="form-control" placeholder="Tipo de Negocio" [(ngModel)]="tipoNegocio"
+                name="tipoNegocio">
+            </div>
+            <div class="form-group">
+              <label>Estatus</label>
+              <div class="input-group">
+                <select class="custom-select" placeholder="Selecciona un rol" style="width: 100em; height: 2.4rem;"
+                  id="inputGroupSelect04" [(ngModel)]="Status" name="Status">
+                  <option value="Activo" selected>Activo</option>
+                  <option value="Inactivo">Inactivo</option>
+                </select>
+              </div>
+            </div>
+            <label>¿Estas seguro de agregar este usuario?</label>
+          </div>
+        </form>
+      </div>
+      <div class="ml-auto p-2">  <button type="submit" class="btn btn-primary" (click)="Regresar()">Cancelar</button>
+      <button type="submit" class="btn btn-primary" (click)="prevStep()" *ngIf="currentStep!=0">Atras</button>
+        <button type="submit" class="btn btn-primary" (click)="nextStep()" *ngIf="currentStep!=2">Siguiente</button>
+        <button type="submit" class="btn btn-primary" (click)="tetsEnviar()" *ngIf="currentStep==2">Actualizar
+            Usuario</button>
+        
+      </div>
+    </div>
+  </div>

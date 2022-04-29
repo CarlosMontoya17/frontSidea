@@ -1,0 +1,24 @@
+.hero {
+    padding: 10rem 0;
+}
+.hero img {
+    width: 100%;
+}
+@media screen and (max-width: 768px) {
+    .hero {
+        padding-top: 5rem;
+    }
+}
+.error-input{
+  color: #FF6961;
+  margin-top: -20px !important;
+  display: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.example-image{
+  margin: 1rem;
+}

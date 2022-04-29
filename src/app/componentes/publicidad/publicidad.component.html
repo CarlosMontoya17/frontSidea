@@ -1,0 +1,101 @@
+<body>
+    <div id="app">
+        <app-sidebar></app-sidebar>
+        <div id="main">
+            <div class="col-12 col-md-6">
+                <form action="" method="POST">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Subir archivos</h5>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-body">
+                                <p class="card-text">Agregue archivos para mostrar en la galeria de publicidad</p>
+                                <div class="input-group mb-3">
+                                    <select class="form-select" id="inputGroupSelect08" (change)="selectOption($event)">
+                                        <option value="0" selected hidden="">Elija el grupo de imagen</option>
+                                        <option value="nacimiento">Nacimiento</option>
+                                        <option value="matrimonio">Matrimonio</option>
+                                        <option value="divorcio">Divorcio</option>
+                                        <option value="defuncion">Defuncion</option>
+                                        <option value="altasCurp">Altas Curp</option>
+                                        <option value="correcionCurp">Correcion de CURP</option>
+                                        <option value="constanciaFiscal">Constancia de situacion fiscal</option>
+                                        <option value="constanciaI">Constancia de Inhabilitación</option>
+                                        <option value="facturacionE">Facturacion electronica</option>
+                                        <option value="general">General</option>
+                                    </select>
+                                </div>
+                                <!-- Basic file uploader -->
+                                <input type="file" class="basic-filepond" id="archivo" accept="application/pdf"
+                                    (change)="preview1($event)">
+                                <a (click)="addImg()" class="btn btn-success" style="margin: 1rem;">Subir archivo</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="container">
+                <h1 class="fw-light text-center text-lg-start mt-4 mb-0">Publicidad</h1>
+                <hr class="mt-2 mb-5">
+                <section id="groups">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12" style="margin: 0 auto;">
+                            <div class="card-content">
+                                <div class="card-body"
+                                    style="display: grid; align-items: center; justify-content: center;">
+                                    <div class="list-group list-group-horizontal-sm mb-1 text-center" role="tablist">
+                                        <a class="list-group-item list-group-item-action active" id="list-sunday-list"
+                                            data-bs-toggle="list" href="#list-sunday" role="tab"
+                                            (click)="getImages('nacimiento')">Nacimiento</a>
+                                        <a class="list-group-item list-group-item-action" id="list-monday-list0"
+                                            (click)="getImages('matrimonio')" data-bs-toggle="list" href="#list-monday"
+                                            role="tab">Matrimonio</a>
+                                        <a class="list-group-item list-group-item-action" id="list-tuesday-list11"
+                                            (click)="getImages('divorcio')" data-bs-toggle="list" href="#list-tuesday"
+                                            role="tab">Divorcio</a>
+                                        <a class="list-group-item list-group-item-action" id="list-tuesday-list22"
+                                            (click)="getImages('defuncion')" data-bs-toggle="list" href="#list-nuevo"
+                                            role="tab">Defunción</a>
+                                        <a class="list-group-item list-group-item-action" id="list-tuesday-list1"
+                                            (click)="getImages('altas curp')" data-bs-toggle="list" href="#list-nuevo"
+                                            role="tab">Altas Curp</a>
+                                        <a class="list-group-item list-group-item-action" id="list-tuesday-list2"
+                                            (click)="getImages('correcion de curp')" data-bs-toggle="list"
+                                            href="#list-nuevo" role="tab">Correcion de Curp</a>
+                                        <a class="list-group-item list-group-item-action" id="list-tuesday-list3"
+                                            (click)="getImages('situacion fiscal')" data-bs-toggle="list"
+                                            href="#list-nuevo" role="tab">Situacion fiscal</a>
+                                        <a class="list-group-item list-group-item-action" id="list-tuesday-list4"
+                                            (click)="getImages('inhabilitacion')" data-bs-toggle="list"
+                                            href="#list-nuevo" role="tab">Inhabilitación</a>
+                                        <a class="list-group-item list-group-item-action" id="list-tuesday-list5"
+                                            (click)="getImages('Facturacion electronica')" data-bs-toggle="list"
+                                            href="#list-nuevo" role="tab">Facturacion electronica</a>
+                                        <a class="list-group-item list-group-item-action" id="list-tuesday-list6"
+                                            (click)="getImages('general')" data-bs-toggle="list" href="#list-nuevo"
+                                            role="tab">General </a>
+                                    </div>
+                                    <div class="buttons"
+                                        style="margin: 1rem; display: grid; align-items: center; justify-content: center; ">
+                                        <a class="btn btn-success" (click)="descargar()">Descargar publicidad</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row match-height">
+                        <div class="card-group">
+                            <!-- <div class="col-lg-3 col-md-4 col-6" >
+                                <a  data-lightbox="roadtrip"><img class="example-image"
+                                       alt="image-3" height="400" width="300"></a>
+                                <a class="btn btn-danger"
+                                   >Eliminar</a>
+                            </div> -->
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,177 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    text-align: center;
+    
+}
+
+input[name="slider-select-element"] {
+    display: none;
+}
+
+#slider-arrows {
+    margin: -10% auto 0 auto;
+    width: 0%;
+   
+}
+
+#slider-box {
+    -moz-animation: autoSlider 15s infinite linear;
+    -o-animation: autoSlider 15s infinite linear;
+    -webkit-animation: autoSlider 15s infinite linear;
+    animation: autoSlider 15s infinite linear;
+
+    -webkit-transition: all 0.75s ease;
+    -moz-transition: all 0.75s ease;
+    -ms-transition: all 0.75s ease;
+    -o-transition: all 0.75s ease;
+    transition: all 0.75s ease;
+
+    height: 300%;
+    width: 300%;
+}
+
+#slider-container {
+    height: 20%;
+    margin: 0 auto;
+    overflow: hidden;
+    text-align: center;
+    width: 100%;
+
+}
+
+.element-difusion,
+.element-matrionio,
+.element-nacimiento {
+  
+    min-height: 400px;
+    max-height: 400%;
+    background-size: cover;
+    object-position: center center;
+    background-repeat: no-repeat;
+    
+  
+}
+
+.element-difusion {
+    background-image : url('../../../assets/images/DIVORCIO.jpg');
+    background-size: cover;
+    background-size: 100%;
+  
+
+}
+
+.element-nacimiento {
+    background-image : url('../../../assets/images/NACIMIENTO.jpg');
+    background-size: cover;
+    background-size: 100%;
+    /* background-repeat: no-repeat; */
+}
+
+.element-matrionio {
+    background-image : url('../../../assets/images/MATRIMONIO.jpg');
+    background-size: cover;
+    background-size: 100%;
+    
+   
+}
+
+
+
+.slider-element {
+    float: left;
+    width: 33.333%;
+}
+
+@-moz-keyframes autoSlider {
+    0% {
+        margin-left: 0;
+    }
+
+    30% {
+        margin-left: 0;
+    }
+
+    35% {
+        margin-left: -100%;
+    }
+
+    65% {
+        margin-left: -100%;
+    }
+
+    70% {
+        margin-left: -200%;
+    }
+
+    95% {
+        margin-left: -200%;
+    }
+
+    100% {
+        margin-left: 0;
+    }
+}
+
+@-webkit-keyframes autoSlider {
+    0% {
+        margin-left: 0;
+    }
+
+    30% {
+        margin-left: 0;
+    }
+
+    35% {
+        margin-left: -100%;
+    }
+
+    65% {
+        margin-left: -100%;
+    }
+
+    70% {
+        margin-left: -200%;
+    }
+
+    95% {
+        margin-left: -200%;
+    }
+
+    100% {
+        margin-left: 0;
+    }
+}
+
+@keyframes autoSlider {
+    0% {
+        margin-left: 0;
+    }
+
+    30% {
+        margin-left: 0;
+    }
+
+    35% {
+        margin-left: -100%;
+    }
+
+    65% {
+        margin-left: -100%;
+    }
+
+    70% {
+        margin-left: -200%;
+    }
+
+    95% {
+        margin-left: -200%;
+    }
+
+    100% {
+        margin-left: 0;
+    }
+}

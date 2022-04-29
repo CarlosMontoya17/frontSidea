@@ -1,0 +1,103 @@
+.add {
+	color: white;
+	border: 100px;
+	box-shadow: 0 0 2px #888;
+	background-color: rgb(60, 153, 125);
+	padding: 0.5em 0.5em;
+	border-radius: 60px;
+	cursor: pointer;
+	/* margin-left: 95% !important;
+	margin-top: 10% !important; */
+	position: static;
+}
+
+.add:hover {
+	background-color: rgb(59, 194, 149);
+}
+.delete {
+	color: white;
+	border: 100px;
+	box-shadow: 0 0 2px #888;
+	background-color: rgb(173, 39, 39);
+	padding: 0.5em 0.5em;
+	border-radius: 60px;
+	cursor: pointer;
+	/* margin-left: 95% !important;
+	margin-top: 10% !important; */
+	position: static;
+}
+
+.delete:hover {
+	background-color: rgb(197, 82, 82);
+}
+.edituser {
+	color: white;
+	border: 100px;
+	box-shadow: 0 0 2px #888;
+	background-color: rgb(173, 164, 39);
+	padding: 0.5em 0.5em;
+	border-radius: 60px;
+	cursor: pointer;
+	/* margin-left: 95% !important;
+	margin-top: 10% !important; */
+	position: static;
+}
+
+.edituser:hover {
+	background-color: rgb(192, 184, 79);
+}
+.status {
+	color: white;
+	border: 100px;
+	box-shadow: 0 0 2px #888;
+	background-color: rgb(173, 39, 95);
+	padding: 0.5em 0.5em;
+	border-radius: 60px;
+	cursor: pointer;
+	/* margin-left: 95% !important;
+	margin-top: 10% !important; */
+	position: static;
+}
+
+.status:hover {
+	background-color: rgb(202, 87, 183);
+}
+
+
+
+
+
+.stepper-off {
+	border: 100px;
+	box-shadow: 0 0 4px #888;
+	padding: 0.5em 1em;
+	border-radius: 200px;
+	position: static;
+	background-color: rgb(110, 108, 108);
+	color:white;
+}
+
+.stepper-on {
+	border: 100px;
+	box-shadow: 0 0 4px #888;
+	padding: 0.5em 1em;
+	border-radius: 200px;
+	position: static;
+	background-color: rgb(27, 142, 219);
+	color:white;
+}
+
+.stepper-passed {
+	border: 100px;
+	box-shadow: 0 0 4px #888;
+	padding: 0.5em 1em;
+	border-radius: 200px;
+	position: static;
+	background-color: rgb(57, 151, 96);
+	color:rgb(255, 255, 255);
+}
+
+.selectionable:hover{
+	background-color: rgb(230, 230, 230);
+}
+
