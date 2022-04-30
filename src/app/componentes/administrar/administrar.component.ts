@@ -15,7 +15,10 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import { PerfileditService } from './editarprecios/perfiledit.service';
+import { faDollarSign } from '@fortawesome/free-solid-svg-icons';
+
 import * as CryptoJS from 'crypto-js';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-administrar',
   templateUrl: './administrar.component.html',
@@ -35,7 +38,7 @@ export class AdministrarComponent implements OnInit {
   newidSuper: any;
   alert: any = [];
 
-  usernameLocal:string="";
+  usernameLocal: string = "";
 
   nac: number = 0;
   mat: number = 150;
@@ -95,6 +98,7 @@ export class AdministrarComponent implements OnInit {
   fa2 = fa2;
   fa3 = fa3;
   faD = faGripLines;
+  faDollarSign = faDollarSign;
 
   usuario: string = "";
   contrasena: string = "";
@@ -106,38 +110,43 @@ export class AdministrarComponent implements OnInit {
   tipoNegocio: string = "";
   Status: string = "";
 
-  agregarusuario:boolean = false;
+  agregarusuario: boolean = false;
 
-  buscarCiber:string = "";
-  myData:any;
+  buscarCiber: string = "";
+  myData: any;
 
 
 
-  constructor(private router: Router, private loginservice: LoginService, private restservice: RestService, private database: DatabaseService, private perfil:PerfileditService) { }
+  constructor(private router: Router, 
+    private loginservice: LoginService, 
+    private restservice: RestService, 
+    private database: DatabaseService, 
+    private perfil: PerfileditService,
+    private httpClient: HttpClient) { }
   changeView() {
     this.vista = !this.vista;
-   
+
   }
 
   agregaUsuario() {
     this.agregarusuario = !this.agregarusuario;
   }
 
-  resetPagination(){
-      this.page = 1;
+  resetPagination() {
+    this.page = 1;
   }
 
-  setPriceUsername(){
-    if(this.usernameLocal == "Cibers Nelly"){
-      this.nac  = 0;
-      this.mat  = 150;
-      this.def  = 150;
-      this.div  = 150;
-      this.cot  = 40;
-      this.der  = 40;
-      this.nss  = 50;
-      this.rfc  = 100;
-      this.inh  = 130;
+  setPriceUsername() {
+    if (this.usernameLocal == "Cibers Nelly") {
+      this.nac = 0;
+      this.mat = 150;
+      this.def = 150;
+      this.div = 150;
+      this.cot = 40;
+      this.der = 40;
+      this.nss = 50;
+      this.rfc = 100;
+      this.inh = 130;
       //Estados
       this.BAJACALIFORNIA = 130;
       this.YUCATAN = 125;
@@ -145,7 +154,7 @@ export class AdministrarComponent implements OnInit {
       this.VERACURZ = 125;
       this.COAHUILA = 100;
       this.MICHOACAN = 90;
-      this.TLAXCALA  = 90;
+      this.TLAXCALA = 90;
       this.DURANGO = 85;
       this.AGUASCALIENTES = 75;
       this.CHIAPAS = 90;
@@ -172,16 +181,16 @@ export class AdministrarComponent implements OnInit {
       this.MEXICO = 38;
       this.QUINTANAROO = 40;
     }
-    else if(this.usernameLocal == "Publico David" || this.usernameLocal == "Jose Daniel"){
-      this.nac  = 0;
-      this.mat  = 150;
-      this.def  = 150;
-      this.div  = 150;
-      this.cot  = 40;
-      this.der  = 40;
-      this.nss  = 40;
-      this.rfc  = 120;
-      this.inh  = 130;
+    else if (this.usernameLocal == "Publico David" || this.usernameLocal == "Jose Daniel") {
+      this.nac = 0;
+      this.mat = 150;
+      this.def = 150;
+      this.div = 150;
+      this.cot = 40;
+      this.der = 40;
+      this.nss = 40;
+      this.rfc = 120;
+      this.inh = 130;
       //Estados
       this.BAJACALIFORNIA = 140;
       this.YUCATAN = 135;
@@ -189,7 +198,7 @@ export class AdministrarComponent implements OnInit {
       this.VERACURZ = 125;
       this.COAHUILA = 110;
       this.MICHOACAN = 100;
-      this.TLAXCALA  = 100;
+      this.TLAXCALA = 100;
       this.DURANGO = 95;
       this.AGUASCALIENTES = 85;
       this.CHIAPAS = 110;
@@ -216,16 +225,16 @@ export class AdministrarComponent implements OnInit {
       this.MEXICO = 70;
       this.QUINTANAROO = 70;
     }
-    else if(this.usernameLocal == "Publico Eli"){
-      this.nac  = 0;
-      this.mat  = 150;
-      this.def  = 160;
-      this.div  = 150;
-      this.cot  = 40;
-      this.der  = 40;
-      this.nss  = 50;
-      this.rfc  = 100;
-      this.inh  = 130;
+    else if (this.usernameLocal == "Publico Eli") {
+      this.nac = 0;
+      this.mat = 150;
+      this.def = 160;
+      this.div = 150;
+      this.cot = 40;
+      this.der = 40;
+      this.nss = 50;
+      this.rfc = 100;
+      this.inh = 130;
       //Estados
       this.BAJACALIFORNIA = 140;
       this.YUCATAN = 135;
@@ -233,7 +242,7 @@ export class AdministrarComponent implements OnInit {
       this.VERACURZ = 130;
       this.COAHUILA = 110;
       this.MICHOACAN = 100;
-      this.TLAXCALA  = 100;
+      this.TLAXCALA = 100;
       this.DURANGO = 95;
       this.AGUASCALIENTES = 85;
       this.CHIAPAS = 105;
@@ -264,10 +273,48 @@ export class AdministrarComponent implements OnInit {
 
   }
 
-  async editprice(user:any){
-      const data = this.restservice.getidsupervisor(user.idSuper);
-      this.perfil.set(user);
-      this.router.navigateByUrl('editprecio');
+  async deleteUser(user: any) {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: "Se eliminará al usuario '" + user.username + "', con nombre de negocio '" + user.nombre + "'",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar',
+      cancelButtonText: 'No, cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+        var token: any = i.toString(CryptoJS.enc.Utf8);
+        var parteuno = token.slice(1);
+        var final = parteuno.slice(0, -1);
+        let tokenfinal: string = final;
+        const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
+        this.httpClient.delete('http://actasalinstante.com:3030/api/user/delete/' + user.id, { headers }).subscribe(
+          e => {
+            Swal.fire(
+              'Eliminado',
+              "Se eliminó al usuario '" + user.username + "'",
+              'success'
+            )
+          },
+          error => {
+            Swal.fire(
+              'Error',
+              "No tienes los permisos suficientes",
+              'error'
+            )
+          }
+        );
+      }
+    })
+  }
+
+  async editprice(user: any) {
+    const data = this.restservice.getidsupervisor(user.idSuper);
+    this.perfil.set(user);
+    this.router.navigateByUrl('editprecio');
   }
   async tetsEnviar() {
     if (this.Status == "" || this.Negocio == "" || this.tipoNegocio == "") {
@@ -437,7 +484,7 @@ export class AdministrarComponent implements OnInit {
     if (this.newRol == "Supervisor") {
       this.clearresponsable()
     }
-    if(this.myData.rol == "Asesor" && this.newRol == "Cliente"){
+    if (this.myData.rol == "Asesor" && this.newRol == "Cliente") {
       this.newResponsable = this.myData;
     }
     if (this.newRol != "") {
@@ -457,11 +504,10 @@ export class AdministrarComponent implements OnInit {
       this.newResponsable = provider;
     }
   }
-async getMyData(id:any){
-  const mydata:any = await this.restservice.getidsupervisor(id).toPromise();
-  this.myData = mydata?.data;
-  console.log(this.myData.rol);
-}
+  async getMyData(id: any) {
+    const mydata: any = await this.restservice.getidsupervisor(id).toPromise();
+    this.myData = mydata?.data;
+  }
 
   ngOnInit(): void {
     this.getAllUsers();

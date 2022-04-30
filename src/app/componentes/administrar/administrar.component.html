@@ -576,7 +576,7 @@
             <th scope="col">Usuario</th>
             <th scope="col">Nombre Negocio</th>
             <th scope="col">Precios</th>
-            <th scope="col">Estatus</th>
+            <th scope="col">Otros</th>
           </tr>
         </thead>
         <tbody>
@@ -585,8 +585,17 @@
             <th scope="row">{{ user.id }}</th>
             <td>{{ user.username }} </td>
             <td>{{ user.nombre }} </td>
-            <td> <span class="badge" style="background-color: rgb(134, 73, 73); cursor: pointer;  margin: 0.5rem;" (click)="editprice(user)">Ver/Editar Precios</span> </td>
-            <td>{{ user.status }}</td>
+            <td> <span class="badge" style="background-color: rgb(172, 113, 68); cursor: pointer;  margin: 0.5rem;" (click)="editprice(user)">
+              <fa-icon  [icon]="faDollarSign"></fa-icon>
+               Editar Precios
+            </span> </td>
+            <td>
+              <span class="badge" style="background-color: rgb(134, 73, 73); cursor: pointer;  margin: 0.5rem;" (click)="deleteUser(user)">
+                <fa-icon  [icon]="faTrash"></fa-icon>
+                Eliminar usuario
+              </span>
+              
+            </td>
           </tr>
         </tbody>
       </table>

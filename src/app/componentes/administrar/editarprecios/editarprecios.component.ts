@@ -263,7 +263,6 @@ if(data){
       this.router.navigateByUrl('/administrar');
     }
     this.precios = this.usuarios.precios;
-    console.log(this.precios.nac.chia!);
     if (this.precios.nac.chia!) {
       this.estados();
       this.CHIAPAS = this.precios.nac.chia;
@@ -325,7 +324,6 @@ if(data){
 
     this.datossupervisor = await this.restservice.getidsupervisor(this.usuarios.idSuper).toPromise();
     this.newResponsable = await this.datossupervisor.data;
-    console.log(this.newResponsable);
     this.newUsername = this.usuarios.username;
     
   }

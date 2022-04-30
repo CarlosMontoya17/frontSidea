@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import * as CryptoJS from 'crypto-js';
 const api = "http://actasalinstante.com:3030";
 
 

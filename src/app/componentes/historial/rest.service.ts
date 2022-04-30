@@ -32,18 +32,17 @@ export class RestService {
     return this.http.put('http://actasalinstante.com:3030/api/clients/getMyData/' + id, { tipo, estado })
   }
 
-  getidsupervisor(id:any){
-    return this.http.get('http://actasalinstante.com:3030/api/user/getOne/'+ id);
+  getidsupervisor(id: any) {
+    return this.http.get('http://actasalinstante.com:3030/api/user/getOne/' + id);
   }
-  enviarcta(ciberseleccionado: any, superviser: any, tipo: any, curp: any, estado: any, precio: any, nombre: any, requested:any): Observable<any> {
+  enviarcta(ciberseleccionado: any, superviser: any, tipo: any, curp: any, estado: any, precio: any, nombre: any, requested: any): Observable<any> {
     var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
     var token: any = i.toString(CryptoJS.enc.Utf8);
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);
     let tokenfinal: string = final;
     const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
-
-    return this.http.post('http://actasalinstante.com:3030/api/actas/up', { enterprise: ciberseleccionado, provider: superviser, document: tipo,  states: estado, curp: curp, nombreacta: nombre,requested:requested, price: precio }, { headers });
+    return this.http.post('http://actasalinstante.com:3030/api/actas/up', { enterprise: ciberseleccionado, provider: superviser, document: tipo, states: estado, curp: curp, nombreacta: nombre, requested: requested, price: precio }, { headers });
   }
   getcorte(usuario: any): Observable<any> {
     return this.http.get('http://actasalinstante.com:3030/api/getMyCorte/' + usuario)
@@ -51,7 +50,7 @@ export class RestService {
   deleteuser(id: any): Observable<any> {
     return this.http.get('http://actasalinstante.com:3030/api/user/delete/' + id)
   }
-  editPrecior(id: any,precios:any): Observable<any> {
-    return this.http.put('http://actasalinstante.com:3030/api/user/editPrice/' + id, {precios:precios })
+  editPrecior(id: any, precios: any): Observable<any> {
+    return this.http.put('http://actasalinstante.com:3030/api/user/editPrice/' + id, { precios: precios })
   }
 } 
