@@ -6,7 +6,7 @@ import * as CryptoJS from 'crypto-js';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
 import { Observable } from 'rxjs';
-import { GridApi, GridReadyEvent, ValueGetterFunc, ValueGetterParams } from 'ag-grid-community';
+import { GridApi, GridReadyEvent, RowSpanParams, ValueGetterFunc, ValueGetterParams } from 'ag-grid-community';
 import { AgGridAngular } from 'ag-grid-angular';
 @Component({
   selector: 'app-pagos',
@@ -20,7 +20,6 @@ export class PagosComponent implements OnInit {
   getcortes: any;
   page: number = 0;
   usuario: any = "Usuario";
-
   username: string = "";
   totalPrecio: number = 0;
   totalActas: number = 0;
@@ -30,12 +29,11 @@ export class PagosComponent implements OnInit {
   //Tabla
   cortes: any;
   columnDefs = [
-    { field: "id", headerName: "Id", filter: true },
+    { field: "id", width: 80, headerName: "Id", filter: true },
+    { field: "enterprise", headerName: "Ciber", filter: true },
     { field: "document", headerName: "Documento", filter: true },
     { field: "states", headerName: "Estado", filter: true },
     { field: "curp", headerName: "CURP", filter: true },
-    { field: "provider", headerName: "Asesor", filter: true },
-    { field: "enterprise", headerName: "Ciber", filter: true },
     { field: "price", headerName: "Precio", type: 'valueColumn', filter: true, },
     { field: "createdAt", headerName: "Fecha y hora", filter: true },
     { field: "corte", headerName: "Corte", type: 'valueColumn', filter: true, }];
@@ -51,9 +49,6 @@ export class PagosComponent implements OnInit {
     //this.rowData = this.restservice.getcorte<any[]>(arreglo[1]).toPromise();
     //this.rowData = this.http.get<any[]>('http://actasalinstante.com:3030/api/getMyCorte/' + arreglo[1]);
   }
-
-
-
 
 
   ngOnInit(): void {

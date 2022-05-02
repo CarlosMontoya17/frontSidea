@@ -298,6 +298,7 @@ export class AdministrarComponent implements OnInit {
               "Se eliminó al usuario '" + user.username + "'",
               'success'
             )
+            this.reloadCurrentRoute();
           },
           error => {
             Swal.fire(
@@ -408,17 +409,25 @@ export class AdministrarComponent implements OnInit {
       const data = await this.loginservice.adduser(this.newUsername, this.newPassword, this.newRol, this.tipoNegocio, idSuper, this.precios, estatus, this.Negocio);
 
       if (data) {
-        this.router.navigateByUrl("/administrar");
+      
         Swal.fire({
           position: 'center',
           icon: 'success',
           title: 'Usuario Agregado',
           showConfirmButton: false,
           timer: 1500
-        })
+        });
+        this.reloadCurrentRoute();
       }
     }
   }
+
+  reloadCurrentRoute() {
+    const currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate([currentUrl]);
+    });
+}
   clearresponsable() {
     this.responsableSearch = "";
     this.newResponsable = undefined;

@@ -572,19 +572,21 @@
       <table class="table table-dark table-hover table-striped" >
         <thead>
           <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Usuario</th>
-            <th scope="col">Nombre Negocio</th>
-            <th scope="col">Precios</th>
-            <th scope="col">Otros</th>
+            <th scope="col" style="width: 5em; text-align: center;">Id</th>
+            <th scope="col" style="width: 15em; text-align: center;">Usuario</th>
+            <th scope="col" style="width: 15em; text-align: center;">Nombre Negocio</th>
+            <th scope="col" style="width: 5em; text-align: center;">Rol</th>
+            <th scope="col" style="width: 2em; text-align: center;">Precios</th>  
+            <th scope="col" style="width: 2em; text-align: center;">Otros</th>
           </tr>
         </thead>
         <tbody>
           <tr style="cursor: pointer;"
             *ngFor="let user of usuarios | buscarciber: buscarCiber |  paginate: { itemsPerPage: 20, currentPage: page }">
-            <th scope="row">{{ user.id }}</th>
+            <th scope="row" style="width: 1em;">{{ user.id }}</th>
             <td>{{ user.username }} </td>
             <td>{{ user.nombre }} </td>
+            <td>{{ user.rol }} </td>
             <td> <span class="badge" style="background-color: rgb(172, 113, 68); cursor: pointer;  margin: 0.5rem;" (click)="editprice(user)">
               <fa-icon  [icon]="faDollarSign"></fa-icon>
                Editar Precios

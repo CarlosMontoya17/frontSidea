@@ -13,14 +13,17 @@
     <div class="row">
                 <ag-grid-angular style="width: 150em; height: 30em;" class="ag-theme-alpine" 
                 [rowData]="rowData" #agGrid [pinnedBottomRowData]="pinnedBottomRowData"
-                [columnDefs]="columnDefs" [suppressExcelExport]="true" (gridReady)="onGridReady($event)" rowSelection="multiple">
+                [suppressRowClickSelection]="true"
+                [animateRows]="true"
+                [columnDefs]="columnDefs" [suppressExcelExport]="true" 
+                (gridReady)="onGridReady($event)" rowSelection="multiple">
             </ag-grid-angular> 
   
         </div>
         <div class="card">
             <div class="card-body text-center">
     
-                <span class="btn btn-success" (click)="onBtnExport()">Descargar Excel</span>
+                <span class="btn btn-success" (click)="onBtnExport()">Descargar CSV</span>
             </div>
             
           </div>

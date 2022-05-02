@@ -57,15 +57,19 @@
 }
 
 .body {
-    background: #2C343B;
 
     background-image: url(../../../assets/images/diseño5.jpg);
-    background-size: cover;
-    padding: 196px;
     width: 100%;
-    min-width: 100;
-    max-width: 100;
+    max-width: 100px;
+    height: 100%;
+    background-size: cover;
+    padding-top: 300px;
+    padding-bottom: 360px;
+    min-width: 100%;
+        
+    
 }
+
 
 h1.head-title {
     text-align: center;
@@ -85,20 +89,25 @@ h1.head-title:before {
 }
 
 button {
+   
+    display:block;
+    left:-60px;
+    margin-top:35px;
+    width:100%;
     width: 100%;
-    min-width: 50px;
+    min-width: 300px;
     max-width: 300px;
     height: 45px;
     line-height: 39px;
     width: 50%;
     background: #303030;
     transition: all .25s;
-    border: none;
+
     border: solid 3px #303030;
     color: #fff;
-    font-size: 20px;
+    font-size: 14px;
     margin: 50px auto !important;
-    display: block;
+
     color: #efb810 !important;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
 }
@@ -113,11 +122,11 @@ button:focus {
 button:hover {
     background: transparent;
     color: #303030 !important;
-    width: 55%;
+    width: 100%;
     box-shadow: none;
     width: 100%;
-    min-width: 50px;
-    max-width: 300px;
+    min-width: 100px;
+    max-width: 100px;
 }
 
 #int-form {

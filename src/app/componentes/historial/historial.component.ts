@@ -57,6 +57,7 @@ export class HistorialComponent implements OnInit {
         timer: 1500
       }
     )
+    this.router.navigateByUrl('/historial');
     const body = new FormData();
     body.append("enterprise", this.ciberseleccionado);
     body.append("provider", this.precioyasesor.superviser);
@@ -72,7 +73,7 @@ export class HistorialComponent implements OnInit {
       nombrecompleto = this.info.nombre + " " + this.info.apellidos;
     }
     const data = await this.restService.enviarcta(this.ciberseleccionado, this.precioyasesor.superviser, this.info.tipo, this.info.curp, this.info.estado, this.precioyasesor.precio, nombrecompleto, "").toPromise();
-
+  
   }
   clickciber(id: any, nombre: any) {
     this.ciberseleccionado = nombre;
@@ -214,7 +215,7 @@ export class HistorialComponent implements OnInit {
     this.restService.getprecioyasesor(documento, state, id)
       .subscribe(res => {
         this.precioyasesor = res;
-        console.log(res);
+   
       });
   }
   //CORTEHSITORIAL
@@ -226,7 +227,7 @@ async getcorte() {
         let userName = usuario.toString(CryptoJS.enc.Utf8);
         let arreglo = userName.split('"');
         this.getcortes = await this.restService.getcorte(arreglo[1]).toPromise();
-        console.log(this.getcortes);
+      
       }
       }
   }
@@ -302,10 +303,10 @@ async getcorte() {
     }
   }
   public fileOver(event: any) {
-    console.log(event);
+   
   }
   public fileLeave(event: any) {
-    console.log(event);
+ 
   }
   //SOLTARPDF
   getFile($event: any): void {
@@ -352,7 +353,7 @@ async getcorte() {
       }
     }
     catch (error: any) {
-      console.log(error);
+    
       Swal.fire(
         {
           position: 'center',
