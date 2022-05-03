@@ -552,9 +552,9 @@
 
     <div class="card-body">
 
-      <div class="d-flex" (click)="agregaUsuario()">
+      <div class="d-flex">
        <div class="ml-auto p-2">
-         <div class="add">
+         <div class="add" (click)="agregaUsuario()">
           <fa-icon  [icon]="faUserPlus" class="add-user"></fa-icon>
           &nbsp;&nbsp;
           <span>Agregar nuevo usuario</span>
@@ -587,9 +587,9 @@
             <td>{{ user.username }} </td>
             <td>{{ user.nombre }} </td>
             <td>{{ user.rol }} </td>
-            <td> <span class="badge" style="background-color: rgb(172, 113, 68); cursor: pointer;  margin: 0.5rem;" (click)="editprice(user)">
-              <fa-icon  [icon]="faDollarSign"></fa-icon>
-               Editar Precios
+            <td> <span class="badge" style="background-color: rgb(98, 172, 76); cursor: pointer;  margin: 0.5rem;" (click)="editprice(user)">
+              <fa-icon  [icon]="faPencil"></fa-icon>
+               Editar usuario
             </span> </td>
             <td>
               <span class="badge" style="background-color: rgb(134, 73, 73); cursor: pointer;  margin: 0.5rem;" (click)="deleteUser(user)">

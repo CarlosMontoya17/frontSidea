@@ -8,6 +8,8 @@ import { RestService } from './rest.service';
 declare const main: any;
 import * as CryptoJS from 'crypto-js';
 import { DatabaseService } from 'src/app/servicios/database/database.service';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-historial',
@@ -18,6 +20,7 @@ import { DatabaseService } from 'src/app/servicios/database/database.service';
 
 export class HistorialComponent implements OnInit {
   public imagePath: any;
+  faTrashCan = faTrashCan;
   imgURL: any;
   fileTmp: any;
   info: any;
@@ -46,7 +49,8 @@ export class HistorialComponent implements OnInit {
   page: number = 0;
   myInfo: any;
   myRol: any;
-  constructor(private restService: RestService, private router: Router, private database: DatabaseService) { }
+  constructor(private restService: RestService, private router: Router, private database: DatabaseService, private http: HttpClient) { }
+
   async enviaracta() {
     Swal.fire(
       {
@@ -73,8 +77,72 @@ export class HistorialComponent implements OnInit {
       nombrecompleto = this.info.nombre + " " + this.info.apellidos;
     }
     const data = await this.restService.enviarcta(this.ciberseleccionado, this.precioyasesor.superviser, this.info.tipo, this.info.curp, this.info.estado, this.precioyasesor.precio, nombrecompleto, "").toPromise();
-  
+    this.reloadCurrentRoute();
   }
+
+  reloadCurrentRoute() {
+    const currentUrl = this.router.url;
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentUrl]);
+    });
+  }
+
+  reloadCurrentRouteLastDelete() {
+    const currentUrl = this.router.url;
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentUrl]);
+    });
+    
+  }
+
+  deleteItemActa(id: any, document: any, enterprise: any) {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: "Se eliminará '" + document + "', del negocio '" + enterprise + "'",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar',
+      cancelButtonText: 'No, cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+        var token: any = i.toString(CryptoJS.enc.Utf8);
+        var parteuno = token.slice(1);
+        var final = parteuno.slice(0, -1);
+        let tokenfinal: string = final;
+        const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
+        this.http.delete('http://actasalinstante.com:3030/api/actas/deleteActa/' + id, { headers }).subscribe(
+          (data: any) => {
+            Swal.fire(
+              {
+                position: 'center',
+                icon: 'success',
+                title: 'Acta eliminada',
+                showConfirmButton: false,
+                timer: 1500
+              }
+            );
+            this.reloadCurrentRouteLastDelete();
+          },
+          (err: any) => {
+            Swal.fire(
+              {
+                position: 'center',
+                icon: 'error',
+                title: 'Contacta al equipo de soporte',
+                showConfirmButton: false,
+                timer: 1500
+              }
+            );
+          }
+        );
+
+      }
+    })
+  }
+
   clickciber(id: any, nombre: any) {
     this.ciberseleccionado = nombre;
     const body = new FormData();
@@ -104,7 +172,7 @@ export class HistorialComponent implements OnInit {
       case "Registro Federal de Contribuyentes":
         documento = "rfc";
         break;
-      case "CONSTANCIA DE NO INHABILITACION":
+      case "CONSTANCIA DE NO INHABILITACIÓN":
         documento = "inh";
         break;
       default:
@@ -206,7 +274,9 @@ export class HistorialComponent implements OnInit {
       case "QUINTANARRO":
         state = "qroo";
         break;
-
+      case "NAYARIT":
+        state = "naya";
+        break;
       default:
         state = "";
         break;
@@ -215,21 +285,29 @@ export class HistorialComponent implements OnInit {
     this.restService.getprecioyasesor(documento, state, id)
       .subscribe(res => {
         this.precioyasesor = res;
-   
+
       });
   }
   //CORTEHSITORIAL
-async getcorte() {
-    if(localStorage.getItem('token')!=null){
-      if(localStorage.getItem('usuario')!=null){
+  async getcorte() {
+    if (localStorage.getItem('token') != null) {
+      if (localStorage.getItem('usuario') != null) {
         var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
-  
+
         let userName = usuario.toString(CryptoJS.enc.Utf8);
         let arreglo = userName.split('"');
         this.getcortes = await this.restService.getcorte(arreglo[1]).toPromise();
-      
+
+
+
+        if (this.getcortes.length == 0) {
+          var idlocal = localStorage.getItem("id");
+          var i = CryptoJS.AES.decrypt(idlocal || '{}', "id");
+          var id: any = i.toString(CryptoJS.enc.Utf8);
+          this.getcortes = await this.restService.getMyDocumentsLoaded(id).toPromise();
+        }
       }
-      }
+    }
   }
   onChange(event: any) {
     this.tipodebusqueda = event;
@@ -254,12 +332,16 @@ async getcorte() {
 
     this.getcorte();
 
-    this.restService.getciber().subscribe(
-      e => this.getciber = e
-    );
+    this.getAllCibers();
     this.descry();
 
   }
+
+  async getAllCibers(){
+    let arreglo: any = await this.restService.getciber().toPromise();
+    this.getciber = arreglo;
+  }
+
   /*   CAMBIO DE VISTA DE LA TABLA CORTE  */
   changeView() {
     this.vista = !this.vista;
@@ -303,10 +385,10 @@ async getcorte() {
     }
   }
   public fileOver(event: any) {
-   
+
   }
   public fileLeave(event: any) {
- 
+
   }
   //SOLTARPDF
   getFile($event: any): void {
@@ -353,7 +435,7 @@ async getcorte() {
       }
     }
     catch (error: any) {
-    
+
       Swal.fire(
         {
           position: 'center',

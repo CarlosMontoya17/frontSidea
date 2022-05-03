@@ -9039,8 +9039,8 @@ img {
   width: 20%;
 }
 button{
-  height: 45px;
-  line-height: 39px;
+  height: 55px;
+  line-height: 49px;
   width: 40%;
   background: #303030;
   transition: all .25s;
@@ -9048,7 +9048,7 @@ button{
   border: solid 3px #303030;
   color: #efb810;
   font-size: 15px;
-  margin: 10px auto !important;
+  margin: 15px auto !important;
   display: block;
 color: #efb810 !important;
   box-shadow: 0 0 4px rgba(0,0,0,0.14), 0 4px 8px rgba(0,0,0,0.28);
@@ -9059,6 +9059,6 @@ button:focus{
 button:hover{
   background: transparent;
   color: #303030 !important;
-  width: 55%;
+  width: 35%;
   box-shadow: none;
 }

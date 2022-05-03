@@ -5184,7 +5184,7 @@ border: 2px dashed #3498db !important;
 border-radius: 5px;
 }
 button{
-  height: 55px;
+  height: 45px;
   line-height: 9px;
   width: 10%;
   background: #303030;
@@ -5204,6 +5204,6 @@ button:focus{
 button:hover{
   background: transparent;
   color: #303030 !important;
-  width: 55%;
+  width: 15%;
   box-shadow: none;
 }

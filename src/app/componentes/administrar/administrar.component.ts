@@ -15,7 +15,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import { PerfileditService } from './editarprecios/perfiledit.service';
-import { faDollarSign } from '@fortawesome/free-solid-svg-icons';
+import { faPencil } from '@fortawesome/free-solid-svg-icons';
 
 import * as CryptoJS from 'crypto-js';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -98,7 +98,7 @@ export class AdministrarComponent implements OnInit {
   fa2 = fa2;
   fa3 = fa3;
   faD = faGripLines;
-  faDollarSign = faDollarSign;
+  faPencil = faPencil;
 
   usuario: string = "";
   contrasena: string = "";

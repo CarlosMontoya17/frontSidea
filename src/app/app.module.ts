@@ -21,6 +21,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { EditarpreciosComponent } from './componentes/administrar/editarprecios/editarprecios.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { BuscadorPipe } from './servicios/buscador.pipe';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { AgGridModule } from 'ag-grid-angular';
     StepusuarioComponent,
     BuscarciberPipe,
     EditarpreciosComponent,
+    BuscadorPipe,
     
   ],
   imports: [

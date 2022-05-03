@@ -80,6 +80,8 @@ h1.head-title {
     font-size: 350%;
 }
 
+
+
 h1.head-title:before {
     content: '';
     position: absolute;
@@ -91,12 +93,12 @@ h1.head-title:before {
 button {
    
     display:block;
-    left:-60px;
-    margin-top:35px;
+  
+    margin-top:5px;
     width:100%;
     width: 100%;
-    min-width: 300px;
-    max-width: 300px;
+    min-width: 150px;
+    max-width: 150px;
     height: 45px;
     line-height: 39px;
     width: 50%;
@@ -114,7 +116,7 @@ button {
 
 button:focus {
     outline: none;
-    width: 100%;
+    width: 20%;
     min-width: 50px;
     max-width: 300px;
 }
@@ -122,9 +124,9 @@ button:focus {
 button:hover {
     background: transparent;
     color: #303030 !important;
-    width: 100%;
+    width: 20%;
     box-shadow: none;
-    width: 100%;
+    width: 55%;
     min-width: 100px;
     max-width: 100px;
 }

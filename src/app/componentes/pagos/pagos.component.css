@@ -1,0 +1,15 @@
+#download {
+    display: none;
+  }
+
+.mytable:hover{
+color:rgb(223, 223, 223) !important;
+background-color: rgb(61, 61, 61);
+}
+
+.myheaders{
+    background: linear-gradient(0, rgba(25,91,111,1) 0%, rgba(34,165,223,1) 100%); 
+    color: white; 
+    border-radius: 0.5rem;
+}
+

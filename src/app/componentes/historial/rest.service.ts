@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import * as CryptoJS from 'crypto-js';
 import { Token } from '../login/token.model';
+const api = "http://actasalinstante.com:3030";
 @Injectable({
   providedIn: 'root',
 })
@@ -26,7 +27,7 @@ export class RestService {
     return this.http.get('http://actasalinstante.com:3030/api/user/getFull/')
   }
   getciber(): Observable<any> {
-    return this.http.get('http://actasalinstante.com:3030/api/clients/getAll')
+    return this.http.get('http://actasalinstante.com:3030/api/clients/getAll');
   }
   getprecioyasesor(tipo: any, estado: any, id: any): Observable<any> {
     return this.http.put('http://actasalinstante.com:3030/api/clients/getMyData/' + id, { tipo, estado })
@@ -47,6 +48,22 @@ export class RestService {
   getcorte(usuario: any): Observable<any> {
     return this.http.get('http://actasalinstante.com:3030/api/getMyCorte/' + usuario)
   }
+
+  getMyDocumentsLoaded(id:any){
+    return this.http.get(api+'/api/actas/getMyDocuments/'+id);
+  }
+
+  deleteActa(id:any){
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var token: any = i.toString(CryptoJS.enc.Utf8);
+    var parteuno = token.slice(1);
+    var final = parteuno.slice(0, -1);
+    let tokenfinal: string = final;
+    const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
+    return this.http.delete(api+'/api/actas/deleteActa/'+id);
+  }
+
+
   deleteuser(id: any): Observable<any> {
     return this.http.get('http://actasalinstante.com:3030/api/user/delete/' + id)
   }

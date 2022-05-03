@@ -17,9 +17,9 @@ export class PerfileditService {
   get() {
     return this.data;
   }
-  editprecios(id: any, precios: any){
+  editprecios(id: any, data:any){
 
-    return this.http.put(api + '/api/user/editPrice/' + id,  precios );
+    return this.http.put(api + '/api/user/editPrice/' + id,  data );
     
 
   }

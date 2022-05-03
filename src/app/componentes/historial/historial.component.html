@@ -205,16 +205,17 @@
     <table class="table table-dark table-hover table-striped">
       <thead>
         <tr>
-          <th scope="col">N</th>
+          <th scope="col">Id</th>
           <th scope="col">Tipo de documento</th>
           <th scope="col">Curp</th>
           <th scope="col">Estado</th>
           <th scope="col">Nombre</th>
           <th scope="col">Asesor</th>
           <th scope="col">Ciber</th>
-          <th scope="col">Precio del acta al negocio</th>
+          <th scope="col" *ngIf="myRol == 'Admin'">Precio del acta al negocio</th>
           <th scope="col">Se solicito</th>
           <th scope="col">Fecha</th>
+          <th scope="col">Otros</th>
         </tr>
       </thead>
       <tbody>
@@ -227,10 +228,13 @@
           <td>{{cortes?.nombreacta}}</td>
           <td>{{cortes?.provider}}</td>
           <td>{{cortes?.enterprise}}</td>
-          <td>{{cortes?.price}}</td>
+          <td *ngIf="myRol == 'Admin'">{{cortes?.price}}</td>
           <td>{{cortes?.requested}}</td>
           <td>
             {{ cortes?.createdAt | date:'yyyy-MM-dd' }}
+          </td>
+          <td style="text-align: center;">
+            <fa-icon  [icon]="faTrashCan" class="add-user" (click)="deleteItemActa(cortes.id, cortes.document, cortes.enterprise)" ></fa-icon>
           </td>
           
         </tr>

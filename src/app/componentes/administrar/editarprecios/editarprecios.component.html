@@ -63,7 +63,7 @@
           </div>
 
           
-          <div class="form-group">
+          <div class="form-group" *ngIf="myRol == 'Admin'">
             <label>Rol nuevo</label>
             <div class="input-group">
               <select class="custom-select" placeholder="Selecciona un rol" style="width: 100em; height: 2.4rem;"
@@ -76,7 +76,7 @@
               </select>
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group" *ngIf="myRol == 'Admin'">
             <label *ngIf="newRol!= 'Supervisor'">Responsable</label>
             <input type="text" class="form-control" placeholder="Busca al responsable del usuario"
               [(ngModel)]="responsableSearch" name="responsableSearch"
@@ -526,7 +526,8 @@
               <input type="text" class="form-control" placeholder="Tipo de Negocio" [(ngModel)]="tipoNegocio"
                 name="tipoNegocio">
             </div>
-            <div class="form-group">
+
+            <!-- <div class="form-group">
               <label>Estatus</label>
               <div class="input-group">
                 <select class="custom-select" placeholder="Selecciona un rol" style="width: 100em; height: 2.4rem;"
@@ -536,6 +537,7 @@
                 </select>
               </div>
             </div>
+             -->
             <label>¿Estas seguro de agregar este usuario?</label>
           </div>
         </form>
@@ -543,8 +545,7 @@
       <div class="ml-auto p-2">  <button type="submit" class="btn btn-primary" (click)="Regresar()">Cancelar</button>
       <button type="submit" class="btn btn-primary" (click)="prevStep()" *ngIf="currentStep!=0">Atras</button>
         <button type="submit" class="btn btn-primary" (click)="nextStep()" *ngIf="currentStep!=2">Siguiente</button>
-        <button type="submit" class="btn btn-primary" (click)="tetsEnviar()" *ngIf="currentStep==2">Actualizar
-            Usuario</button>
+        <button type="submit" class="btn btn-primary" (click)="tetsEnviar()" *ngIf="currentStep==2">Actualizar Usuario</button>
         
       </div>
     </div>

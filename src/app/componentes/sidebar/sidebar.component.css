@@ -5,6 +5,7 @@ body {
   font-weight: normal;
   background: #fafafa;
   color: gray;
+  padding: auto;
 }
 
 a {
@@ -34,28 +35,30 @@ h5,
 .h5 {
   line-height: 1.5;
   font-weight: 400;
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'PT Sans Narrow', sans-serif;
   color: #000;
 }
+
+
 
 .bg-primary {
   background: #ff0000 !important;
 }
 
 .ftco-section {
-  padding: 0em 0;
+  padding: 16em 0;
 }
 
 .ftco-no-pt {
-  padding-top: 0;
+  padding-top: 16%;
 }
 
 .ftco-no-pb {
-  padding-bottom: 0;
+  padding-bottom: 16%;
 }
 
 .heading-section {
-  font-size: 28px;
+  font-size: 40px;
   color: #000;
 }
 
@@ -70,7 +73,7 @@ h5,
     background: #000 !important;
     position: relative;
     top: 0;
-    padding: 10px 15px;
+    padding: 10px -25px;
   }
 }
 
@@ -147,7 +150,7 @@ h5,
 .navbar-brand {
   color: #000;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 100;
   font-size: 20px;
   line-height: 1.2;
   margin-bottom: 30px;
@@ -187,7 +190,7 @@ body {
     display: flex;
     align-items: center !important;
     justify-content: space-between !important;
-    padding: 10px 350px;
+    padding: 20px 350px;
   }
 
   .navbar-brand.second {
@@ -200,21 +203,21 @@ body {
   }
 
   #navbarNav {
-    padding-left: 50px;
+    padding-left: 100px;
   }
 
   .navbar__container {
-    height: 80px;
+    height: 100px;
   }
 }
 
 @media only screen and (max-width:991px) {
   .hide-on-small {
-    display: none;
+    display: block;
   }
 
   a.nav-link {
-    padding-top: 20px;
+    padding-top: 100px;
     text-align: center;
   }
 }

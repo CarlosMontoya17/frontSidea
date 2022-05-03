@@ -174,7 +174,6 @@ class Orb {
     this.graphics.endFill();
   }
 }
-
 // Create PixiJS app
 const app = new PIXI.Application({
   // render to <canvas class="orb-canvas"></canvas>
@@ -215,7 +214,6 @@ if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     orb.render();
   });
 }
-
 document
   .querySelector(".overlay__btn--colors")
   .addEventListener("click", () => {

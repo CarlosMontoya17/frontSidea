@@ -12,6 +12,8 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
+import * as CryptoJS from 'crypto-js';
+
 @Component({
   selector: 'app-editarprecios',
   templateUrl: './editarprecios.component.html',
@@ -21,7 +23,7 @@ export class EditarpreciosComponent implements OnInit {
   dataselect: string = "";
   porEstados: boolean = false;
   result: any;
-  currentStep: number = 1;
+  currentStep: number = 0;
   responsableSearch: string = "";
   providers: any = [];
   newUsername: string = "";
@@ -98,6 +100,10 @@ export class EditarpreciosComponent implements OnInit {
   Negocio: string = "";
   tipoNegocio: string = "";
   Status: string = "";
+
+
+  //ProfileCurrent
+  myRol:any;
   constructor(private perfil: PerfileditService, private database: DatabaseService, private restservice: RestService, private router: Router) { }
   clearresponsable() {
     this.responsableSearch = "";
@@ -188,23 +194,27 @@ export class EditarpreciosComponent implements OnInit {
 
 
   
-    const data = await this.perfil.editprecios(this.usuarios.id, {precios:this.precios}).toPromise();
-if(data){
-  this.router.navigateByUrl("/administrar");
-  Swal.fire({
-    position: 'center',
-    icon: 'success',
-    title: 'Precios Actualizados!',
-    showConfirmButton: false,
-    timer: 1500,
-    text: this.usuarios.username +'-'+this.usuarios.nombre,
-  })
+    const data = await this.perfil.editprecios(this.usuarios.id, {precios:this.precios, username: this.newUsername, password: this.newPassword, nombre: this.Negocio, type: this.tipoNegocio}).toPromise();
+    if(data){
+      this.router.navigateByUrl("/administrar");
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Usuario Actualizado!',
+        showConfirmButton: false,
+        timer: 1500,
+        text: this.usuarios.username +'-'+this.usuarios.nombre,
+      })
+    }
 }
 
 
-
-
-
+  async getMyData(){
+    var idlocal = localStorage.getItem("id");
+    var i = CryptoJS.AES.decrypt(idlocal || '{}', "id");
+    var id: any = i.toString(CryptoJS.enc.Utf8);
+    let data:any =  await this.restservice.getidsupervisor(id).toPromise();
+    this.myRol = data.data.rol;
   }
 
   nextStep() {
@@ -247,7 +257,7 @@ if(data){
   ngOnInit(): void {
 
     this.getdatos();
-    
+    this.getMyData();
 
 
 
