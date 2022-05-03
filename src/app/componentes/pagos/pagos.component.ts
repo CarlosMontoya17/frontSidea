@@ -11,16 +11,12 @@ import { AgGridAngular } from 'ag-grid-angular';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { DatabaseService } from 'src/app/servicios/database/database.service';
 import html2canvas from 'html2canvas';
-
-
 @Component({
   selector: 'app-pagos',
   templateUrl: './pagos.component.html',
   styleUrls: ['./pagos.component.css']
 })
 export class PagosComponent implements OnInit {
-
-  
   @ViewChild('screen') screen!: ElementRef;
   @ViewChild('canvas') canvas!: ElementRef;
   @ViewChild('downloadLink') downloadLink!: ElementRef;
@@ -37,12 +33,8 @@ export class PagosComponent implements OnInit {
   totalActas: number = 0;
   faArrowRightFromBracket = faArrowRightFromBracket;
   private gridApi!: GridApi;
-
-
   filter1: boolean = true;
   filter2: boolean = false;
-
-
   //Tabla
   cortes: any;
   columnDefs = [
@@ -55,11 +47,8 @@ export class PagosComponent implements OnInit {
     { field: "createdAt", headerName: "Fecha y hora", filter: true },
     { field: "corte", headerName: "Corte", type: 'valueColumn', filter: true, }];
   public rowData!: any[];
-
-
   public pinnedBottomRowData!: any[];
   //Tabla
-
   ciberSearch: string = "";
 
   //TABLE
@@ -68,9 +57,6 @@ export class PagosComponent implements OnInit {
   Corte:any;
   TotalCorte:number = 0;
   //TABLE
-
-
-
   constructor(private router: Router, private restservice: RestService, private http: HttpClient, private database: DatabaseService) {
     var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
     let userName = usuario.toString(CryptoJS.enc.Utf8);
@@ -87,7 +73,6 @@ export class PagosComponent implements OnInit {
       this.downloadLink.nativeElement.click();
     });
   }
-
   async getCorte(ciber:any){
     this.CiberSelect = ciber;
     this.TotalCorte = 0;
@@ -125,7 +110,6 @@ export class PagosComponent implements OnInit {
       });
       this.Cibers = enterprises;
     }
-
     else if (filter == 2 && this.filter2 == false) {
       this.filter2 = true;
       this.filter1 = false;
@@ -142,8 +126,6 @@ export class PagosComponent implements OnInit {
       this.Cibers = enterprises;
     }
   }
-
-
   ngOnInit(): void {
     this.requestData();
   }
@@ -168,10 +150,6 @@ export class PagosComponent implements OnInit {
       });
 
   }
-
-
-
-
 
   onPinnedRowBottomCount() {
     var rows = this.createData();
@@ -233,14 +211,10 @@ export class PagosComponent implements OnInit {
     });
 
     this.Cibers = enter;
-
-
-
-    // else if(this.rowData[i].enterprise != this.rowData[i-1].enterprise){
+   // else if(this.rowData[i].enterprise != this.rowData[i-1].enterprise){
     //   console.log(this.rowData[i].enterprise+">"+this.rowData[i-1].enterprise);
     //   enterprises.push(this.rowData[i].enterprise);
     // }
   }
-
 
 }
