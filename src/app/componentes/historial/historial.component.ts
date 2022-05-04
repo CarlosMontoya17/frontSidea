@@ -49,6 +49,11 @@ export class HistorialComponent implements OnInit {
   page: number = 0;
   myInfo: any;
   myRol: any;
+
+nombreProvedor:String = "";
+nombreEmpresa:string = "";
+
+  nombreasesor: string = "";
   constructor(private restService: RestService, private router: Router, private database: DatabaseService, private http: HttpClient) { }
 
   async enviaracta() {
@@ -70,6 +75,7 @@ export class HistorialComponent implements OnInit {
     body.append("states", this.info.estado);
     body.append("price", this.precioyasesor.precio);
     body.append("nombreacta", this.info.nombre + " " + this.info.apellidos);
+
     let nombrecompleto;
     if (this.info.apellidos == undefined || this.info.apellidos == null || this.info.apellidos == "") {
       nombrecompleto = this.info.nombre
@@ -92,7 +98,7 @@ export class HistorialComponent implements OnInit {
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate([currentUrl]);
     });
-    
+
   }
 
   deleteItemActa(id: any, document: any, enterprise: any) {
@@ -143,10 +149,13 @@ export class HistorialComponent implements OnInit {
     })
   }
 
-  clickciber(id: any, nombre: any) {
-    this.ciberseleccionado = nombre;
+  async clickciber(id: any, nombre: any) {
+
+    this.ciberseleccionado = id;
+
     const body = new FormData();
     let documento: string;
+
     switch (this.info.tipo) {
       case "Asignación de Número de Seguridad Social":
         documento = "nss";
@@ -199,9 +208,15 @@ export class HistorialComponent implements OnInit {
       case "COAHUILA":
         state = "coah";
         break;
+        case "COAHUILA DE ZARAGOZA":
+        state = "coah";
+        break;
       case "MICHOACAN":
         state = "mich";
         break;
+        case "MICHOACAN DE OCAMPO":
+          state = "mich";
+          break;
       case "TLAXCALA":
         state = "tlax";
         break;
@@ -282,11 +297,12 @@ export class HistorialComponent implements OnInit {
         break;
     }
     body.append("tipo", "nss");
-    this.restService.getprecioyasesor(documento, state, id)
-      .subscribe(res => {
-        this.precioyasesor = res;
+    const precioyasesor = await this.restService.getprecioyasesor(documento, state, id).toPromise();
+    this.precioyasesor = precioyasesor;
+    const data: any = await this.restService.getidsupervisor(this.precioyasesor.superviser).toPromise();
+    this.nombreasesor = data?.data.nombre
 
-      });
+
   }
   //CORTEHSITORIAL
   async getcorte() {
@@ -296,15 +312,27 @@ export class HistorialComponent implements OnInit {
 
         let userName = usuario.toString(CryptoJS.enc.Utf8);
         let arreglo = userName.split('"');
-        this.getcortes = await this.restService.getcorte(arreglo[1]).toPromise();
+        // this.getcortes = await this.restService.getcorte(arreglo[1]).toPromise();
+          const data:any = await this.restService.getcorte(arreglo[1]).toPromise();
+          this.getcortes = data;
+          console.log(data);
 
 
-
-        if (this.getcortes.length == 0) {
+        if (data.length == 0) {
           var idlocal = localStorage.getItem("id");
           var i = CryptoJS.AES.decrypt(idlocal || '{}', "id");
           var id: any = i.toString(CryptoJS.enc.Utf8);
-          this.getcortes = await this.restService.getMyDocumentsLoaded(id).toPromise();
+          // this.getcortes = await this.restService.getMyDocumentsLoaded(id).toPromise();
+          const cortes: any = await this.restService.getMyDocumentsLoaded(id).toPromise();
+          this.getcortes = cortes;
+          const empresaId = Number( cortes[0].enterprise);
+          const provedorId = Number( cortes[0].provider);
+          const dataEmpresa:any = await this.restService.getidsupervisor(empresaId).toPromise();
+          const dataProvedor:any = await this.restService.getidsupervisor(provedorId).toPromise();
+          this.nombreEmpresa = dataEmpresa.data.nombre;
+          this.nombreProvedor = dataProvedor.data.nombre;
+
+          console.log( dataProvedor, dataEmpresa);
         }
       }
     }
@@ -337,7 +365,7 @@ export class HistorialComponent implements OnInit {
 
   }
 
-  async getAllCibers(){
+  async getAllCibers() {
     let arreglo: any = await this.restService.getciber().toPromise();
     this.getciber = arreglo;
   }

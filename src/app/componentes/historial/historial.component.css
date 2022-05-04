@@ -4416,20 +4416,6 @@ input[name="slider-select-element"] {
   width: 100%;
 }
 
-.element-blue {
-
-
-  background-image : url('../inicio/Acta-de-nacimiento-digital.jpg');
-}
-
-.element-green {
-  background-image : url('../inicio/RFC.jpg');
-}
-
-.element-red {
-  background-image : url('../inicio/acta.jpg');
-}
-
 .slider-element {
   float: left;
   width: 33.333%;

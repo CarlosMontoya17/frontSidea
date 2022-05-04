@@ -151,6 +151,10 @@ export class PagosComponent implements OnInit {
 
   }
 
+
+
+
+
   onPinnedRowBottomCount() {
     var rows = this.createData();
     this.gridApi.setPinnedBottomRowData(rows);
@@ -211,10 +215,14 @@ export class PagosComponent implements OnInit {
     });
 
     this.Cibers = enter;
-   // else if(this.rowData[i].enterprise != this.rowData[i-1].enterprise){
+
+
+
+    // else if(this.rowData[i].enterprise != this.rowData[i-1].enterprise){
     //   console.log(this.rowData[i].enterprise+">"+this.rowData[i-1].enterprise);
     //   enterprises.push(this.rowData[i].enterprise);
     // }
   }
+
 
 }

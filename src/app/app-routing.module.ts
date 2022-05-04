@@ -9,6 +9,7 @@ import { PagosComponent } from './componentes/pagos/pagos.component';
 import { SidebarpanelhistorialComponent } from './componentes/sidebarpanelhistorial/sidebarpanelhistorial.component';
 import { StepusuarioComponent } from './componentes/stepusuario/stepusuario.component';
 import { EditarpreciosComponent } from './componentes/administrar/editarprecios/editarprecios.component';
+import { CorteComponent } from './componentes/corte/corte.component';
 const routes: Routes = [
   {
   path: '',
@@ -52,6 +53,11 @@ const routes: Routes = [
   path: 'editprecio',
   component: EditarpreciosComponent
 },
+{
+  path: 'corte',
+  component: CorteComponent
+},
+
 
 
 ];

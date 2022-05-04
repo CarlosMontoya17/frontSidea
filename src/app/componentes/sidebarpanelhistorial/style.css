@@ -30,8 +30,6 @@ body {
 .window {
     height: 400px;
     width: 1920px;
-    max-width: 100%;
-    min-width: 100%;
     overflow: hidden;
     position: relative;
     

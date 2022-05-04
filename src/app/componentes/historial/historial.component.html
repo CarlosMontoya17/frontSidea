@@ -170,7 +170,7 @@
           <div class="card-body">
             <div class="form-outline">
               <h5 style="color: #efb810" class="card-title">Asesor</h5>
-              <li class="list-group-item">{{precioyasesor?.superviser}}</li>
+              <li class="list-group-item">{{nombreasesor}}</li>
             </div>
           </div>
         </div>
@@ -226,8 +226,8 @@
           <td>{{cortes?.curp}}</td>
           <td>{{cortes?.states}}</td>
           <td>{{cortes?.nombreacta}}</td>
-          <td>{{cortes?.provider}}</td>
-          <td>{{cortes?.enterprise}}</td>
+          <td>{{nombreProvedor}}</td>
+          <td>{{nombreEmpresa}}</td>
           <td *ngIf="myRol == 'Admin'">{{cortes?.price}}</td>
           <td>{{cortes?.requested}}</td>
           <td>

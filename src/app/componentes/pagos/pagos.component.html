@@ -41,12 +41,12 @@
 
             <div class="row">
                 <div class="col">
-                    <div class="form-check"ioiiooioioo(click)="changeFilter(1)">
+                    <div class="form-check" (click)="changeFilter(1)">
                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
                             checked>
                         <label class="form-check-label" for="flexRadioDefault2">
                             Cibers en Corte Actual
-                        </label>ñi,,lloio,,il,h,ioioig,j,kgiy,u,uoi,uhjiukhklkiu,ikk.[ngClass]="njhjmjmtmutuhjhjh hjk,klj ljghhjkh "
+                        </label>
                     </div>
                 </div>
                 <div class="col">
@@ -117,12 +117,12 @@
                                 <tr *ngFor="let acta of Corte; let infexof = index;"
                                     style="cursor: pointer;">
                                     <th scope="row" style="width: 3em !important;">{{ infexof + 1 }}</th>
-                                    <td>{{acta.document}}</td>
-                                    <td>{{acta.createdAt | date:'yyyy-MM-dd' }} </td>
-                                    <td>{{acta.states}} </td>
-                                    <td> {{acta.nombreacta}}</td>
-                                    <td> {{acta.curp}}</td>
-                                    <td>$ {{acta.price}} </td>
+                                    <td>{{ acta.document }}</td>
+                                    <td>{{ acta.createdAt | date:'yyyy-MM-dd' }} </td>
+                                    <td>{{ acta.states }} </td>
+                                    <td> {{ acta.nombreacta }}</td>
+                                    <td> {{ acta.curp }}</td>
+                                    <td>$ {{ acta.price }} </td>
 
                                 </tr>
                                 <tr style="cursor: pointer;">

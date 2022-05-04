@@ -22,6 +22,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { EditarpreciosComponent } from './componentes/administrar/editarprecios/editarprecios.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { BuscadorPipe } from './servicios/buscador.pipe';
+import { CorteComponent } from './componentes/corte/corte.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { BuscadorPipe } from './servicios/buscador.pipe';
     BuscarciberPipe,
     EditarpreciosComponent,
     BuscadorPipe,
+    CorteComponent,
     
   ],
   imports: [
