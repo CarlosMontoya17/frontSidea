@@ -36,6 +36,7 @@ export class RestService {
   getidsupervisor(id: any) {
     return this.http.get('http://actasalinstante.com:3030/api/user/getOne/' + id);
   }
+
   enviarcta(ciberseleccionado: any, superviser: any, tipo: any, curp: any, estado: any, precio: any, nombre: any, requested: any): Observable<any> {
     var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
     var token: any = i.toString(CryptoJS.enc.Utf8);
@@ -45,6 +46,7 @@ export class RestService {
     const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
     return this.http.post('http://actasalinstante.com:3030/api/actas/up', { enterprise: ciberseleccionado, provider: superviser, document: tipo, states: estado, curp: curp, nombreacta: nombre, requested: requested, price: precio }, { headers });
   }
+
   getcorte(id: any): Observable<any> {
     return this.http.get('http://actasalinstante.com:3030/api/getMyCorteId/' + id)
   }
@@ -62,7 +64,7 @@ export class RestService {
     const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
     return this.http.delete(api+'/api/actas/deleteActa/'+id);
   }
-
+  
 
   deleteuser(id: any): Observable<any> {
     return this.http.get('http://actasalinstante.com:3030/api/user/delete/' + id)

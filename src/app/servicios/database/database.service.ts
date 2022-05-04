@@ -31,6 +31,14 @@ export class DatabaseService {
   getcorteciber(id:any){
     return this.httpClient.get(api+'/api/actas/CorteForSomeone/' + id);
   }
+
+  getMyDates(id:any){
+    return this.httpClient.get(api+'/api/actas/getMyDateCuts/'+id);
+  }
+
+  getmycort_fecha(id:any, fecha:any){
+    return this.httpClient.get(api+'/api/actas/getCutByDate/'+id+ '/'+fecha);
+  }
   
 
-}
+}  

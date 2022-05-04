@@ -24,6 +24,7 @@ export class PagosComponent implements OnInit {
   @ViewChild('screen') screen!: ElementRef;
   @ViewChild('canvas') canvas!: ElementRef;
   @ViewChild('downloadLink') downloadLink!: ElementRef;
+  //VARIABLES DECLARADAS PARA FUNCIONES A UTILIZAR
   result: any = [];
   ids: any = [];
   tipos: any = [];
@@ -37,6 +38,7 @@ export class PagosComponent implements OnInit {
   private gridApi!: GridApi;
   filter1: boolean = true;
   filter2: boolean = false;
+  fechas:any;
   //Tabla
   cortes: any;
   columnDefs = [
@@ -55,17 +57,19 @@ export class PagosComponent implements OnInit {
   //TABLE
   Cibers: any;
   CiberSelect: any;
+  ciberidselect:any;
   Corte: any;
   TotalCorte: number = 0;
   //TABLE
+  corteSeleccionado: string = "Seleccionar corte";
   constructor(private router: Router, private restservice: RestService, private http: HttpClient, private database: DatabaseService) {
     var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
     let userName = usuario.toString(CryptoJS.enc.Utf8);
     let arreglo = userName.split('"');
-    //this.rowData = this.restservice.getcorte<any[]>(arreglo[1]).toPromise();
-    //this.rowData = this.http.get<any[]>('http://actasalinstante.com:3030/api/getMyCorte/' + arreglo[1]);
+   
   }
 
+//DESCARGAR CORTE EN IMAGEN PNG
   downloadCorte() {
     html2canvas(this.screen.nativeElement).then(canvas => {
       this.canvas.nativeElement.src = canvas.toDataURL();
@@ -74,29 +78,40 @@ export class PagosComponent implements OnInit {
       this.downloadLink.nativeElement.click();
     });
   }
-  async getCorte(id: any, nombre:any) {
 
-    this.CiberSelect = nombre;
+  async setCorte(fecha:any){
     this.TotalCorte = 0;
+    this.corteSeleccionado = fecha;
+    let date:string = "";
+    if(fecha == "Actual"){
+      date = "null";
+    }
+    
+    else {
+      date = fecha;
+    }
 
-
-
-    let corte: any = await this.database.getcorteciber(id).toPromise();
-    this.Corte = corte;
-
-
-    corte.forEach((element: any) => {
-       this.TotalCorte += Number(element.price);
-
+    const data:any = await this.database.getmycort_fecha(this.ciberidselect, date).toPromise();
+    this.Corte = data;
+    
+    data.forEach((Element:any ) => {
+      this.TotalCorte += Number(Element.price);
     });
   }
-
+  //SE OBTIENE EL CORTE CON EL CIBER
+  async getCorte(id: any, nombre: any) {
+    this.Corte = [];
+    this.corteSeleccionado = "Seleccionar corte";
+    this.CiberSelect = nombre;
+    this.ciberidselect = id;
+    this.TotalCorte = 0;
+    this.fechas = await this.database.getMyDates(id).toPromise();
+  }
+//CAMBIO DEL FILTRO CON EL TOKEN Y USUARIO PARA OPTENER TOLOS LOS CLIENTES
   async changeFilter(filter: any) {
     if (filter == 1 && this.filter1 == false) {
       this.filter1 = true;
       this.filter2 = false;
-  
-
       var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
       let userName = usuario.toString(CryptoJS.enc.Utf8);
       let arreglo = userName.split('"');
@@ -110,10 +125,8 @@ export class PagosComponent implements OnInit {
     else if (filter == 2 && this.filter2 == false) {
       this.filter2 = true;
       this.filter1 = false;
-  
-
       var idlocal = localStorage.getItem("id");
-      var i = CryptoJS.AES.decrypt(idlocal || '{}', "id");
+      var i = CryptoJS.AES.decrypt(idlocal || '{}', "id");    
       var id: any = i.toString(CryptoJS.enc.Utf8);
       const users: any = await this.database.getAllUsers(id).toPromise();
       let enterprises: any = [];
@@ -123,15 +136,18 @@ export class PagosComponent implements OnInit {
       this.Cibers = enterprises;
     }
   }
+
   ngOnInit(): void {
     this.requestData();
   }
+  //EXPORTAR EL CORTE 
   onBtnExport() {
     var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
     let userName = usuario.toString(CryptoJS.enc.Utf8);
     let arreglo = userName.split('"');
     this.gridApi.exportDataAsCsv({ fileName: 'Corte-' + arreglo[1] + '.csv' });
   }
+
   onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;
     var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
@@ -146,12 +162,13 @@ export class PagosComponent implements OnInit {
         this.noRepeatData();
       });
   }
-
+  
   onPinnedRowBottomCount() {
     var rows = this.createData();
     this.gridApi.setPinnedBottomRowData(rows);
   }
-
+  
+//SE OPTIENE EL TOKEN Y TRAE EL CLIENTE ACUTAL CON EL PRECIO TOTAL
   async requestData() {
     var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
     var token: any = i.toString(CryptoJS.enc.Utf8);
@@ -159,37 +176,12 @@ export class PagosComponent implements OnInit {
     var final = parteuno.slice(0, -1);
     let tokenfinal: string = final;
     const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
-
-
-
     const data: any = await this.http
-      .get<any[]>('http://actasalinstante.com:3030/api/actas/ClientsActuals/', {headers}).toPromise();
-      this.rowData = data;
-      this.precioTotal();
-
-
-
-    // for (let i = 0; i < data.length; i++) {
-
-    //   const empresa: any = await this.restservice.getidsupervisor(data[i].enterprise).toPromise();
-    //   if (empresa.lenght != 0) {
-    //     // nombres.push(empresa.data.nombre);
-    //     // Ids.push(this.rowData[i].enterprise);
-    //     datos.push({ "enterprise": empresa.data.nombre, "id": data[i].enterprise });
-
-
-    //   }
-    // }
-    // this.rowData = datos;
-    // this.precioTotal();
-    // this.noRepeatData();
-    // datos.nombres = nombres;
-    // datos.Ids = Ids;
-
-
-
+      .get<any[]>('http://actasalinstante.com:3030/api/actas/ClientsActuals/', { headers }).toPromise();
+    this.rowData = data;
+    this.precioTotal();
   }
-
+//PRECIO TOTAL
   precioTotal() {
     var addNumber: number = 0;
     var addActas: number = 0;
@@ -217,31 +209,18 @@ export class PagosComponent implements OnInit {
         let userName = usuario.toString(CryptoJS.enc.Utf8);
         let arreglo = userName.split('"');
         this.rowData = await this.restservice.getcorte(arreglo[1]).toPromise();
-      
+
       }
     }
   }
 
+//FILTRO DE ENTERPRISE 
   async noRepeatData() {
     let enterprises: any[] = [];
-
-    // for (let i = 0; i < this.rowData.length; i++) {
-    //   enterprises.push(this.rowData[i].enterprise);
-    // }
     let enter = this.rowData.filter((item, index) => {
-   
-      // return this.rowData.indexOf(item["enterprise"]) === index;
     });
-
     this.Cibers = enter;
-
-
-
-    // else if(this.rowData[i].enterprise != this.rowData[i-1].enterprise){
-    //   console.log(this.rowData[i].enterprise+">"+this.rowData[i-1].enterprise);
-    //   enterprises.push(this.rowData[i].enterprise);
-    // }
-  }
+     }
 
 
 }

@@ -322,12 +322,13 @@ export class HistorialComponent implements OnInit {
 
         let Arreglo: any = [];
 
-
+        let index:number = 0;
         for (let i = 0; i < data.length; i++) {
 
           const Asesor: any = await this.restService.getidsupervisor(data[i].provider).toPromise();
           const Ciber: any = await this.restService.getidsupervisor(data[i].enterprise).toPromise();
           Arreglo.push({
+            "i": index+=1,
             "id": data[i].id,
             "document": data[i].document,
             "curp": data[i].curp,

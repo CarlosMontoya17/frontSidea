@@ -5,117 +5,79 @@
         <div class="card-body text-center">
             <h5>PAGOS</h5>
         </div>
-
     </div>
-
-
-
-    <!-- <div class="row">
-                <ag-grid-angular style="width: 150em; height: 30em;" class="ag-theme-alpine" 
-                [rowData]="rowData" #agGrid [pinnedBottomRowData]="pinnedBottomRowData"
-                [suppressRowClickSelection]="true"
-                [animateRows]="true"
-                [columnDefs]="columnDefs" [suppressExcelExport]="true" 
-                (gridReady)="onGridReady($event)" rowSelection="multiple">
-            </ag-grid-angular> 
-  
-    </div>
-    <div class="card">
-            <div class="card-body text-center">
-    
-                <span class="btn btn-success" (click)="onBtnExport()">Descargar CSV</span>
-            </div>
-            
-    </div> -->
-
-
-    <!-- <div class="card">
-        <div class="card-body">
-
-            <div class="card-title">
-                <span>
-                    FILTROS
-                </span>
-
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <div class="form-check" (click)="changeFilter(1)">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
-                            checked>
-                        <label class="form-check-label" for="flexRadioDefault2">
-                            Cibers en Corte Actual
-                        </label>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-check" (click)="changeFilter(2)">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            Todos los Cibers
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-
-
-        </div>
-    </div> -->
-
-
-
-</div>
+   </div>
 
 <div class="container">
     <div class="row">
         <div class="col col-4" style="border-radius: 0.25rem; background-color: rgb(58, 56, 56); ">
             <div class="input-group" style="margin-top: 1em;">
-                <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="ciberSearch" name="ciberSearch">
+                <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="ciberSearch"
+                    name="ciberSearch">
+            </div>
+            <ul class="list-group" style="margin-top: 1rem; margin-bottom: 1rem;">
+                <li class="list-group-item active" aria-current="true"
+                    style="text-align: center; background: linear-gradient(0, rgb(36, 133, 163) 0%, rgba(34,165,223,1) 100%); ">
+                    CIBERS</li>
+                <ol class="list-group list-group-numbered">
+                    <li class="list-group-item d-flex justify-content-between align-items-start"
+                        style="cursor: pointer;" (click)="getCorte(ciber.id, ciber.nombre)"
+                        *ngFor="let ciber of rowData |  buscarciber: ciberSearch">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">{{ ciber.nombre }}</div>
+                        </div>
+                  
+                        <fa-icon [icon]="faArrowRightFromBracket" class="add-user"></fa-icon>
+                    </li>
+                </ol>
+            </ul>       
+        </div>
+
+        <div class="col col-8 text-center" style="background-color: rgb(240, 240, 240);">
+            <div class="card">
+                <div class="card-body">
+                    <h5>Selecciona la fecha de corte</h5>
+                    <div class="dropdown">
+                        <a class="btn btn-secondary dropdown-toggle" href="#"
+                            style="background-color: rgb(92, 184, 92);" role="button" id="dropdownMenuLink"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ corteSeleccionado }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li *ngFor="let fecha of fechas; let indexof = index" style="cursor: pointer;">
+                                <a class="dropdown-item" (click)="setCorte(fechas[indexof].corte)">{{
+                                    fechas[indexof].corte}}</a>
+                            </li>
+                            <li style="cursor: pointer;">
+                                <a class="dropdown-item" (click)="setCorte('Actual')">Actual</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
-            <ul class="list-group" style="margin-top: 1rem; margin-bottom: 1rem;">
-                <li class="list-group-item active" aria-current="true" style="text-align: center; background: linear-gradient(0, rgb(36, 133, 163) 0%, rgba(34,165,223,1) 100%); "  >CIBERS</li>
-                <ol class="list-group list-group-numbered">
-
-
-                    <li class="list-group-item d-flex justify-content-between align-items-start" style="cursor: pointer;"
-                     (click)="getCorte(ciber.id, ciber.nombre)" *ngFor="let ciber of rowData |  buscarciber: ciberSearch">
-                      <div class="ms-2 me-auto">
-                        <div class="fw-bold">{{ ciber.nombre }}</div>
-                      </div>
-                      <!-- <span class="badge bg-primary rounded-pill">14</span> -->
-                      <fa-icon  [icon]="faArrowRightFromBracket" class="add-user"></fa-icon>
-                    </li>
-
-
-                  </ol>
-              </ul>
-
-        </div>
-        <div class="col col-8" style="background-color: rgb(240, 240, 240);">
-            <div class="card text-center" style="background: rgb(255,255,255); background: linear-gradient(360deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);" #screen>
+            <div class="card text-center"
+                style="background: rgb(255,255,255); background: linear-gradient(360deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);"
+                #screen>
                 <div class="card-body">
                     <h5 class="card-title" style="text-transform: uppercase;">{{ CiberSelect }}</h5>
                     <div class="d-flex justify-content-center">
-
                         <div class="table table-striped">
                             <thead class="myheaders">
                                 <tr style="border-radius: 1rem !important;">
-                                    <th scope="col" style="width: 3em !important; border-radius: 0.5rem 0 0 0.5rem;">#</th>
+                                    <th scope="col" style="width: 3em !important; border-radius: 0.5rem 0 0 0.5rem;">#
+                                    </th>
                                     <th scope="col" style="width: 8em !important;">Documento</th>
                                     <th scope="col" style="width: 5em !important;">Fecha</th>
                                     <th scope="col" style="width: 8em !important;">Estado</th>
                                     <th scope="col" style="width: 15em !important;">Nombre (Acta)</th>
                                     <th scope="col" style="width: 9em !important;">CURP</th>
-                                    <th scope="col" style="width: 3em !important; border-radius: 0 0.5rem 0.5rem 0;">Precio</th>
-
+                                    <th scope="col" style="width: 3em !important; border-radius: 0 0.5rem 0.5rem 0;">
+                                        Precio</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let acta of Corte; let infexof = index;"
-                                    style="cursor: pointer;">
+                                <tr *ngFor="let acta of Corte; let infexof = index;" style="cursor: pointer;">
                                     <th scope="row" style="width: 3em !important;">{{ infexof + 1 }}</th>
                                     <td>{{ acta.document }}</td>
                                     <td>{{ acta.createdAt | date:'yyyy-MM-dd' }} </td>
@@ -123,7 +85,6 @@
                                     <td> {{ acta.nombreacta }}</td>
                                     <td> {{ acta.curp }}</td>
                                     <td>$ {{ acta.price }} </td>
-
                                 </tr>
                                 <tr style="cursor: pointer;">
                                     <td> </td>
@@ -134,13 +95,46 @@
                                     <th>
                                         Total:
                                     </th>
-                                    <td>$ {{TotalCorte}}</td>
+                                    <td>${{TotalCorte}}</td>
                                 </tr>
                             </tbody>
                         </div>
                     </div>
+                </div>
 
-
+                <div class="card-body">
+                    <h5 class="card-title" style="text-transform: uppercase;">{{ CiberSelect }}</h5>
+                    <div class="d-flex justify-content-center">
+                        <div class="table table-striped">
+                            <thead class="myheaders">
+                                <tr style="border-radius: 1rem !important;">
+                                    <th scope="col" style="width: 3em !important; border-radius: 0.5rem 0 0 0.5rem;">#
+                                    </th>
+                                    <th scope="col" style="width: 8em !important;">Acta de nacimiento</th>
+                                    <th scope="col" style="width: 5em !important;">Acta de matrimonio</th>
+                                    <th scope="col" style="width: 8em !important;">Defunsion</th>
+                                    <th scope="col" style="width: 15em !important;">Divorcio</th>
+                                    <th scope="col" style="width: 3em !important; border-radius: 0 0.5rem 0.5rem 0;">
+                                        Precio</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let acta of Corte; let infexof = index;" style="cursor: pointer;">
+                                    <th scope="row" style="width: 3em !important;">{{ infexof + 1 }}</th>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                </tr>
+                                <tr style="cursor: pointer;">
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                </tr>
+                            </tbody>
+                        </div>
+                    </div>
                 </div>
             </div>
             <span class="btn btn-success" (click)="downloadCorte()">Descargar PNG</span>
@@ -152,3 +146,4 @@
         <a #downloadLink></a>
     </div>
 </div>
+
