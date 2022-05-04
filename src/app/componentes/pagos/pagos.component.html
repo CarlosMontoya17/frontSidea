@@ -81,9 +81,9 @@
 
 
                     <li class="list-group-item d-flex justify-content-between align-items-start" style="cursor: pointer;"
-                     (click)="getCorte(ciber)" *ngFor="let ciber of Cibers |  buscador: ciberSearch">
+                     (click)="getCorte(ciber.id, ciber.nombre)" *ngFor="let ciber of rowData |  buscarciber: ciberSearch">
                       <div class="ms-2 me-auto">
-                        <div class="fw-bold">{{ ciber }}</div>
+                        <div class="fw-bold">{{ ciber.nombre }}</div>
                       </div>
                       <!-- <span class="badge bg-primary rounded-pill">14</span> -->
                       <fa-icon  [icon]="faArrowRightFromBracket" class="add-user"></fa-icon>

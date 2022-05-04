@@ -11,6 +11,7 @@ export class SidebarComponent implements OnInit {
   usuario:any = "Usuario";
   contrasena: string = "";
   result:any = [];
+  myRol: any;
   constructor(private router:Router, private loginservice:LoginService) { }
 
   ngOnInit(): void {

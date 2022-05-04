@@ -29,8 +29,8 @@ export class RestService {
   getciber(): Observable<any> {
     return this.http.get('http://actasalinstante.com:3030/api/clients/getAll');
   }
-  getprecioyasesor(tipo: any, estado: any, id: any): Observable<any> {
-    return this.http.put('http://actasalinstante.com:3030/api/clients/getMyData/' + id, { tipo, estado })
+  getprecioyasesor(tipo: any, estado: any, id: any){
+    return this.http.put(api+'/api/clients/getMyData/' + id, { "tipo":tipo, "estado":estado })
   }
 
   getidsupervisor(id: any) {
@@ -45,8 +45,8 @@ export class RestService {
     const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
     return this.http.post('http://actasalinstante.com:3030/api/actas/up', { enterprise: ciberseleccionado, provider: superviser, document: tipo, states: estado, curp: curp, nombreacta: nombre, requested: requested, price: precio }, { headers });
   }
-  getcorte(usuario: any): Observable<any> {
-    return this.http.get('http://actasalinstante.com:3030/api/getMyCorte/' + usuario)
+  getcorte(id: any): Observable<any> {
+    return this.http.get('http://actasalinstante.com:3030/api/getMyCorteId/' + id)
   }
 
   getMyDocumentsLoaded(id:any){

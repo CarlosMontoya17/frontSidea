@@ -1,27 +1,29 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { RestService } from '../historial/rest.service';
 import * as CryptoJS from 'crypto-js';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
-import { Observable } from 'rxjs';
+import { ConnectableObservable, Observable } from 'rxjs';
 import { GridApi, GridReadyEvent, RowSpanParams, ValueGetterFunc, ValueGetterParams } from 'ag-grid-community';
 import { AgGridAngular } from 'ag-grid-angular';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { DatabaseService } from 'src/app/servicios/database/database.service';
 import html2canvas from 'html2canvas';
+
 @Component({
+
   selector: 'app-pagos',
   templateUrl: './pagos.component.html',
   styleUrls: ['./pagos.component.css']
 })
+
 export class PagosComponent implements OnInit {
+
   @ViewChild('screen') screen!: ElementRef;
   @ViewChild('canvas') canvas!: ElementRef;
   @ViewChild('downloadLink') downloadLink!: ElementRef;
-
-  
   result: any = [];
   ids: any = [];
   tipos: any = [];
@@ -50,12 +52,11 @@ export class PagosComponent implements OnInit {
   public pinnedBottomRowData!: any[];
   //Tabla
   ciberSearch: string = "";
-
   //TABLE
   Cibers: any;
-  CiberSelect:any;
-  Corte:any;
-  TotalCorte:number = 0;
+  CiberSelect: any;
+  Corte: any;
+  TotalCorte: number = 0;
   //TABLE
   constructor(private router: Router, private restservice: RestService, private http: HttpClient, private database: DatabaseService) {
     var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
@@ -65,45 +66,41 @@ export class PagosComponent implements OnInit {
     //this.rowData = this.http.get<any[]>('http://actasalinstante.com:3030/api/getMyCorte/' + arreglo[1]);
   }
 
-  downloadCorte(){
+  downloadCorte() {
     html2canvas(this.screen.nativeElement).then(canvas => {
       this.canvas.nativeElement.src = canvas.toDataURL();
       this.downloadLink.nativeElement.href = canvas.toDataURL('image/png');
-      this.downloadLink.nativeElement.download = 'Corte '+this.CiberSelect+' .png';
+      this.downloadLink.nativeElement.download = 'Corte ' + this.CiberSelect + ' .png';
       this.downloadLink.nativeElement.click();
     });
   }
-  async getCorte(ciber:any){
-    this.CiberSelect = ciber;
+  async getCorte(id: any, nombre:any) {
+
+    this.CiberSelect = nombre;
     this.TotalCorte = 0;
 
-    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
-      let userName = usuario.toString(CryptoJS.enc.Utf8);
-      let arreglo = userName.split('"');
-      let users: any = await this.database.getAllClients(arreglo[1]).toPromise();
-      let actas:any = users.filter((element:any)=>{
-        return element['enterprise'].includes(ciber);
-      });
-      this.Corte = actas;
-    
-      actas.forEach((element:any) => {
-          this.TotalCorte += Number(element.price);
-      });
+
+
+    let corte: any = await this.database.getcorteciber(id).toPromise();
+    this.Corte = corte;
+
+
+    corte.forEach((element: any) => {
+       this.TotalCorte += Number(element.price);
+
+    });
   }
 
   async changeFilter(filter: any) {
     if (filter == 1 && this.filter1 == false) {
       this.filter1 = true;
       this.filter2 = false;
-      console.log('Filter 1');
+  
 
       var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
       let userName = usuario.toString(CryptoJS.enc.Utf8);
       let arreglo = userName.split('"');
-
-
       let users: any = await this.database.getAllClients(arreglo[1]).toPromise();
-
       let enterprises: any = [];
       users!.forEach((element: any) => {
         enterprises.push(element.enterprise);
@@ -113,7 +110,7 @@ export class PagosComponent implements OnInit {
     else if (filter == 2 && this.filter2 == false) {
       this.filter2 = true;
       this.filter1 = false;
-      console.log('Filter 2');
+  
 
       var idlocal = localStorage.getItem("id");
       var i = CryptoJS.AES.decrypt(idlocal || '{}', "id");
@@ -148,29 +145,49 @@ export class PagosComponent implements OnInit {
         this.onPinnedRowBottomCount();
         this.noRepeatData();
       });
-
   }
-
-
-
-
 
   onPinnedRowBottomCount() {
     var rows = this.createData();
     this.gridApi.setPinnedBottomRowData(rows);
   }
 
-  requestData() {
-    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
-    let userName = usuario.toString(CryptoJS.enc.Utf8);
-    let arreglo = userName.split('"');
-    this.http
-      .get<any[]>('http://actasalinstante.com:3030/api/getMyCorte/' + arreglo[1])
-      .subscribe((data) => {
-        this.rowData = data;
-        this.precioTotal();
-        this.noRepeatData();
-      });
+  async requestData() {
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var token: any = i.toString(CryptoJS.enc.Utf8);
+    var parteuno = token.slice(1);
+    var final = parteuno.slice(0, -1);
+    let tokenfinal: string = final;
+    const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
+
+
+
+    const data: any = await this.http
+      .get<any[]>('http://actasalinstante.com:3030/api/actas/ClientsActuals/', {headers}).toPromise();
+      this.rowData = data;
+      this.precioTotal();
+
+
+
+    // for (let i = 0; i < data.length; i++) {
+
+    //   const empresa: any = await this.restservice.getidsupervisor(data[i].enterprise).toPromise();
+    //   if (empresa.lenght != 0) {
+    //     // nombres.push(empresa.data.nombre);
+    //     // Ids.push(this.rowData[i].enterprise);
+    //     datos.push({ "enterprise": empresa.data.nombre, "id": data[i].enterprise });
+
+
+    //   }
+    // }
+    // this.rowData = datos;
+    // this.precioTotal();
+    // this.noRepeatData();
+    // datos.nombres = nombres;
+    // datos.Ids = Ids;
+
+
+
   }
 
   precioTotal() {
@@ -200,18 +217,20 @@ export class PagosComponent implements OnInit {
         let userName = usuario.toString(CryptoJS.enc.Utf8);
         let arreglo = userName.split('"');
         this.rowData = await this.restservice.getcorte(arreglo[1]).toPromise();
-        console.log(this.getcortes);
+      
       }
     }
   }
 
   async noRepeatData() {
     let enterprises: any[] = [];
-    for (let i = 0; i < this.rowData.length; i++) {
-      enterprises.push(this.rowData[i].enterprise);
-    }
-    let enter = enterprises.filter((item, index) => {
-      return enterprises.indexOf(item) === index;
+
+    // for (let i = 0; i < this.rowData.length; i++) {
+    //   enterprises.push(this.rowData[i].enterprise);
+    // }
+    let enter = this.rowData.filter((item, index) => {
+   
+      // return this.rowData.indexOf(item["enterprise"]) === index;
     });
 
     this.Cibers = enter;

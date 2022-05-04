@@ -27,6 +27,10 @@ export class DatabaseService {
   getAllClients(username:any){
     return this.httpClient.get(api+'/api/getMyCorte/' + username);
   }
+
+  getcorteciber(id:any){
+    return this.httpClient.get(api+'/api/actas/CorteForSomeone/' + id);
+  }
   
 
 }

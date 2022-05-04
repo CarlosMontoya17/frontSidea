@@ -10,7 +10,8 @@ import * as CryptoJS from 'crypto-js';
 import { DatabaseService } from 'src/app/servicios/database/database.service';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+declare function loader(): any;
+declare function closeAlert(): any;
 @Component({
   selector: 'app-historial',
   templateUrl: './historial.component.html',
@@ -50,8 +51,8 @@ export class HistorialComponent implements OnInit {
   myInfo: any;
   myRol: any;
 
-nombreProvedor:String = "";
-nombreEmpresa:string = "";
+  nombreProvedor: String = "";
+  nombreEmpresa: string = "";
 
   nombreasesor: string = "";
   constructor(private restService: RestService, private router: Router, private database: DatabaseService, private http: HttpClient) { }
@@ -208,15 +209,15 @@ nombreEmpresa:string = "";
       case "COAHUILA":
         state = "coah";
         break;
-        case "COAHUILA DE ZARAGOZA":
+      case "COAHUILA DE ZARAGOZA":
         state = "coah";
         break;
       case "MICHOACAN":
         state = "mich";
         break;
-        case "MICHOACAN DE OCAMPO":
-          state = "mich";
-          break;
+      case "MICHOACAN DE OCAMPO":
+        state = "mich";
+        break;
       case "TLAXCALA":
         state = "tlax";
         break;
@@ -250,7 +251,7 @@ nombreEmpresa:string = "";
       case "SINALOA":
         state = "sina";
         break;
-      case "GUERERRO":
+      case "GUERRERO":
         state = "guer";
         break;
       case "ZACATECAS":
@@ -296,7 +297,7 @@ nombreEmpresa:string = "";
         state = "";
         break;
     }
-    body.append("tipo", "nss");
+
     const precioyasesor = await this.restService.getprecioyasesor(documento, state, id).toPromise();
     this.precioyasesor = precioyasesor;
     const data: any = await this.restService.getidsupervisor(this.precioyasesor.superviser).toPromise();
@@ -306,34 +307,46 @@ nombreEmpresa:string = "";
   }
   //CORTEHSITORIAL
   async getcorte() {
+
     if (localStorage.getItem('token') != null) {
-      if (localStorage.getItem('usuario') != null) {
-        var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
+      if (localStorage.getItem('id') != null) {
+        var usuario = CryptoJS.AES.decrypt(localStorage.getItem('id') || '{}', "id");
 
-        let userName = usuario.toString(CryptoJS.enc.Utf8);
-        let arreglo = userName.split('"');
+        let id = usuario.toString(CryptoJS.enc.Utf8);
+
         // this.getcortes = await this.restService.getcorte(arreglo[1]).toPromise();
-          const data:any = await this.restService.getcorte(arreglo[1]).toPromise();
-          this.getcortes = data;
-          console.log(data);
+
+        const data: any = await this.restService.getcorte(id).toPromise();
 
 
-        if (data.length == 0) {
-          var idlocal = localStorage.getItem("id");
-          var i = CryptoJS.AES.decrypt(idlocal || '{}', "id");
-          var id: any = i.toString(CryptoJS.enc.Utf8);
-          // this.getcortes = await this.restService.getMyDocumentsLoaded(id).toPromise();
-          const cortes: any = await this.restService.getMyDocumentsLoaded(id).toPromise();
-          this.getcortes = cortes;
-          const empresaId = Number( cortes[0].enterprise);
-          const provedorId = Number( cortes[0].provider);
-          const dataEmpresa:any = await this.restService.getidsupervisor(empresaId).toPromise();
-          const dataProvedor:any = await this.restService.getidsupervisor(provedorId).toPromise();
-          this.nombreEmpresa = dataEmpresa.data.nombre;
-          this.nombreProvedor = dataProvedor.data.nombre;
 
-          console.log( dataProvedor, dataEmpresa);
+        let Arreglo: any = [];
+
+
+        for (let i = 0; i < data.length; i++) {
+
+          const Asesor: any = await this.restService.getidsupervisor(data[i].provider).toPromise();
+          const Ciber: any = await this.restService.getidsupervisor(data[i].enterprise).toPromise();
+          Arreglo.push({
+            "id": data[i].id,
+            "document": data[i].document,
+            "curp": data[i].curp,
+            "states": data[i].states,
+            "nombreacta": data[i].nombreacta,
+            "provider": Asesor.data.nombre,
+            "enterprise": Ciber.data.nombre,
+            "price": data[i].price,
+            "createdAt": data[i].createdAt
+          });
+
+
         }
+
+        this.getcortes = Arreglo;
+        if(Arreglo.lenght !=0){
+          closeAlert();
+        }
+
       }
     }
   }
@@ -353,12 +366,11 @@ nombreEmpresa:string = "";
 
 
   }
+
   /*   SE OPTIENE EL CORTE  */
   ngOnInit(): void {
 
 
-
-    this.getcorte();
 
     this.getAllCibers();
     this.descry();
@@ -366,14 +378,20 @@ nombreEmpresa:string = "";
   }
 
   async getAllCibers() {
-    let arreglo: any = await this.restService.getciber().toPromise();
+    let arreglo: any = await this.restService.getuser().toPromise();
     this.getciber = arreglo;
+
   }
 
   /*   CAMBIO DE VISTA DE LA TABLA CORTE  */
   changeView() {
+    if(this.vista===false){
+      loader();
+    }
     this.vista = !this.vista;
+    
     this.getcorte();
+
   }
   backUp() {
     this.preview = 0;
@@ -430,7 +448,7 @@ nombreEmpresa:string = "";
   //ENVIARPDF
   sendFile(): void {
     try {
-
+      loader();
       let ext = this.fileTmp.fileName.split(".");
       if (ext[1] != "pdf") {
         Swal.fire(
@@ -451,6 +469,7 @@ nombreEmpresa:string = "";
           .subscribe(res => {
             this.info = res;
             this.preview = 1;
+            closeAlert();
           }), (error: any) => {
             Swal.fire({
               position: 'center',
