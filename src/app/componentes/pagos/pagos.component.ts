@@ -116,8 +116,15 @@ export class PagosComponent implements OnInit {
     this.CiberSelect = nombre;
     this.ciberidselect = id;
     this.TotalCorte = 0;
-    this.fechas = await this.database.getMyDates(id).toPromise();
-
+    try {
+      const fec = await this.database.Obtenerfechas(id).toPromise();
+      console.log(fec);
+    } catch (error) {
+      const sin = this.rowData.find(id);
+      console.log(sin);
+    }
+    
+    console.log(this.fechas);
     // this.getcortes = await this.restService.getcorte(arreglo[1]).toPromise();
     const data: any = await this.restservice.GetActasNumber(id).toPromise();
     this.nacimiento = data["nac"];

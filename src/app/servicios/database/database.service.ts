@@ -49,4 +49,8 @@ export class DatabaseService {
     return this.httpClient.get(api+'/api/actas/lowerToCut/',{headers});
   }
 
+  Obtenerfechas(id:any){
+    return this.httpClient.get(api+'/api/actas/getDatesCut/'+id);
+  }
+
 }  

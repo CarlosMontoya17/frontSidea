@@ -521,6 +521,14 @@ export class AdministrarComponent implements OnInit {
   ngOnInit(): void {
     this.getAllUsers();
     const token = localStorage.getItem('token');
+
+
+
+    const i = localStorage.getItem('id');
+    const is = CryptoJS.AES.decrypt(i || '{}', "id");
+    const id = is.toString(CryptoJS.enc.Utf8);
+    this.getMyData(id);
+
     if (!token) {
       this.router.navigateByUrl('/login');
     }
