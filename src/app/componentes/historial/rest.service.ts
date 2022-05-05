@@ -29,8 +29,8 @@ export class RestService {
   getciber(): Observable<any> {
     return this.http.get('http://actasalinstante.com:3030/api/clients/getAll');
   }
-  getprecioyasesor(tipo: any, estado: any, id: any){
-    return this.http.put(api+'/api/clients/getMyData/' + id, { "tipo":tipo, "estado":estado })
+  getprecioyasesor(tipo: any, estado: any, id: any) {
+    return this.http.put(api + '/api/clients/getMyData/' + id, { "tipo": tipo, "estado": estado })
   }
 
   getidsupervisor(id: any) {
@@ -51,25 +51,28 @@ export class RestService {
     return this.http.get('http://actasalinstante.com:3030/api/getMyCorteId/' + id)
   }
 
-  getMyDocumentsLoaded(id:any){
-    return this.http.get(api+'/api/actas/getMyDocuments/'+id);
+  getMyDocumentsLoaded(id: any) {
+    return this.http.get(api + '/api/actas/getMyDocuments/' + id);
   }
 
-  deleteActa(id:any){
+  deleteActa(id: any) {
     var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
     var token: any = i.toString(CryptoJS.enc.Utf8);
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);
     let tokenfinal: string = final;
     const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
-    return this.http.delete(api+'/api/actas/deleteActa/'+id);
+    return this.http.delete(api + '/api/actas/deleteActa/' + id);
   }
-  
-
   deleteuser(id: any): Observable<any> {
     return this.http.get('http://actasalinstante.com:3030/api/user/delete/' + id)
   }
   editPrecior(id: any, precios: any): Observable<any> {
     return this.http.put('http://actasalinstante.com:3030/api/user/editPrice/' + id, { precios: precios })
   }
+  GetActasNumber(id: any): Observable<any> {
+    return this.http.get('http://actasalinstante.com:3030/api/actas/CountForEnterprise/' + id)
+  }
+
+
 } 

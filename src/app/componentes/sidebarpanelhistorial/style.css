@@ -31,8 +31,8 @@ body {
     display: inline-block;
     background-size: cover;
     height: 400px;
-    width: 1903px;
-    /* overflow: hidden; */
+    width: 1905px;
+    overflow: hidden;
     position: relative;
     background-position: center center;
     border-radius: 1px;

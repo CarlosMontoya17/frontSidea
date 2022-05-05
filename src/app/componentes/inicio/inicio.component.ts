@@ -289,7 +289,10 @@ onChangeTwo(event:any){
 
   ngOnInit(): void {
 
-  
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.router.navigateByUrl('/login');
+    }
     
   }
 

@@ -50,11 +50,10 @@ export class HistorialComponent implements OnInit {
   page: number = 0;
   myInfo: any;
   myRol: any;
-
   nombreProvedor: String = "";
   nombreEmpresa: string = "";
-
   nombreasesor: string = "";
+  
   constructor(private restService: RestService, private router: Router, private database: DatabaseService, private http: HttpClient) { }
 
   async enviaracta() {
@@ -150,10 +149,8 @@ export class HistorialComponent implements OnInit {
     })
   }
 
-  async clickciber(id: any, nombre: any) {
-
+    async clickciber(id: any, nombre: any) {
     this.ciberseleccionado = id;
-
     const body = new FormData();
     let documento: string;
 
@@ -189,6 +186,7 @@ export class HistorialComponent implements OnInit {
         documento = "";
         break;
     }
+
     let state;
     switch (this.info.estado) {
       case "CHIAPAS":
@@ -206,6 +204,9 @@ export class HistorialComponent implements OnInit {
       case "VERACRUZ":
         state = "vera";
         break;
+        case "VERACRUZ DE IGNACIO DE LA":
+          state = "vera";
+          break;
       case "COAHUILA":
         state = "coah";
         break;
@@ -278,6 +279,9 @@ export class HistorialComponent implements OnInit {
       case "CDMX":
         state = "cdmx";
         break;
+        case "CIUDAD DE MEXICO":
+          state = "cdmx";
+          break;
       case "CAMPECHE":
         state = "camp";
         break;
@@ -311,24 +315,16 @@ export class HistorialComponent implements OnInit {
     if (localStorage.getItem('token') != null) {
       if (localStorage.getItem('id') != null) {
         var usuario = CryptoJS.AES.decrypt(localStorage.getItem('id') || '{}', "id");
-
         let id = usuario.toString(CryptoJS.enc.Utf8);
-
         // this.getcortes = await this.restService.getcorte(arreglo[1]).toPromise();
-
         const data: any = await this.restService.getcorte(id).toPromise();
-
-
-
         let Arreglo: any = [];
-
-        let index:number = 0;
+        let index: number = 0;
         for (let i = 0; i < data.length; i++) {
-
           const Asesor: any = await this.restService.getidsupervisor(data[i].provider).toPromise();
           const Ciber: any = await this.restService.getidsupervisor(data[i].enterprise).toPromise();
           Arreglo.push({
-            "i": index+=1,
+            "i": index += 1,
             "id": data[i].id,
             "document": data[i].document,
             "curp": data[i].curp,
@@ -339,18 +335,17 @@ export class HistorialComponent implements OnInit {
             "price": data[i].price,
             "createdAt": data[i].createdAt
           });
-
-
         }
 
         this.getcortes = Arreglo;
-        if(Arreglo.lenght !=0){
+        if (Arreglo.lenght != 0) {
           closeAlert();
         }
 
       }
     }
   }
+
   onChange(event: any) {
     this.tipodebusqueda = event;
   }
@@ -370,7 +365,10 @@ export class HistorialComponent implements OnInit {
 
   /*   SE OPTIENE EL CORTE  */
   ngOnInit(): void {
-
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.router.navigateByUrl('/login');
+    }
 
 
     this.getAllCibers();
@@ -386,11 +384,11 @@ export class HistorialComponent implements OnInit {
 
   /*   CAMBIO DE VISTA DE LA TABLA CORTE  */
   changeView() {
-    if(this.vista===false){
+    if (this.vista === false) {
       loader();
     }
     this.vista = !this.vista;
-    
+
     this.getcorte();
 
   }

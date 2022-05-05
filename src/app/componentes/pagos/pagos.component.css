@@ -12,4 +12,14 @@ background-color: rgb(61, 61, 61);
     color: white; 
     border-radius: 0.5rem;
 }
+*{
+  text-transform: capitalize;
+}
+table, th, td{
+border : 1px solid rgb(202, 202, 198);border-collapse:collapse;padding:15px;font-size:14px}
 
+table.center{margin-left: auto;margin-right:auto;}
+#t01 {
+width: 100%;    
+background-color:  gray; color: yellow ;
+}

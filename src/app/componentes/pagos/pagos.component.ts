@@ -10,6 +10,7 @@ import { AgGridAngular } from 'ag-grid-angular';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { DatabaseService } from 'src/app/servicios/database/database.service';
 import html2canvas from 'html2canvas';
+import { Router } from '@angular/router';
 
 @Component({
 
@@ -37,9 +38,11 @@ export class PagosComponent implements OnInit {
   private gridApi!: GridApi;
   filter1: boolean = true;
   filter2: boolean = false;
-  fechas:any;
+  fechas: any;
+
   //Tabla
   cortes: any;
+  NumerodeActas: any;
   columnDefs = [
     { field: "id", width: 80, headerName: "Id", filter: true },
     { field: "enterprise", headerName: "Ciber", filter: true },
@@ -56,19 +59,28 @@ export class PagosComponent implements OnInit {
   //TABLE
   Cibers: any;
   CiberSelect: any;
-  ciberidselect:any;
+  ciberidselect: any;
   Corte: any;
   TotalCorte: number = 0;
+  nacimiento: any;
+  defuncion: any;
+  matrimonio: any;
+  divorcio: any;
+  semancot: any;
+  nss: any;
+  rfc: any;
+  derechos: any;
+  total: any;
   //TABLE
   corteSeleccionado: string = "Seleccionar corte";
-  constructor(private restservice: RestService, private http: HttpClient, private database: DatabaseService) {
+  constructor(private router:Router, private restservice: RestService, private http: HttpClient, private database: DatabaseService) {
     var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
     let userName = usuario.toString(CryptoJS.enc.Utf8);
     let arreglo = userName.split('"');
-   
-  }
 
-//DESCARGAR CORTE EN IMAGEN PNG
+  }
+  
+ //DESCARGAR CORTE EN IMAGEN PNG
   downloadCorte() {
     html2canvas(this.screen.nativeElement).then(canvas => {
       this.canvas.nativeElement.src = canvas.toDataURL();
@@ -78,22 +90,22 @@ export class PagosComponent implements OnInit {
     });
   }
 
-  async setCorte(fecha:any){
+  async setCorte(fecha: any) {
     this.TotalCorte = 0;
     this.corteSeleccionado = fecha;
-    let date:string = "";
-    if(fecha == "Actual"){
+    let date: string = "";
+    if (fecha == "Actual") {
       date = "null";
     }
-    
+
     else {
       date = fecha;
     }
-    
-    const data:any = await this.database.getmycort_fecha(this.ciberidselect, date).toPromise();
+
+    const data: any = await this.database.getmycort_fecha(this.ciberidselect, date).toPromise();
     this.Corte = data;
-    
-    data.forEach((Element:any ) => {
+
+    data.forEach((Element: any) => {
       this.TotalCorte += Number(Element.price);
     });
   }
@@ -105,8 +117,22 @@ export class PagosComponent implements OnInit {
     this.ciberidselect = id;
     this.TotalCorte = 0;
     this.fechas = await this.database.getMyDates(id).toPromise();
+
+    // this.getcortes = await this.restService.getcorte(arreglo[1]).toPromise();
+    const data: any = await this.restservice.GetActasNumber(id).toPromise();
+    this.nacimiento = data["nac"];
+    this.defuncion = data["def"];
+    this.matrimonio = data["mat"];
+    this.divorcio = data["div"];
+    this.semancot = data["cot"];
+    this.nss = data["nss"];
+    this.rfc = data["rfc"];
+    this.derechos = data["der"];
+    this.total = data["total"];
+    this.NumerodeActas = data;
   }
-//CAMBIO DEL FILTRO CON EL TOKEN Y USUARIO PARA OPTENER TOLOS LOS CLIENTES
+
+  //CAMBIO DEL FILTRO CON EL TOKEN Y USUARIO PARA OPTENER TOLOS LOS CLIENTES
   async changeFilter(filter: any) {
     if (filter == 1 && this.filter1 == false) {
       this.filter1 = true;
@@ -125,7 +151,7 @@ export class PagosComponent implements OnInit {
       this.filter2 = true;
       this.filter1 = false;
       var idlocal = localStorage.getItem("id");
-      var i = CryptoJS.AES.decrypt(idlocal || '{}', "id");    
+      var i = CryptoJS.AES.decrypt(idlocal || '{}', "id");
       var id: any = i.toString(CryptoJS.enc.Utf8);
       const users: any = await this.database.getAllUsers(id).toPromise();
       let enterprises: any = [];
@@ -137,7 +163,12 @@ export class PagosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.requestData();
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.router.navigateByUrl('/login');
+    }
+    this.getTodos();
+
   }
   //EXPORTAR EL CORTE 
   onBtnExport() {
@@ -147,27 +178,9 @@ export class PagosComponent implements OnInit {
     this.gridApi.exportDataAsCsv({ fileName: 'Corte-' + arreglo[1] + '.csv' });
   }
 
-  onGridReady(params: GridReadyEvent) {
-    this.gridApi = params.api;
-    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
-    let userName = usuario.toString(CryptoJS.enc.Utf8);
-    let arreglo = userName.split('"');
-    this.http
-      .get<any[]>('http://actasalinstante.com:3030/api/getMyCorte/' + arreglo[1])
-      .subscribe((data) => {
-        this.rowData = data;
-        this.precioTotal();
-        this.onPinnedRowBottomCount();
-        this.noRepeatData();
-      });
-  }
-  
-  onPinnedRowBottomCount() {
-    var rows = this.createData();
-    this.gridApi.setPinnedBottomRowData(rows);
-  }
-  
-//SE OPTIENE EL TOKEN Y TRAE EL CLIENTE ACUTAL CON EL PRECIO TOTAL
+
+
+  //SE OPTIENE EL TOKEN Y TRAE EL CLIENTE ACUTAL CON EL PRECIO TOTAL
   async requestData() {
     var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
     var token: any = i.toString(CryptoJS.enc.Utf8);
@@ -180,7 +193,13 @@ export class PagosComponent implements OnInit {
     this.rowData = data;
     this.precioTotal();
   }
-//PRECIO TOTAL
+
+  async getTodos(){
+    const data:any = await this.database.obtenerTodos().toPromise();
+    console.log(data);
+    this.rowData = data;
+  }
+  //PRECIO TOTAL
   precioTotal() {
     var addNumber: number = 0;
     var addActas: number = 0;
@@ -213,13 +232,13 @@ export class PagosComponent implements OnInit {
     }
   }
 
-//FILTRO DE ENTERPRISE 
+  //FILTRO DE ENTERPRISE 
   async noRepeatData() {
     let enterprises: any[] = [];
     let enter = this.rowData.filter((item, index) => {
     });
     this.Cibers = enter;
-     }
+  }
 
 
 }
