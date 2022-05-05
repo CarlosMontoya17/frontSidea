@@ -236,7 +236,7 @@ export class HistorialComponent implements OnInit {
       case "QUERETARO":
         state = "quer";
         break;
-      case "CHIHAUHUA":
+      case "CHIHUAHUA":
         state = "chih";
         break;
       case "OAXACA":
@@ -287,7 +287,7 @@ export class HistorialComponent implements OnInit {
       case "MEXICO":
         state = "mex";
         break;
-      case "QUINTANARRO":
+      case "QUINTANA ROO":
         state = "qroo";
         break;
       case "NAYARIT":

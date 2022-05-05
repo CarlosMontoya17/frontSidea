@@ -1,6 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { RestService } from '../historial/rest.service';
 import * as CryptoJS from 'crypto-js';
 import 'ag-grid-community/dist/styles/ag-grid.css';
@@ -62,7 +61,7 @@ export class PagosComponent implements OnInit {
   TotalCorte: number = 0;
   //TABLE
   corteSeleccionado: string = "Seleccionar corte";
-  constructor(private router: Router, private restservice: RestService, private http: HttpClient, private database: DatabaseService) {
+  constructor(private restservice: RestService, private http: HttpClient, private database: DatabaseService) {
     var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
     let userName = usuario.toString(CryptoJS.enc.Utf8);
     let arreglo = userName.split('"');
@@ -90,7 +89,7 @@ export class PagosComponent implements OnInit {
     else {
       date = fecha;
     }
-
+    
     const data:any = await this.database.getmycort_fecha(this.ciberidselect, date).toPromise();
     this.Corte = data;
     

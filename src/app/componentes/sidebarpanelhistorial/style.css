@@ -32,17 +32,16 @@ body {
     background-size: cover;
     height: 400px;
     width: 1903px;
-    overflow: hidden;
+    /* overflow: hidden; */
     position: relative;
     background-position: center center;
     border-radius: 1px;
     box-shadow: 0 0 20px 10px #0000002f, 0 0 10px 5px #00000017;
-
 }
 
 .slider {
     height: 100%;
-    width: 500%;
+    width: 510%;
     display: flex;
 }
 
