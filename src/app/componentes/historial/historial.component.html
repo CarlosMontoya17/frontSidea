@@ -198,11 +198,11 @@
   </div>
   <h1>&bull;Registros&bull;</h1>
 </div>
-
  <!-- USERS LIST -->
- <div class="card mx-auto" style="width: 100%;" *ngIf="vista">
+ <div id="excel-table" class="card mx-auto" style="width: 100%;" *ngIf="vista">
 
-    <table class="table table-dark table-hover table-striped">
+    <table  class="table table-dark table-hover table-striped">
+      
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -235,8 +235,11 @@
           <td>
             {{ cortes?.createdAt | date:'yyyy-MM-dd' }}
           </td>
+          
           <td style="text-align: center;">
+            
             <fa-icon  [icon]="faTrashCan" class="add-user" (click)="deleteItemActa(cortes.id, cortes.document, cortes.enterprise)" ></fa-icon>
+         
           </td>
           
         </tr>
@@ -245,9 +248,11 @@
 
       
     </table >
-    <pagination-controls (pageChange)="page = $event"></pagination-controls>
 
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+    <button (click)="exportexcel()">Export to Excel</button>
 </div>
+
 <!-- FIN DE LA TABLA DE CONTENIDO -->
 
 

@@ -10,8 +10,11 @@ import * as CryptoJS from 'crypto-js';
 import { DatabaseService } from 'src/app/servicios/database/database.service';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { GridApi, GridReadyEvent, RowSpanParams, ValueGetterFunc, ValueGetterParams } from 'ag-grid-community';
+import * as XLSX from 'xlsx'
 declare function loader(): any;
 declare function closeAlert(): any;
+
 @Component({
   selector: 'app-historial',
   templateUrl: './historial.component.html',
@@ -20,6 +23,7 @@ declare function closeAlert(): any;
 })
 
 export class HistorialComponent implements OnInit {
+  private gridApi!: GridApi;
   public imagePath: any;
   faTrashCan = faTrashCan;
   imgURL: any;
@@ -53,8 +57,95 @@ export class HistorialComponent implements OnInit {
   nombreProvedor: String = "";
   nombreEmpresa: string = "";
   nombreasesor: string = "";
-  
+  ids: any = [];
+  tipos: any = [];
+  fileName= 'ExcelSheet.xlsx';
+
+
+  username: string = "";
+  totalPrecio: number = 0;
+  totalActas: number = 0;
+  cortes: any;
+  columnDefs = [
+    { field: "id", width: 80, headerName: "Id", filter: true },
+    { field: "enterprise", headerName: "Ciber", filter: true },
+    { field: "document", headerName: "Documento", filter: true },
+    { field: "states", headerName: "Estado", filter: true },
+    { field: "curp", headerName: "CURP", filter: true },
+    { field: "price", headerName: "Precio", type: 'valueColumn', filter: true, },
+    { field: "createdAt", headerName: "Fecha y hora", filter: true },
+    {field: "corte", headerName: "Corte", type: 'valueColumn', filter: true,}
+     ];
+
+  public rowData!: any[];
+  public pinnedBottomRowData!: any[];
+  //Tabla
   constructor(private restService: RestService, private router: Router, private database: DatabaseService, private http: HttpClient) { }
+  
+  exportexcel(): void
+  {
+    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
+    let userName = usuario.toString(CryptoJS.enc.Utf8);
+    let arreglo = userName.split('"');
+    
+    // this.gridApi.exportDataAsCsv({ fileName: 'Corte-' + arreglo[1] + '.csv' });
+    /* pass here the table id */
+     let element = document.getElementById('excel-table');
+    const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+    
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Corte'+ arreglo[1]);
+ 
+    /* save to file */  
+    XLSX.writeFile(wb, "Historial-"+arreglo[1]+".xlsx" );
+ 
+  }
+  async onGridReady(params: GridReadyEvent) {
+    this.gridApi = params.api; 
+    if (localStorage.getItem('token') != null) {
+      if (localStorage.getItem('id') != null) {
+        var usuario = CryptoJS.AES.decrypt(localStorage.getItem('id') || '{}', "id");
+        let id = usuario.toString(CryptoJS.enc.Utf8);
+        // this.getcortes = await this.restService.getcorte(arreglo[1]).toPromise();
+        const data: any = await this.restService.getcorte(id).toPromise();
+        let Arreglo: any = [];
+        let index: number = 0;
+        for (let i = 0; i < data.length; i++) {
+          const Asesor: any = await this.restService.getidsupervisor(data[i].provider).toPromise();
+          const Ciber: any = await this.restService.getidsupervisor(data[i].enterprise).toPromise();
+     
+          Arreglo.push({
+            "i": index += 1,
+            "id": data[i].id,
+            "document": data[i].document,
+            "curp": data[i].curp,
+            "states": data[i].states,
+            "nombreacta": data[i].nombreacta,
+            "provider": Asesor.data.nombre,
+            "enterprise": Ciber.data.nombre,
+            "price": data[i].price,
+            "createdAt": data[i].createdAt,
+            "corte": data[i].corte,
+               });
+        }
+
+        this.rowData = Arreglo;
+       
+      //   this.precioTotal();
+      // this.onPinnedRowBottomCount();
+    
+
+      }
+    }
+  }
+
+
+
+
+
+
+
 
   async enviaracta() {
     Swal.fire(
@@ -100,7 +191,14 @@ export class HistorialComponent implements OnInit {
     });
 
   }
-
+  onBtnExport() {
+    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
+    let userName = usuario.toString(CryptoJS.enc.Utf8);
+    let arreglo = userName.split('"');
+  
+    this.gridApi.exportDataAsCsv({ fileName: 'Corte-' + arreglo[1] + '.csv' });
+  }
+  
   deleteItemActa(id: any, document: any, enterprise: any) {
     Swal.fire({
       title: '¿Estás seguro?',
@@ -309,6 +407,7 @@ export class HistorialComponent implements OnInit {
 
 
   }
+
   //CORTEHSITORIAL
   async getcorte() {
 
@@ -323,6 +422,7 @@ export class HistorialComponent implements OnInit {
         for (let i = 0; i < data.length; i++) {
           const Asesor: any = await this.restService.getidsupervisor(data[i].provider).toPromise();
           const Ciber: any = await this.restService.getidsupervisor(data[i].enterprise).toPromise();
+ 
           Arreglo.push({
             "i": index += 1,
             "id": data[i].id,
@@ -338,6 +438,8 @@ export class HistorialComponent implements OnInit {
         }
 
         this.getcortes = Arreglo;
+      
+
         if (Arreglo.lenght != 0) {
           closeAlert();
         }

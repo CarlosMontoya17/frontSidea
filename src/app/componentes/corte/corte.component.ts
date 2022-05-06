@@ -77,6 +77,7 @@ export class CorteComponent implements OnInit {
         for (let i = 0; i < data.length; i++) {
           const Asesor: any = await this.restservice.getidsupervisor(data[i].provider).toPromise();
           const Ciber: any = await this.restservice.getidsupervisor(data[i].enterprise).toPromise();
+     
           Arreglo.push({
             "i": index += 1,
             "id": data[i].id,
@@ -91,9 +92,9 @@ export class CorteComponent implements OnInit {
             "corte": data[i].corte,
                });
         }
-    
+
         this.rowData = Arreglo;
-   
+       
         this.precioTotal();
       this.onPinnedRowBottomCount();
     

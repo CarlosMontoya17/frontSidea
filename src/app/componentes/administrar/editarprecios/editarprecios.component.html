@@ -42,9 +42,6 @@
             <label>Nombre de usuario</label>
             <input type="username" class="form-control" placeholder="Escribe el nombre de usuario"
               [(ngModel)]="newUsername" name="newUsername">
-
-
-
           </div>
          
           <div class="form-group">
@@ -61,7 +58,6 @@
               </div>
             </div>
           </div>
-
           
           <div class="form-group" *ngIf="myRol == 'Admin'">
             <label>Rol nuevo</label>
@@ -87,7 +83,7 @@
               </div>
             </div>
           </div>
-
+          
           <ul class="list-group" *ngIf='newResponsable == undefined && responsableSearch.length > 0'>
             <li class="list-group-item active">Resultados:</li>
             <li class="list-group-item selectionable" (click)="selectProvider(provider)" style="cursor: pointer;"

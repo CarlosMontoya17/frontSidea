@@ -71,6 +71,7 @@ export class PagosComponent implements OnInit {
   rfc: any;
   derechos: any;
   total: any;
+
   //TABLE
   corteSeleccionado: string = "Seleccionar corte";
   constructor(private router:Router, private restservice: RestService, private http: HttpClient, private database: DatabaseService) {
@@ -112,6 +113,7 @@ export class PagosComponent implements OnInit {
   }
   //SE OBTIENE EL CORTE CON EL CIBER
   async getCorte(id: any, nombre: any) {
+    
     this.Corte = [];
     this.corteSeleccionado = "Seleccionar corte";
     this.CiberSelect = nombre;
@@ -134,8 +136,11 @@ export class PagosComponent implements OnInit {
     this.NumerodeActas = data;
   }
 
+  
+
   //CAMBIO DEL FILTRO CON EL TOKEN Y USUARIO PARA OPTENER TOLOS LOS CLIENTES
   async changeFilter(filter: any) {
+
     if (filter == 1 && this.filter1 == false) {
       this.filter1 = true;
       this.filter2 = false;

@@ -23,3 +23,157 @@ table.center{margin-left: auto;margin-right:auto;}
 width: 100%;    
 background-color:  gray; color: yellow ;
 }
+
+
+
+/* TO SUPPORT ENTITY ICONS/SYMBOLS NEED "UTF-8" SETTING  */
+
+/* Super simple animated buttons using entity symbols as icons.  Follows is a great resource for symbols:  https://www.toptal.com/designers/htmlarrows/symbols/
+
+Button Markup  */
+
+.button {
+  display: inline-block;
+  font-family: "Montserrat", Helvetica, sans-serif;
+  /* Button is responsive to font size.*/  
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  padding: 0.8em 1.5em;
+  border: none;
+  color: rgb(0, 0, 0);
+  transition: 0.2s;
+  text-decoration: none;
+  border: rgb(255, 255, 255) solid 1px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+    /* Setting opacity so button isn't so bright.  Could use a filter. */  
+   opacity: 0.95;
+/* Setting right padding for button 
+to push text away from the icon which is
+positioned as absolute to enable animations. 
+No need to declare button max/min width as button
+is responsive to font size.
+*/  
+   padding-right: 3.5em;
+  cursor: pointer;
+  
+}
+.button:before,
+.button:after {
+  position: absolute;
+  padding-top: inherit;
+  padding-bottom: inherit;
+  font-size: inherit;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 2.8em;
+  transition: 0.2s;
+  transform-origin: 50% 60%;
+  
+  /*  Uncomment below to set icon background color.  Set as black 
+in example with RGB opacity to  make it stand out a bit more.   */
+  
+  /*  background: rgba(0,0,0,0.10); */
+ 
+}
+/* Arrow Button Markup  */
+.arrow {
+  background: #3c3b6e;
+}
+.arrow:hover {
+  background: #b22234;
+}
+.arrow:active,
+.arrow:focus {
+  background: #b22234;
+}
+/* Entity Icon   */
+.arrow:after {
+  content: "\2794";
+}
+/* Set Arrow Icon Bounce Animation   */
+.arrow:hover:after {
+  -webkit-animation: bounceright 0.3s alternate ease infinite;
+  animation: bounceright 0.3s alternate ease infinite;
+}
+
+/* Phone Button Markup  */
+
+.phone {
+  background: rgb(255, 255, 255);
+}
+.phone:hover {
+  background: rgb(173, 171, 171);
+}
+.phone:active{
+  box-shadow: 0 0 0 2px white, 0 0 0 4px rgb(0, 0, 0);
+}
+.phone:focus {
+  background: #efb810;
+  /* box-shadow: 0 0 0 2px white, 0 0 0 4px blue; */
+}
+
+/* Entity Icon   */
+
+/* Set Phone Icon Wiggle Animation   */
+/* .phone:hover:after {
+  -webkit-animation: wiggle 0.05s alternate ease infinite;
+  animation: wiggle 0.05s alternate ease infinite;
+} */
+
+/* Animations  */
+
+@-webkit-keyframes bounceright {
+  from {
+    -webkit-transform: translateX(0);
+  }
+  to {
+    -webkit-transform: translateX(3px);
+  }
+}
+@-webkit-keyframes wiggle {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(30deg);
+  }
+}
+@keyframes bounceright {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(3px);
+  }
+}
+@keyframes wiggle {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(30deg);
+  }
+}
+
+/* Demo Stuff  */
+
+body {
+  background: black;
+  text-align: center;
+  text-rendering: auto;
+  height: 100vh;
+  overflow: hidden;
+  padding-top: 100px;
+}
+* {
+  box-sizing: border-box;
+}
+
+.button {
+  margin: 15px;
+}
+
+
