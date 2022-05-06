@@ -52,5 +52,12 @@ export class DatabaseService {
   Obtenerfechas(id:any){
     return this.httpClient.get(api+'/api/actas/getDatesCut/'+id);
   }
-
+  getallCorte(id:any, fecha:any){
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var token: any = i.toString(CryptoJS.enc.Utf8);
+    var parteuno = token.slice(1);
+    var final = parteuno.slice(0, -1);
+    const headers = new HttpHeaders({ 'x-access-token': final! });
+    return this.httpClient.get(api+'/api/actas/getCut/'+id+ '/'+fecha,{headers});
+  }
 }  

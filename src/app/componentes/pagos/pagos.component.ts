@@ -74,7 +74,7 @@ export class PagosComponent implements OnInit {
   //TABLE
   corteSeleccionado: string = "Seleccionar corte";
   constructor(private router:Router, private restservice: RestService, private http: HttpClient, private database: DatabaseService) {
-    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
+    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('id') || '{}', "id");
     let userName = usuario.toString(CryptoJS.enc.Utf8);
     let arreglo = userName.split('"');
 
@@ -102,9 +102,10 @@ export class PagosComponent implements OnInit {
       date = fecha;
     }
 
-    const data: any = await this.database.getmycort_fecha(this.ciberidselect, date).toPromise();
+    //const data: any = await this.database.getmycort_fecha(this.ciberidselect, date).toPromise();
+    const data:any = await this.database.getallCorte(this.ciberidselect, date).toPromise();
     this.Corte = data;
-
+    console.log(data);
     data.forEach((Element: any) => {
       this.TotalCorte += Number(Element.price);
     });
@@ -116,15 +117,9 @@ export class PagosComponent implements OnInit {
     this.CiberSelect = nombre;
     this.ciberidselect = id;
     this.TotalCorte = 0;
-    try {
-      const fec = await this.database.Obtenerfechas(id).toPromise();
-      console.log(fec);
-    } catch (error) {
-      const sin = this.rowData.find(id);
-      console.log(sin);
-    }
-    
-    console.log(this.fechas);
+
+    this.fechas = await this.database.Obtenerfechas(id).toPromise();
+
     // this.getcortes = await this.restService.getcorte(arreglo[1]).toPromise();
     const data: any = await this.restservice.GetActasNumber(id).toPromise();
     this.nacimiento = data["nac"];
@@ -144,7 +139,7 @@ export class PagosComponent implements OnInit {
     if (filter == 1 && this.filter1 == false) {
       this.filter1 = true;
       this.filter2 = false;
-      var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
+      var usuario = CryptoJS.AES.decrypt(localStorage.getItem('id') || '{}', "id");
       let userName = usuario.toString(CryptoJS.enc.Utf8);
       let arreglo = userName.split('"');
       let users: any = await this.database.getAllClients(arreglo[1]).toPromise();
@@ -203,7 +198,7 @@ export class PagosComponent implements OnInit {
 
   async getTodos(){
     const data:any = await this.database.obtenerTodos().toPromise();
-    console.log(data);
+    
     this.rowData = data;
   }
   //PRECIO TOTAL
@@ -234,6 +229,7 @@ export class PagosComponent implements OnInit {
         let userName = usuario.toString(CryptoJS.enc.Utf8);
         let arreglo = userName.split('"');
         this.rowData = await this.restservice.getcorte(arreglo[1]).toPromise();
+        
 
       }
     }

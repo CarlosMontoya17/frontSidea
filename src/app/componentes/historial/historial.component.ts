@@ -258,7 +258,7 @@ export class HistorialComponent implements OnInit {
       case "ZACATECAS":
         state = "zaca";
         break;
-      case "TAMAUILIPAS":
+      case "TAMAULIPAS":
         state = "tama";
         break;
       case "MORELOS":
