@@ -72,28 +72,9 @@ export class CorteComponent implements OnInit {
         let id = usuario.toString(CryptoJS.enc.Utf8);
         // this.getcortes = await this.restService.getcorte(arreglo[1]).toPromise();
         const data: any = await this.restservice.getcorte(id).toPromise();
-        let Arreglo: any = [];
-        let index: number = 0;
-        for (let i = 0; i < data.length; i++) {
-          const Asesor: any = await this.restservice.getidsupervisor(data[i].provider).toPromise();
-          const Ciber: any = await this.restservice.getidsupervisor(data[i].enterprise).toPromise();
-     
-          Arreglo.push({
-            "i": index += 1,
-            "id": data[i].id,
-            "document": data[i].document,
-            "curp": data[i].curp,
-            "states": data[i].states,
-            "nombreacta": data[i].nombreacta,
-            "provider": Asesor.data.nombre,
-            "enterprise": Ciber.data.nombre,
-            "price": data[i].price,
-            "createdAt": data[i].createdAt,
-            "corte": data[i].corte,
-               });
-        }
+      
 
-        this.rowData = Arreglo;
+        this.rowData = data;
        
         this.precioTotal();
       this.onPinnedRowBottomCount();

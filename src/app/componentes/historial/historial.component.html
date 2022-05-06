@@ -1,10 +1,11 @@
 <!-- SIDEBAR EN LA CLASE SIDERBARCOMPONENTE -->
 <app-sidebar></app-sidebar>
+
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item" *ngIf="vista"><a style="cursor: pointer;" (click)="changeView()">Subir Documento</a>
     </li>
-    <li  class="breadcrumb-item" *ngIf="!vista"><a style="color: #efb810;">Subir Documento</a></li>
+    <li class="breadcrumb-item" *ngIf="!vista"><a style="color: #efb810;">Subir Documento</a></li>
     <li class="breadcrumb-item" *ngIf="!vista"><a style="cursor: pointer;" (click)="changeView()">Historial de
         Registros</a></li>
     <li class="breadcrumb-item" *ngIf="vista"><a style="color: #efb810;">Historial de Registros</a></li>
@@ -36,6 +37,7 @@
     position: relative;
     font-size: 18px;
   }
+
   .file-area input[type=file] {
     position: absolute;
     width: 100%;
@@ -47,6 +49,7 @@
     opacity: 1;
     cursor: pointer;
   }
+
   .file-area .file-dummy {
     width: 100%;
     padding: 50px 30px;
@@ -101,22 +104,20 @@
         </div>
       </div>
     </div>
-
-
-      <h1>&bull;RESUMEN&bull;</h1>
-         <div class="row row-cols-1 row-cols-md-3 g-4">
+    <h1>&bull;RESUMEN&bull;</h1>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
       <!-- Tipo de documento -->
-          <div class="col">
-            <div class="card h-100">
-             <div class="card-body">
-              <div class="form-outline">
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <div class="form-outline">
               <h5 style="color: #efb810" class="card-title">Tipo de documento</h5>
               <li class="list-group-item">{{ info?.tipo }}</li>
             </div>
           </div>
         </div>
       </div>
-     <!-- Tipo de CURP -->
+      <!-- Tipo de CURP -->
       <div class="col">
         <div class="card h-100">
           <div class="card-body">
@@ -153,7 +154,7 @@
           </div>
         </div>
       </div>
-     <!-- Tipo de APELIIDOS -->
+      <!-- Tipo de APELIIDOS -->
       <div class="col" *ngIf="info?.apellidos != null">
         <div class="card h-100">
           <div class="card-body">
@@ -198,61 +199,112 @@
   </div>
   <h1>&bull;Registros&bull;</h1>
 </div>
- <!-- USERS LIST -->
- <div id="excel-table" class="card mx-auto" style="width: 100%;" *ngIf="vista">
+<!-- USERS LIST -->
+<div class="card mx-auto" style="width: 100%;" *ngIf="vista">
 
-    <table  class="table table-dark table-hover table-striped">
-      
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Id</th>
-          <th scope="col">Tipo de documento</th>
-          <th scope="col">Curp</th>
-          <th scope="col">Estado</th>
-          <th scope="col">Nombre</th>
-          <th scope="col">Asesor</th>
-          <th scope="col">Ciber</th>
-          <th scope="col" *ngIf="myRol == 'Admin'">Precio del acta al negocio</th>
-          <th scope="col">Se solicito</th>
-          <th scope="col">Fecha</th>
-          <th scope="col">Otros</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="cursor: pointer;"
-          *ngFor="let cortes of getcortes | paginate: { itemsPerPage: 20, currentPage: page }">
-          <td>{{cortes?.i}}</td>
-          <td>{{cortes?.id}}</td>
-          <td>{{cortes?.document}}</td>
-          <td>{{cortes?.curp}}</td>
-          <td>{{cortes?.states}}</td>
-          <td>{{cortes?.nombreacta}}</td>
-          <td>{{cortes?.provider}}</td>
-          <td>{{cortes?.enterprise}}</td>
-          <td *ngIf="myRol == 'Admin'">$ {{cortes?.price }}</td>
-          <td>{{cortes?.requested}}</td>
-          <td>
-            {{ cortes?.createdAt | date:'yyyy-MM-dd' }}
-          </td>
-          
-          <td style="text-align: center;">
-            
-            <fa-icon  [icon]="faTrashCan" class="add-user" (click)="deleteItemActa(cortes.id, cortes.document, cortes.enterprise)" ></fa-icon>
-         
-          </td>
-          
-        </tr>
-      </tbody>
+  <table class="table table-dark table-hover table-striped">
+
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Id</th>
+        <th scope="col">Tipo de documento</th>
+        <th scope="col">Curp</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Asesor</th>
+        <th scope="col">Ciber</th>
+        <th scope="col" *ngIf="myRol == 'Admin'">Precio del acta al negocio</th>
+        <th scope="col">Se solicito</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Otros</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="cursor: pointer;" *ngFor="let cortes of getcortes | paginate: { itemsPerPage: 20, currentPage: page }">
+        <td>{{cortes?.i}}</td>
+        <td>{{cortes?.id}}</td>
+        <td>{{cortes?.document}}</td>
+        <td>{{cortes?.curp}}</td>
+        <td>{{cortes?.states}}</td>
+        <td>{{cortes?.nombreacta}}</td>
+        <td>{{cortes?.provider}}</td>
+        <td>{{cortes?.enterprise}}</td>
+        <td *ngIf="myRol == 'Admin'">$ {{cortes?.price }}</td>
+        <td>{{cortes?.requested}}</td>
+        <td>
+          {{ cortes?.createdAt | date:'yyyy-MM-dd' }}
+        </td>
+
+        <td style="text-align: center;">
+
+          <fa-icon [icon]="faTrashCan" class="add-user"
+            (click)="deleteItemActa(cortes.id, cortes.document, cortes.enterprise)"></fa-icon>
+
+        </td>
+
+      </tr>
+    </tbody>
 
 
-      
-    </table >
 
-    <pagination-controls (pageChange)="page = $event"></pagination-controls>
-    <button (click)="exportexcel()">Export to Excel</button>
+
+
+  </table>
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  <div class="card-body text-center">
+
+    <button class="btn btn-success" (click)="exportexcel()">Descargar Excel</button>
+
+  </div>
+
 </div>
 
 <!-- FIN DE LA TABLA DE CONTENIDO -->
 
+<div class="card mx-auto" style="width: 100%;">
 
+  <table id="excel-table" class="table table-dark table-hover table-striped" style="visibility: hidden;">
+
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Id</th>
+        <th scope="col">Tipo de documento</th>
+        <th scope="col">Curp</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Asesor</th>
+        <th scope="col">Ciber</th>
+        <th scope="col" *ngIf="myRol == 'Admin'">Precio del acta al negocio</th>
+        <th scope="col">Se solicito</th>
+        <th scope="col">Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="cursor: pointer;" *ngFor="let cortes of getcortes ">
+        <td>{{cortes?.i}}</td>
+        <td>{{cortes?.id}}</td>
+        <td>{{cortes?.document}}</td>
+        <td>{{cortes?.curp}}</td>
+        <td>{{cortes?.states}}</td>
+        <td>{{cortes?.nombreacta}}</td>
+        <td>{{cortes?.provider}}</td>
+        <td>{{cortes?.enterprise}}</td>
+        <td *ngIf="myRol == 'Admin'">$ {{cortes?.price }}</td>
+        <td>{{cortes?.requested}}</td>
+        <td>
+          {{ cortes?.createdAt | date:'yyyy-MM-dd' }}
+        </td>
+
+
+      </tr>
+    </tbody>
+
+
+
+
+
+  </table>
+
+</div>

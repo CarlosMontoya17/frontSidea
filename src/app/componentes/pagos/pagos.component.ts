@@ -11,7 +11,7 @@ import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { DatabaseService } from 'src/app/servicios/database/database.service';
 import html2canvas from 'html2canvas';
 import { Router } from '@angular/router';
-
+import * as XLSX from 'xlsx'
 @Component({
 
   selector: 'app-pagos',
@@ -74,14 +74,33 @@ export class PagosComponent implements OnInit {
 
   //TABLE
   corteSeleccionado: string = "Seleccionar corte";
-  constructor(private router:Router, private restservice: RestService, private http: HttpClient, private database: DatabaseService) {
+  constructor(private router: Router, private restservice: RestService, private http: HttpClient, private database: DatabaseService) {
     var usuario = CryptoJS.AES.decrypt(localStorage.getItem('id') || '{}', "id");
     let userName = usuario.toString(CryptoJS.enc.Utf8);
     let arreglo = userName.split('"');
 
   }
+
   
- //DESCARGAR CORTE EN IMAGEN PNG
+  exportexcel(): void {
+    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
+    let userName = usuario.toString(CryptoJS.enc.Utf8);
+    let arreglo = userName.split('"');
+
+    // this.gridApi.exportDataAsCsv({ fileName: 'Corte-' + arreglo[1] + '.csv' });
+    /* pass here the table id */
+    let element = document.getElementById('excel-table');
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Corte' + arreglo[1]);
+
+    /* save to file */
+    XLSX.writeFile(wb, "Pagos-" + arreglo[1] + ".xlsx");
+
+  }
+  //DESCARGAR CORTE EN IMAGEN PNG
   downloadCorte() {
     html2canvas(this.screen.nativeElement).then(canvas => {
       this.canvas.nativeElement.src = canvas.toDataURL();
@@ -104,7 +123,7 @@ export class PagosComponent implements OnInit {
     }
 
     //const data: any = await this.database.getmycort_fecha(this.ciberidselect, date).toPromise();
-    const data:any = await this.database.getallCorte(this.ciberidselect, date).toPromise();
+    const data: any = await this.database.getallCorte(this.ciberidselect, date).toPromise();
     this.Corte = data;
     console.log(data);
     data.forEach((Element: any) => {
@@ -113,7 +132,7 @@ export class PagosComponent implements OnInit {
   }
   //SE OBTIENE EL CORTE CON EL CIBER
   async getCorte(id: any, nombre: any) {
-    
+
     this.Corte = [];
     this.corteSeleccionado = "Seleccionar corte";
     this.CiberSelect = nombre;
@@ -136,7 +155,7 @@ export class PagosComponent implements OnInit {
     this.NumerodeActas = data;
   }
 
-  
+
 
   //CAMBIO DEL FILTRO CON EL TOKEN Y USUARIO PARA OPTENER TOLOS LOS CLIENTES
   async changeFilter(filter: any) {
@@ -201,9 +220,9 @@ export class PagosComponent implements OnInit {
     this.precioTotal();
   }
 
-  async getTodos(){
-    const data:any = await this.database.obtenerTodos().toPromise();
-    
+  async getTodos() {
+    const data: any = await this.database.obtenerTodos().toPromise();
+
     this.rowData = data;
   }
   //PRECIO TOTAL
@@ -234,7 +253,7 @@ export class PagosComponent implements OnInit {
         let userName = usuario.toString(CryptoJS.enc.Utf8);
         let arreglo = userName.split('"');
         this.rowData = await this.restservice.getcorte(arreglo[1]).toPromise();
-        
+
 
       }
     }
