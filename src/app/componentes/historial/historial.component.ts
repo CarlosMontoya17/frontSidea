@@ -93,7 +93,7 @@ export class HistorialComponent implements OnInit {
 
     /* generate workbook and add the worksheet */
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Corte' + arreglo[1]);
+    XLSX.utils.book_append_sheet(wb, ws, 'Corte');
 
     /* save to file */
     XLSX.writeFile(wb, "Historial-" + arreglo[1] + ".xlsx");
@@ -372,11 +372,11 @@ export class HistorialComponent implements OnInit {
       if (localStorage.getItem('id') != null) {
         var usuario = CryptoJS.AES.decrypt(localStorage.getItem('id') || '{}', "id");
         let id = usuario.toString(CryptoJS.enc.Utf8);
-        // this.getcortes = await this.restService.getcorte(arreglo[1]).toPromise();
+     
         const data: any = await this.restService.getcorte(id).toPromise();
-
+        
         this.getcortes = data;
-
+console.log(this.getcortes);
 
         if (data.lenght != 0) {
           closeAlert();

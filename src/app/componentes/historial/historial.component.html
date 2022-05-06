@@ -246,10 +246,6 @@
       </tr>
     </tbody>
 
-
-
-
-
   </table>
   <pagination-controls (pageChange)="page = $event"></pagination-controls>
   <div class="card-body text-center">
@@ -291,10 +287,10 @@
         <td>{{cortes?.nombreacta}}</td>
         <td>{{cortes?.provider}}</td>
         <td>{{cortes?.enterprise}}</td>
-        <td *ngIf="myRol == 'Admin'">$ {{cortes?.price }}</td>
+        <td *ngIf="myRol == 'Admin'">$ {{cortes?.price }} </td>
         <td>{{cortes?.requested}}</td>
         <td>
-          {{ cortes?.createdAt | date:'yyyy-MM-dd' }}
+          {{ cortes?.createdAt }}
         </td>
 
 

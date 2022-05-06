@@ -23,9 +23,6 @@ table.center{margin-left: auto;margin-right:auto;}
 width: 100%;    
 background-color:  gray; color: yellow ;
 }
-
-
-
 /* TO SUPPORT ENTITY ICONS/SYMBOLS NEED "UTF-8" SETTING  */
 
 /* Super simple animated buttons using entity symbols as icons.  Follows is a great resource for symbols:  https://www.toptal.com/designers/htmlarrows/symbols/
@@ -175,5 +172,4 @@ body {
 .button {
   margin: 15px;
 }
-
 
