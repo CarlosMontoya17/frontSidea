@@ -12,6 +12,8 @@ import { DatabaseService } from 'src/app/servicios/database/database.service';
 import html2canvas from 'html2canvas';
 import { Router } from '@angular/router';
 import * as XLSX from 'xlsx'
+import Swal from 'sweetalert2';
+declare function onclick(): any;
 @Component({
 
   selector: 'app-pagos',
@@ -20,11 +22,12 @@ import * as XLSX from 'xlsx'
 })
 
 export class PagosComponent implements OnInit {
-
+  
   @ViewChild('screen') screen!: ElementRef;
   @ViewChild('canvas') canvas!: ElementRef;
   @ViewChild('downloadLink') downloadLink!: ElementRef;
   //VARIABLES DECLARADAS PARA FUNCIONES A UTILIZAR
+  conteo: boolean = false;
   result: any = [];
   ids: any = [];
   tipos: any = [];
@@ -39,7 +42,6 @@ export class PagosComponent implements OnInit {
   filter1: boolean = true;
   filter2: boolean = false;
   fechas: any;
-
   //Tabla
   cortes: any;
   NumerodeActas: any;
@@ -71,34 +73,57 @@ export class PagosComponent implements OnInit {
   rfc: any;
   derechos: any;
   total: any;
-
+  conteo_nacimiento: number = 0;
+  conteo_defuncion: number = 0;
+  conteo_matrimonio: number = 0;
+  conteo_divorcio: number = 0;
+  conteo_cot: number = 0;
+  conteo_nss: number = 0;
+  conteo_rfc: number = 0;
+  conteo_der: number = 0;
+  conteo_inh: number = 0;
+  conteo_total: number = 0;
   //TABLE
   corteSeleccionado: string = "Seleccionar corte";
   constructor(private router: Router, private restservice: RestService, private http: HttpClient, private database: DatabaseService) {
     var usuario = CryptoJS.AES.decrypt(localStorage.getItem('id') || '{}', "id");
     let userName = usuario.toString(CryptoJS.enc.Utf8);
     let arreglo = userName.split('"');
-
   }
+ 
 
-  
+
   exportexcel(): void {
     var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
     let userName = usuario.toString(CryptoJS.enc.Utf8);
     let arreglo = userName.split('"');
 
-    // this.gridApi.exportDataAsCsv({ fileName: 'Corte-' + arreglo[1] + '.csv' });
-    /* pass here the table id */
+    // this.gridApi.exportDataAsCsv({ fileName: 'Corte-' + arreglo[1] + '.csv' }) Esta funcion permite exporytar a excel;
+
+    /* Pasamos el id de la tabla de registros */
     let element = document.getElementById('excel-table');
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 
-    /* generate workbook and add the worksheet */
+    /* genera el excel y agregra los elementos de la tabla */
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Corte' + arreglo[1]);
 
-    /* save to file */
+    /* Exportamos a excel */
     XLSX.writeFile(wb, "Pagos-" + arreglo[1] + ".xlsx");
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Corte de ' + arreglo[1] + ' descargado',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
+  changeView() {
+    
+    this.conteo = !this.conteo;
+    
 
+    
   }
   //DESCARGAR CORTE EN IMAGEN PNG
   downloadCorte() {
@@ -107,17 +132,24 @@ export class PagosComponent implements OnInit {
       this.downloadLink.nativeElement.href = canvas.toDataURL('image/png');
       this.downloadLink.nativeElement.download = 'Corte ' + this.CiberSelect + ' .png';
       this.downloadLink.nativeElement.click();
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Corte de ' + this.CiberSelect + ' descargado',
+        showConfirmButton: false,
+        timer: 1500
+      })
     });
   }
 
   async setCorte(fecha: any) {
+
     this.TotalCorte = 0;
     this.corteSeleccionado = fecha;
     let date: string = "";
     if (fecha == "Actual") {
       date = "null";
     }
-
     else {
       date = fecha;
     }
@@ -125,24 +157,75 @@ export class PagosComponent implements OnInit {
     //const data: any = await this.database.getmycort_fecha(this.ciberidselect, date).toPromise();
     const data: any = await this.database.getallCorte(this.ciberidselect, date).toPromise();
     this.Corte = data;
-    console.log(data);
+
+    for (let i = 0; i < data.length; i++) {
+      switch (data[i].document) {
+        case "Asignación de Número de Seguridad Social":
+          this.conteo_nss +=1;
+          break;
+        case "Acta de Defunción":
+          this.conteo_defuncion += 1;
+          break;
+        case "Acta de Nacimiento":
+          this.conteo_nacimiento  +=1;
+          break;
+        case "Acta de Matrimonio":
+          this.conteo_matrimonio +=1;
+          break;
+        case "Acta de Divorcio":
+          this.conteo_divorcio +=1;
+          break;
+        case "Constancia de Vigencia de Derechos":
+          this.conteo_der +=1;
+          break;
+        case "Constancia de Semanas Cotizadas en el IMSS":
+          this.conteo_cot +=1;
+          break;
+        case "Registro Federal de Contribuyentes":
+          this.conteo_rfc +=1;
+          break;
+        case "CONSTANCIA DE NO INHABILITACIÓN":
+          this.conteo_inh +=1;
+          break;
+        default:
+          break;
+      }
+        
+      
+     
+      this.conteo_total += 1;
+   
+    
+      
+      
+    }
+    
+
     data.forEach((Element: any) => {
       this.TotalCorte += Number(Element.price);
     });
   }
+
   //SE OBTIENE EL CORTE CON EL CIBER
   async getCorte(id: any, nombre: any) {
-
+    this.conteo_nacimiento = 0;
+    this.conteo_defuncion = 0;
+    this.conteo_matrimonio = 0;
+    this.conteo_divorcio = 0;
+    this.conteo_cot = 0;
+    this.conteo_nss = 0;
+    this.conteo_rfc = 0;
+    this.conteo_der = 0;
+    this.conteo_inh = 0;
+    this.conteo_total = 0;
     this.Corte = [];
     this.corteSeleccionado = "Seleccionar corte";
     this.CiberSelect = nombre;
     this.ciberidselect = id;
     this.TotalCorte = 0;
-
     this.fechas = await this.database.Obtenerfechas(id).toPromise();
-
-    // this.getcortes = await this.restService.getcorte(arreglo[1]).toPromise();
     const data: any = await this.restservice.GetActasNumber(id).toPromise();
+
     this.nacimiento = data["nac"];
     this.defuncion = data["def"];
     this.matrimonio = data["mat"];
@@ -154,7 +237,6 @@ export class PagosComponent implements OnInit {
     this.total = data["total"];
     this.NumerodeActas = data;
   }
-
 
 
   //CAMBIO DEL FILTRO CON EL TOKEN Y USUARIO PARA OPTENER TOLOS LOS CLIENTES
@@ -204,8 +286,6 @@ export class PagosComponent implements OnInit {
     this.gridApi.exportDataAsCsv({ fileName: 'Corte-' + arreglo[1] + '.csv' });
   }
 
-
-
   //SE OPTIENE EL TOKEN Y TRAE EL CLIENTE ACUTAL CON EL PRECIO TOTAL
   async requestData() {
     var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
@@ -253,8 +333,6 @@ export class PagosComponent implements OnInit {
         let userName = usuario.toString(CryptoJS.enc.Utf8);
         let arreglo = userName.split('"');
         this.rowData = await this.restservice.getcorte(arreglo[1]).toPromise();
-
-
       }
     }
   }
@@ -266,6 +344,4 @@ export class PagosComponent implements OnInit {
     });
     this.Cibers = enter;
   }
-
-
 }

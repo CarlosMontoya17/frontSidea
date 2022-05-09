@@ -1,5 +1,4 @@
 body {
-  
   font-family: "Times New Roman", Times, serif;
   font-size: 16px;
   line-height: 1.8;
@@ -7,16 +6,35 @@ body {
   background: #fafafa;
   color: gray;
   padding: auto;
-  
-  
+}
+.activo {
+  text-decoration: underline;
+  background-color: red;
+}
+ul {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+}
+/* Opción seleccionada */
+#main > ul > li > a:target {
+  background:red;
+  color:white;
 }
 
+ul.menu > li > a:active:before {
+  background-color: rgb(255, 230, 0);
+}
+
+ /* ul li:hover a {
+  background: red;
+}  */
 a {
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
   transition: .3s all ease;
   color: #ff0000;
-  position: fixed;
 }
 
 a:hover,
@@ -25,8 +43,8 @@ a:focus {
   outline: none !important;
   -webkit-box-shadow: none;
   box-shadow: none;
-  position: fixed;
 }
+
 h1,
 h2,
 h3,
@@ -43,55 +61,37 @@ h5,
   color: #000;
 }
 
+
+
 .bg-primary {
   background: #ff0000 !important;
-  position: fixed;
 }
 
 .ftco-section {
   padding: 16em 0;
-  position: fixed;
 }
 
 .ftco-no-pt {
   padding-top: 16%;
-  position: fixed;
 }
 
 .ftco-no-pb {
   padding-bottom: 16%;
-  position: fixed;
 }
 
 .heading-section {
   font-size: 40px;
   color: #000;
-  position: fixed;
-  
 }
 
 .ftco-navbar-light {
-  
   background: #252525 !important;
   z-index: 3;
   padding: 0;
-  background: #fff;
-  /* position: fixed; */
-
-   top: 0;
-
-   left: 0;
-
-   width: 100%;
-
-   z-index: 999px;
-
-   box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.5);
 }
 
 @media (max-width: 991.98px) {
   .ftco-navbar-light {
-    
     background: #000 !important;
     position: relative;
     top: 0;
@@ -117,7 +117,6 @@ h5,
   letter-spacing: 1px;
   position: relative;
   opacity: 1 !important;
-  
 }
 
 .ftco-navbar-light .navbar-nav>.nav-item>.nav-link:before {
@@ -142,8 +141,12 @@ h5,
   }
 }
 
-.ftco-navbar-light .navbar-nav>.nav-item>.nav-link:hover {
+.ftco-navbar-light .navbar-nav>.nav-item>.nav-link:hover>a:target {
   color: #ff0000;
+  background:red;
+  color:white;
+
+  
 }
 
 .ftco-navbar-light .navbar-nav>.nav-item>.nav-link:hover:before {
@@ -169,13 +172,7 @@ h5,
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   }
 }
-.fijada {
-  position: fixed;
-  width:30%;
-  height: 30px;
-  background-color: white;
-  border: 1px solid black;
-}
+
 .navbar-brand {
   color: #000;
   text-transform: uppercase;
@@ -190,7 +187,6 @@ h5,
   font-size: 12px;
   font-weight: 500;
   color: rgba(0, 0, 0, 0.3);
-
 }
 
 .navbar-brand:hover,
@@ -226,22 +222,18 @@ body {
   .navbar-brand.second {
     display: none !important;
     color: whitesmoke;
-    position: fixed;
   }
 
   #navbarNav ul li {
     padding: 0 25px;
-    position: fixed;
   }
 
   #navbarNav {
     padding-left: 100px;
-    position: fixed;
   }
 
   .navbar__container {
     height: 100px;
-    position: fixed;
   }
 }
 
@@ -255,6 +247,4 @@ body {
     text-align: center;
   }
 }
-
-
 

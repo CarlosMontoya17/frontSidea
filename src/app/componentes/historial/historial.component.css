@@ -5183,6 +5183,7 @@ button{
   display: block;
 color: #efb810 !important;
   box-shadow: 0 0 4px rgba(0,0,0,0.14), 0 4px 8px rgba(0,0,0,0.28);
+  
 }
 button:focus{
   outline: none;
@@ -5192,4 +5193,23 @@ button:hover{
   color: #303030 !important;
   width: 15%;
   box-shadow: none;
+}
+
+.conteo {
+  
+  background: #9696fd;
+  box-shadow: 0 0 0 2px white, 0 0 0 4px rgb(0, 0, 0);
+  -webkit-animation: bounceright 0.3s alternate ease infinite;
+  animation: bounceright 0.3s alternate ease infinite;
+  text-align: center;
+  text-rendering: auto;
+  height: 5vh;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 15px;
+  display: inline-block;
+  font-family: "Montserrat", Helvetica, sans-serif;
+  /* Button is responsive to font size.*/  
+ 
+  /* box-shadow: 0 0 0 2px white, 0 0 0 4px blue; */
 }

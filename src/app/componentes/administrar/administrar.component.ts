@@ -115,12 +115,10 @@ export class AdministrarComponent implements OnInit {
   buscarCiber: string = "";
   myData: any;
 
-
-
-  constructor(private router: Router, 
-    private loginservice: LoginService, 
-    private restservice: RestService, 
-    private database: DatabaseService, 
+  constructor(private router: Router,
+    private loginservice: LoginService,
+    private restservice: RestService,
+    private database: DatabaseService,
     private perfil: PerfileditService,
     private httpClient: HttpClient) { }
   changeView() {
@@ -409,7 +407,7 @@ export class AdministrarComponent implements OnInit {
       const data = await this.loginservice.adduser(this.newUsername, this.newPassword, this.newRol, this.tipoNegocio, idSuper, this.precios, estatus, this.Negocio);
 
       if (data) {
-      
+
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -424,10 +422,10 @@ export class AdministrarComponent implements OnInit {
 
   reloadCurrentRoute() {
     const currentUrl = this.router.url;
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-        this.router.navigate([currentUrl]);
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentUrl]);
     });
-}
+  }
   clearresponsable() {
     this.responsableSearch = "";
     this.newResponsable = undefined;
@@ -525,8 +523,6 @@ export class AdministrarComponent implements OnInit {
 
     const un = CryptoJS.AES.decrypt(usuario || '{}', "usuario");
     const UserName = un.toString(CryptoJS.enc.Utf8);
-
-    
     const i = localStorage.getItem('id');
     const is = CryptoJS.AES.decrypt(i || '{}', "id");
     const id = is.toString(CryptoJS.enc.Utf8);

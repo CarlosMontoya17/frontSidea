@@ -23,11 +23,6 @@ table.center{margin-left: auto;margin-right:auto;}
 width: 100%;    
 background-color:  gray; color: yellow ;
 }
-/* TO SUPPORT ENTITY ICONS/SYMBOLS NEED "UTF-8" SETTING  */
-
-/* Super simple animated buttons using entity symbols as icons.  Follows is a great resource for symbols:  https://www.toptal.com/designers/htmlarrows/symbols/
-
-Button Markup  */
 
 .button {
   display: inline-block;
@@ -46,12 +41,7 @@ Button Markup  */
   letter-spacing: 1px;
     /* Setting opacity so button isn't so bright.  Could use a filter. */  
    opacity: 0.95;
-/* Setting right padding for button 
-to push text away from the icon which is
-positioned as absolute to enable animations. 
-No need to declare button max/min width as button
-is responsive to font size.
-*/  
+
    padding-right: 3.5em;
   cursor: pointer;
   
@@ -75,7 +65,8 @@ in example with RGB opacity to  make it stand out a bit more.   */
   /*  background: rgba(0,0,0,0.10); */
  
 }
-/* Arrow Button Markup  */
+/* Remarcar */
+
 .arrow {
   background: #3c3b6e;
 }
@@ -108,7 +99,74 @@ in example with RGB opacity to  make it stand out a bit more.   */
   box-shadow: 0 0 0 2px white, 0 0 0 4px rgb(0, 0, 0);
 }
 .phone:focus {
-  background: #efb810;
+  background: #fdfd96;
+  /* box-shadow: 0 0 0 2px white, 0 0 0 4px blue; */
+}
+
+.select {
+  
+  background: #fdfd96;
+  box-shadow: 0 0 0 2px white, 0 0 0 4px rgb(0, 0, 0);
+  -webkit-animation: bounceright 0.3s alternate ease infinite;
+  animation: bounceright 0.3s alternate ease infinite;
+  text-align: center;
+  text-rendering: auto;
+  height: 10vh;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 15px;
+  display: inline-block;
+  font-family: "Montserrat", Helvetica, sans-serif;
+  /* Button is responsive to font size.*/  
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  padding: 0.8em 1.5em;
+  border: none;
+  color: rgb(0, 0, 0);
+  transition: 0.2s;
+  text-decoration: none;
+  border: rgb(255, 255, 255) solid 1px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+    /* Setting opacity so button isn't so bright.  Could use a filter. */  
+   opacity: 0.95;
+
+   padding-right: 9.5em;
+  cursor: pointer;
+  /* box-shadow: 0 0 0 2px white, 0 0 0 4px blue; */
+}
+.conteo {
+  
+  background: #9696fd;
+  box-shadow: 0 0 0 2px white, 0 0 0 4px rgb(0, 0, 0);
+  -webkit-animation: bounceright 0.3s alternate ease infinite;
+  animation: bounceright 0.3s alternate ease infinite;
+  text-align: center;
+  text-rendering: auto;
+  height: 5vh;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 15px;
+  display: inline-block;
+  font-family: "Montserrat", Helvetica, sans-serif;
+  /* Button is responsive to font size.*/  
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  padding: 0.8em 1.5em;
+  border: none;
+  color: rgb(0, 0, 0);
+  transition: 0.2s;
+  text-decoration: none;
+  border: rgb(255, 255, 255) solid 1px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+    /* Setting opacity so button isn't so bright.  Could use a filter. */  
+   opacity: 0.95;
+
+   padding-right: 9.5em;
+  cursor: pointer;
   /* box-shadow: 0 0 0 2px white, 0 0 0 4px blue; */
 }
 
@@ -157,19 +215,17 @@ in example with RGB opacity to  make it stand out a bit more.   */
 
 /* Demo Stuff  */
 
-body {
-  background: black;
-  text-align: center;
-  text-rendering: auto;
-  height: 100vh;
-  overflow: hidden;
-  padding-top: 100px;
-}
+
 * {
   box-sizing: border-box;
 }
 
 .button {
   margin: 15px;
+}
+
+.contenedor{
+  margin: auto;
+  width: 110rem;
 }
 

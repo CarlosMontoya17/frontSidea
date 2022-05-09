@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from "../../servicios/login.service";
 import * as CryptoJS from 'crypto-js';
+declare function onclick(): any;
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -12,10 +13,12 @@ export class SidebarComponent implements OnInit {
   contrasena: string = "";
   result:any = [];
   myRol: any;
+  CiberSelect:any;
   constructor(private router:Router, private loginservice:LoginService) { }
 
   ngOnInit(): void {
     this.descry();
+    
   }
   publicidad()
 {
@@ -24,6 +27,9 @@ export class SidebarComponent implements OnInit {
 logout(){
     localStorage.clear();
     this.router.navigate(['/login']);
+  }
+  next(){
+    onclick();
   }
 
 descry(){

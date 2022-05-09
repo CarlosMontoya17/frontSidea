@@ -8,6 +8,7 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
 import { Observable } from 'rxjs';
 import { GridApi, GridReadyEvent, RowSpanParams, ValueGetterFunc, ValueGetterParams } from 'ag-grid-community';
 import { AgGridAngular } from 'ag-grid-angular';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-corte',
   templateUrl: './corte.component.html',
@@ -29,14 +30,15 @@ export class CorteComponent implements OnInit {
   cortes: any;
   columnDefs = [
     { field: "id", width: 80, headerName: "Id", filter: true },
-    { field: "enterprise", headerName: "Ciber", filter: true },
+    { field: "provider", headerName: "Ciber", filter: true },
+    { field: "enterprise", headerName: "Aesor", filter: true },
     { field: "document", headerName: "Documento", filter: true },
     { field: "states", headerName: "Estado", filter: true },
     { field: "curp", headerName: "CURP", filter: true },
     { field: "price", headerName: "Precio", type: 'valueColumn', filter: true, },
     { field: "createdAt", headerName: "Fecha y hora", filter: true },
-    {field: "corte", headerName: "Corte", type: 'valueColumn', filter: true,}
-     ];
+    { field: "corte", headerName: "Corte", type: 'valueColumn', filter: true, }
+  ];
 
   public rowData!: any[];
   public pinnedBottomRowData!: any[];
@@ -55,38 +57,39 @@ export class CorteComponent implements OnInit {
       this.router.navigateByUrl('/login');
     }
   }
-  
+
   onBtnExport() {
     var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
     let userName = usuario.toString(CryptoJS.enc.Utf8);
     let arreglo = userName.split('"');
-  
+
     this.gridApi.exportDataAsCsv({ fileName: 'Corte-' + arreglo[1] + '.csv' });
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Corte de ' + arreglo[1] + ' descargado',
+      showConfirmButton: false,
+      timer: 1500
+    })
   }
-  
+
   async onGridReady(params: GridReadyEvent) {
-    this.gridApi = params.api; 
+    this.gridApi = params.api;
     if (localStorage.getItem('token') != null) {
       if (localStorage.getItem('id') != null) {
         var usuario = CryptoJS.AES.decrypt(localStorage.getItem('id') || '{}', "id");
         let id = usuario.toString(CryptoJS.enc.Utf8);
         // this.getcortes = await this.restService.getcorte(arreglo[1]).toPromise();
         const data: any = await this.restservice.getcorte(id).toPromise();
-      
-
         this.rowData = data;
-       
         this.precioTotal();
-      this.onPinnedRowBottomCount();
-    
-
+        this.onPinnedRowBottomCount();
       }
     }
   }
 
   onPinnedRowBottomCount() {
     var rows = this.createData();
-   
     this.gridApi.setPinnedBottomRowData(rows);
   }
   precioTotal() {
@@ -104,7 +107,7 @@ export class CorteComponent implements OnInit {
     var result = [];
     result.push({
       enterprise: 'Actas: ' + this.totalActas,
-      price: 'Total: ' + this.totalPrecio
+      price: 'Total: $' + this.totalPrecio
     });
 
     return result;
@@ -118,7 +121,6 @@ export class CorteComponent implements OnInit {
         let id = usuario.toString(CryptoJS.enc.Utf8);
         // this.getcortes = await this.restService.getcorte(arreglo[1]).toPromise();
         const data: any = await this.restservice.getcorte(id).toPromise();
-     
         let Arreglo: any = [];
         let index: number = 0;
         for (let i = 0; i < data.length; i++) {
@@ -138,9 +140,9 @@ export class CorteComponent implements OnInit {
           });
         }
         this.getcortes = Arreglo;
-  this.rowData = data;
-          this.precioTotal();
-          this.onPinnedRowBottomCount();
+        this.rowData = data;
+        this.precioTotal();
+        this.onPinnedRowBottomCount();
 
       }
     }

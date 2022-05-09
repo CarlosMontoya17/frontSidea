@@ -25,8 +25,8 @@ declare function closeAlert(): any;
 export class HistorialComponent implements OnInit {
   private gridApi!: GridApi;
   public imagePath: any;
-  hidden:boolean = false;
-  hidden2:boolean = true;
+  hidden: boolean = false;
+  hidden2: boolean = true;
   faTrashCan = faTrashCan;
   imgURL: any;
   fileTmp: any;
@@ -65,6 +65,7 @@ export class HistorialComponent implements OnInit {
   totalPrecio: number = 0;
   totalActas: number = 0;
   cortes: any;
+  
   columnDefs = [
     { field: "id", width: 80, headerName: "Id", filter: true },
     { field: "enterprise", headerName: "Ciber", filter: true },
@@ -97,13 +98,16 @@ export class HistorialComponent implements OnInit {
 
     /* save to file */
     XLSX.writeFile(wb, "Historial-" + arreglo[1] + ".xlsx");
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Historial de '+arreglo[1] + ' descargado',
+      showConfirmButton: false,
+      timer: 1500
+    })
 
   }
- 
-
-
-
-
+  
   async enviaracta() {
     Swal.fire(
       {
@@ -372,11 +376,11 @@ export class HistorialComponent implements OnInit {
       if (localStorage.getItem('id') != null) {
         var usuario = CryptoJS.AES.decrypt(localStorage.getItem('id') || '{}', "id");
         let id = usuario.toString(CryptoJS.enc.Utf8);
-     
+
         const data: any = await this.restService.getcorte(id).toPromise();
-        
+
         this.getcortes = data;
-console.log(this.getcortes);
+
 
         if (data.lenght != 0) {
           closeAlert();

@@ -198,12 +198,23 @@
   <div>
   </div>
   <h1>&bull;Registros&bull;</h1>
+  
 </div>
 <!-- USERS LIST -->
 <div class="card mx-auto" style="width: 100%;" *ngIf="vista">
+  
+
+
+    <div class="form-outline">
+      <input type="search" id="form1" class="form-control" />
+      <label class="form-label" for="form1">Buscar</label>
+    </div>
+    <button type="button" class="conteo">
+     Buscar
+    </button>
 
   <table class="table table-dark table-hover table-striped">
-
+ 
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -212,8 +223,8 @@
         <th scope="col">Curp</th>
         <th scope="col">Estado</th>
         <th scope="col">Nombre</th>
-        <th scope="col">Asesor</th>
         <th scope="col">Ciber</th>
+        <th scope="col">Asesor</th>
         <th scope="col" *ngIf="myRol == 'Admin'">Precio del acta al negocio</th>
         <th scope="col">Se solicito</th>
         <th scope="col">Fecha</th>
