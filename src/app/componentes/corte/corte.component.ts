@@ -5,6 +5,9 @@ import { RestService } from '../historial/rest.service';
 import * as CryptoJS from 'crypto-js';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
+declare function getArray():any;
+
+
 import { Observable } from 'rxjs';
 import { GridApi, GridReadyEvent, RowSpanParams, ValueGetterFunc, ValueGetterParams } from 'ag-grid-community';
 import { AgGridAngular } from 'ag-grid-angular';
@@ -16,39 +19,76 @@ import Swal from 'sweetalert2';
 })
 
 export class CorteComponent implements OnInit {
+
+
+  @ViewChild("agGrid", {static:false}) agGrid: AgGridAngular | undefined;
   result: any = [];
   ids: any = [];
   tipos: any = [];
   getcortes: any;
   page: number = 0;
+
   usuario: any = "Usuario";
   username: string = "";
   totalPrecio: number = 0;
   totalActas: number = 0;
-  private gridApi!: GridApi;
+
+
+  columnDefs:any;
+  localeText:any;
+  gridColumnApi:any;
+  gridApi: any;
+  defaultColDef:any;
+  defaultColGroupDef:any;
+  columnTypes:any;
+  params:any;
+  sortingOrder:any;
+  overlayLoadingTemplate:any;
+  
   //Tabla
   cortes: any;
-  columnDefs = [
-    { field: "id", width: 80, headerName: "Id", filter: true },
-    { field: "provider", headerName: "Ciber", filter: true },
-    { field: "enterprise", headerName: "Aesor", filter: true },
-    { field: "document", headerName: "Documento", filter: true },
-    { field: "states", headerName: "Estado", filter: true },
-    { field: "curp", headerName: "CURP", filter: true },
-    { field: "price", headerName: "Precio", type: 'valueColumn', filter: true, },
-    { field: "createdAt", headerName: "Fecha y hora", filter: true },
-    { field: "corte", headerName: "Corte", type: 'valueColumn', filter: true, }
-  ];
+  // columnDefs = [
+  //   { field: "id", width: 80, headerName: "Id", filter: true },
+  //   { field: "provider", headerName: "Ciber", filter: true },
+  //   { field: "enterprise", headerName: "Aesor", filter: true },
+  //   { field: "document", headerName: "Documento", filter: true },
+  //   { field: "states", headerName: "Estado", filter: true },
+  //   { field: "curp", headerName: "CURP", filter: true },
+  //   { field: "price", headerName: "Precio", type: 'valueColumn', filter: true, },
+  //   { field: "createdAt", headerName: "Fecha y hora", filter: true },
+  //   { field: "corte", headerName: "Corte", type: 'valueColumn', filter: true, }
+  // ];
 
-  public rowData!: any[];
-  public pinnedBottomRowData!: any[];
+  rowData:any;
+  pinnedBottomRowData!: any[];
   //Tabla
   constructor(private router: Router, private restservice: RestService, private http: HttpClient) {
-    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('id') || '{}', "id");
-    let userName = usuario.toString(CryptoJS.enc.Utf8);
-    let arreglo = userName.split('"');
-    //this.rowData = this.restservice.getcorte<any[]>(arreglo[1]).toPromise();
-    //this.rowData = this.http.get<any[]>('http://actasalinstante.com:3030/api/getMyCorte/' + arreglo[1]);
+    this.columnDefs = [
+        { field: "id", width: 80, headerName: "Id", filter: true },
+        { field: "provider", headerName: "Ciber", filter: true },
+        { field: "enterprise", headerName: "Aesor", filter: true },
+        { field: "document", headerName: "Documento", filter: true },
+        { field: "states", headerName: "Estado", filter: true },
+        { field: "curp", headerName: "CURP", filter: true },
+        { field: "price", headerName: "Precio", type: 'valueColumn', filter: true, },
+        { field: "createdAt", headerName: "Fecha y hora", filter: true },
+        { field: "corte", headerName: "Corte", type: 'valueColumn', filter: true, }
+      ];
+      this.defaultColDef = {
+        width: 200,
+        filter: 'agTextColumnFilter',
+        floatingFilter: true,
+        resizable: true,
+        editable: true,
+      };
+      this.overlayLoadingTemplate ='<span class="ag-overlay-loading-center">Por favor espere, estamos cargando los datos</span>';
+      this.columnTypes = {
+        numberColumn: {
+          width: 130,
+          filter: 'agNumberColumnFilter',
+        },
+        nonEditableColumn: { editable: false },
+      };
   }
 
   ngOnInit(): void {
@@ -56,6 +96,7 @@ export class CorteComponent implements OnInit {
     if (!token) {
       this.router.navigateByUrl('/login');
     }
+    this.getcorte();
   }
 
   onBtnExport() {
@@ -74,18 +115,22 @@ export class CorteComponent implements OnInit {
   }
 
   async onGridReady(params: GridReadyEvent) {
+    // this.gridApi = params.api;
+    // if (localStorage.getItem('token') != null) {
+    //   if (localStorage.getItem('id') != null) {
+    //     var usuario = CryptoJS.AES.decrypt(localStorage.getItem('id') || '{}', "id");
+    //     let id = usuario.toString(CryptoJS.enc.Utf8);
+    //     // this.getcortes = await this.restService.getcorte(arreglo[1]).toPromise();
+    //     const data: any = await this.restservice.getcorte(id).toPromise();
+    //     this.rowData = data;
+    //     this.precioTotal();
+    //     this.onPinnedRowBottomCount();
+    //   }
+    // } 
     this.gridApi = params.api;
-    if (localStorage.getItem('token') != null) {
-      if (localStorage.getItem('id') != null) {
-        var usuario = CryptoJS.AES.decrypt(localStorage.getItem('id') || '{}', "id");
-        let id = usuario.toString(CryptoJS.enc.Utf8);
-        // this.getcortes = await this.restService.getcorte(arreglo[1]).toPromise();
-        const data: any = await this.restservice.getcorte(id).toPromise();
-        this.rowData = data;
-        this.precioTotal();
-        this.onPinnedRowBottomCount();
-      }
-    }
+    this.gridColumnApi = params.columnApi;
+
+
   }
 
   onPinnedRowBottomCount() {

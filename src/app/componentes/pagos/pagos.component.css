@@ -131,8 +131,8 @@ in example with RGB opacity to  make it stand out a bit more.   */
   letter-spacing: 1px;
     /* Setting opacity so button isn't so bright.  Could use a filter. */  
    opacity: 0.95;
-
-   padding-right: 9.5em;
+  
+   padding-right: 5.5em;
   cursor: pointer;
   /* box-shadow: 0 0 0 2px white, 0 0 0 4px blue; */
 }

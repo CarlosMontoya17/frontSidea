@@ -269,7 +269,7 @@ export class PagosComponent implements OnInit {
       this.Cibers = enterprises;
     }
   }
-
+  
   ngOnInit(): void {
     const token = localStorage.getItem('token');
     if (!token) {

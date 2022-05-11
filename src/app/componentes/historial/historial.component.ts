@@ -12,6 +12,8 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { GridApi, GridReadyEvent, RowSpanParams, ValueGetterFunc, ValueGetterParams } from 'ag-grid-community';
 import * as XLSX from 'xlsx'
+import { faCalendar } from '@fortawesome/free-solid-svg-icons';
+import { faTrashArrowUp } from '@fortawesome/free-solid-svg-icons';
 declare function loader(): any;
 declare function closeAlert(): any;
 
@@ -24,10 +26,15 @@ declare function closeAlert(): any;
 
 export class HistorialComponent implements OnInit {
   private gridApi!: GridApi;
+  conteo: boolean = false;
+  conteo2: boolean = false;
+  conteo3: boolean = false;
   public imagePath: any;
   hidden: boolean = false;
   hidden2: boolean = true;
   faTrashCan = faTrashCan;
+  facalend = faCalendar;
+  papelera=faTrashArrowUp;
   imgURL: any;
   fileTmp: any;
   info: any;
@@ -37,9 +44,13 @@ export class HistorialComponent implements OnInit {
   getciber: any;
   getcortes: any;
   valorabuscar: string = "";
+  buscargethistorial: string = "";
   tipo: any;
   estado: any;
+  nombredecliente:any;
+  apellidosc:any;
   precioyasesor: any;
+  namefile:any;
   ciberseleccionado: any;
   // VARIABLES PARA ENVIAR ACTAS
   enviaractas: any;
@@ -65,17 +76,9 @@ export class HistorialComponent implements OnInit {
   totalPrecio: number = 0;
   totalActas: number = 0;
   cortes: any;
-  
-  columnDefs = [
-    { field: "id", width: 80, headerName: "Id", filter: true },
-    { field: "enterprise", headerName: "Ciber", filter: true },
-    { field: "document", headerName: "Documento", filter: true },
-    { field: "states", headerName: "Estado", filter: true },
-    { field: "curp", headerName: "CURP", filter: true },
-    { field: "price", headerName: "Precio", type: 'valueColumn', filter: true, },
-    { field: "createdAt", headerName: "Fecha y hora", filter: true },
-    { field: "corte", headerName: "Corte", type: 'valueColumn', filter: true, }
-  ];
+  responsableSearch: string = "";
+  newResponsable: any;
+  fecha:any;
 
   public rowData!: any[];
   public pinnedBottomRowData!: any[];
@@ -88,7 +91,7 @@ export class HistorialComponent implements OnInit {
     let arreglo = userName.split('"');
 
     // this.gridApi.exportDataAsCsv({ fileName: 'Corte-' + arreglo[1] + '.csv' });
-    /* pass here the table id */
+    /* pass here the table id PASAMOS EL ID DE L TABLA PARA PPSTERIORMENTE MANDARLO A LA BASE DE DATOS*/
     let element = document.getElementById('excel-table');
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 
@@ -101,13 +104,18 @@ export class HistorialComponent implements OnInit {
     Swal.fire({
       position: 'center',
       icon: 'success',
-      title: 'Historial de '+arreglo[1] + ' descargado',
+      title: 'Historial de ' + arreglo[1] + ' descargado',
       showConfirmButton: false,
       timer: 1500
     })
 
   }
-  
+  clearresponsable() {
+    this.responsableSearch = "";
+    this.newResponsable = undefined;
+  }
+
+
   async enviaracta() {
     Swal.fire(
       {
@@ -118,8 +126,10 @@ export class HistorialComponent implements OnInit {
         timer: 1500
       }
     )
+
     this.router.navigateByUrl('/historial');
     const body = new FormData();
+
     body.append("enterprise", this.ciberseleccionado);
     body.append("provider", this.precioyasesor.superviser);
     body.append("document", this.info.tipo);
@@ -128,15 +138,20 @@ export class HistorialComponent implements OnInit {
     body.append("price", this.precioyasesor.precio);
     body.append("nombreacta", this.info.nombre + " " + this.info.apellidos);
 
+    
     let nombrecompleto;
     if (this.info.apellidos == undefined || this.info.apellidos == null || this.info.apellidos == "") {
       nombrecompleto = this.info.nombre
     } else {
       nombrecompleto = this.info.nombre + " " + this.info.apellidos;
     }
+
     const data = await this.restService.enviarcta(this.ciberseleccionado, this.precioyasesor.superviser, this.info.tipo, this.info.curp, this.info.estado, this.precioyasesor.precio, nombrecompleto, "").toPromise();
+    console.log(data);
     this.reloadCurrentRoute();
   }
+
+
 
   reloadCurrentRoute() {
     const currentUrl = this.router.url;
@@ -152,6 +167,7 @@ export class HistorialComponent implements OnInit {
     });
 
   }
+
   onBtnExport() {
     var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
     let userName = usuario.toString(CryptoJS.enc.Utf8);
@@ -208,12 +224,139 @@ export class HistorialComponent implements OnInit {
     })
   }
 
+
+  EditFecha(id: any) {
+      Swal.fire({
+      title: '¿Estás seguro?',
+      text: "Se cambiara a la fecha de: '" + this.fecha,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, cambiar',
+      cancelButtonText: 'No, cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+        var token: any = i.toString(CryptoJS.enc.Utf8);
+        var parteuno = token.slice(1);
+        var final = parteuno.slice(0, -1);
+        let tokenfinal: string = final;
+        const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
+
+        this.http.put('http://actasalinstante.com:3030/api/actas/changeDate/' + id,{date: this.fecha},{ headers }).subscribe(
+          (data: any) => {
+            Swal.fire(
+              {
+                position: 'center',
+                icon: 'success',
+                title: 'Se cambio la fecha',
+                showConfirmButton: false,
+                timer: 1500
+              }
+            );
+            this.reloadCurrentRoute();
+
+          },
+          
+          (err: any) => {
+           
+            Swal.fire(
+              {
+                position: 'center',
+                icon: 'error',
+                title: 'Contacta al equipo de soporte',
+                showConfirmButton: false,
+                timer: 1500
+              }
+            );
+          }
+        );
+          
+      }
+    })
+  }
+  // MOVERAPAPPELERA
+  moveraPapelera(id:any ,document:any) {
+    
+    let hiddensa: boolean = true || false;
+    Swal.fire({
+      title: 'Mover a papelera',
+      text: "Se movera :'" + document,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, cambiar',
+      cancelButtonText: 'No, cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+        var token: any = i.toString(CryptoJS.enc.Utf8);
+        var parteuno = token.slice(1);
+        var final = parteuno.slice(0, -1);
+        let tokenfinal: string = final;
+        const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
+
+        this.http.put('http://actasalinstante.com:3030/api/actas/moveToTrash/' ,{id: id, hidden: hiddensa},{ headers}).subscribe(
+           (data: any) => {
+            Swal.fire(
+              {
+                position: 'center',
+                icon: 'success',
+                title: 'Se movio a la papelera',
+                showConfirmButton: false,
+                timer: 1500
+              }
+            );
+            this.reloadCurrentRoute();
+
+          },
+          
+          (err: any) => {
+        
+            Swal.fire(
+              {
+                position: 'center',
+                icon: 'error',
+                title: 'Contacta al equipo de soporte',
+                showConfirmButton: false,
+                timer: 1500
+              }
+            );
+          }
+        );
+          
+      }
+    })
+  }
+
+  traerPapelera(id:any) {
+ 
+
+        var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+        var token: any = i.toString(CryptoJS.enc.Utf8);
+        var parteuno = token.slice(1);
+        var final = parteuno.slice(0, -1);
+        let tokenfinal: string = final;
+        const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
+        this.http.get('http://actasalinstante.com:3030/api/actas/Trash/' + id ,{ headers}).subscribe(
+     
+           
+        );
+          
+    
+ 
+  }
+
+  
   async clickciber(id: any, nombre: any) {
     this.ciberseleccionado = id;
     const body = new FormData();
     let documento: string;
-
+    console.log(this.info.tipo);
     switch (this.info.tipo) {
+
       case "Asignación de Número de Seguridad Social":
         documento = "nss";
         break;
@@ -245,7 +388,7 @@ export class HistorialComponent implements OnInit {
         documento = "";
         break;
     }
-
+    
     let state;
     switch (this.info.estado) {
       case "CHIAPAS":
@@ -364,9 +507,7 @@ export class HistorialComponent implements OnInit {
     const precioyasesor = await this.restService.getprecioyasesor(documento, state, id).toPromise();
     this.precioyasesor = precioyasesor;
     const data: any = await this.restService.getidsupervisor(this.precioyasesor.superviser).toPromise();
-    this.nombreasesor = data?.data.nombre
-
-
+    this.nombreasesor = data?.data.nombre;
   }
 
   //CORTEHSITORIAL
@@ -403,8 +544,6 @@ export class HistorialComponent implements OnInit {
 
     const data: any = await this.database.getmydata(id).toPromise();
     this.myRol = data.data.rol;
-
-
   }
 
   /*   SE OPTIENE EL CORTE  */
@@ -436,9 +575,40 @@ export class HistorialComponent implements OnInit {
     this.getcorte();
 
   }
+
+  changeView2() {
+
+    this.conteo = !this.conteo;
+
+    this.getcorte();
+
+  }
+
+  changeView3() {
+
+    this.conteo2 = !this.conteo2;
+
+
+
+  }
+  changeView4() {
+
+    this.conteo3 = !this.conteo3;
+
+
+
+  }
   backUp() {
     this.preview = 0;
     this.fileTmp = null;
+    this.reloadCurrentRoute();
+
+
+  }
+  backUp2() {
+    this.preview = 0;
+    this.fileTmp = null;
+    this.reloadCurrentRoute();
   }
   ngAfterViewInit(): void {
   }
@@ -462,7 +632,8 @@ export class HistorialComponent implements OnInit {
 
           this.http.post('https://mybackend.com/api/upload/sanitize-and-save-logo', formData, { headers: headers, responseType: 'blob' })
           .subscribe(data => {
-            // Sanitized logo returned from backend
+            // Sanitized logo returned from njjnjgfbnbnjdpdpnmcdjhjvbdvbvbhvhbvhbvhbd rvrbackend
+        
           })
           **/
 
@@ -470,15 +641,12 @@ export class HistorialComponent implements OnInit {
       } else {
         // It was a directory (empty directories are added, otherwise only files)
         const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;
+
       }
     }
   }
-  public fileOver(event: any) {
 
-  }
-  public fileLeave(event: any) {
 
-  }
   //SOLTARPDF
   getFile($event: any): void {
     //TODO esto captura el archivo!

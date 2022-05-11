@@ -124,11 +124,11 @@ button:focus {
 button:hover {
     background: transparent;
     color: #303030 !important;
-    width: 20%;
+    width: 50%;
     box-shadow: none;
     width: 55%;
     min-width: 100px;
-    max-width: 100px;
+
 }
 
 #int-form {
@@ -270,3 +270,58 @@ button:hover {
     width: 250px;
     border-radius: 50%;
 }
+
+.conteo3 {
+  
+    background: #ff6961;
+    box-shadow: 0 0 0 2px white, 0 0 0 4px rgb(0, 0, 0);
+    -webkit-animation: bounceright 0.3s alternate ease infinite;
+    animation: bounceright 0.3s alternate ease infinite;
+    text-align: center;
+    text-rendering: auto;
+    height: 5vh;
+    overflow: hidden;
+    box-sizing: border-box;
+    margin: 15px;
+    display: inline-block;
+    font-family: "Montserrat", Helvetica, sans-serif;
+    font-size: 18px;
+    color: #000000 !important;
+    margin: 10px auto !important;
+    display: block;
+    /* Button is responsive to font size.*/  
+   
+    /* box-shadow: 0 0 0 2px white, 0 0 0 4px blue; */
+  }
+  @-webkit-keyframes bounceright {
+    from {
+      -webkit-transform: translateX(0);
+    }
+    to {
+      -webkit-transform: translateX(3px);
+    }
+  }
+  @-webkit-keyframes wiggle {
+    from {
+      -webkit-transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(30deg);
+    }
+  }
+  @keyframes bounceright {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(3px);
+    }
+  }
+  @keyframes wiggle {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(30deg);
+    }
+  }

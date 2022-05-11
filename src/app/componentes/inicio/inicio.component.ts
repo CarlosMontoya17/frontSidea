@@ -28,9 +28,7 @@ this.entidadValue = value;
     this.router.navigate(['/login']);
     
   }
- 
-
-  onChangeCurp(curp:any)
+   onChangeCurp(curp:any)
   {
     if(curp.length == 18){
       this.curp = curp;

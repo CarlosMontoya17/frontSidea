@@ -74,5 +74,6 @@ export class RestService {
     return this.http.get('http://actasalinstante.com:3030/api/actas/CountForEnterprise/' + id)
   }
 
+  
 
 } 

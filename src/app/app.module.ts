@@ -23,8 +23,8 @@ import { EditarpreciosComponent } from './componentes/administrar/editarprecios/
 import { AgGridModule } from 'ag-grid-angular';
 import { BuscadorPipe } from './servicios/buscador.pipe';
 import { CorteComponent } from './componentes/corte/corte.component';
-
-
+import { BuscarhistorialPipe } from './servicios/database/pipeHistorial/buscarhistorial.pipe';
+import { RegistrosComponent } from './componentes/registros/registros.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +42,8 @@ import { CorteComponent } from './componentes/corte/corte.component';
     EditarpreciosComponent,
     BuscadorPipe,
     CorteComponent,
-    
+    BuscarhistorialPipe,
+    RegistrosComponent
   ],
   imports: [
     BrowserModule,
