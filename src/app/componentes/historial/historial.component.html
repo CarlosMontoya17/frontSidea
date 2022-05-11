@@ -222,7 +222,7 @@
         <div class="card-body">
           <div class="form-outline">
 
-            <div class="input-group mb-3">
+            <div class="input-group mb-3" *ngIf="nombreasesor==''">
               <!-- FORMA MANUAL FORMULARIO -->
 
               <!--  <select class="form-select" id="inputGroupSelect01">
@@ -231,7 +231,7 @@
               <!-- BSUCAR EN EL Historial -->
               <input [(ngModel)]="valorabuscar" type="text" class="txtbuscar" placeholder="Busca tu Ciber" />
             </div>
-            <table class="table" *ngIf="valorabuscar.length>0">
+            <table class="table" *ngIf="valorabuscar.length>0 && nombreasesor==''">
               <tbody>
                 <tr *ngFor="let cibers of getciber | buscarciber: valorabuscar ">
                   <td (click)="clickciber(cibers.id, cibers.nombre)" style="cursor: pointer;" (click)="changeView3()">
@@ -243,8 +243,8 @@
         </div>
       </div>
     </div>
-    <h1 *ngIf="conteo2">&bull;RESUMEN&bull;</h1>
-    <div class="row row-cols-1 row-cols-md-3 g-4" *ngIf="conteo2">
+    <h1 >&bull;RESUMEN&bull;</h1>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
       <!-- Tipo de documento -->
       <div class="col">
         <div class="card h-100">
@@ -311,6 +311,16 @@
             <div class="form-outline">
               <h5 style="color: #efb810" class="card-title">Asesor</h5>
               <li class="list-group-item">{{nombreasesor}}</li>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <div class="form-outline">
+              <h5 style="color: #efb810" class="card-title">Nombre de archivo</h5>
+              <li class="list-group-item">{{fileTmp.fileName}}</li>
             </div>
           </div>
         </div>
@@ -423,6 +433,89 @@
   </div>
 
 </div>
+ 
+<button class="conteo4" *ngIf="vista && myRol == 'Admin'" (click)="changeView5()">Papelera</button>
+<div class="card mx-auto" style="width: 100%;" *ngIf="papeleras ">
+
+
+ 
+  <div class="form-group">
+    <div class="input-group mb-3">
+      <!-- FORMA MANUAL FORMULARIO -->
+
+      <!--  <select class="form-select" id="inputGroupSelect01">
+        <option value="actual" selected>Selecciona un Ciber</option>
+      </select> -->
+    
+    </div>
+    <h1 style="text-align: center;">Papelera</h1>
+  </div>
+
+  <table style=" border-radius: 1rem !important; font-size:1.2em;"class="table table-striped">
+    
+    <thead>
+      <tr>
+        <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">#</th>
+        <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Id</th>
+        <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Tipo de documento</th>
+        <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Curp</th>
+        <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000;font-size:1.2em;">Estado</th>
+        <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Nombre</th>
+        <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Ciber</th>
+        <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Asesor</th>
+        <th scope="col" *ngIf="myRol == 'Admin'" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Precio del acta al negocio</th>
+        <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;" >Se solicito</th>
+        <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Borrado por</th>
+        <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Fecha</th>
+        <!-- <th scope="col" style="background-color:rgba(150,150,253,90%); color: #000; font-size:1.2em;">Otros</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="cursor: pointer;" *ngFor="let papel of gettraerPapelera2 | paginate: { itemsPerPage: 20, currentPage: page }  |  buscarhistorial:buscargethistorial">
+        <td style=" color: #000; font-size:1.1em; " >{{papel?.i}}</td>
+        <td style=" color: #000; font-size:1.1em; ">{{papel?.id}}</td>
+        <td style=" color: #000; font-size:1.1em; ">{{papel?.document}}</td>
+        
+        <td style=" color: #000; font-size:1.1em; ">{{papel?.curp}}</td>
+        <td style=" color: #000; font-size:1.1em; ">{{papel?.states}}</td>
+        <td style=" color: #000; font-size:1.1em; ">{{papel?.nombreacta}}</td>
+        <td style=" color: #000; font-size:1.1em; ">{{papel?.provider}}</td>
+        <td style=" color: #000; font-size:1.1em; ">{{papel?.enterprise}}</td>
+
+        <td *ngIf="myRol == 'Admin'" style=" color: #000; font-size:1.1em; ">$ {{papel?.price }}</td>
+        <td style=" color: #000; font-size:1.1em; ">{{papel?.requested}}</td>
+        <td style=" color: #000; font-size:1.1em; ">{{papel?.culpable.nombre}}</td>
+        <td style=" color: #000; font-size:1.1em; ">
+          {{ papel?.createdAt | date:'yyyy-MM-dd' }}
+         
+          <!-- <input type="date" [(ngModel)]="fecha" name="fecha" id="fecha"> -->
+         
+
+          <!-- <fa-icon [icon]="facalend" class="add-user"
+            (click)="EditFecha(cortes.id)"></fa-icon> -->
+           
+        </td>
+        <fa-icon [icon]="restored" class="add-user"
+        (click)="restaurarPapelera(cortes.id,cortes.document)"></fa-icon>
+        <!-- <td style="text-align: center;">
+         
+          <fa-icon [icon]="papelera" class="add-user"
+          (click)="moveraPapelera(cortes.id,cortes.document)"></fa-icon>
+          <fa-icon [icon]="faTrashCan" class="add-user"
+            (click)="deleteItemActa(cortes.id, cortes.document, cortes.enterprise)"></fa-icon>
+        </td> -->
+      </tr>
+    </tbody>
+  </table>
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  <div class="card-body text-center">
+    
+  
+
+  </div>
+
+</div>
+
 
 <!-- FIN DE LA TABLA DE CONTENIDO -->
 

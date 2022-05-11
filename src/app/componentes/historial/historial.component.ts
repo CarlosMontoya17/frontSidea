@@ -14,6 +14,7 @@ import { GridApi, GridReadyEvent, RowSpanParams, ValueGetterFunc, ValueGetterPar
 import * as XLSX from 'xlsx'
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 import { faTrashArrowUp } from '@fortawesome/free-solid-svg-icons';
+import {faTrashRestore } from '@fortawesome/free-solid-svg-icons';
 declare function loader(): any;
 declare function closeAlert(): any;
 
@@ -26,6 +27,7 @@ declare function closeAlert(): any;
 
 export class HistorialComponent implements OnInit {
   private gridApi!: GridApi;
+  papeleras: boolean = false;
   conteo: boolean = false;
   conteo2: boolean = false;
   conteo3: boolean = false;
@@ -34,6 +36,7 @@ export class HistorialComponent implements OnInit {
   hidden2: boolean = true;
   faTrashCan = faTrashCan;
   facalend = faCalendar;
+  restored=faTrashRestore;
   papelera=faTrashArrowUp;
   imgURL: any;
   fileTmp: any;
@@ -80,6 +83,7 @@ export class HistorialComponent implements OnInit {
   newResponsable: any;
   fecha:any;
 
+  gettraerPapelera2:any;
   public rowData!: any[];
   public pinnedBottomRowData!: any[];
   //Tabla
@@ -146,7 +150,7 @@ export class HistorialComponent implements OnInit {
       nombrecompleto = this.info.nombre + " " + this.info.apellidos;
     }
 
-    const data = await this.restService.enviarcta(this.ciberseleccionado, this.precioyasesor.superviser, this.info.tipo, this.info.curp, this.info.estado, this.precioyasesor.precio, nombrecompleto, "").toPromise();
+    const data = await this.restService.enviarcta(this.ciberseleccionado, this.precioyasesor.superviser, this.info.tipo, this.info.curp, this.info.estado, this.precioyasesor.precio, nombrecompleto, "" ,this.fileTmp.fileName).toPromise();
     console.log(data);
     this.reloadCurrentRoute();
   }
@@ -276,6 +280,60 @@ export class HistorialComponent implements OnInit {
       }
     })
   }
+  restaurarPapelera(id:any ,document:any) {
+    
+    let hiddensa: boolean = false;
+    Swal.fire({
+      title: 'Mover a papelera',
+      text: "Se movera :'" + document,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, cambiar',
+      cancelButtonText: 'No, cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+        var token: any = i.toString(CryptoJS.enc.Utf8);
+        var parteuno = token.slice(1);
+        var final = parteuno.slice(0, -1);
+        let tokenfinal: string = final;
+        const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
+
+        this.http.put('http://actasalinstante.com:3030/api/actas/moveToTrash/' ,{id: id, hidden: hiddensa},{ headers}).subscribe(
+           (data: any) => {
+            Swal.fire(
+              {
+                position: 'center',
+                icon: 'success',
+                title: 'Se movio a la papelera',
+                showConfirmButton: false,
+                timer: 1500
+              }
+            );
+            this.reloadCurrentRoute();
+
+          },
+          
+          (err: any) => {
+        
+            Swal.fire(
+              {
+                position: 'center',
+                icon: 'error',
+                title: 'Contacta al equipo de soporte',
+                showConfirmButton: false,
+                timer: 1500
+              }
+            );
+          }
+        );
+          
+      }
+    })
+  }
+
   // MOVERAPAPPELERA
   moveraPapelera(id:any ,document:any) {
     
@@ -331,23 +389,7 @@ export class HistorialComponent implements OnInit {
     })
   }
 
-  traerPapelera(id:any) {
- 
 
-        var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
-        var token: any = i.toString(CryptoJS.enc.Utf8);
-        var parteuno = token.slice(1);
-        var final = parteuno.slice(0, -1);
-        let tokenfinal: string = final;
-        const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
-        this.http.get('http://actasalinstante.com:3030/api/actas/Trash/' + id ,{ headers}).subscribe(
-     
-           
-        );
-          
-    
- 
-  }
 
   
   async clickciber(id: any, nombre: any) {
@@ -510,6 +552,23 @@ export class HistorialComponent implements OnInit {
     this.nombreasesor = data?.data.nombre;
   }
 
+
+  async gettraerPapelera() {
+ 
+  
+
+        const data: any = await this.restService.Getpapelera().toPromise();
+
+        this.gettraerPapelera2 = data;
+       
+        if (data.lenght != 0) {
+          closeAlert();
+        }
+
+    
+    
+ 
+  }
   //CORTEHSITORIAL
   async getcorte() {
 
@@ -521,8 +580,7 @@ export class HistorialComponent implements OnInit {
         const data: any = await this.restService.getcorte(id).toPromise();
 
         this.getcortes = data;
-
-
+       
         if (data.lenght != 0) {
           closeAlert();
         }
@@ -571,8 +629,9 @@ export class HistorialComponent implements OnInit {
       loader();
     }
     this.vista = !this.vista;
-
+ 
     this.getcorte();
+    this.gettraerPapelera();
 
   }
 
@@ -581,7 +640,7 @@ export class HistorialComponent implements OnInit {
     this.conteo = !this.conteo;
 
     this.getcorte();
-
+    this.gettraerPapelera();
   }
 
   changeView3() {
@@ -591,9 +650,17 @@ export class HistorialComponent implements OnInit {
 
 
   }
+  
   changeView4() {
 
     this.conteo3 = !this.conteo3;
+
+
+
+  }
+  changeView5() {
+
+    this.papeleras = !this.papeleras;
 
 
 

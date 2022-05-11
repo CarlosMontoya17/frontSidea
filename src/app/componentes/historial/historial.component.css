@@ -5234,6 +5234,28 @@ button:hover{
  
   /* box-shadow: 0 0 0 2px white, 0 0 0 4px blue; */
 }
+.conteo4 {
+  background: #ffff51;
+box-shadow: 0 0 0 2px white, 0 0 0 4px rgb(0, 0, 0);
+-webkit-animation: bounceright 0.3s alternate ease infinite;
+animation: bounceright 0.3s alternate ease infinite;
+text-align: center;
+text-rendering: auto;
+height: 5vh;
+overflow: hidden;
+box-sizing: border-box;
+margin: 15px;
+display: inline-block;
+font-family: "Montserrat", Helvetica, sans-serif;
+font-size: 18px;
+color: #000000 !important;
+margin: 10px auto !important;
+display: block;
+
+/* Button is responsive to font size.*/  
+
+/* box-shadow: 0 0 0 2px white, 0 0 0 4px blue; */
+}
 @-webkit-keyframes bounceright {
   from {
     -webkit-transform: translateX(0);
