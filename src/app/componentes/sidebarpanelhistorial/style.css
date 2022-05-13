@@ -30,8 +30,8 @@ body {
 .window {
     display: inline-block;
     background-size: cover;
-    height: 400px;
-    width: 1905px;
+    height: 350px;
+    width: 1920px;
     overflow: hidden;
     position: relative;
     background-position: center center;

@@ -4,3 +4,20 @@
 @import "ag-grid-community/dist/styles/ag-grid.css";
 @import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 @import "ag-grid-community/dist/styles/ag-theme-dark.css";
+
+.submenu{
+    display: none;
+    width: 120px;
+    position: absolute;
+}
+#pagos:hover .submenu{
+    display: block;
+    background-color: black;
+}
+.lisub{
+    padding: 10px;
+    background-color: black;
+}
+.lisub:hover{
+    border-bottom: 2px solid red;
+}

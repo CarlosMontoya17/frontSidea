@@ -2,3 +2,496 @@
     border-radius: 10rem;
 }
 
+
+#firstHeader {
+    font-size: 2.5em;
+    /* font-family: "Bungee Outline", cursive; */
+    letter-spacing: 0.60em;
+    color: rgb(0, 0, 0);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    display: inline-flex;
+  }
+  
+  /* Full screen size animations */
+  
+  .Welcome {
+    animation-name: displaceContent, fadein;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes displaceContent {
+    from {
+      opacity: 0;
+      transform: translateX(0em);
+    }
+    to {
+      opacity: 1;
+      color: rgb(0, 0, 0);
+      transform: translateX(3em);
+    }
+  }
+  
+  .to {
+    animation-name: displaceContent2;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    width: 8em;
+  }
+  
+  @keyframes displaceContent2 {
+    from {
+      opacity: 0;
+      transform: translateY(3em);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0em);
+    }
+  }
+  
+  .the {
+    animation-name: displaceContent3;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes displaceContent3 {
+    from {
+      opacity: 0;
+      transform: translateX(0em);
+    }
+    to {
+      opacity: 0.9;
+      transform: translateX(-3em);
+    }
+  }
+  
+  .Future {
+    animation-name: displaceContent4;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    width: -1000px;
+  }
+  
+  @keyframes displaceContent4 {
+    from {
+      opacity: 0;
+      transform: translate(0em, -3em);
+    }
+    to {
+      opacity: 1;
+      color: rgb(0, 0, 0);
+      transform: translate(-3em, 0em);
+    }
+  }
+  
+  /* Stars changes */
+  
+  @media only screen and (max-width: 1335px) {
+    .Future {
+      animation-name: displaceContent5;
+      animation-duration: 1s;
+      animation-delay: 0s;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+      width: -1000px;
+    }
+  }
+  
+  @keyframes displaceContent5 {
+    from {
+      opacity: 0;
+      transform: translateX(0em);
+    }
+    to {
+      opacity: 1;
+      color: rgb(148, 148, 148);
+      transform: translateX(13em);
+    }
+  }
+  
+  @media only screen and (max-width: 1235px) {
+    .Future {
+      animation-name: displaceContentx;
+      animation-duration: 1s;
+      animation-delay: 0s;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+      width: -1000px;
+    }
+  }
+  
+  @keyframes displaceContentx {
+    from {
+      opacity: 0;
+      transform: translateX(0em);
+    }
+    to {
+      opacity: 1;
+      color: rgb(148, 148, 148);
+      transform: translateX(11em);
+    }
+  }
+  
+  @media only screen and (max-width: 1020px) {
+    .Future {
+      animation-name: displaceContent6;
+      animation-duration: 1s;
+      animation-delay: 0s;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+      width: -1000px;
+    }
+  
+    .the {
+      animation-name: displaceContent7;
+      animation-duration: 1s;
+      animation-delay: 0s;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+      width: -1000px;
+    }
+  }
+  
+  @keyframes displaceContent6 {
+    from {
+      opacity: 0;
+      transform: translateX(0em);
+    }
+    to {
+      opacity: 1;
+      color: rgb(148, 148, 148);
+      transform: translateX(6em);
+    }
+  }
+  
+  @keyframes displaceContent7 {
+    from {
+      opacity: 0;
+      transform: translateX(0em);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(6em);
+    }
+  }
+  
+  @media only screen and (max-width: 860px) {
+    .Future {
+      animation-name: displaceContent8;
+      animation-duration: 1s;
+      animation-delay: 0s;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+      width: -1000px;
+    }
+  
+    .the {
+      animation-name: displaceContent9;
+      animation-duration: 1s;
+      animation-delay: 0s;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+      width: -1000px;
+    }
+    .collapse navbar-collaps {
+      width: max-content;
+    }
+  }
+  
+  @keyframes displaceContent8 {
+    from {
+      opacity: 0;
+      transform: translateX(0em);
+    }
+    to {
+      opacity: 1;
+      color: rgb(148, 148, 148);
+      transform: translateX(3em);
+    }
+  }
+  
+  @keyframes displaceContent9 {
+    from {
+      opacity: 0;
+      transform: translateX(0em);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-3em);
+    }
+  }
+  
+  @media only screen and (max-width: 650px) {
+    .Future {
+      animation-name: displaceContent10;
+      animation-duration: 1s;
+      animation-delay: 0s;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+      width: -1000px;
+    }
+  
+    .the {
+      animation-name: displaceContent11;
+      animation-duration: 1s;
+      animation-delay: 0s;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+      width: -1000px;
+    }
+    .collapse navbar-collaps {
+      width: max-content;
+    }
+  }
+  
+  @keyframes displaceContent10 {
+    from {
+      opacity: 0;
+      transform: translateX(1em);
+    }
+    to {
+      opacity: 1;
+      color: rgb(148, 148, 148);
+      transform: translateX(-1em);
+    }
+  }
+  
+  @keyframes displaceContent11 {
+    from {
+      opacity: 0;
+      transform: translate(0em, 0em);
+    }
+    to {
+      opacity: 1;
+      transform: translate(5em, -1.2em);
+    }
+  }
+  
+  @keyframes displaceContent12 {
+    from {
+      opacity: 0;
+      transform: translateX(0em);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-3em);
+    }
+  }
+  
+  @media only screen and (max-width: 600px) {
+    .collapse navbar-collaps {
+      width: max-content;
+    }
+  
+    .Welcome {
+      animation-name: displaceContent13;
+      animation-duration: 1s;
+      animation-delay: 0s;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+    }
+  
+    .to {
+      animation-name: displaceContent14;
+      animation-duration: 1s;
+      animation-delay: 0s;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+      width: 8em;
+    }
+  
+    .the {
+      animation-name: displaceContent15;
+      animation-duration: 1s;
+      animation-delay: 0s;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+      width: -1000px;
+    }
+  
+    .Future {
+      animation-name: displaceContent16;
+      animation-duration: 1s;
+      animation-delay: 0s;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+      width: -1000px;
+    }
+  }
+  
+  @keyframes displaceContent13 {
+    from {
+      opacity: 0;
+      transform: translateX(0em);
+    }
+    to {
+      opacity: 1;
+      color: rgb(148, 148, 148);
+      transform: translateX(1em);
+    }
+  }
+  
+  @keyframes displaceContent14 {
+    from {
+      opacity: 0;
+      transform: translateX(0.5em);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-1.3em);
+    }
+  }
+  
+  @keyframes displaceContent15 {
+    from {
+      opacity: 0;
+      transform: translate(0em, 0em);
+    }
+    to {
+      opacity: 1;
+      transform: translate(4em, -1.2em);
+    }
+  }
+  
+  @keyframes displaceContent16 {
+    from {
+      opacity: 0;
+      transform: translateX(3em);
+    }
+    to {
+      opacity: 1;
+      color: rgb(148, 148, 148);
+      transform: translateX(-1em);
+    }
+  }
+  
+  @media only screen and (max-width: 530px) {
+    .collapse navbar-collaps {
+      width: fit-content;
+    }
+  
+    .Welcome {
+      animation-name: displaceContent17;
+      animation-duration: 1s;
+      animation-delay: 0s;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+    }
+  
+    .to {
+      animation-name: displaceContent18;
+      animation-duration: 1s;
+      animation-delay: 0s;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+      width: 8em;
+    }
+  
+    .the {
+      animation-name: displaceContent19;
+      animation-duration: 1s;
+      animation-delay: 0s;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+      width: -1000px;
+    }
+  
+    .Future {
+      animation-name: displaceContent20;
+      animation-duration: 1s;
+      animation-delay: 0s;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+      width: -1000px;
+    }
+  }
+  
+  @keyframes displaceContent17 {
+    from {
+      opacity: 0;
+      transform: translateX(0em);
+    }
+    to {
+      opacity: 1;
+      color: rgb(148, 148, 148);
+      transform: translateX(1em);
+    }
+  }
+  
+  @keyframes displaceContent18 {
+    from {
+      opacity: 0;
+      transform: translateX(0.5em);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-1.3em);
+    }
+  }
+  
+  @keyframes displaceContent19 {
+    from {
+      opacity: 0;
+      transform: translate(0em, 0em);
+    }
+    to {
+      opacity: 1;
+      transform: translate(4em, -1.2em);
+    }
+  }
+  
+  @keyframes displaceContent20 {
+    from {
+      opacity: 0;
+      transform: translateX(3em);
+    }
+    to {
+      opacity: 1;
+      color: rgb(148, 148, 148);
+      transform: translateX(-1em);
+    }
+  }
+  
+  /* Footer part */
+  
+  /* Info animations */
+  
+  @keyframes backgroundChange {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  @keyframes borderSpin {
+    0% {
+      border-color: #c31432;
+    }
+    50% {
+      border-position: 100% 50%;
+      border-color: #240b36;
+    }
+    100% {
+      border-position: 0% 50%;
+      border-color: #240b36;
+    }
+  }
+  
+  

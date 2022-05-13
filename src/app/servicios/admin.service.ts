@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import * as crypto from "crypto-js";
+import * as CryptoJS from "crypto-js";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 declare function swalError(mensaje:any): any;
 declare function swalOk(mensaje:any): any;
@@ -15,9 +15,41 @@ export class AdminService {
   httpOptions: any;
   httpOptions2: any;
   urlsAdd: any = [];
+  private corte: BehaviorSubject<String> = new BehaviorSubject<String>("Elige un corte");
+  router: any;
   constructor(private http: HttpClient) { }
 
+  enviado(){
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var token: any = i.toString(CryptoJS.enc.Utf8);
+    var parteuno = token.slice(1);
+    var final = parteuno.slice(0, -1);
+    const headers = new HttpHeaders({ 'x-access-token': final! });
+    return this.http.get(urlApi+'/api/actas/ReadySend/', { headers });
 
+  }
+
+  porenviar(){
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var token: any = i.toString(CryptoJS.enc.Utf8);
+    var parteuno = token.slice(1);
+    var final = parteuno.slice(0, -1);
+    const headers = new HttpHeaders({ 'x-access-token': final! });
+    return this.http.get(urlApi+'/api/actas/DontSend/', { headers });
+
+  }
+
+//float int
+  cambiarstatus(id:string, date:any, status:any){
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var token: any = i.toString(CryptoJS.enc.Utf8);
+    var parteuno = token.slice(1);
+    var final = parteuno.slice(0, -1);
+    
+
+    const headers = new HttpHeaders({ 'x-access-token': final! });
+    return this.http.put(urlApi+'/api/actas/Send/'+id, { date:date, send:status }, { headers });
+  }
 
   async addImg(param:any, categoria:any){
     if(param!=null){
@@ -68,7 +100,26 @@ export class AdminService {
   }
 
 
- 
+  getMyClientForDate(date:any){
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var token: any = i.toString(CryptoJS.enc.Utf8);
+    var parteuno = token.slice(1);
+    var final = parteuno.slice(0, -1);
+    const headers = new HttpHeaders({ 'x-access-token': final! });
+
+    return this.http.get(urlApi+'/api/corte/getUsersByDate/'+date, { headers });
+  };
+
+
+  getCorteByUserForDate(id:any, date:any){
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var token: any = i.toString(CryptoJS.enc.Utf8);
+    var parteuno = token.slice(1);
+    var final = parteuno.slice(0, -1);
+    const headers = new HttpHeaders({ 'x-access-token': final! });
+    return this.http.get(urlApi+'/api/actas/getCut/'+id+'/'+date,{headers});
+  }
+
 
 
 
@@ -107,6 +158,15 @@ deleteImg(id:any, path:any){
 
 descargarImgs(){
   return this.http.get(urlApi+'/imgs/download/', {responseType: 'blob'});
+}
+
+get getSelect() {
+  return this.corte.asObservable();
+  
+}
+
+set setSelect(newTitle: String) {
+  this.corte.next(newTitle);
 }
 
 

@@ -46,7 +46,7 @@ export class DatabaseService {
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);
     const headers = new HttpHeaders({ 'x-access-token': final! });
-    return this.httpClient.get(api+'/api/actas/lowerToCut/',{headers});
+    return this.httpClient.get(api+'/api/actas/lowerToCut/', { headers });
   }
 
   Obtenerfechas(id:any){
@@ -60,4 +60,16 @@ export class DatabaseService {
     const headers = new HttpHeaders({ 'x-access-token': final! });
     return this.httpClient.get(api+'/api/actas/getCut/'+id+ '/'+fecha,{headers});
   }
+
+  getAllDates(){
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var token: any = i.toString(CryptoJS.enc.Utf8);
+    var parteuno = token.slice(1);
+    var final = parteuno.slice(0, -1);
+    const headers = new HttpHeaders({ 'x-access-token': final! });
+    return this.httpClient.get(api+'/api/actas/getAllDates/',{headers});
+  }
+
+
+
 }  

@@ -75,6 +75,7 @@ export class EditarpreciosComponent implements OnInit {
   NUEVOLEON: number = 0;
   MEXICO: number = 0;
   QUINTANAROO: number = 0;
+  EXTRANJERO: number = 120;
   precios: any = [];
 
   datossupervisor: any = [];
@@ -321,8 +322,6 @@ export class EditarpreciosComponent implements OnInit {
     this.inh = this.precios.inh;
     this.der = this.precios.der;
     this.div = this.precios.div;
-
-
     this.Negocio = this.usuarios.nombre;
     this.tipoNegocio = this.usuarios.type;
     if (this.usuarios.Status == false) {
@@ -337,7 +336,7 @@ export class EditarpreciosComponent implements OnInit {
     this.newUsername = this.usuarios.username;
     
   }
-
+  
   estados() {
     this.porEstados = !this.porEstados;
   }

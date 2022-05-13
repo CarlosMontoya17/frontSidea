@@ -111,7 +111,7 @@ in example with RGB opacity to  make it stand out a bit more.   */
   animation: bounceright 0.3s alternate ease infinite;
   text-align: center;
   text-rendering: auto;
-  height: 10vh;
+  height: 3em;
   overflow: hidden;
   box-sizing: border-box;
   margin: 15px;
@@ -121,7 +121,7 @@ in example with RGB opacity to  make it stand out a bit more.   */
   font-size: 15px;
   -webkit-font-smoothing: antialiased;
   position: relative;
-  padding: 0.8em 1.5em;
+  /* padding: 0.8em 1.5em; */
   border: none;
   color: rgb(0, 0, 0);
   transition: 0.2s;
@@ -131,11 +131,24 @@ in example with RGB opacity to  make it stand out a bit more.   */
   letter-spacing: 1px;
     /* Setting opacity so button isn't so bright.  Could use a filter. */  
    opacity: 0.95;
-  
-   padding-right: 5.5em;
+
+   /* padding-right: 9.5em; */
   cursor: pointer;
   /* box-shadow: 0 0 0 2px white, 0 0 0 4px blue; */
 }
+
+ol {
+  height: 23rem;
+  overflow:hidden; 
+  overflow-y:scroll;
+}
+
+.panel-cibers {
+  position: sticky;
+  top: 20px;
+}
+
+
 .conteo {
   
   background: #9696fd;

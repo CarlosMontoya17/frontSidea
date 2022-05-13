@@ -4,16 +4,22 @@ import { RestService } from '../historial/rest.service';
 import * as CryptoJS from 'crypto-js';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
-import { ConnectableObservable, Observable } from 'rxjs';
+import { distinctUntilChanged, Observable } from 'rxjs';
 import { GridApi, GridReadyEvent, RowSpanParams, ValueGetterFunc, ValueGetterParams } from 'ag-grid-community';
 import { AgGridAngular } from 'ag-grid-angular';
-import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRightFromBracket, faL } from '@fortawesome/free-solid-svg-icons';
 import { DatabaseService } from 'src/app/servicios/database/database.service';
 import html2canvas from 'html2canvas';
 import { Router } from '@angular/router';
 import * as XLSX from 'xlsx'
 import Swal from 'sweetalert2';
+import { AdminService } from 'src/app/servicios/admin.service';
 declare function onclick(): any;
+
+declare function loader(): any;
+declare function closeAlert(): any;
+declare function loadedData(): any;
+
 @Component({
 
   selector: 'app-pagos',
@@ -22,7 +28,7 @@ declare function onclick(): any;
 })
 
 export class PagosComponent implements OnInit {
-  
+
   @ViewChild('screen') screen!: ElementRef;
   @ViewChild('canvas') canvas!: ElementRef;
   @ViewChild('downloadLink') downloadLink!: ElementRef;
@@ -45,22 +51,18 @@ export class PagosComponent implements OnInit {
   //Tabla
   cortes: any;
   NumerodeActas: any;
-  columnDefs = [
-    { field: "id", width: 80, headerName: "Id", filter: true },
-    { field: "enterprise", headerName: "Ciber", filter: true },
-    { field: "document", headerName: "Documento", filter: true },
-    { field: "states", headerName: "Estado", filter: true },
-    { field: "curp", headerName: "CURP", filter: true },
-    { field: "price", headerName: "Precio", type: 'valueColumn', filter: true, },
-    { field: "createdAt", headerName: "Fecha y hora", filter: true },
-    { field: "corte", headerName: "Corte", type: 'valueColumn', filter: true, }];
+
+  porEnviar: boolean = false;
+
+  fechasParaBuscarClientes: any;
+
   public rowData!: any[];
   public pinnedBottomRowData!: any[];
   //Tabla
   ciberSearch: string = "";
   //TABLE
   Cibers: any;
-  CiberSelect: any;
+  CiberSelect: any = [];
   ciberidselect: any;
   Corte: any;
   TotalCorte: number = 0;
@@ -83,14 +85,47 @@ export class PagosComponent implements OnInit {
   conteo_der: number = 0;
   conteo_inh: number = 0;
   conteo_total: number = 0;
+
+  valordelobservable: any;
   //TABLE
   corteSeleccionado: string = "Seleccionar corte";
-  constructor(private router: Router, private restservice: RestService, private http: HttpClient, private database: DatabaseService) {
+
+
+
+
+  fechaDeUsuarioSeleccionada: any;
+  usuariosEnFecha: any;
+  corteDelUsuario: any;
+  paginacion: boolean = false;
+  itemPerPage: number = 10;
+  items: any;
+  indexOfItems: any;
+
+
+  data$!: Observable<String>;
+  constructor(private router: Router,
+    private restservice: RestService,
+    private http: HttpClient,
+    private database: DatabaseService,
+    private adminService: AdminService
+  ) {
+    this.data$ = adminService.getSelect;
     var usuario = CryptoJS.AES.decrypt(localStorage.getItem('id') || '{}', "id");
     let userName = usuario.toString(CryptoJS.enc.Utf8);
     let arreglo = userName.split('"');
   }
- 
+
+
+  async getAllDates() {
+    this.fechasParaBuscarClientes = await this.database.getAllDates().toPromise();
+  }
+
+
+
+
+
+
+
 
 
   exportexcel(): void {
@@ -106,108 +141,267 @@ export class PagosComponent implements OnInit {
 
     /* genera el excel y agregra los elementos de la tabla */
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Corte' + arreglo[1]);
+    XLSX.utils.book_append_sheet(wb, ws, 'Corte ' + this.CiberSelect);
 
     /* Exportamos a excel */
-    XLSX.writeFile(wb, "Pagos-" + arreglo[1] + ".xlsx");
-    Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'Corte de ' + arreglo[1] + ' descargado',
-      showConfirmButton: false,
-      timer: 1500
-    })
+    XLSX.writeFile(wb, "Pagos-" + this.CiberSelect + "-Por: " + arreglo[1] + ".xlsx");
+    /*     Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Corte de ' + arreglo[1] + ' descargado',
+          showConfirmButton: false,
+          timer: 1500
+        }) */
   }
-  changeView() {
-    
-    this.conteo = !this.conteo;
-    
 
-    
+  alert2() {
+    // Swal.fire({
+    //   position: 'center',
+    //   icon: 'warning',
+    //   title: 'Enviar corte',//'Corte de ' + this.CiberSelect + ' descargado',
+    //   text: '¿Deseas enviar el corte?',
+    //   showCancelButton: true,
+    //   confirmButtonColor: '#3085d6',
+    //   cancelButtonColor: '#d33',
+    //   confirmButtonText: 'Si, enviar el corte',
+    // }).then((result) => {
+    //   if (result.isConfirmed) {
+    //     Swal.fire(
+    //       'Corte enviado!'
+    //     )
+
+    //   }
+    // })
+
+    this.exportexcel();
+    this.reloadCurrentRoute();
+  }
+
+  changeView() {
+
+    this.conteo = !this.conteo;
+
+
+
+  }
+  reloadCurrentRoute() {
+    const currentUrl = this.router.url;
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentUrl]);
+    });
   }
   //DESCARGAR CORTE EN IMAGEN PNG
-  downloadCorte() {
-    html2canvas(this.screen.nativeElement).then(canvas => {
-      this.canvas.nativeElement.src = canvas.toDataURL();
-      this.downloadLink.nativeElement.href = canvas.toDataURL('image/png');
-      this.downloadLink.nativeElement.download = 'Corte ' + this.CiberSelect + ' .png';
-      this.downloadLink.nativeElement.click();
+  async downloadCorte() {
+    closeAlert();
+    if (this.corteDelUsuario.length <= 10) {
+      loader();
+      await html2canvas(this.screen.nativeElement).then(canvas => {
+        this.canvas.nativeElement.src = canvas.toDataURL();
+        this.downloadLink.nativeElement.href = canvas.toDataURL('image/png');
+        this.downloadLink.nativeElement.download = 'Corte -' + this.CiberSelect + ' .png';
+        this.downloadLink.nativeElement.click();
+        closeAlert();
+        this.getCorte(this.ciberidselect, this.CiberSelect)
+        this.paginacion = false;
+      });
+    }
+    else if ((this.corteDelUsuario.length > 10)) {
       Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Corte de ' + this.CiberSelect + ' descargado',
-        showConfirmButton: false,
-        timer: 1500
+        title: 'Aviso',
+        text: "Tienes mas de 10 elementos, ¿Deseas descargarlo por partes?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si',
+        cancelButtonText: 'No, en una sola imagen'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          loader();
+          this.paginacionCorte().then(data => {
+            this.getCorte(this.ciberidselect, this.CiberSelect)
+            this.paginacion = false;
+            closeAlert();
+          }).catch(err => {
+            this.paginacion = false;
+          });
+        }
+        else{
+          loader();
+          this.paginacion = false;
+          await html2canvas(this.screen.nativeElement).then(canvas => {
+            this.canvas.nativeElement.src = canvas.toDataURL();
+            this.downloadLink.nativeElement.href = canvas.toDataURL('image/png');
+            this.downloadLink.nativeElement.download = 'Corte -' + this.CiberSelect + ' .png';
+            this.downloadLink.nativeElement.click();
+            closeAlert();
+            this.getCorte(this.ciberidselect, this.CiberSelect)
+            
+          });
+        }
+
+
       })
-    });
+
+    }
+
+
+  }
+
+
+  async paginacionCorte() {
+    this.paginacion = true;
+    let backup = this.corteDelUsuario;
+    let itemsTotal: number = this.corteDelUsuario.length;
+    let divide: number = Math.floor(itemsTotal / this.itemPerPage);
+    let res: number = itemsTotal % this.itemPerPage;
+
+    let pages: number = divide;
+
+    if (res != 0) {
+      pages += 1;
+    }
+
+    let currentPageData = this.corteDelUsuario;
+    let index = 0;
+    for (let a = 0; a < pages + 1; a++) {
+      let pageData = [];
+      let indexes = [];
+      this.indexOfItems = [];
+      for (let b = 0; b < this.itemPerPage; b++) {
+        if (currentPageData[currentPageData.length - 1] != undefined) {
+
+          pageData.push(currentPageData[currentPageData.length - 1]);
+          currentPageData.pop()
+          index += 1;
+          indexes.push(index);
+        }
+      }
+
+      this.indexOfItems.push(indexes);
+      this.items = await pageData;
+      await html2canvas(this.screen.nativeElement).then(canvas => {
+        if (this.paginacion == true && a > 0) {
+          this.canvas.nativeElement.src = canvas.toDataURL();
+          this.downloadLink.nativeElement.href = canvas.toDataURL('image/png');
+          let pagina = a;
+          this.downloadLink.nativeElement.download = 'Corte -' + this.CiberSelect + '-Pag:' + pagina + '-' + pages + ' .png';
+          this.downloadLink.nativeElement.click();
+        }
+      });
+    }
+    this.corteDelUsuario = backup;
+    this.indexOfItems = [];
+
+  }
+
+
+
+
+
+  alert() {
+    // Swal.fire({
+    //   position: 'center',
+    //   icon: 'warning',
+    //   title: 'Enviar corte',//'Corte de ' + this.CiberSelect + ' descargado',
+    //   text: '¿Deseas enviar el corte?',
+    //   showCancelButton: true,
+    //   confirmButtonColor: '#3085d6',
+    //   cancelButtonColor: '#d33',
+    //   confirmButtonText: 'Si, enviar el corte',
+    // }).then(async (result) => {
+    //   if (result.isConfirmed) {
+    //     Swal.fire(
+    //       'Corte enviado!'
+    //     )
+    //     //Estatus a enviado
+    //     let date: string = "";
+    //     if (this.corteSeleccionado == "Actual") {
+    //       date = "null";
+    //     }
+    //     else {
+    //       date = this.corteSeleccionado;
+    //     }
+    //     console.log(date);
+    //     await this.adminService.cambiarstatus(this.ciberidselect, date, true).toPromise();
+    //     this.reloadCurrentRoute();
+    //     this.downloadCorte();
+    //   }
+    // })
+
+    this.downloadCorte();
+  }
+
+
+
+  alert3() {
+    Swal.fire({
+      position: 'center',
+      icon: 'warning',
+      title: 'Por enviar',//'Corte de ' + this.CiberSelect + ' descargado',
+      text: '¿Deseas regresar al apartado "Por Enviar"?',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si',
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Se regresó a "Por Enviar"'
+        )
+        //Estatus a enviado
+        let date: string = "";
+        if (this.corteSeleccionado == "Actual") {
+          date = "null";
+        }
+        else {
+          date = this.corteSeleccionado;
+        }
+        await this.adminService.cambiarstatus(this.ciberidselect, date, false).toPromise();
+        this.reloadCurrentRoute();
+      }
+    })
   }
 
   async setCorte(fecha: any) {
-
-    this.TotalCorte = 0;
-    this.corteSeleccionado = fecha;
-    let date: string = "";
-    if (fecha == "Actual") {
-      date = "null";
-    }
-    else {
-      date = fecha;
-    }
-
-    //const data: any = await this.database.getmycort_fecha(this.ciberidselect, date).toPromise();
-    const data: any = await this.database.getallCorte(this.ciberidselect, date).toPromise();
-    this.Corte = data;
-
-    for (let i = 0; i < data.length; i++) {
-      switch (data[i].document) {
+    for (let i = 0; i < this.corteDelUsuario.length; i++) {
+      switch (this.corteDelUsuario[i].document) {
         case "Asignación de Número de Seguridad Social":
-          this.conteo_nss +=1;
+          this.conteo_nss += 1;
           break;
         case "Acta de Defunción":
           this.conteo_defuncion += 1;
           break;
         case "Acta de Nacimiento":
-          this.conteo_nacimiento  +=1;
+          this.conteo_nacimiento += 1;
           break;
         case "Acta de Matrimonio":
-          this.conteo_matrimonio +=1;
+          this.conteo_matrimonio += 1;
           break;
         case "Acta de Divorcio":
-          this.conteo_divorcio +=1;
+          this.conteo_divorcio += 1;
           break;
         case "Constancia de Vigencia de Derechos":
-          this.conteo_der +=1;
+          this.conteo_der += 1;
           break;
         case "Constancia de Semanas Cotizadas en el IMSS":
-          this.conteo_cot +=1;
+          this.conteo_cot += 1;
           break;
         case "Registro Federal de Contribuyentes":
-          this.conteo_rfc +=1;
+          this.conteo_rfc += 1;
           break;
         case "CONSTANCIA DE NO INHABILITACIÓN":
-          this.conteo_inh +=1;
+          this.conteo_inh += 1;
           break;
         default:
           break;
       }
-        
-      
-     
-      this.conteo_total += 1;
-   
-    
-      
-      
     }
-    
-
-    data.forEach((Element: any) => {
-      this.TotalCorte += Number(Element.price);
-    });
   }
 
   //SE OBTIENE EL CORTE CON EL CIBER
   async getCorte(id: any, nombre: any) {
+    this.corteDelUsuario = [];
     this.conteo_nacimiento = 0;
     this.conteo_defuncion = 0;
     this.conteo_matrimonio = 0;
@@ -223,19 +417,50 @@ export class PagosComponent implements OnInit {
     this.CiberSelect = nombre;
     this.ciberidselect = id;
     this.TotalCorte = 0;
-    this.fechas = await this.database.Obtenerfechas(id).toPromise();
-    const data: any = await this.restservice.GetActasNumber(id).toPromise();
+    this.page = 0;
+    // this.fechas = await this.database.Obtenerfechas(id).toPromise();
+    // const data: any = await this.restservice.GetActasNumber(id).toPromise();
 
-    this.nacimiento = data["nac"];
-    this.defuncion = data["def"];
-    this.matrimonio = data["mat"];
-    this.divorcio = data["div"];
-    this.semancot = data["cot"];
-    this.nss = data["nss"];
-    this.rfc = data["rfc"];
-    this.derechos = data["der"];
-    this.total = data["total"];
-    this.NumerodeActas = data;
+    // this.nacimiento = data["nac"];
+    // this.defuncion = data["def"];
+    // this.matrimonio = data["mat"];
+    // this.divorcio = data["div"];
+    // this.semancot = data["cot"];
+    // this.nss = data["nss"];
+    // this.rfc = data["rfc"];
+    // this.derechos = data["der"];
+    // this.total = data["total"];
+    // this.NumerodeActas = data;
+    let date: any = this.fechaDeUsuarioSeleccionada;
+    if (this.fechaDeUsuarioSeleccionada == "Actual") {
+      date = null;
+    }
+
+
+
+    this.adminService.getCorteByUserForDate(id, date).subscribe(data => {
+      this.corteDelUsuario = data;
+
+      this.precioTotal();
+      this.setCorte(0);
+      loadedData();
+    }, (err: any) => {
+      console.log(err);
+    });
+
+  }
+
+  //PRECIO TOTAL
+  precioTotal() {
+    var addNumber: number = 0;
+    var addActas: number = 0;
+    for (let i = 0; i < this.corteDelUsuario.length; i++) {
+      addNumber += this.corteDelUsuario[i]?.price;
+
+      addActas += 1;
+    }
+    this.totalPrecio = addNumber;
+    this.totalActas = addActas;
   }
 
 
@@ -269,15 +494,65 @@ export class PagosComponent implements OnInit {
       this.Cibers = enterprises;
     }
   }
-  
+
   ngOnInit(): void {
     const token = localStorage.getItem('token');
     if (!token) {
       this.router.navigateByUrl('/login');
     }
-    this.getTodos();
 
+    this.getAllDates();
+    this.getClientsByDateSelected(null);
   }
+
+
+
+  async getClientsByDateSelected(date: any) {
+    this.usuariosEnFecha = [];
+    this.fechaDeUsuarioSeleccionada = date;
+    this.CiberSelect = [];
+    loader();
+    if (date == null) {
+      this.fechaDeUsuarioSeleccionada = "Actual";
+    }
+    this.adminService.getMyClientForDate(date).subscribe(data => {
+      closeAlert();
+      this.usuariosEnFecha = data;
+
+
+    },
+      (error: any) => {
+        closeAlert()
+      });
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   //EXPORTAR EL CORTE 
   onBtnExport() {
     var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
@@ -300,22 +575,25 @@ export class PagosComponent implements OnInit {
     this.precioTotal();
   }
 
-  async getTodos() {
-    const data: any = await this.database.obtenerTodos().toPromise();
+  getTodos() {
 
-    this.rowData = data;
+    this.data$.pipe(distinctUntilChanged()).subscribe(async (Data: any) => {
+      let datos: any;
+      if (Data === "POR ENVIAR") {
+        datos = await this.adminService.porenviar().toPromise();
+
+      }
+      else {
+        datos = await this.adminService.enviado().toPromise();
+      }
+      this.CiberSelect = "";
+      this.valordelobservable = Data;
+      this.rowData = datos;
+
+    });
+
   }
-  //PRECIO TOTAL
-  precioTotal() {
-    var addNumber: number = 0;
-    var addActas: number = 0;
-    for (let i = 0; i < this.rowData.length; i++) {
-      addNumber += this.rowData[i]?.price;
-      addActas += 1;
-    }
-    this.totalPrecio = addNumber;
-    this.totalActas = addActas;
-  }
+
 
   createData() {
     var result = [];

@@ -1,0 +1,159 @@
+<app-sidebar></app-sidebar>
+
+<div id="container">
+  <h1 class="firstH1">
+    <b>
+      <div class="Welcome" id="firstHeader">&bull;Doc</div>
+      <div class="to" id="firstHeader">um</div>
+      <div class="the" id="firstHeader">en</div>
+      <div class="Future" id="firstHeader">tos&bull;</div>
+    </b>
+  </h1>
+    <div class="col">
+  
+      <h1>&bull;Cargar documentos de forma manual&bull;</h1>
+      
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <!-- Tipo de documento -->
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="form-outline">
+                <h5 style="color: #efb810" class="card-title">Tipo de documento</h5>
+                <!-- <li class="list-group-item">{{ info?.tipo }}</li> -->
+  
+              
+                <div class="dropdown">
+                  <button class="conteo5" type="button" id="conteo2" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{tipo || "Selecciona un tipo de documento"}}
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeActa('Acta de Nacimiento')">Acta de Nacimiento</a></li>
+                    <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeActa('Acta de Defunción')">Acta de Defunción</a></li>
+                    <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeActa('Acta de Matrimonio')">Acta de Matrimonio</a></li>
+                    <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeActa('Acta de Divorcio')">Acta de Divorcio</a></li>
+                    <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeActa('Constancia de Vigencia de Derechos')">Constancia
+                        de Vigencia de Derechos</a></li>
+                    <li><a class="dropdown-item"
+                      style="cursor:pointer" (click)="setTipoDeActa('Constancia de Semanas Cotizadas en el IMSS')">Constancia de Semanas
+                        Cotizadas en el IMSS</a></li>
+                    <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeActa('Registro Federal de Contribuyentes')">Registro
+                        Federal de Contribuyentes</a></li>
+                    <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeActa('CONSTANCIA DE NO INHABILITACIÓN')">CONSTANCIA DE
+                        NO INHABILITACIÓN</a></li>
+                    <li><a class="dropdown-item"
+                      style="cursor:pointer" (click)="setTipoDeActa('Asignación de Número de Seguridad Social')">Asignación de Número de
+                        Seguridad Social</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Tipo de CURP -->
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="form-outline">
+                <h5 style="color: #efb810" class="card-title">Curp</h5>
+                <!-- <li class="list-group-item">{{ info?.curp }}</li> -->
+  
+                <input style="text-transform:uppercase ;" type="text" [(ngModel)]="curp">
+                <!-- <label class="form-label" for="form1">Search</label> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Tipo de ESTADO -->
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="form-outline">
+                <h5 style="color: #efb810;" class="card-title">Estado</h5>
+                <!-- <li class="list-group-item">{{ info?.estado }}</li> -->
+                <input style="text-transform:uppercase ;" type="text" [(ngModel)]="estado">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Tipo de NOMBBRE -->
+        <div class="col">
+          <div class="card h-100">
+  
+            <div class="card-body">
+              <div class="form-outline">
+                <h5 style="color: #efb810" class="card-title">Nombre</h5>
+                <!-- <li class="list-group-item">{{ info?.nombre }}</li> -->
+                <input type="text" [(ngModel)]="nombredecliente">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Tipo de APELIIDOS -->
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="form-outline">
+                <h5 style="color: #efb810" class="card-title">Apellidos</h5>
+                <!-- <li class="list-group-item">{{ info?.apellidos }}</li> -->
+                <input type="text" [(ngModel)]="apellidosc">
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="form-outline">
+                <h5 style="color: #efb810" class="card-title">Asesor</h5>
+                <li class="list-group-item">{{nombreasesor}}</li>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- PRECIO -->
+        <div class="col" *ngIf="myRol == 'Admin'">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="form-outline">
+                <h5 style="color: #efb810" class="card-title">Precio</h5>
+                <!-- <li class="list-group-item">{{precioyasesor?.precio}}</li> -->
+                <input type="text">{{precioyasesor?.precio}}
+              </div>
+            </div>
+          </div>
+        </div>
+  
+  
+  
+        <div class="card-body">
+          <div class="form-outline">
+            <div class="input-group mb-3">
+              <!-- FORMA MANUAL FORMULARIO -->
+  
+              <input [(ngModel)]="valorabuscar" type="text" class="txtbuscar" placeholder="Busca tu Ciber" />
+            </div>
+            <table class="table" *ngIf="valorabuscar.length>0 && nombreasesor==''">
+              <tbody>
+                <tr *ngFor="let cibers of getciber | buscarciber: valorabuscar ">
+                  <td (click)="clickciber(cibers.id, cibers.nombre)" style="cursor: pointer; " (click)="changeView4()">
+                    {{cibers?.nombre}} </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+  
+  
+  
+  
+  
+        <!-- LISTBOX AESORES -->
+      </div>
+      <!-- BOTON DE ENVIAR DEL FORMULAERIO DE ASESORES Y DATOS DEL DOCUMENTO -->
+      <button *ngIf="conteo3" class="conteo2" (click)="enviaractamanual()">Enviar</button>
+      <!-- <button *ngIf="conteo3" class="conteo3" (click)="backUp()">Regresar</button> -->
+    </div>
+    <button class="conteo3" (click)="Volver2()">Regresar</button>
+  </div>

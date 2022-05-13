@@ -14,7 +14,7 @@ import { GridApi, GridReadyEvent, RowSpanParams, ValueGetterFunc, ValueGetterPar
 import * as XLSX from 'xlsx'
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 import { faTrashArrowUp } from '@fortawesome/free-solid-svg-icons';
-import {faTrashRestore } from '@fortawesome/free-solid-svg-icons';
+import { faTrashRestore } from '@fortawesome/free-solid-svg-icons';
 declare function loader(): any;
 declare function closeAlert(): any;
 
@@ -26,18 +26,22 @@ declare function closeAlert(): any;
 })
 
 export class HistorialComponent implements OnInit {
+  //VARIABLES
   private gridApi!: GridApi;
+  //cambios de vista
   papeleras: boolean = false;
   conteo: boolean = false;
   conteo2: boolean = false;
   conteo3: boolean = false;
+
+
   public imagePath: any;
   hidden: boolean = false;
   hidden2: boolean = true;
   faTrashCan = faTrashCan;
   facalend = faCalendar;
-  restored=faTrashRestore;
-  papelera=faTrashArrowUp;
+  restored = faTrashRestore;
+  papelera = faTrashArrowUp;
   imgURL: any;
   fileTmp: any;
   info: any;
@@ -50,10 +54,10 @@ export class HistorialComponent implements OnInit {
   buscargethistorial: string = "";
   tipo: any;
   estado: any;
-  nombredecliente:any;
-  apellidosc:any;
+  nombredecliente: any;
+  apellidosc: any;
   precioyasesor: any;
-  namefile:any;
+  namefile: any;
   ciberseleccionado: any;
   // VARIABLES PARA ENVIAR ACTAS
   enviaractas: any;
@@ -81,12 +85,12 @@ export class HistorialComponent implements OnInit {
   cortes: any;
   responsableSearch: string = "";
   newResponsable: any;
-  fecha:any;
+  fecha: any;
 
-  gettraerPapelera2:any;
+  gettraerPapelera2: any;
   public rowData!: any[];
   public pinnedBottomRowData!: any[];
-  //Tabla
+  //CONSTRUCTOR
   constructor(private restService: RestService, private router: Router, private database: DatabaseService, private http: HttpClient) { }
 
   exportexcel(): void {
@@ -94,8 +98,8 @@ export class HistorialComponent implements OnInit {
     let userName = usuario.toString(CryptoJS.enc.Utf8);
     let arreglo = userName.split('"');
 
-    // this.gridApi.exportDataAsCsv({ fileName: 'Corte-' + arreglo[1] + '.csv' });
-    /* pass here the table id PASAMOS EL ID DE L TABLA PARA PPSTERIORMENTE MANDARLO A LA BASE DE DATOS*/
+
+    /*PASAMOS EL ID DE L TABLA PARA PPSTERIORMENTE MANDARLO A LA BASE DE DATOS*/
     let element = document.getElementById('excel-table');
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 
@@ -114,12 +118,13 @@ export class HistorialComponent implements OnInit {
     })
 
   }
+
   clearresponsable() {
     this.responsableSearch = "";
     this.newResponsable = undefined;
   }
 
-
+//ENVIAMOS EL ACTA A LA BASE DE DATOS
   async enviaracta() {
     Swal.fire(
       {
@@ -142,7 +147,7 @@ export class HistorialComponent implements OnInit {
     body.append("price", this.precioyasesor.precio);
     body.append("nombreacta", this.info.nombre + " " + this.info.apellidos);
 
-    
+
     let nombrecompleto;
     if (this.info.apellidos == undefined || this.info.apellidos == null || this.info.apellidos == "") {
       nombrecompleto = this.info.nombre
@@ -150,13 +155,13 @@ export class HistorialComponent implements OnInit {
       nombrecompleto = this.info.nombre + " " + this.info.apellidos;
     }
 
-    const data = await this.restService.enviarcta(this.ciberseleccionado, this.precioyasesor.superviser, this.info.tipo, this.info.curp, this.info.estado, this.precioyasesor.precio, nombrecompleto, "" ,this.fileTmp.fileName).toPromise();
-    console.log(data);
+    const data = await this.restService.enviarcta(this.ciberseleccionado, this.precioyasesor.superviser, this.info.tipo, this.info.curp, this.info.estado, this.precioyasesor.precio, nombrecompleto, "", this.fileTmp.fileName).toPromise();
+   
     this.reloadCurrentRoute();
   }
 
 
-
+//RECARGAMOS LA PAGINA POR SI MISMA
   reloadCurrentRoute() {
     const currentUrl = this.router.url;
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
@@ -164,6 +169,13 @@ export class HistorialComponent implements OnInit {
     });
   }
 
+  Volver() {
+
+      this.router.navigateByUrl("/manual");
+  
+  }
+
+//RECARGAMOS LA MISMA PAGINA DESPUES DE QUE SE MANDA A LA PAPELERA
   reloadCurrentRouteLastDelete() {
     const currentUrl = this.router.url;
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
@@ -171,7 +183,7 @@ export class HistorialComponent implements OnInit {
     });
 
   }
-
+  //EXPPRTAMOS A EXCEL LA TABLA
   onBtnExport() {
     var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
     let userName = usuario.toString(CryptoJS.enc.Utf8);
@@ -179,7 +191,7 @@ export class HistorialComponent implements OnInit {
 
     this.gridApi.exportDataAsCsv({ fileName: 'Corte-' + arreglo[1] + '.csv' });
   }
-
+  //BORRAMOS UNA ACTA CON SU ID Y NOMBRE DE USUARIO
   deleteItemActa(id: any, document: any, enterprise: any) {
     Swal.fire({
       title: '¿Estás seguro?',
@@ -227,10 +239,10 @@ export class HistorialComponent implements OnInit {
       }
     })
   }
-
-
+        
+  //EDITAMOS LA FECHA DE LOS REGISTROS DE LA TABLA
   EditFecha(id: any) {
-      Swal.fire({
+    Swal.fire({
       title: '¿Estás seguro?',
       text: "Se cambiara a la fecha de: '" + this.fecha,
       icon: 'question',
@@ -248,7 +260,7 @@ export class HistorialComponent implements OnInit {
         let tokenfinal: string = final;
         const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
 
-        this.http.put('http://actasalinstante.com:3030/api/actas/changeDate/' + id,{date: this.fecha},{ headers }).subscribe(
+        this.http.put('http://actasalinstante.com:3030/api/actas/changeDate/' + id, { date: this.fecha }, { headers }).subscribe(
           (data: any) => {
             Swal.fire(
               {
@@ -262,9 +274,9 @@ export class HistorialComponent implements OnInit {
             this.reloadCurrentRoute();
 
           },
-          
+
           (err: any) => {
-           
+
             Swal.fire(
               {
                 position: 'center',
@@ -276,12 +288,13 @@ export class HistorialComponent implements OnInit {
             );
           }
         );
-          
+
       }
     })
   }
-  restaurarPapelera(id:any ,document:any) {
-    
+  //RESTAURAMOS LAS ACTAS ELIMINADADAS DE LA PAPELERA
+  restaurarPapelera(id: any, document: any) {
+
     let hiddensa: boolean = false;
     Swal.fire({
       title: 'Mover a papelera',
@@ -301,8 +314,8 @@ export class HistorialComponent implements OnInit {
         let tokenfinal: string = final;
         const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
 
-        this.http.put('http://actasalinstante.com:3030/api/actas/moveToTrash/' ,{id: id, hidden: hiddensa},{ headers}).subscribe(
-           (data: any) => {
+        this.http.put('http://actasalinstante.com:3030/api/actas/moveToTrash/', { id: id, hidden: hiddensa }, { headers }).subscribe(
+          (data: any) => {
             Swal.fire(
               {
                 position: 'center',
@@ -315,9 +328,9 @@ export class HistorialComponent implements OnInit {
             this.reloadCurrentRoute();
 
           },
-          
+
           (err: any) => {
-        
+
             Swal.fire(
               {
                 position: 'center',
@@ -329,14 +342,14 @@ export class HistorialComponent implements OnInit {
             );
           }
         );
-          
+
       }
     })
   }
 
-  // MOVERAPAPPELERA
-  moveraPapelera(id:any ,document:any) {
-    
+  // BORRAMOS Y SE VA A LA PAPELERA
+  moveraPapelera(id: any, document: any) {
+
     let hiddensa: boolean = true || false;
     Swal.fire({
       title: 'Mover a papelera',
@@ -356,8 +369,8 @@ export class HistorialComponent implements OnInit {
         let tokenfinal: string = final;
         const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
 
-        this.http.put('http://actasalinstante.com:3030/api/actas/moveToTrash/' ,{id: id, hidden: hiddensa},{ headers}).subscribe(
-           (data: any) => {
+        this.http.put('http://actasalinstante.com:3030/api/actas/moveToTrash/', { id: id, hidden: hiddensa }, { headers }).subscribe(
+          (data: any) => {
             Swal.fire(
               {
                 position: 'center',
@@ -370,9 +383,9 @@ export class HistorialComponent implements OnInit {
             this.reloadCurrentRoute();
 
           },
-          
+
           (err: any) => {
-        
+
             Swal.fire(
               {
                 position: 'center',
@@ -384,19 +397,22 @@ export class HistorialComponent implements OnInit {
             );
           }
         );
-          
+
       }
     })
   }
-
-
-
+  setTipoDeActa(tipo:any){
+    this.tipo = tipo;
+  }
   
+  //SELECCIONAMOS EL CIBER PARA EL ASESOR
   async clickciber(id: any, nombre: any) {
     this.ciberseleccionado = id;
     const body = new FormData();
     let documento: string;
-    console.log(this.info.tipo);
+
+
+  
     switch (this.info.tipo) {
 
       case "Asignación de Número de Seguridad Social":
@@ -430,9 +446,14 @@ export class HistorialComponent implements OnInit {
         documento = "";
         break;
     }
-    
+   
     let state;
+
+    
     switch (this.info.estado) {
+      case "CHIAPAS":
+        state = "chia";
+        break;
       case "CHIAPAS":
         state = "chia";
         break;
@@ -545,31 +566,37 @@ export class HistorialComponent implements OnInit {
         state = "";
         break;
     }
+    if (this.info.estado.includes("ESTADOS")) {
+      documento = "ext";
+    }
+
+    console.log(documento);
 
     const precioyasesor = await this.restService.getprecioyasesor(documento, state, id).toPromise();
     this.precioyasesor = precioyasesor;
     const data: any = await this.restService.getidsupervisor(this.precioyasesor.superviser).toPromise();
     this.nombreasesor = data?.data.nombre;
+
   }
 
-
+  //TRAEMOS TODOS LOS DATOS DE LAS ACTAS DE PAPELERA
   async gettraerPapelera() {
- 
-  
 
-        const data: any = await this.restService.Getpapelera().toPromise();
 
-        this.gettraerPapelera2 = data;
-       
-        if (data.lenght != 0) {
-          closeAlert();
-        }
 
-    
-    
- 
+    const data: any = await this.restService.Getpapelera().toPromise();
+
+    this.gettraerPapelera2 = data;
+
+    if (data.lenght != 0) {
+      closeAlert();
+    }
+
+
+
+
   }
-  //CORTEHSITORIAL
+  //OPTENEMOS TODO EL CORTE DE LAS ACTAS Y ASESORES
   async getcorte() {
 
     if (localStorage.getItem('token') != null) {
@@ -580,7 +607,7 @@ export class HistorialComponent implements OnInit {
         const data: any = await this.restService.getcorte(id).toPromise();
 
         this.getcortes = data;
-       
+
         if (data.lenght != 0) {
           closeAlert();
         }
@@ -588,11 +615,11 @@ export class HistorialComponent implements OnInit {
       }
     }
   }
-
+  //CAMBIAMOS LA VISTA HACIA OTRA TABLA
   onChange(event: any) {
     this.tipodebusqueda = event;
   }
-  /*   CRYPTO.JS  */
+//DESINCRIPTAMOS EL TOKEN PARA OBTENER LOS DATOS Y EL ROL
   async descry() {
 
     var idlocal = localStorage.getItem("id");
@@ -604,7 +631,7 @@ export class HistorialComponent implements OnInit {
     this.myRol = data.data.rol;
   }
 
-  /*   SE OPTIENE EL CORTE  */
+//PROTEGEMOS LAS VISTAS PARA NO SER HACKEADAS
   ngOnInit(): void {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -616,7 +643,7 @@ export class HistorialComponent implements OnInit {
     this.descry();
 
   }
-
+  //OBTENEMOS TODOS LOS CIBER PARA EL BUSCADOR
   async getAllCibers() {
     let arreglo: any = await this.restService.getuser().toPromise();
     this.getciber = arreglo;
@@ -629,12 +656,12 @@ export class HistorialComponent implements OnInit {
       loader();
     }
     this.vista = !this.vista;
- 
+
     this.getcorte();
     this.gettraerPapelera();
 
   }
-
+  //CAMBIAMOS LA VISTA DE LA TABLA DE DCOUMENTOS
   changeView2() {
 
     this.conteo = !this.conteo;
@@ -642,7 +669,7 @@ export class HistorialComponent implements OnInit {
     this.getcorte();
     this.gettraerPapelera();
   }
-
+  //CAMBIAMOS LA VISTA D ELA TABLA SUBIR ARCHIVOS MANUAL
   changeView3() {
 
     this.conteo2 = !this.conteo2;
@@ -650,7 +677,7 @@ export class HistorialComponent implements OnInit {
 
 
   }
-  
+  //OCULTAMOS LA VISTA DE LOS BOTONES DE SUBIR EN DUCMENTOS
   changeView4() {
 
     this.conteo3 = !this.conteo3;
@@ -658,6 +685,7 @@ export class HistorialComponent implements OnInit {
 
 
   }
+  //OCULTAMOS LA VISTA DE LOS BOTONES DE LA VISTA DE SUBIR DOCUMENTOS DE FORMA MANUAL
   changeView5() {
 
     this.papeleras = !this.papeleras;
@@ -665,6 +693,7 @@ export class HistorialComponent implements OnInit {
 
 
   }
+  //REGRESAMOS A LA VISTA ACTUAL CON EL BOTON REGRESAR
   backUp() {
     this.preview = 0;
     this.fileTmp = null;
@@ -672,6 +701,7 @@ export class HistorialComponent implements OnInit {
 
 
   }
+   //REGRESAMOS A LA VISTA ACTUAL CON EL BOTON REGRESAR
   backUp2() {
     this.preview = 0;
     this.fileTmp = null;
@@ -714,7 +744,7 @@ export class HistorialComponent implements OnInit {
   }
 
 
-  //SOLTARPDF
+  //SOLTAMOS EL DOCUMENTO PDF AL APARTADO DE DOCUMENTOS
   getFile($event: any): void {
     //TODO esto captura el archivo!
     const [file] = $event.target.files;
@@ -723,7 +753,7 @@ export class HistorialComponent implements OnInit {
       fileName: file?.name
     }
   }
-  //ENVIARPDF
+  //ENVIAMOS TODOS LOS DATOS SLICITADOS DEL DOCUMENTO PDF
   sendFile(): void {
     try {
       loader();

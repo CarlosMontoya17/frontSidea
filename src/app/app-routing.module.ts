@@ -10,6 +10,7 @@ import { SidebarpanelhistorialComponent } from './componentes/sidebarpanelhistor
 import { StepusuarioComponent } from './componentes/stepusuario/stepusuario.component';
 import { EditarpreciosComponent } from './componentes/administrar/editarprecios/editarprecios.component';
 import { CorteComponent } from './componentes/corte/corte.component';
+import { DocumentosmanualComponent } from './componentes/documentosmanual/documentosmanual.component';
 const routes: Routes = [
   {
   path: '',
@@ -56,6 +57,10 @@ const routes: Routes = [
 {
   path: 'corte',
   component: CorteComponent
+},
+{
+  path: 'manual',
+  component: DocumentosmanualComponent
 },
 
 

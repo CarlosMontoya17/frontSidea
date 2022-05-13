@@ -83,6 +83,7 @@ export class AdministrarComponent implements OnInit {
   NUEVOLEON: number = 50;
   MEXICO: number = 48;
   QUINTANAROO: number = 50;
+  EXTRANJERO: number = 120;
   precios: any = [];
 
   tipodebusqueda: any = 'Seleccione el tipo de busqueda';
@@ -121,19 +122,20 @@ export class AdministrarComponent implements OnInit {
     private database: DatabaseService,
     private perfil: PerfileditService,
     private httpClient: HttpClient) { }
+    //CAMBIAMOS LA VISTA DE LA TABLA DE USUARIOS
   changeView() {
     this.vista = !this.vista;
 
   }
-
+  //BOTON PARA AGREGAR UN NUEVO USUARIO
   agregaUsuario() {
     this.agregarusuario = !this.agregarusuario;
   }
-
+  //RESETEAMOS LA PAGINA 
   resetPagination() {
     this.page = 1;
   }
-
+  //SELECCIONAMOS EL PRECIO DEL USUARIO 
   setPriceUsername() {
     if (this.usernameLocal == "Cibers Nelly") {
       this.nac = 0;
@@ -270,7 +272,7 @@ export class AdministrarComponent implements OnInit {
 
 
   }
-
+  //BORRAMOS EL USUARIO
   async deleteUser(user: any) {
     Swal.fire({
       title: '¿Estás seguro?',
@@ -309,7 +311,7 @@ export class AdministrarComponent implements OnInit {
       }
     })
   }
-
+  //EDITAMOS EL PRECIO DEL USUARIO
   async editprice(user: any) {
     const data = this.restservice.getidsupervisor(user.idSuper);
     this.perfil.set(user);
@@ -419,17 +421,19 @@ export class AdministrarComponent implements OnInit {
       }
     }
   }
-
+  //RECARGAMOS EL COMPONENTE POR SI MISMO
   reloadCurrentRoute() {
     const currentUrl = this.router.url;
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate([currentUrl]);
     });
   }
+  //LIMPIAMOS EL BUSCADOR
   clearresponsable() {
     this.responsableSearch = "";
     this.newResponsable = undefined;
   }
+  //PASAMOS AL SIGUENTE PASO DE AGREGAR O MODIFICAR USUARIOS
   nextStep() {
     if (this.currentStep == 0) {
       if (this.newUsername != "" && this.newPassword != "" && this.newRol != "" && this.newResponsable != "") {
@@ -470,6 +474,7 @@ export class AdministrarComponent implements OnInit {
   estados() {
     this.porEstados = !this.porEstados;
   }
+  //REGRESAMOS AL ANTERIOR PASO DE LA TABLA AGREGAR O MODIFICAR USUARIOS
   prevStep() {
     this.currentStep--;
     this.alert = [];
@@ -477,7 +482,7 @@ export class AdministrarComponent implements OnInit {
   restart(m: number) {
     this.currentStep = m;
   }
-
+  //OPTENEMOS  TODO LOS USUARIOS
   async getAllUsers() {
     var idlocal = localStorage.getItem("id");
     var i = CryptoJS.AES.decrypt(idlocal || '{}', "id");
@@ -487,6 +492,7 @@ export class AdministrarComponent implements OnInit {
       this.usuarios = users;
     }
   }
+  //OPTENEMOS TODOS LOS CIBER
   async getAllProviders() {
     if (this.newRol == "Supervisor") {
       this.clearresponsable()
@@ -501,16 +507,20 @@ export class AdministrarComponent implements OnInit {
       }
     }
   }
+  //SELECCIONAMOS EL CIBER
   selectProvider(provider: string) {
     if (this.responsableSearch != "") {
       this.newResponsable = provider;
     }
   }
+  //SELECCIONAMOS EL ASESOR
   selectProvidertable(provider: string) {
     if (this.dataselect != "") {
       this.newResponsable = provider;
     }
   }
+
+  //OBTENEMOS LOS DATOS DEL SUPERVISORR
   async getMyData(id: any) {
     const mydata: any = await this.restservice.getidsupervisor(id).toPromise();
     this.myData = mydata?.data;

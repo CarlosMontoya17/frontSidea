@@ -13,7 +13,10 @@
     
       
       <li id="historial" class="nav-item"><a href="historial" class="nav-link">Carga de documentos</a></li>
-      <li id="pagos" class="nav-item"><a href="pagos" class="nav-link">Corte</a></li>
+      <li id="pagos" class="nav-item"><a class="nav-link">Corte</a><ul class="submenu">
+        <li class="lisub" style="padding:1em;" style="cursor:pointer" (click)="titulo('POR ENVIAR')"><a>Por enviar</a></li>
+        <li class="lisub" style="padding:1em;" style="cursor:pointer" (click)="titulo('ENVIADO')"><a>Enviado</a></li>
+      </ul></li>
       <li id="corte" class="nav-item"><a  href="corte" class="nav-link">Historial</a></li>
       <li id="publicidad" class="nav-item"><a href="publicidad" class="nav-link">Publicidad</a></li>
       <li class="nav-item"><a href="inicio" class="nav-link">Historial de Sidea</a></li>

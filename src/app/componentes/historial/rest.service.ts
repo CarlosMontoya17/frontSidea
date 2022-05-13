@@ -46,7 +46,7 @@ export class RestService {
     const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
     return this.http.post('http://actasalinstante.com:3030/api/actas/up', { enterprise: ciberseleccionado, provider: superviser, document: tipo, states: estado, curp: curp, nombreacta: nombre, requested: requested, price: precio, namefile:nombredearchivo }, { headers });
   }
-
+  //Corte de historial
   getcorte(id: any): Observable<any> {
     return this.http.get('http://actasalinstante.com:3030/api/getMyCorteId/' + id)
   }
@@ -82,6 +82,6 @@ export class RestService {
     const headers = new HttpHeaders({ 'x-access-token': final! });
     return this.http.get('http://actasalinstante.com:3030/api/actas/Trash/' , { headers })
   }
-
+  
 
 } 

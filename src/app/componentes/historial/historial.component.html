@@ -1,5 +1,5 @@
 <!-- SIDEBAR EN LA CLASE SIDERBARCOMPONENTE -->
-<app-sidebar></app-sidebar>
+ <app-sidebar></app-sidebar>
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
@@ -11,13 +11,13 @@
     <li class="breadcrumb-item" *ngIf="vista"><a style="color: #efb810;">Historial de Registros</a></li>
   </ol>
 </nav>
-<!-- <h1 *ngIf="!vista">&bull;documentos&bull;</h1> -->
+
 <h1 *ngIf="!vista" class="firstH1">
   <b>
     <div class="Welcome" id="firstHeader">&bull;Docum</div>
     <div class="to" id="firstHeader">en</div>
     <div class="the" id="firstHeader">tos&bull;</div>
- 
+
   </b>
 </h1>
 <div id="historial" class="file-area">
@@ -29,8 +29,8 @@
         aqui para importarlo </span>
       <span style="color: #333333;">{{ fileTmp?.fileName }}</span>
       <!-- OPTIENE EL NOMBRE DEL PDF -->
-      <!-- <input type="file" (change)="getFile($event)"> -->
-   </div>
+
+    </div>
   </div>
 </div>
 
@@ -38,36 +38,16 @@
   <!-- BUTTON DE ENVIAR PDF-->
   <button [ngModel]="tipodebusqueda" (ngModelChange)="onChange($event)" class="conteo2"
     (click)="sendFile()">Enviar</button>
-  <button type="button" class="conteo2" (click)="changeView2()">Manual</button>
+  <button type="button" class="conteo2" (click)="Volver()">Manual</button>
   <!-- FIN DEL BUTTON DE ENVIAR PDF-->
 </div>
-<div *ngIf="conteo && !vista" id="container">
-  
-  <div class="col">
-    <div class="col">
-      <div class="card h-100">
-        <div class="card-body">
-          <div class="form-outline">
-            <div class="input-group mb-3">
-              <!-- FORMA MANUAL FORMULARIO -->
+<div *ngIf="conteo " id="container">
 
-              <input [(ngModel)]="valorabuscar" type="text" class="txtbuscar" placeholder="Busca tu Ciber" />
-            </div>
-            <table class="table" *ngIf="valorabuscar.length>0">
-              <tbody>
-                <tr *ngFor="let cibers of getciber | buscarciber: valorabuscar ">
-                  <td (click)="clickciber(cibers.id, cibers.nombre)" style="cursor: pointer; " (click)="changeView4()">
-                    {{cibers?.nombre}} </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-    <h1 *ngIf="conteo3">&bull;Cargar documentos de forma manual&bull;</h1>
-  
-    <div *ngIf="conteo3" class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="col">
+
+    <h1>&bull;Cargar documentos de forma manual&bull;</h1>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
       <!-- Tipo de documento -->
       <div class="col">
         <div class="card h-100">
@@ -76,7 +56,30 @@
               <h5 style="color: #efb810" class="card-title">Tipo de documento</h5>
               <!-- <li class="list-group-item">{{ info?.tipo }}</li> -->
 
-              <input type="text" [(ngModel)]="tipo">
+              <input type="text" [(ngModel)]="tipo" name="tipo">
+              <div class="dropdown">
+                <button class="conteo5" type="button" id="conteo2" data-bs-toggle="dropdown" aria-expanded="false">
+                  {{tipo || "Selecciona un tipo de documento"}}
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" (click)="setTipoDeActa('Acta de Nacimiento')">Acta de Nacimiento</a></li>
+                  <li><a class="dropdown-item" (click)="setTipoDeActa('Acta de Defunción')">Acta de Defunción</a></li>
+                  <li><a class="dropdown-item" (click)="setTipoDeActa('Acta de Matrimonio')">Acta de Matrimonio</a></li>
+                  <li><a class="dropdown-item" (click)="setTipoDeActa('Acta de Divorcio')">Acta de Divorcio</a></li>
+                  <li><a class="dropdown-item" (click)="setTipoDeActa('Constancia de Vigencia de Derechos')">Constancia
+                      de Vigencia de Derechos</a></li>
+                  <li><a class="dropdown-item"
+                      (click)="setTipoDeActa('Constancia de Semanas Cotizadas en el IMSS')">Constancia de Semanas
+                      Cotizadas en el IMSS</a></li>
+                  <li><a class="dropdown-item" (click)="setTipoDeActa('Registro Federal de Contribuyentes')">Registro
+                      Federal de Contribuyentes</a></li>
+                  <li><a class="dropdown-item" (click)="setTipoDeActa('CONSTANCIA DE NO INHABILITACIÓN')">CONSTANCIA DE
+                      NO INHABILITACIÓN</a></li>
+                  <li><a class="dropdown-item"
+                      (click)="setTipoDeActa('Asignación de Número de Seguridad Social')">Asignación de Número de
+                      Seguridad Social</a></li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -115,7 +118,7 @@
             <div class="form-outline">
               <h5 style="color: #efb810" class="card-title">Nombre</h5>
               <!-- <li class="list-group-item">{{ info?.nombre }}</li> -->
-              <input type="text"  [(ngModel)]="nombredecliente">
+              <input type="text" [(ngModel)]="nombredecliente">
             </div>
           </div>
         </div>
@@ -127,7 +130,7 @@
             <div class="form-outline">
               <h5 style="color: #efb810" class="card-title">Apellidos</h5>
               <!-- <li class="list-group-item">{{ info?.apellidos }}</li> -->
-              <input type="text"  [(ngModel)]="apellidosc">
+              <input type="text" [(ngModel)]="apellidosc">
             </div>
           </div>
         </div>
@@ -155,6 +158,31 @@
           </div>
         </div>
       </div>
+
+
+
+      <div class="card-body">
+        <div class="form-outline">
+          <div class="input-group mb-3">
+            <!-- FORMA MANUAL FORMULARIO -->
+
+            <input [(ngModel)]="valorabuscar" type="text" class="txtbuscar" placeholder="Busca tu Ciber" />
+          </div>
+          <table class="table" *ngIf="valorabuscar.length>0 && nombreasesor==''">
+            <tbody>
+              <tr *ngFor="let cibers of getciber | buscarciber: valorabuscar ">
+                <td (click)="clickciber(cibers.id, cibers.nombre)" style="cursor: pointer; " (click)="changeView4()">
+                  {{cibers?.nombre}} </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+
+
+
       <!-- LISTBOX AESORES -->
     </div>
     <!-- BOTON DE ENVIAR DEL FORMULAERIO DE ASESORES Y DATOS DEL DOCUMENTO -->
@@ -243,7 +271,7 @@
         </div>
       </div>
     </div>
-    <h1 >&bull;RESUMEN&bull;</h1>
+    <h1>&bull;RESUMEN&bull;</h1>
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <!-- Tipo de documento -->
       <div class="col">
@@ -347,7 +375,7 @@
   <div>
   </div>
   <!-- <h1>&bull;Registros&bull;</h1> -->
-  <h1  class="firstH1">
+  <h1 class="firstH1">
     <b>
       <div class="Welcome" id="firstHeader">&bull;Reg</div>
       <div class="to" id="firstHeader">is</div>
@@ -361,7 +389,7 @@
 <div class="card mx-auto" style="width: 100%;" *ngIf="vista">
 
 
- 
+
   <div class="form-group">
     <div class="input-group mb-3">
       <!-- FORMA MANUAL FORMULARIO -->
@@ -371,33 +399,36 @@
       </select> -->
       <input [(ngModel)]="buscargethistorial" type="text" class="txtbuscar" placeholder="Buscar por curp" />
     </div>
-      
+
   </div>
 
-  <table style=" border-radius: 1rem !important; font-size:1.2em;"class="table table-striped">
- 
+  <table style=" border-radius: 1rem !important; font-size:1.2em;" class="table table-striped">
+
     <thead>
       <tr>
         <th scope="col" style="background-color:rgba(150,150,253,90%); color: #000; font-size:1.2em;">#</th>
         <th scope="col" style="background-color:rgba(150,150,253,90%); color: #000; font-size:1.2em;">Id</th>
-        <th scope="col" style="background-color:rgba(150,150,253,90%); color: #000; font-size:1.2em;">Tipo de documento</th>
+        <th scope="col" style="background-color:rgba(150,150,253,90%); color: #000; font-size:1.2em;">Tipo de documento
+        </th>
         <th scope="col" style="background-color:rgba(150,150,253,90%); color: #000; font-size:1.2em;">Curp</th>
         <th scope="col" style="background-color:rgba(150,150,253,90%); color: #000;font-size:1.2em;">Estado</th>
         <th scope="col" style="background-color:rgba(150,150,253,90%); color: #000; font-size:1.2em;">Nombre</th>
         <th scope="col" style="background-color:rgba(150,150,253,90%); color: #000; font-size:1.2em;">Ciber</th>
         <th scope="col" style="background-color:rgba(150,150,253,90%); color: #000; font-size:1.2em;">Asesor</th>
-        <th scope="col" *ngIf="myRol == 'Admin'" style="background-color:rgba(150,150,253,90%); color: #000; font-size:1.2em;">Precio del acta al negocio</th>
-        <th scope="col" style="background-color:rgba(150,150,253,90%); color: #000; font-size:1.2em;" >Se solicito</th>
+        <th scope="col" *ngIf="myRol == 'Admin'"
+          style="background-color:rgba(150,150,253,90%); color: #000; font-size:1.2em;">Precio del acta al negocio</th>
+        <th scope="col" style="background-color:rgba(150,150,253,90%); color: #000; font-size:1.2em;">Se solicito</th>
         <th scope="col" style="background-color:rgba(150,150,253,90%); color: #000; font-size:1.2em;">Fecha</th>
         <th scope="col" style="background-color:rgba(150,150,253,90%); color: #000; font-size:1.2em;">Otros</th>
       </tr>
     </thead>
     <tbody>
-      <tr style="cursor: pointer;" *ngFor="let cortes of getcortes | paginate: { itemsPerPage: 20, currentPage: page }  |  buscarhistorial:buscargethistorial">
-        <td style=" color: #000; font-size:1.1em; " >{{cortes?.i}}</td>
+      <tr style="cursor: pointer;"
+        *ngFor="let cortes of getcortes | paginate: { itemsPerPage: 20, currentPage: page }  |  buscarhistorial:buscargethistorial">
+        <td style=" color: #000; font-size:1.1em; ">{{cortes?.i}}</td>
         <td style=" color: #000; font-size:1.1em; ">{{cortes?.id}}</td>
         <td style=" color: #000; font-size:1.1em; ">{{cortes?.document}}</td>
-        
+
         <td style=" color: #000; font-size:1.1em; ">{{cortes?.curp}}</td>
         <td style=" color: #000; font-size:1.1em; ">{{cortes?.states}}</td>
         <td style=" color: #000; font-size:1.1em; ">{{cortes?.nombreacta}}</td>
@@ -407,19 +438,17 @@
         <td style=" color: #000; font-size:1.1em; ">{{cortes?.requested}}</td>
         <td style=" color: #000; font-size:1.1em; ">
           {{ cortes?.createdAt | date:'yyyy-MM-dd' }}
-         
-          <input type="date" [(ngModel)]="fecha" name="fecha" id="fecha">
-         
 
-          <fa-icon [icon]="facalend" class="add-user"
-            (click)="EditFecha(cortes.id)"></fa-icon>
-           
+          <input type="date" [(ngModel)]="fecha" name="fecha" id="fecha">
+
+
+          <fa-icon [icon]="facalend" class="add-user" (click)="EditFecha(cortes.id)"></fa-icon>
+
         </td>
-   
+
         <td style="text-align: center;">
-         
-          <fa-icon [icon]="papelera" class="add-user"
-          (click)="moveraPapelera(cortes.id,cortes.document)"></fa-icon>
+
+          <fa-icon [icon]="papelera" class="add-user" (click)="moveraPapelera(cortes.id,cortes.document)"></fa-icon>
 
         </td>
       </tr>
@@ -427,18 +456,18 @@
   </table>
   <pagination-controls (pageChange)="page = $event"></pagination-controls>
   <div class="card-body text-center">
-    
+
     <button class="conteo2" (click)="exportexcel()">Descargar Excel</button>
 
   </div>
 
 </div>
- 
+
 <button class="conteo4" *ngIf="vista && myRol == 'Admin'" (click)="changeView5()">Papelera</button>
 <div class="card mx-auto" style="width: 100%;" *ngIf="papeleras ">
 
 
- 
+
   <div class="form-group">
     <div class="input-group mb-3">
       <!-- FORMA MANUAL FORMULARIO -->
@@ -446,36 +475,39 @@
       <!--  <select class="form-select" id="inputGroupSelect01">
         <option value="actual" selected>Selecciona un Ciber</option>
       </select> -->
-    
+
     </div>
     <h1 style="text-align: center;">Papelera</h1>
   </div>
 
-  <table style=" border-radius: 1rem !important; font-size:1.2em;"class="table table-striped">
-    
+  <table style=" border-radius: 1rem !important; font-size:1.2em;" class="table table-striped">
+
     <thead>
       <tr>
         <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">#</th>
         <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Id</th>
-        <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Tipo de documento</th>
+        <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Tipo de documento
+        </th>
         <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Curp</th>
         <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000;font-size:1.2em;">Estado</th>
         <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Nombre</th>
         <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Ciber</th>
         <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Asesor</th>
-        <th scope="col" *ngIf="myRol == 'Admin'" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Precio del acta al negocio</th>
-        <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;" >Se solicito</th>
+        <th scope="col" *ngIf="myRol == 'Admin'"
+          style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Precio del acta al negocio</th>
+        <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Se solicito</th>
         <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Borrado por</th>
         <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Fecha</th>
         <!-- <th scope="col" style="background-color:rgba(150,150,253,90%); color: #000; font-size:1.2em;">Otros</th> -->
       </tr>
     </thead>
     <tbody>
-      <tr style="cursor: pointer;" *ngFor="let papel of gettraerPapelera2 | paginate: { itemsPerPage: 20, currentPage: page }  |  buscarhistorial:buscargethistorial">
-        <td style=" color: #000; font-size:1.1em; " >{{papel?.i}}</td>
+      <tr style="cursor: pointer;"
+        *ngFor="let papel of gettraerPapelera2 | paginate: { itemsPerPage: 20, currentPage: page }  |  buscarhistorial:buscargethistorial">
+        <td style=" color: #000; font-size:1.1em; ">{{papel?.i}}</td>
         <td style=" color: #000; font-size:1.1em; ">{{papel?.id}}</td>
         <td style=" color: #000; font-size:1.1em; ">{{papel?.document}}</td>
-        
+
         <td style=" color: #000; font-size:1.1em; ">{{papel?.curp}}</td>
         <td style=" color: #000; font-size:1.1em; ">{{papel?.states}}</td>
         <td style=" color: #000; font-size:1.1em; ">{{papel?.nombreacta}}</td>
@@ -487,16 +519,15 @@
         <td style=" color: #000; font-size:1.1em; ">{{papel?.culpable.nombre}}</td>
         <td style=" color: #000; font-size:1.1em; ">
           {{ papel?.createdAt | date:'yyyy-MM-dd' }}
-         
+
           <!-- <input type="date" [(ngModel)]="fecha" name="fecha" id="fecha"> -->
-         
+
 
           <!-- <fa-icon [icon]="facalend" class="add-user"
             (click)="EditFecha(cortes.id)"></fa-icon> -->
-           
+
         </td>
-        <fa-icon [icon]="restored" class="add-user"
-        (click)="restaurarPapelera(cortes.id,cortes.document)"></fa-icon>
+        <fa-icon [icon]="restored" class="add-user" (click)="restaurarPapelera(cortes.id,cortes.document)"></fa-icon>
         <!-- <td style="text-align: center;">
          
           <fa-icon [icon]="papelera" class="add-user"
@@ -509,9 +540,6 @@
   </table>
   <pagination-controls (pageChange)="page = $event"></pagination-controls>
   <div class="card-body text-center">
-    
-  
-
   </div>
 
 </div>
