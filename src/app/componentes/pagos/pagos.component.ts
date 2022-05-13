@@ -172,9 +172,10 @@ export class PagosComponent implements OnInit {
 
     //   }
     // })
-
+    loader();
     this.exportexcel();
-    this.reloadCurrentRoute();
+    closeAlert();
+    this.getCorte(this.ciberidselect, this.CiberSelect);
   }
 
   changeView() {
