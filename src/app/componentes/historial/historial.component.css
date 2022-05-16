@@ -5319,7 +5319,7 @@ Navbar: *automated with boostrap */
 First H1: Welcome to the Future */
 
 #firstHeader {
-  font-size: 2.5em;
+  font-size: 1.9em;
   /* font-family: "Bungee Outline", cursive; */
   letter-spacing: 0.60em;
   color: rgb(0, 0, 0);
@@ -5327,6 +5327,7 @@ First H1: Welcome to the Future */
   flex-wrap: wrap;
   justify-content: center;
   display: inline-flex;
+
 }
 
 /* Full screen size animations */
@@ -5730,6 +5731,7 @@ First H1: Welcome to the Future */
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
     width: -1000px;
+   
   }
 }
 
@@ -5818,7 +5820,7 @@ First H1: Welcome to the Future */
 input[type="date"] {
   display:block;
   position:relative;
-  padding:0.5rem 1.5rem 0.5rem 0.75rem;
+  padding:1rem 3.5rem 1rem 0.75rem;
   
   font-size:1rem;
   font-family:monospace;
@@ -5837,6 +5839,7 @@ input[type="date"] {
 input[type="date"]:focus {
   outline:none;
   border-color:#3acfff;
+  
   box-shadow:0 0 0 0.25rem rgba(0, 120, 250, 0.1);
 }
 
@@ -5856,7 +5859,7 @@ input[type="date"]:focus {
 }
 ::-webkit-calendar-picker-indicator {
   position:absolute;
-  width:2.5rem;
+  width:0.75rem;
   height:100%;
   top:0;
   right:0;

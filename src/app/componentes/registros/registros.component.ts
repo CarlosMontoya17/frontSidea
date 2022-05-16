@@ -5,6 +5,8 @@ import { RestService } from '../historial/rest.service';
 import * as CryptoJS from 'crypto-js';
 import { GridOptions, ValueGetterParams } from 'ag-grid-enterprise';
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
+import { DatabaseService } from 'src/app/servicios/database/database.service';
+import { AdminService } from 'src/app/servicios/admin.service';
 import Swal from 'sweetalert2';
 declare function getArray(): any;
 
@@ -38,13 +40,21 @@ export class RegistrosComponent implements OnInit {
   totalPrecioVendido: number = 0;
   totalPrecioAPagar: number = 0;
   totalUtilidad: number = 0;
-  constructor(private restservice: RestService) {
+
+
+  //Datos para Tabla
+  fechas:any;
+  fechaSeleccionada:any;
+  usuariosEnFecha:any;
+  data:any;
+
+  constructor(private restservice: RestService, private database: DatabaseService, private adminService:AdminService) {
     let AG_GRID_LOCALE_EN = getArray();
     this.localeText = AG_GRID_LOCALE_EN;
     this.columnDefs = [
       { field: "id", width: 80, headerName: "Id", filter: 'agSetColumnFilter' },
-      { field: "provider", headerName: "Ciber", filter: 'agSetColumnFilter' },
-      { field: "enterprise", headerName: "Aesor", filter: 'agSetColumnFilter' },
+      { field: "provider", headerName: "Asesor", filter: 'agSetColumnFilter' },
+      { field: "enterprise", headerName: "Ciber", filter: 'agSetColumnFilter' },
       { field: "document", headerName: "Documento", filter: 'agSetColumnFilter' },
       { field: "states", headerName: "Estado", filter: 'agSetColumnFilter' },
       { field: "curp", headerName: "CURP", filter: 'agSetColumnFilter' },
@@ -73,7 +83,10 @@ export class RegistrosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getcorte();
+    //this.getcorte();
+    this.getDates();
+    this.setDate(null);
+    
   }
   onFilterChanged(params: GridOptions): void {
     this.filtrados = params.api?.getModel();
@@ -159,17 +172,40 @@ export class RegistrosComponent implements OnInit {
     return utility;
   }
 
-  async getcorte() {
+  // async getcorte() {
 
-    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('id') || '{}', "id");
-    let id = usuario.toString(CryptoJS.enc.Utf8);
-    // this.getcortes = await this.restService.getcorte(arreglo[1]).toPromise();
-    const data: any = await this.restservice.getcorte(id).toPromise();
-    let Arreglo: any = [];
-    let index: number = 0;
-    this.getcortes = Arreglo;
-    this.rowData = data;
+  //   var usuario = CryptoJS.AES.decrypt(localStorage.getItem('id') || '{}', "id");
+  //   let id = usuario.toString(CryptoJS.enc.Utf8);
+  //   // this.getcortes = await this.restService.getcorte(arreglo[1]).toPromise();
+  //   const data: any = await this.restservice.getcorte(id).toPromise();
+  //   let Arreglo: any = [];
+  //   let index: number = 0;
+  //   this.getcortes = Arreglo;
+  //   //this.rowData = data;
+  //   this.onPinnedRowBottomCount();
+  // }
+
+  async getDates(){
+    this.fechas = await this.database.getAllDates().toPromise();
+  }
+
+  setDate(fecha:any){
+    this.fechaSeleccionada = fecha;
+
+    this.getCorte();
+  }
+
+
+  async getCorte() {
+    this.rowData = await this.adminService.getHistorialAt(this.fechaSeleccionada).toPromise();
     this.onPinnedRowBottomCount();
+
+
+    await this.adminService.getHistorialAt(this.fechaSeleccionada).subscribe(data => {
+
+    },(err:any) => {
+
+    });
   }
 
 }

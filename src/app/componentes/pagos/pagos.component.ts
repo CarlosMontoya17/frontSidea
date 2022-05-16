@@ -446,7 +446,7 @@ export class PagosComponent implements OnInit {
       this.setCorte(0);
       loadedData();
     }, (err: any) => {
-      console.log(err);
+      
     });
 
   }
@@ -575,7 +575,7 @@ export class PagosComponent implements OnInit {
     this.rowData = data;
     this.precioTotal();
   }
-
+  
   getTodos() {
 
     this.data$.pipe(distinctUntilChanged()).subscribe(async (Data: any) => {

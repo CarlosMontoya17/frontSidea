@@ -12,7 +12,7 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { GridApi, GridReadyEvent, RowSpanParams, ValueGetterFunc, ValueGetterParams } from 'ag-grid-community';
 import * as XLSX from 'xlsx'
-import { faCalendar } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 import { faTrashArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { faTrashRestore } from '@fortawesome/free-solid-svg-icons';
 declare function loader(): any;
@@ -39,7 +39,7 @@ export class HistorialComponent implements OnInit {
   hidden: boolean = false;
   hidden2: boolean = true;
   faTrashCan = faTrashCan;
-  facalend = faCalendar;
+  facalend = faCalendarDays;
   restored = faTrashRestore;
   papelera = faTrashArrowUp;
   imgURL: any;
@@ -124,7 +124,7 @@ export class HistorialComponent implements OnInit {
     this.newResponsable = undefined;
   }
 
-//ENVIAMOS EL ACTA A LA BASE DE DATOS
+  //ENVIAMOS EL ACTA A LA BASE DE DATOS
   async enviaracta() {
     Swal.fire(
       {
@@ -138,7 +138,6 @@ export class HistorialComponent implements OnInit {
 
     this.router.navigateByUrl('/historial');
     const body = new FormData();
-
     body.append("enterprise", this.ciberseleccionado);
     body.append("provider", this.precioyasesor.superviser);
     body.append("document", this.info.tipo);
@@ -156,12 +155,12 @@ export class HistorialComponent implements OnInit {
     }
 
     const data = await this.restService.enviarcta(this.ciberseleccionado, this.precioyasesor.superviser, this.info.tipo, this.info.curp, this.info.estado, this.precioyasesor.precio, nombrecompleto, "", this.fileTmp.fileName).toPromise();
-   
+
     this.reloadCurrentRoute();
   }
 
 
-//RECARGAMOS LA PAGINA POR SI MISMA
+  //RECARGAMOS LA PAGINA POR SI MISMA
   reloadCurrentRoute() {
     const currentUrl = this.router.url;
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
@@ -171,11 +170,11 @@ export class HistorialComponent implements OnInit {
 
   Volver() {
 
-      this.router.navigateByUrl("/manual");
-  
+    this.router.navigateByUrl("/manual");
+
   }
 
-//RECARGAMOS LA MISMA PAGINA DESPUES DE QUE SE MANDA A LA PAPELERA
+  //RECARGAMOS LA MISMA PAGINA DESPUES DE QUE SE MANDA A LA PAPELERA
   reloadCurrentRouteLastDelete() {
     const currentUrl = this.router.url;
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
@@ -239,13 +238,13 @@ export class HistorialComponent implements OnInit {
       }
     })
   }
-        
+
   //EDITAMOS LA FECHA DE LOS REGISTROS DE LA TABLA
   EditFecha(id: any) {
     Swal.fire({
       title: '¿Estás seguro?',
       text: "Se cambiara a la fecha de: '" + this.fecha,
-      icon: 'question',
+      icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
@@ -266,7 +265,7 @@ export class HistorialComponent implements OnInit {
               {
                 position: 'center',
                 icon: 'success',
-                title: 'Se cambio la fecha',
+                title: 'Se cambio la fecha: ' + this.fecha,
                 showConfirmButton: false,
                 timer: 1500
               }
@@ -401,10 +400,10 @@ export class HistorialComponent implements OnInit {
       }
     })
   }
-  setTipoDeActa(tipo:any){
+  setTipoDeActa(tipo: any) {
     this.tipo = tipo;
   }
-  
+
   //SELECCIONAMOS EL CIBER PARA EL ASESOR
   async clickciber(id: any, nombre: any) {
     this.ciberseleccionado = id;
@@ -412,7 +411,7 @@ export class HistorialComponent implements OnInit {
     let documento: string;
 
 
-  
+
     switch (this.info.tipo) {
 
       case "Asignación de Número de Seguridad Social":
@@ -446,10 +445,10 @@ export class HistorialComponent implements OnInit {
         documento = "";
         break;
     }
-   
+
     let state;
 
-    
+
     switch (this.info.estado) {
       case "CHIAPAS":
         state = "chia";
@@ -570,7 +569,7 @@ export class HistorialComponent implements OnInit {
       documento = "ext";
     }
 
-    console.log(documento);
+
 
     const precioyasesor = await this.restService.getprecioyasesor(documento, state, id).toPromise();
     this.precioyasesor = precioyasesor;
@@ -619,7 +618,7 @@ export class HistorialComponent implements OnInit {
   onChange(event: any) {
     this.tipodebusqueda = event;
   }
-//DESINCRIPTAMOS EL TOKEN PARA OBTENER LOS DATOS Y EL ROL
+  //DESINCRIPTAMOS EL TOKEN PARA OBTENER LOS DATOS Y EL ROL
   async descry() {
 
     var idlocal = localStorage.getItem("id");
@@ -631,7 +630,7 @@ export class HistorialComponent implements OnInit {
     this.myRol = data.data.rol;
   }
 
-//PROTEGEMOS LAS VISTAS PARA NO SER HACKEADAS
+  //PROTEGEMOS LAS VISTAS PARA NO SER HACKEADAS
   ngOnInit(): void {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -701,7 +700,7 @@ export class HistorialComponent implements OnInit {
 
 
   }
-   //REGRESAMOS A LA VISTA ACTUAL CON EL BOTON REGRESAR
+  //REGRESAMOS A LA VISTA ACTUAL CON EL BOTON REGRESAR
   backUp2() {
     this.preview = 0;
     this.fileTmp = null;

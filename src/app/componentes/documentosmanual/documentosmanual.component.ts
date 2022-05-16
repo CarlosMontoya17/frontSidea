@@ -150,7 +150,7 @@ async enviaractamanual() {
   }
 
   const data = await this.restService.enviarcta(this.ciberseleccionado, this.precioyasesor.superviser, this.tipo, this.curp, this.estado, this.precioyasesor.precio, nombrecompleto, "", this.fileTmp?.fileName).toPromise();
-  console.log(data);
+
   this.reloadCurrentRoute();
   
 }
@@ -395,7 +395,7 @@ async enviaractamanual() {
   }
   setTipoDeActa(tipo:any){
     this.tipo = tipo;
-    console.log(this.tipo)
+    
   }
 
   tipoDeDocumento(nombre:string){
@@ -564,7 +564,7 @@ async enviaractamanual() {
     let documento:string = this.tipoDeDocumento(this.tipo);
     let state:string = this.tipoDeEstado(this.estado);
 
-    console.log(state,documento)
+  
     // let documento = this.tipoDeDocumento(this.info.tipo);
     // let state = this.tipoDeDocumento(this.info.state);
     const precioyasesor = await this.restService.getprecioyasesor(documento, state, id).toPromise();
