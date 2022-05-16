@@ -38,6 +38,7 @@ export class HistorialComponent implements OnInit {
   public imagePath: any;
   hidden: boolean = false;
   hidden2: boolean = true;
+  excel : boolean = false;
   faTrashCan = faTrashCan;
   facalend = faCalendarDays;
   restored = faTrashRestore;
@@ -93,7 +94,11 @@ export class HistorialComponent implements OnInit {
   //CONSTRUCTOR
   constructor(private restService: RestService, private router: Router, private database: DatabaseService, private http: HttpClient) { }
 
+    descargarexcelvista(){
+      this.excel = !this.excel;
+    }
   exportexcel(): void {
+
     var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
     let userName = usuario.toString(CryptoJS.enc.Utf8);
     let arreglo = userName.split('"');
@@ -116,6 +121,7 @@ export class HistorialComponent implements OnInit {
       showConfirmButton: false,
       timer: 1500
     })
+    this.reloadCurrentRoute();
 
   }
 
@@ -688,6 +694,13 @@ export class HistorialComponent implements OnInit {
   changeView5() {
 
     this.papeleras = !this.papeleras;
+
+
+
+  }
+  changeView6() {
+
+    this.excel = !this.excel;
 
 
 

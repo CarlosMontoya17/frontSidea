@@ -397,7 +397,7 @@
       <!--  <select class="form-select" id="inputGroupSelect01">
         <option value="actual" selected>Selecciona un Ciber</option>
       </select> -->
-      <input [(ngModel)]="buscargethistorial" type="text" class="txtbuscar" placeholder="Buscar por curp" />
+      <input [(ngModel)]="buscargethistorial" type="text" class="txtbuscar" style="text-transform: uppercase;"  placeholder="Buscar por curp" />
     </div>
 
   </div>
@@ -457,7 +457,7 @@
   <pagination-controls (pageChange)="page = $event"></pagination-controls>
   <div class="card-body text-center">
 
-    <button class="conteo2" (click)="exportexcel()">Descargar Excel</button>
+    <button class="conteo2"  (click)="descargarexcelvista()" (click)="exportexcel()">Descargar Excel</button>
 
   </div>
 
@@ -547,7 +547,7 @@
 
 <!-- FIN DE LA TABLA DE CONTENIDO -->
 
-<div class="card mx-auto" style="width: 100%;">
+<div   *ngIf="excel" class="card mx-auto" style="width: 100%;">
 
   <table id="excel-table" class="table table-dark table-hover table-striped" style="visibility: hidden;">
 
