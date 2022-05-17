@@ -1,52 +1,72 @@
-<app-sidebarpanelhistorial></app-sidebarpanelhistorial>
 
-<body >
-  <ul >
-    <nav  class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light "  id="ftco-navbar">
-    
-      <ul id="menu" class="navbar-nav m-auto" >
-      <li  id="inicio" class="nav-item active"><a href="inicio" class="nav-link">Actas</a></li>
-      <li class="nav-item dropdown">
+<div class="menu">
+    <ul class="ulmenu" >
+      <li class="linav" ><a href="inicio"><img class="imgmenu" src="../../../assets/images/document.svg"><span class="spanmenu"class="spanmenu">ACTAS</span></a></li>
+      <li class="linav" *ngIf="CiberSelect!='administrar'"><a href="administrar"><img src="../../../assets/images/setting.svg"><span class="spanmenu">ADMINISTRAR</span></a></li>
+      <li class="linav"><a href="historial"><img src="../../../assets/images/upload.svg"><span class="spanmenu">CARGA DE DOCUMENTOS</span></a></li>
+      <li class="linav"><img src="../../../assets/images/cash.svg"><span class="spanmenu">CORTE</span>
+        <ul>
+          <li class="linav1"><span class="spanmenu" (click)="titulo('POR ENVIAR')">POR ENVIAR</span></li>
+          <li class="linav1"><span class="spanmenu" (click)="titulo('ENVIADO')" >ENVIADO</span></li>
+        </ul>
       </li>
-      <li id="administrar" *ngIf="CiberSelect!='administrar'" class="nav-item"><a href="administrar" class="nav-link">Administrar</a></li>
-      <li id="administrar" *ngIf="CiberSelect==='administrar'" class="nav-item"><a href="administrar" class="nav-link">Administrar</a></li>
-    
-      
-      <li id="historial" class="nav-item"><a href="historial" class="nav-link">Carga de documentos</a></li>
-      <li id="pagos" class="nav-item"><a class="nav-link">Corte</a><ul class="submenu">
-        <li class="lisub" style="padding:1em;" style="cursor:pointer" (click)="titulo('POR ENVIAR')"><a>Por enviar</a></li>
-        <li class="lisub" style="padding:1em;" style="cursor:pointer" (click)="titulo('ENVIADO')"><a>Enviado</a></li>
-      </ul></li>
-      <li id="corte" class="nav-item"><a  href="corte" class="nav-link">Historial</a></li>
-      <li id="publicidad" class="nav-item"><a href="publicidad" class="nav-link">Publicidad</a></li>
-      <li class="nav-item"><a href="inicio" class="nav-link">Historial de Sidea</a></li>
-   
-      <!-- <h5 class="font-bold">{{usuario}}</h5> -->
-    </ul>
-
-  <!-- IMAGEN USER -->
-  <div class="d-flex align-items-center">
-    <div class="avatar avatar-xl">
-      <img src="../../../assets/images/loginuser.png" [width]="80" alt="Face 1"> 
-    </div>
-    <div class="ms-3 name">
-      <h5 class="font-bold">{{usuario}}</h5>
-      <h6 style="color: red; cursor: pointer; " (click)="logout()" class="mb-0">Cerrar
-        sesión</h6>
-    </div>
+      <li class="linav"><a href="corte"><img src="../../../assets/images/history.svg"><span class="spanmenu">HISTORIAL</span></a></li>
+      <li class="linav"><a href="publicidad"><img src="../../../assets/images/marketing.svg"><span class="spanmenu">PUBLICIDAD</span></a></li>
+      <li class="linav"><a href="inicio"><img src="../../../assets/images/history.svg"><span class="spanmenu">HISTORIAL SIDEA</span></a></li>
+      <li class="salir"><img (click)="logout()" style="width:35px;" src="../../../assets/images/exit.svg"></li>
+    </ul>  
   </div>
-
-</nav>
-
-</ul>
+  <div class="contenido1">
+  <!-- <app-sidebarpanelhistorial></app-sidebarpanelhistorial> -->
+  <!-- <body >
+    <ul >
+      <nav  class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light "  id="ftco-navbar">
+      
+        <ul id="menu" class="navbar-nav m-auto" >
+        <li  id="inicio" class="nav-item active"><a href="inicio" class="nav-link">Actas</a></li>
+        <li class="nav-item dropdown">
+        </li>
+        <li id="administrar" *ngIf="CiberSelect!='administrar'" class="nav-item"><a href="administrar" class="nav-link">Administrar</a></li>
+        <li id="administrar" *ngIf="CiberSelect==='administrar'" class="nav-item"><a href="administrar" class="nav-link">Administrar</a></li>
+      
+        
+        <li id="historial" class="nav-item"><a href="historial" class="nav-link">Carga de documentos</a></li>
+        <li id="pagos" class="nav-item"><a class="nav-link">Corte</a><ul class="submenu">
+          <li class="lisub" style="padding:1em;" (click)="titulo('POR ENVIAR')"><a style="cursor: pointer;">Por enviar</a></li>
+          <li class="lisub" style="padding:1em;" (click)="titulo('ENVIADO')"><a style="cursor: pointer;">Enviado</a></li>
+        </ul></li>
+        <li id="corte" class="nav-item"><a  href="corte" class="nav-link">Historial</a></li>
+        <li id="publicidad" class="nav-item"><a href="publicidad" class="nav-link">Publicidad</a></li>
+        <li class="nav-item"><a href="inicio" class="nav-link">Historial de Sidea</a></li> -->
+     
+        <!-- <h5 class="font-bold">{{usuario}}</h5> -->
+      <!-- </ul> -->
   
-  <!-- END nav -->
-  <script src="js/jquery.min.js"></script>
-  <script src="js/popper.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/main.js"></script>
-  <script>
-
-
-  </script>
-</body>
+    <!-- IMAGEN USER -->
+    <!-- <div class="d-flex align-items-center">
+      <div class="avatar avatar-xl">
+        <img src="../../../assets/images/loginuser.png" [width]="80" alt="Face 1"> 
+      </div>
+      <div class="ms-3 name">
+        <h5 class="font-bold">{{usuario}}</h5>
+        <h6 style="color: red; cursor: pointer; " (click)="logout()" class="mb-0">Cerrar
+          sesión</h6>
+      </div>
+    </div>
+  
+  </nav>
+  
+  </ul> -->
+  
+    <!-- END nav -->
+  <!--   <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+  
+  
+    </script>
+   
+  </body> -->
+  </div>

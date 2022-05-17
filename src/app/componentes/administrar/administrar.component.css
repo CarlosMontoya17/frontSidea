@@ -115,4 +115,63 @@
 .selectionable:hover{
 	background-color: rgb(230, 230, 230);
 }
+.contenidoprincipal{
+	width: 67%;
+	padding-left: 25px;
+  }
+  .navprincipal{
+	width: 30%;
+	z-index: 1000;
+  }
+  .navprincipal, .contenidoprincipal{
+	display: inline-block;
+	vertical-align: text-top;
+  }
+  @media screen and (min-width: 1500px) and (max-width: 5000px) { 
+	.navprincipal{
+	  width: 5%;
+	  height: 100vh;
+	  height: 100%;
+	  position: relative;
+	  background-color: black;
+	}
+	.contenidoprincipal{
+	  width: 92%;
+	  /* background-color: blue; */
+	}
+  }
+  @media screen and (min-width: 700px) and (max-width: 1500px) { 
+	.oculto{
+		display: none;
+	}
+	.letras{
+		font-size: 13px;
+	}
+	.navprincipal:hover{
+		position:sticky;
+		z-index:3000;
+	}
+	.contenidoprincipal{
+		width: 90%;
+		margin-left: 5em;
 
+		/* background-color: rgb(0, 255, 68); */
+	  }
+  }
+  @media screen and (min-width: 100px) and (max-width: 699px) { 
+	.oculto{
+		display: none;
+	}
+	.letras{
+		font-size: 10px;
+	}
+	.contenidoprincipal{
+		width: 90%;
+		margin-left: 5em;
+		/* background-color: rgb(0, 255, 68); */
+	  }
+	  .navprincipal:hover{
+		position:sticky;
+		z-index:3000;
+	}
+  }

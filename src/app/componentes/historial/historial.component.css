@@ -5876,3 +5876,68 @@ input[type="date"]:focus {
 input[type="date"]:hover::-webkit-calendar-picker-indicator { opacity:0.05; }
 input[type="date"]:hover::-webkit-calendar-picker-indicator:hover { opacity:0.15; }
 
+@media screen and (min-width: 1500px) and (max-width: 5000px) { 
+  .navprincipal{
+    width: 5%;
+    z-index: 1000;
+    height: 100vh;
+    height: 100%;
+    position: relative;
+  }
+  .contenidoprincipal{
+    width: 92%;
+  }
+}
+.contenidoprincipal{
+  width: 67%;
+  padding-left: 25px;
+}
+.navprincipal{
+  width: 30%;
+  z-index: 1000;
+}
+.navprincipal, .contenidoprincipal{
+  display: inline-block;
+  vertical-align: text-top;
+}
+@media screen and (min-width: 1500px) and (max-width: 5000px) { 
+  .navprincipal{
+    width: 5%;
+    z-index: 1000;
+    height: 100vh;
+    height: 100%;
+    position: relative;
+  }
+  .contenidoprincipal{
+    width: 92%;
+  }
+}
+@media screen and (min-width: 700px) and (max-width: 1500px) { 
+	.navprincipal:hover{
+		position:sticky;
+		z-index:3000;
+	}
+	.contenidoprincipal{
+		width: 90%;
+		margin-left: 5em;
+
+		/* background-color: rgb(0, 255, 68); */
+	  }
+  }
+  @media screen and (min-width: 100px) and (max-width: 699px) { 
+    .contenidoprincipal{
+      width: 80%;
+      margin-left: 5em;
+      /* background-color: rgb(0, 255, 68); */
+      }
+      .navprincipal:hover{
+      position:fixed;
+      z-index:3000;
+    }
+    .documentos{
+      font-size: 9px;
+    }
+    .conteo2{
+      width: 100px;
+    }
+  }

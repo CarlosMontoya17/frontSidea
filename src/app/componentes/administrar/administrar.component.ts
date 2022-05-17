@@ -180,6 +180,7 @@ export class AdministrarComponent implements OnInit {
       this.NUEVOLEON = 40;
       this.MEXICO = 38;
       this.QUINTANAROO = 40;
+      this.EXTRANJERO = 120;
     }
     else if (this.usernameLocal == "Publico David" || this.usernameLocal == "Jose Daniel") {
       this.nac = 0;
@@ -224,6 +225,7 @@ export class AdministrarComponent implements OnInit {
       this.NUEVOLEON = 70;
       this.MEXICO = 70;
       this.QUINTANAROO = 70;
+      this.EXTRANJERO= 120;
     }
     else if (this.usernameLocal == "Publico Eli") {
       this.nac = 0;
@@ -268,6 +270,7 @@ export class AdministrarComponent implements OnInit {
       this.NUEVOLEON = 50;
       this.MEXICO = 48;
       this.QUINTANAROO = 50;
+      this.EXTRANJERO= 120;
     }
 
 
@@ -370,6 +373,7 @@ export class AdministrarComponent implements OnInit {
           "nl": this.NUEVOLEON,
           "mex": this.MEXICO,
           "qroo": this.QUINTANAROO,
+          "ext":this.EXTRANJERO,
 
         }
         this.precios = {
@@ -407,7 +411,7 @@ export class AdministrarComponent implements OnInit {
       }
 
       const data = await this.loginservice.adduser(this.newUsername, this.newPassword, this.newRol, this.tipoNegocio, idSuper, this.precios, estatus, this.Negocio);
-
+      
       if (data) {
 
         Swal.fire({

@@ -1,0 +1,24 @@
+.contenidoprincipal{
+    width: 67%;
+    padding-left: 25px;
+  }
+  .navprincipal{
+    width: 30%;
+    z-index: 1000;
+  }
+  .navprincipal, .contenidoprincipal{
+    display: inline-block;
+    vertical-align: text-top;
+  }
+  @media screen and (min-width: 1500px) and (max-width: 5000px) { 
+    .navprincipal{
+      width: 5%;
+      z-index: 1000;
+      height: 100vh;
+      height: 100%;
+      position: relative;
+    }
+    .contenidoprincipal{
+      width: 92%;
+    }
+  }

@@ -5873,4 +5873,7 @@
   input[type="date"]:hover::-webkit-calendar-picker-indicator { opacity:0.05; }
   input[type="date"]:hover::-webkit-calendar-picker-indicator:hover { opacity:0.15; }
   
-  
+  .fondo{
+    background-color: #212121;
+    width: 900px;
+  }

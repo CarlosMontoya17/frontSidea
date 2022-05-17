@@ -21,3 +21,7 @@
 .lisub:hover{
     border-bottom: 2px solid red;
 }
+
+.responsivo{
+    color:goldenrod;
+}

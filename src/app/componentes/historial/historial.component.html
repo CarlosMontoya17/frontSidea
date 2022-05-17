@@ -1,6 +1,9 @@
 <!-- SIDEBAR EN LA CLASE SIDERBARCOMPONENTE -->
- <app-sidebar></app-sidebar>
-
+<div class="navprincipal">
+  <app-sidebar></app-sidebar>
+  </div>
+  <div class="contenidoprincipal">
+      <app-sidebarpanelhistorial></app-sidebarpanelhistorial>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item" *ngIf="vista"><a style="cursor: pointer;" (click)="changeView()">Subir Documento</a>
@@ -13,7 +16,7 @@
 </nav>
 
 <h1 *ngIf="!vista" class="firstH1">
-  <b>
+  <b class="documentos">
     <div class="Welcome" id="firstHeader">&bull;Docum</div>
     <div class="to" id="firstHeader">en</div>
     <div class="the" id="firstHeader">tos&bull;</div>
@@ -397,13 +400,12 @@
       <!--  <select class="form-select" id="inputGroupSelect01">
         <option value="actual" selected>Selecciona un Ciber</option>
       </select> -->
-      <input [(ngModel)]="buscargethistorial" type="text" class="txtbuscar" style="text-transform: uppercase;"  placeholder="Buscar por curp" />
+     
+      <input [(ngModel)]="buscargethistorial" type="text" class="txtbuscar" style="text-transform: uppercase;"
+        (keyup)="resetPagination()" placeholder="Buscar por curp" />
     </div>
-
   </div>
-
   <table style=" border-radius: 1rem !important; font-size:1.2em;" class="table table-striped">
-
     <thead>
       <tr>
         <th scope="col" style="background-color:rgba(150,150,253,90%); color: #000; font-size:1.2em;">#</th>
@@ -424,11 +426,10 @@
     </thead>
     <tbody>
       <tr style="cursor: pointer;"
-        *ngFor="let cortes of getcortes | paginate: { itemsPerPage: 20, currentPage: page }  |  buscarhistorial:buscargethistorial">
+        *ngFor="let cortes of getcortes |  buscarhistorial:buscargethistorial | paginate: { itemsPerPage: 20, currentPage: page }  ">
         <td style=" color: #000; font-size:1.1em; ">{{cortes?.i}}</td>
         <td style=" color: #000; font-size:1.1em; ">{{cortes?.id}}</td>
         <td style=" color: #000; font-size:1.1em; ">{{cortes?.document}}</td>
-
         <td style=" color: #000; font-size:1.1em; ">{{cortes?.curp}}</td>
         <td style=" color: #000; font-size:1.1em; ">{{cortes?.states}}</td>
         <td style=" color: #000; font-size:1.1em; ">{{cortes?.nombreacta}}</td>
@@ -442,45 +443,37 @@
           <input type="date" [(ngModel)]="fecha" name="fecha" id="fecha">
 
 
-          <fa-icon [icon]="facalend" style="font-size: 1.9rem;" class="add-user" (click)="EditFecha(cortes.id)"></fa-icon>
+          <fa-icon [icon]="facalend" style="font-size: 1.9rem;" class="add-user" (click)="EditFecha(cortes.id)">
+          </fa-icon>
 
         </td>
 
         <td style="text-align: center;">
 
-          <fa-icon [icon]="papelera" class="add-user" style="font-size: 2rem;"  (click)="moveraPapelera(cortes.id,cortes.document)"></fa-icon>
+          <fa-icon [icon]="papelera" class="add-user" style="font-size: 2rem;"
+            (click)="moveraPapelera(cortes.id,cortes.document)"></fa-icon>
 
         </td>
       </tr>
     </tbody>
   </table>
-  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  <pagination-controls (pageChange)="page = $event "></pagination-controls>
   <div class="card-body text-center">
-
-    <button class="conteo2"  (click)="descargarexcelvista()" (click)="exportexcel()">Descargar Excel</button>
-
+    <button class="conteo2" (click)="descargarexcelvista()" (click)="exportexcel()">Descargar Excel</button>
   </div>
 
 </div>
 
 <button class="conteo4" *ngIf="vista && myRol == 'Admin'" (click)="changeView5()">Papelera</button>
 <div class="card mx-auto" style="width: 100%;" *ngIf="papeleras ">
-
-
-
   <div class="form-group">
     <div class="input-group mb-3">
-      <!-- FORMA MANUAL FORMULARIO -->
-
-      <!--  <select class="form-select" id="inputGroupSelect01">
-        <option value="actual" selected>Selecciona un Ciber</option>
-      </select> -->
-
+      <!-- FORMULARIO DE PAPEPELERA  Y LUEGO MOSTRARLOS -->
     </div>
     <h1 style="text-align: center;">Papelera</h1>
   </div>
 
-  <table style=" border-radius: 1rem !important; font-size:1.2em;" class="table table-striped">
+  <table style=" border-radius: 1rem !important; font-size:1.2em;" class="table table-responsive">
 
     <thead>
       <tr>
@@ -498,9 +491,9 @@
         <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Se solicito</th>
         <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Borrado por</th>
         <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Fecha</th>
-        <!-- <th scope="col" style="background-color:rgba(150,150,253,90%); color: #000; font-size:1.2em;">Otros</th> -->
       </tr>
     </thead>
+    <!-- SE PAGINA LA PAGINA Y CON EL PIPE SE BUSCA PAGINA POR PAGINA PARA OBTENER LA CURP -->
     <tbody>
       <tr style="cursor: pointer;"
         *ngFor="let papel of gettraerPapelera2 | paginate: { itemsPerPage: 20, currentPage: page }  |  buscarhistorial:buscargethistorial">
@@ -513,41 +506,25 @@
         <td style=" color: #000; font-size:1.1em; ">{{papel?.nombreacta}}</td>
         <td style=" color: #000; font-size:1.1em; ">{{papel?.provider}}</td>
         <td style=" color: #000; font-size:1.1em; ">{{papel?.enterprise}}</td>
-
         <td *ngIf="myRol == 'Admin'" style=" color: #000; font-size:1.1em; ">$ {{papel?.price }}</td>
         <td style=" color: #000; font-size:1.1em; ">{{papel?.requested}}</td>
         <td style=" color: #000; font-size:1.1em; ">{{papel?.culpable.nombre}}</td>
         <td style=" color: #000; font-size:1.1em; ">
           {{ papel?.createdAt | date:'yyyy-MM-dd' }}
-
-          <!-- <input type="date" [(ngModel)]="fecha" name="fecha" id="fecha"> -->
-
-
-          <!-- <fa-icon [icon]="facalend" class="add-user"
-            (click)="EditFecha(cortes.id)"></fa-icon> -->
-
         </td>
         <fa-icon [icon]="restored" class="add-user" (click)="restaurarPapelera(cortes.id,cortes.document)"></fa-icon>
-        <!-- <td style="text-align: center;">
-         
-          <fa-icon [icon]="papelera" class="add-user"
-          (click)="moveraPapelera(cortes.id,cortes.document)"></fa-icon>
-          <fa-icon [icon]="faTrashCan" class="add-user"
-            (click)="deleteItemActa(cortes.id, cortes.document, cortes.enterprise)"></fa-icon>
-        </td> -->
+
       </tr>
     </tbody>
   </table>
   <pagination-controls (pageChange)="page = $event"></pagination-controls>
   <div class="card-body text-center">
   </div>
-
 </div>
 
-
 <!-- FIN DE LA TABLA DE CONTENIDO -->
-
-<div   *ngIf="excel" class="card mx-auto" style="width: 100%;">
+<!-- TABLA PARA DESCARGAR EXCEL OCULTA, CUANDO SE PRESIONA EL BOTON DE DESCARGAR SE MUESTRA -->
+<div *ngIf="excel" class="card mx-auto" style="width: 100%;">
 
   <table id="excel-table" class="table table-dark table-hover table-striped" style="visibility: hidden;">
 
