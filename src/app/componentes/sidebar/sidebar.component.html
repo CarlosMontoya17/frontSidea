@@ -1,6 +1,14 @@
 
 <div class="menu">
     <ul class="ulmenu" >
+      <div class="d-flex align-items-center" style="margin-bottom:3em;">
+        <div class="avatar avatar-xl">
+          <img src="../../../assets/images/loginuser.png" [width]="60" alt="Face 1">
+          <span style="font-size:10px;">{{usuario}}</span>
+        </div>
+      <br>
+      <br>
+      </div>
       <li class="linav" ><a href="inicio"><img class="imgmenu" src="../../../assets/images/document.svg"><span class="spanmenu"class="spanmenu">ACTAS</span></a></li>
       <li class="linav" *ngIf="CiberSelect!='administrar'"><a href="administrar"><img src="../../../assets/images/setting.svg"><span class="spanmenu">ADMINISTRAR</span></a></li>
       <li class="linav"><a href="historial"><img src="../../../assets/images/upload.svg"><span class="spanmenu">CARGA DE DOCUMENTOS</span></a></li>

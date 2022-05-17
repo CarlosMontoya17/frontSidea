@@ -5920,9 +5920,13 @@ input[type="date"]:hover::-webkit-calendar-picker-indicator:hover { opacity:0.15
 	.contenidoprincipal{
 		width: 90%;
 		margin-left: 5em;
-
 		/* background-color: rgb(0, 255, 68); */
 	  }
+    .responsive{
+      font-size: 12px;
+      color:gold;
+      padding: 0;
+    }
   }
   @media screen and (min-width: 100px) and (max-width: 699px) { 
     .contenidoprincipal{

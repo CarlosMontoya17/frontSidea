@@ -124,11 +124,12 @@ export class HistorialComponent implements OnInit {
     this.reloadCurrentRoute();
 
   }
-   //RESETEAMOS LA PAGINA 
-   resetPagination() {
+
+
+  //RESETEAMOS LA PAGINA 
+  resetPagination() {
     this.page = 1;
   }
-
   clearresponsable() {
     this.responsableSearch = "";
     this.newResponsable = undefined;

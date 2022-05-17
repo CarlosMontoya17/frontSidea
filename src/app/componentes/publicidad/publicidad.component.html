@@ -1,47 +1,54 @@
 <div class="navprincipal">
-    <div id="app">
-        <app-sidebar></app-sidebar>
+    <app-sidebar></app-sidebar>
     </div>
-</div>
 <div class="contenidoprincipal">
+    <app-sidebarpanelhistorial></app-sidebarpanelhistorial>
     <div id="app">
-        <app-sidebarpanelhistorial></app-sidebarpanelhistorial>
-        <div id="main">
-            <div class="col-12 col-md-6">
-                <form action="" method="POST">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="card-title">Subir archivos</h5>
-                        </div>
-                        <div class="card-content">
-                            <div class="card-body">
-                                <p class="card-text">Agregue archivos para mostrar en la galeria de publicidad</p>
-                                <div class="input-group mb-3">
-                                    <select class="form-select" id="inputGroupSelect08" (change)="selectOption($event)">
-                                        <option value="0" selected hidden="">Elija el grupo de imagen</option>
-                                        <option value="nacimiento">Nacimiento</option>
-                                        <option value="matrimonio">Matrimonio</option>
-                                        <option value="divorcio">Divorcio</option>
-                                        <option value="defuncion">Defuncion</option>
-                                        <option value="altasCurp">Altas Curp</option>
-                                        <option value="correcionCurp">Correcion de CURP</option>
-                                        <option value="constanciaFiscal">Constancia de situacion fiscal</option>
-                                        <option value="constanciaI">Constancia de Inhabilitación</option>
-                                        <option value="facturacionE">Facturacion electronica</option>
-                                        <option value="general">General</option>
-                                    </select>
-                                </div>
-                                <!-- Basic file uploader -->
-                                <input type="file" class="basic-filepond" id="archivo" accept="application/jpg"
-                                    (change)="preview1($event)">
-                                <a (click)="addImg()" class="btn btn-success" style="margin: 1rem;">Subir archivo</a>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
+        
+        <div id="main" class="card-body text-center">
+            <h6 class="firstH1">
+                <b>
+                                <!-- TITULOS DE CABECERA-->
+                    <div class="Welcome" id="firstHeader">&bull;Publ</div>
+                    <div class="to" id="firstHeader">ici</div>
+                    <div class="the" id="firstHeader">dad&bull;</div>
+                </b>
+            </h6>
+
+            <form action="" method="POST">
+
+                <div class="card-header">
+                    <h5 class="card-title">Subir archivos</h5>
+                </div>
+
+                <p class="card-text">Agregue archivos para mostrar en la galeria de publicidad</p>
+                <div id="historial" class="file-area">
+
+                </div>
+                            <!-- SE SELECCIONA A QUE APARTADO SE DESEA SUBIR-->
+                <div class="input-group mb-3">
+                    <select class="form-select" id="inputGroupSelect08" (change)="selectOption($event)">
+                        <option value="0" selected hidden="">Elija el grupo de imagen</option>
+                        <option value="nacimiento">Nacimiento</option>
+                        <option value="matrimonio">Matrimonio</option>
+                        <option value="divorcio">Divorcio</option>
+                        <option value="defuncion">Defuncion</option>
+                        <option value="altasCurp">Altas Curp</option>
+                        <option value="correcionCurp">Correcion de CURP</option>
+                        <option value="constanciaFiscal">Constancia de situacion fiscal</option>
+                        <option value="constanciaI">Constancia de Inhabilitación</option>
+                        <option value="facturacionE">Facturacion electronica</option>
+                        <option value="general">General</option>
+                    </select>
+                </div>
+                <!-- SE CARGAN LAS IMAGENES PARA SUBIRLAS-->
+                <input type="file" class="basic-filepond" id="archivo" accept="application/jpg"
+                    (change)="preview1($event)">
+                <a (click)="addImg()" class="btn btn-success" style="margin: 1rem;">Subir archivo</a>
+            </form>
+            
             <div class="container">
-                <h1 class="fw-light text-center text-lg-start mt-4 mb-0">Publicidad</h1>
+                
                 <hr class="mt-2 mb-5">
                 <section id="groups">
                     <div class="row">
@@ -49,8 +56,8 @@
                             <div class="card-content">
                                 <div class="card-body"
                                     style="display: grid; align-items: center; justify-content: center;">
-                                    <div class="list-group list-group-horizontal-sm mb-1 text-center" role="tablist">
-                                        <a class="list-group-item list-group-item-action active" id="list-sunday-list"
+                                    <div class="list-group list-group-horizontal-sm mb-1 text-center"  role="tablist">
+                                        <a class="list-group-item list-group-item-action active"  id="list-sunday-list"
                                             data-bs-toggle="list" href="#list-sunday" role="tab"
                                             (click)="getImages('nacimiento')">Nacimiento</a>
                                         <a class="list-group-item list-group-item-action" id="list-monday-list0"
@@ -81,6 +88,7 @@
                                             (click)="getImages('general')" data-bs-toggle="list" href="#list-nuevo"
                                             role="tab">General </a>
                                     </div>
+
                                     <div class="buttons"
                                         style="margin: 1rem; display: grid; align-items: center; justify-content: center; ">
                                         <a class="btn btn-success" (click)="descargar()">Descargar publicidad</a>
@@ -96,6 +104,7 @@
                                        alt="image-3" height="400" width="300"></a>
                                 <a class="btn btn-danger"
                                    >Eliminar</a>
+                                   eliminar usuaio de las imagenes
                             </div> -->
                         </div>
                     </div>
@@ -103,4 +112,4 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
