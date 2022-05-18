@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { RestService } from '../historial/rest.service';
+import { faEraser } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-inicio',
@@ -8,282 +11,404 @@ import Swal from 'sweetalert2';
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent implements OnInit {
-  tipodebusqueda:any = 'Seleccione el tipo de busqueda';
-  actoRegistral:any='  Seleccione el acto registral';
-  preview:any = 0;
-  entidadValue:any=0;
-  entidad:any ='Entidad registro';
-  bdEstado:any;
-  curp:any='';
-  nose:any;
-  result:any = [];
-  usuario:any = 'Usuario';
-  constructor(private router:Router) { }
+  Buscar = faMagnifyingGlass;
+  borrar = faEraser;
 
-  onChnageEntidad(value:any){
-this.entidadValue = value;
+  tipodebusqueda: any = 'Seleccione el tipo de busqueda';
+  actoRegistral: any = '  Seleccione el acto registral';
+  preview: any = 0;
+  entidadValue: any = 0;
+  entidad: any = 'Entidad registro';
+  bdEstado: any;
+  curp: any = '';
+  nose: any;
+  result: any = [];
+  usuario: any = 'Usuario';
+
+  pdfSrc: any;
+  fecha_actual: any = new Date();
+  fecha: any;
+  cadenadigital:any;
+
+
+
+
+
+
+  data: any;
+  mostrarLoader: any = 0;
+  tokenUno: any;
+  tokenDos: any;
+  nombres: any;
+  primerApellido: any;
+  segundoApellido: any;
+  sexo: any;
+  fechaNacimiento: any;
+  nombrePersonaDos: any;
+  primerApellidoPersonaDos: any;
+  segundoApellidoPersonaDos: any;
+
+  parametro: any;
+  acto: any;
+
+  costo: any = 0;
+  costoAdmin: any = 0;
+  inicioCorte: any;
+  finCorte: any;
+  sistema: any = 0;
+
+  datosdeenvio = [];
+
+  constructor(private router: Router, private restservice: RestService) { }
+
+
+
+
+  onChnageEntidad(value: any) {
+    this.entidadValue = value;
   }
-  logout(){
+  logout() {
     localStorage.clear();
     this.router.navigate(['/login']);
-    
+
   }
-   onChangeCurp(curp:any)
-  {
-    if(curp.length == 18){
+  //BUSCAR POR CURP
+  async buscar() {
+    switch (this.actoRegistral) {
+      case "1": {
+        this.acto = 'NACIMIENTO';
+        break;
+      }
+      case "2": {
+        this.acto = 'DEFUNCION';
+
+        break;
+      }
+      case "3": {
+        this.acto = 'MATRIMONIO';
+
+        break;
+      }
+      case "4": {
+        this.acto = 'DIVORCIO';
+        break;
+      }
+
+    }
+    
+
+    // {
+    //   "type": "CURP",
+    //   "metadata": {"type":"NACIMIENTO","state":"OAXACA","curp":"NACK990503HRRSV07"}
+    // }
+    let datosdeenvio = [];
+    if (this.tipodebusqueda == '1') {
+      datosdeenvio.push(
+        {
+          "type": "CURP",
+          "metadata": { "type": this.acto, "state": this.entidad, "curp": this.curp.toUpperCase() }
+        }
+      );
+    }
+    else if (this.tipodebusqueda == '2') {
+      datosdeenvio.push(
+        {
+          "type": "Cadena Digital",
+	"metadata": {"cadena":this.cadenadigital}
+        }
+      );
+    }
+   
+    else  if (this.tipodebusqueda == '3') {
+      var fechas = this.fechaNacimiento.toString().split("-");
+      datosdeenvio.push(
+        {
+          "type": "Datos Personales",
+          "metadata": { "type": this.acto, "state": this.entidad,  
+          "nombre": this.nombres.toUpperCase(), "primerapellido": this.primerApellido.toUpperCase(), 
+          "segundoapelido": this.segundoApellido.toUpperCase(),
+           "sexo": this.sexo,
+            "fecnac":  fechas[2]+"/"+fechas[1]+"/"+fechas[0] }
+        }
+      );
+    }
+   
+
+
+
+
+ const acto = this.restservice.SolicitudactasporCurp(datosdeenvio[0]).toPromise();
+ 
+    
+
+console.log(acto);
+
+
+
+
+
+
+
+
+
+
+
+  }
+
+
+  onChangeCurp(curp: any) {
+    if (curp.length == 18) {
       this.curp = curp;
       var res = curp.charAt(11) + curp.charAt(12)
-      switch(res.toUpperCase()){
-        case 'AS':{
+      switch (res.toUpperCase()) {
+        case 'AS': {
           this.entidadValue = 1;
           this.entidad = 'AGUASCALIENTES';
           this.bdEstado = 'n0';
-          this.nose="1";
+          this.nose = "1";
           break;
         }
-        case 'BC':{
+        case 'BC': {
           this.entidadValue = 2;
           this.entidad = 'BAJA CALIFORNIA';
           this.bdEstado = 'n1';
-          this.nose="2";
+          this.nose = "2";
           break;
         }
-        case 'BS':{
+        case 'BS': {
           this.entidadValue = 3;
           this.entidad = 'BAJA CALIFORNIA SUR';
           this.bdEstado = 'n2';
-          this.nose="3";
+          this.nose = "3";
           break;
         }
-        case 'CC':{
+        case 'CC': {
           this.entidadValue = 4;
           this.entidad = 'CAMPECHE';
           this.bdEstado = 'n3';
-          this.nose="4";
+          this.nose = "4";
           break;
         }
-        case "CS":{
+        case "CS": {
           this.entidadValue = 7;
           this.entidad = 'CHIAPAS';
           this.bdEstado = 'n4';
-          this.nose="5";
+          this.nose = "5";
           break;
         }
-        case 'CH':{
+        case 'CH': {
           this.entidadValue = 8;
           this.entidad = 'CHIHUAHUA';
           this.bdEstado = 'n5';
-          this.nose="6";
+          this.nose = "6";
           break;
         }
-        case 'DF':{
+        case 'DF': {
           this.entidadValue = 9;
           this.entidad = 'DISTRITO FEDERAL';
           this.bdEstado = 'n6';
-          this.nose="7";
+          this.nose = "7";
           break;
         }
-        case 'CL':{
+        case 'CL': {
           this.entidadValue = 5;
           this.entidad = 'COAHUILA DE ZARAGOZA';
           this.bdEstado = 'n7';
-          this.nose="8";
+          this.nose = "8";
           break;
         }
-        case 'CM':{
+        case 'CM': {
           this.entidadValue = 6;
           this.entidad = 'COLIMA';
           this.bdEstado = 'n8';
-          this.nose="9";
+          this.nose = "9";
           break;
         }
-        case 'DG':{
+        case 'DG': {
           this.entidadValue = 10;
           this.entidad = 'DURANGO';
           this.bdEstado = 'n9';
-          this.nose="10";
+          this.nose = "10";
           break;
         }
-        case 'GT':{
+        case 'GT': {
           this.entidadValue = 11;
           this.entidad = 'GUANAJUATO';
           this.bdEstado = 'n10';
-          this.nose="11";
+          this.nose = "11";
           break;
         }
-        case 'GR':{
+        case 'GR': {
           this.entidadValue = 12;
           this.entidad = 'GUERRERO';
           this.bdEstado = 'n11';
-          this.nose="12";
+          this.nose = "12";
           break;
         }
-        case 'HG':{
+        case 'HG': {
           this.entidadValue = 13;
           this.entidad = 'HIDALGO';
           this.bdEstado = 'n12';
-          this.nose="13";
+          this.nose = "13";
           break;
         }
-        case 'JC':{
+        case 'JC': {
           this.entidadValue = 14;
           this.entidad = 'JALISCO';
           this.bdEstado = 'n13';
-          this.nose="14";
+          this.nose = "14";
           break;
         }
-        case 'MC':{
+        case 'MC': {
           this.entidadValue = 15;
           this.entidad = 'ESTADO DE MEXICO';
           this.bdEstado = 'n14';
-          this.nose="15";
+          this.nose = "15";
           break;
         }
-        case 'MN':{
+        case 'MN': {
           this.entidadValue = 16;
           this.entidad = 'MICHOACAN';
           this.bdEstado = 'n15';
-          this.nose="16";
+          this.nose = "16";
           break;
         }
-        case 'MS':{
+        case 'MS': {
           this.entidadValue = 17;
           this.entidad = 'MORELOS';
           this.bdEstado = 'n16';
-          this.nose="17";
+          this.nose = "17";
           break;
         }
-        case 'NT':{
+        case 'NT': {
           this.entidadValue = 18;
           this.entidad = 'NAYARIT';
           this.bdEstado = 'n17';
-          this.nose="18";
+          this.nose = "18";
           break;
         }
-        case 'NL':{
+        case 'NL': {
           this.entidadValue = 19;
           this.entidad = 'NUEVO LEON';
           this.bdEstado = 'n18';
-          this.nose="19";
+          this.nose = "19";
           break;
         }
-        case 'OC':{
+        case 'OC': {
           this.entidadValue = 20;
           this.entidad = 'OAXACA';
           this.bdEstado = 'n19';
-          this.nose="20";
+          this.nose = "20";
           break;
         }
-        case 'PL':{
+        case 'PL': {
           this.entidadValue = 21;
           this.entidad = 'PUEBLA';
           this.bdEstado = 'n20';
-          this.nose="21";
+          this.nose = "21";
           break;
         }
-        case 'QT':{
+        case 'QT': {
           this.entidadValue = 22;
           this.entidad = 'QUERETARO';
           this.bdEstado = 'n21';
-          this.nose="22";
+          this.nose = "22";
           break;
         }
-        case 'QR':{
+        case 'QR': {
           this.entidadValue = 23;
           this.entidad = 'QUINTANA ROO';
           this.bdEstado = 'n22';
-          this.nose="23";
+          this.nose = "23";
           break;
         }
-        case 'SP':{
+        case 'SP': {
           this.entidadValue = 24;
           this.entidad = 'SAN LUIS POTOSI';
           this.bdEstado = 'n23';
-          this.nose="24";
+          this.nose = "24";
           break;
         }
-        case 'SL':{
+        case 'SL': {
           this.entidadValue = 25;
           this.entidad = 'SINALOA';
           this.bdEstado = 'n24';
-          this.nose="25";
+          this.nose = "25";
           break;
         }
-        case 'SR':{
+        case 'SR': {
           this.entidadValue = 26;
           this.entidad = 'SONORA';
           this.bdEstado = 'n25';
-          this.nose="26";
+          this.nose = "26";
           break;
         }
-        case 'TC':{
+        case 'TC': {
           this.entidadValue = 27;
           this.entidad = 'TABASCO';
           this.bdEstado = 'n26';
-          this.nose="27";
+          this.nose = "27";
           break;
         }
-        case 'TS':{
+        case 'TS': {
           this.entidadValue = 28;
           this.entidad = 'TAMAULIPAS';
           this.bdEstado = 'n27';
-          this.nose="28";
+          this.nose = "28";
           break;
         }
-        case 'TL':{
+        case 'TL': {
           this.entidadValue = 29;
           this.entidad = 'TLAXCALA';
           this.bdEstado = 'n28';
-          this.nose="29";
+          this.nose = "29";
           break;
         }
-        case 'VZ':{
+        case 'VZ': {
           this.entidadValue = 30;
           this.entidad = 'VERACRUZ';
           this.bdEstado = 'n29';
-          this.nose="30";
+          this.nose = "30";
           break;
         }
-        case 'YN':{
+        case 'YN': {
           this.entidadValue = 31;
           this.entidad = 'YUCATAN';
           this.bdEstado = 'n30';
-          this.nose="31";
+          this.nose = "31";
           break;
         }
-        case 'ZS':{
+        case 'ZS': {
           this.entidadValue = 32;
           this.entidad = 'ZACATECAS';
           this.bdEstado = 'n31';
-          this.nose="32";
+          this.nose = "32";
           break;
         }
-        default : {
+        default: {
           this.entidadValue = 39;
           this.entidad = 'NACIDO EN EL EXTRANJERO';
           this.bdEstado = 'n32';
-          this.nose="33";
+          this.nose = "33";
           break;
         }
       }
-    }else{
+    } else {
       this.entidad = 'Entidad de registro';
     }
   }
-  administrar()
-{
-  this.router.navigateByUrl("/administrar");
-}
-historial()
-{
-  this.router.navigateByUrl("/historial");
-}
-onChange(event:any){
-  this.tipodebusqueda = event;
-}
-onChangeTwo(event:any){
-  this.actoRegistral = event;
-}
+  administrar() {
+    this.router.navigateByUrl("/administrar");
+  }
+  historial() {
+    this.router.navigateByUrl("/historial");
+  }
+  onChange(event: any) {
+    this.tipodebusqueda = event;
+  }
+  onChangeTwo(event: any) {
+    this.actoRegistral = event;
+  }
 
   ngOnInit(): void {
 
@@ -291,10 +416,10 @@ onChangeTwo(event:any){
     if (!token) {
       this.router.navigateByUrl('/login');
     }
-    
+
   }
 
- 
+
 
 
 }

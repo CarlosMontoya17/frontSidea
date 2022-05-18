@@ -83,5 +83,14 @@ export class RestService {
     return this.http.get('http://actasalinstante.com:3030/api/actas/Trash/' , { headers })
   }
   
+  SolicitudactasporCurp(datos:any){
 
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+      var token: any = i.toString(CryptoJS.enc.Utf8);
+      var parteuno = token.slice(1);
+      var final = parteuno.slice(0, -1);
+      const headers = new HttpHeaders({ 'x-access-token': final! });
+      return this.http.post(api+'/api/actas/requests/createOne/',datos , {headers});
+  }
+  
 } 

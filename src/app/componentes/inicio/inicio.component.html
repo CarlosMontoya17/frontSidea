@@ -3,7 +3,7 @@
     </div>
     <div class="contenidoprincipal">
         <app-sidebarpanelhistorial></app-sidebarpanelhistorial>
-<div class="row row-cols-1 row-cols-md-3 g-4">
+ <!-- <div class="row row-cols-1 row-cols-md-3 g-4">
     <div class="col">
         <div class="card h-100">
             <img src="https://tramitar.mx/img/acta-nacimiento.png" />
@@ -74,10 +74,10 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <section class="row">
-    <div class="col-12 col-lg-9">
+    <!-- <div class="col-12 col-lg-9">
 
         <div class="row" id="previsualizarActa" *ngIf="preview==1"
             style="margin-top: 15px; display: flex; position: relative; align-items: center;">
@@ -95,7 +95,7 @@
             <div class="col-md-auto" style="width: 250px; ">
             </div>
         </div>
-    </div>
+    </div> -->
     <div class="row" id="menuPrincipalActa" *ngIf="preview==0">
         <div class="col-12">
             <div class="card">
@@ -111,8 +111,8 @@
                                             (ngModelChange)="onChange($event)">
                                             <option selected hidden>Seleccione el tipo de busqueda</option>
                                             <option value="1">CURP</option>
+                                            <option value="2">Cadena digital</option>
                                             <option value="3">Datos personales</option>
-                                            <option disabled>Cadena digital</option>
                                             <option disabled>Datos del registro civil</option>
                                         </select>
                                     </fieldset>
@@ -126,8 +126,15 @@
                         <div class="row match-height">
                             <div class="col-md-6 col-12">
                                 <div class="card">
-                                    <div class="card-header">
-                                        <h4 class="card-title">Actas</h4>
+                                    <div class="card-header ">
+                                        <div class="card-block text-center">
+
+                                            <h4 style="background-color:#A52A2A ; color: aliceblue; "
+                                                class="card-title ">Búsqueda de Acta por CURP</h4>
+
+
+                                        </div>
+
                                     </div>
                                     <div class="card-content">
                                         <div class="card-body">
@@ -150,9 +157,7 @@
                                                                     <option value="2">DEFUNCION</option>
                                                                     <option value="3">MATRIMONIO</option>
                                                                     <option value="4">DIVORCIO</option>
-                                                                    <option disabled>RECONOCIMIENTO</option>
-                                                                    <option disabled>ADOPCION</option>
-                                                                    <option disabled>SENTENCIA</option>
+
                                                                 </select>
                                                             </fieldset>
                                                         </div>
@@ -174,14 +179,25 @@
                                                             <input class="form-control" name="entidad" required
                                                                 [ngModel]="entidad" readonly>
                                                         </div>
+
                                                         <div class="col-sm-12 d-flex justify-content-end">
-                                                            <button type="submit">Buscar</button>
-                                                            <button type="button"
-                                                                class="btn btn-light-secondary me-1 mb-1">Limpiar</button>
-                                                        </div>
-                                                        <div class="card-body col-sm-12 d-flex justify-content-end">
+
+
+
+
+
+                                                            <button type="reset"
+                                                                class="btn btn-light-secondary me-1 mb-1">Limpiar
+                                                                <fa-icon [icon]="borrar" class="add-user"></fa-icon>
+                                                            </button>
+                                                            <button id="conteo2" (click)="buscar()" type="submit">Enviar
+                                                                peticion
+
+                                                                <fa-icon [icon]="Buscar" class="add-user"></fa-icon>
+                                                            </button>
 
                                                         </div>
+
                                                     </div>
                                                 </div>
                                             </form>
@@ -192,6 +208,69 @@
                         </div>
                     </section>
                 </div>
+                <div class="card-body" *ngIf="tipodebusqueda==2">
+                    <section id="basic-horizontal-layouts">
+                        <div class="row match-height">
+                            <div class="col-md-6 col-12">
+                                <div class="card">
+                                    <div class="card-header ">
+                                        <div class="card-block text-center">
+
+                                            <h4 style="background-color:#A52A2A ; color: aliceblue; "
+                                                class="card-title ">Búsqueda de Acta por Cadena Digital</h4>
+
+
+                                        </div>
+
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <form class="form form-horizontal">
+                                                <div class="form-body">
+                                                    <div class="row">
+
+                                                        <div class="col-md-4">
+                                                            <label>Cadena Digital</label>
+                                                        </div>
+                                                        <div class="col-md-8 form-group">
+                                                    
+                                                            <input type="text" id="curp" class="form-control" required
+                                                                style="text-transform:uppercase" name="cadenadigital"
+                                                                placeholder="Ingresa la Cadena Digital" [(ngModel)]="cadenadigital">
+                                                        </div>
+                                                        
+                                                       
+
+                                                        <div class="col-sm-12 d-flex justify-content-end">
+
+
+
+
+
+                                                            <button type="reset"
+                                                                class="btn btn-light-secondary me-1 mb-1">Limpiar
+                                                                <fa-icon [icon]="borrar" class="add-user"></fa-icon>
+                                                            </button>
+                                                            <button id="conteo2" (click)="buscar()" type="submit">Enviar
+                                                                peticion
+
+                                                                <fa-icon [icon]="Buscar" class="add-user"></fa-icon>
+                                                            </button>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+
                 <div class="card-body" *ngIf="tipodebusqueda==3">
                     <div class="row match-height">
                         <div class="col-12">
@@ -222,9 +301,7 @@
                                                                 <option value="2">DEFUNCION</option>
                                                                 <option value="3">MATRIMONIO</option>
                                                                 <option value="4">DIVORCIO</option>
-                                                                <option disabled>RECONOCIMIENTO</option>
-                                                                <option disabled>ADOPCION</option>
-                                                                <option disabled>SENTENCIA</option>
+
                                                             </select>
                                                         </fieldset>
                                                     </div>
@@ -326,9 +403,9 @@
                                                     <div class="col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label for="city-column">Nombre(s)*:</label>
-                                                            <input type="text" id="nombrePersonal"
-                                                                style="text-transform:uppercase" class="form-control"
-                                                                placeholder="Ingresa los nombres">
+                                                            <input [(ngModel)]="nombres" name="nombres" type="text"
+                                                                id="nombrePersonal" style="text-transform:uppercase"
+                                                                class="form-control" placeholder="Ingresa los nombres">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-12">
@@ -337,9 +414,9 @@
                                                         <div class="form-group">
                                                             <label for="country-floating">Primer
                                                                 Apellido*:</label>
-                                                            <input type="text" id="apellidoP"
-                                                                style="text-transform:uppercase" class="form-control"
-                                                                name="apellidoP"
+                                                            <input [(ngModel)]="primerApellido" type="text"
+                                                                id="apellidoP" style="text-transform:uppercase"
+                                                                class="form-control" name="primerApellido"
                                                                 placeholder="Ingresa el primer apellido">
                                                         </div>
                                                     </div>
@@ -350,17 +427,17 @@
                                                         <div class="col-12">
                                                             <label for="email-id-column">Sexo*:</label>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" value="Mujer"
-                                                                    type="radio" name="flexRadioDefault"
-                                                                    id="flexRadioDefault1" value="Femenino">
+                                                                <input [(ngModel)]="sexo" class="form-check-input"
+                                                                    value="Mujer" type="radio" name="sexo"
+                                                                    id="flexRadioDefault1" value="Mujer">
                                                                 <label class="form-check-label" for="flexRadioDefault1">
                                                                     Mujer
                                                                 </label>
                                                             </div>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" value="Hombre"
-                                                                    type="radio" name="flexRadioDefault"
-                                                                    value="Masculino" id="flexRadioDefault2">
+                                                                <input [(ngModel)]="sexo" class="form-check-input"
+                                                                    value="Hombre" type="radio" name="sexo"
+                                                                    value="Hombre" id="flexRadioDefault2">
                                                                 <label class="form-check-label" for="flexRadioDefault2">
                                                                     Hombre
                                                                 </label>
@@ -374,9 +451,9 @@
                                                         <div class="form-group">
                                                             <label for="company-column">Segundo
                                                                 Apellido</label>
-                                                            <input type="text" id="apellidoM"
-                                                                style="text-transform:uppercase" class="form-control"
-                                                                name="apellidoM"
+                                                            <input [(ngModel)]="segundoApellido" type="text"
+                                                                id="apellidoM" style="text-transform:uppercase"
+                                                                class="form-control" name="segundoApellido"
                                                                 placeholder="Ingresa el segundo apellido">
                                                         </div>
                                                     </div>
@@ -389,10 +466,10 @@
                                                                 nacimiento</label>
 
 
-                                                            <input type="date" class="form-control"
-                                                                name="fechaNacimiento" id="fechadeNacimiento"
-                                                                placeholder="dd-mm-yyyy" min="1997-01-01"
-                                                                max="2030-12-31">
+                                                            <input [(ngModel)]="fechaNacimiento" type="date"
+                                                                class="form-control" name="fechaNacimiento"
+                                                                id="fechadeNacimiento" placeholder="dd/mm/yyyy"
+                                                                min="1997/01/01" max="2030/12/31">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-12">
@@ -400,10 +477,15 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-12 d-flex justify-content-end">
-                                                        <button type="submit">Buscar</button>
+                                                    <div id="conteo2" class="col-12 d-flex justify-content-end">
+                                                        <button (click)="buscar()" type="submit">Buscar
+                                                            <fa-icon [icon]="Buscar" class="add-user"></fa-icon>
+
+                                                        </button>
                                                         <button type="reset"
-                                                            class="btn btn-light-secondary me-1 mb-1">Limpiar</button>
+                                                            class="btn btn-light-secondary me-1 mb-1">Limpiar
+                                                            <fa-icon [icon]="borrar" class="add-user"></fa-icon>
+                                                        </button>
                                                     </div>
                                                     <div class="card-body col-sm-12 d-flex justify-content-end">
 
@@ -543,6 +625,15 @@
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
+
+
+
             </div>
         </div>
     </div>
