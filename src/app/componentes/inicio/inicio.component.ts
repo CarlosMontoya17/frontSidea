@@ -5,6 +5,10 @@ import { RestService } from '../historial/rest.service';
 import { faEraser } from '@fortawesome/free-solid-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
+
+//Servicios
+import { ReadService } from './models/read.service';
+
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
@@ -59,7 +63,11 @@ export class InicioComponent implements OnInit {
 
   datosdeenvio = [];
 
-  constructor(private router: Router, private restservice: RestService) { }
+
+  estadoxRc:any;
+  municipios:any = []
+
+  constructor(private router: Router, private restservice: RestService, private readJson:ReadService) { }
 
 
 
@@ -67,11 +75,31 @@ export class InicioComponent implements OnInit {
   onChnageEntidad(value: any) {
     this.entidadValue = value;
   }
+  //CERRAMOS SESION
   logout() {
     localStorage.clear();
     this.router.navigate(['/login']);
 
   }
+  //SE OBTIENEN LOS MUNICIPIOS
+  async obtainMunicipios(key:string){
+    await this.readJson.readMunicipios(key).subscribe(data => {
+      this.municipios = data;
+      console.log(this.municipios);
+    });
+
+  }
+  
+   //RECARGAMOS LA PAGINA POR SI MISMA
+   reloadCurrentRoute() {
+    const currentUrl = this.router.url;
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentUrl]);
+    });
+  }
+
+
+
   //BUSCAR POR CURP
   async buscar() {
     switch (this.actoRegistral) {
@@ -138,10 +166,17 @@ export class InicioComponent implements OnInit {
 
 
  const acto = this.restservice.SolicitudactasporCurp(datosdeenvio[0]).toPromise();
- 
+ Swal.fire({
+  position: 'center',
+  icon: 'success',
+  title: 'Datos enviados ',
+  showConfirmButton: false,
+  timer: 1500
+})
+ this.reloadCurrentRoute();
     
 
-console.log(acto);
+
 
 
 
@@ -411,7 +446,6 @@ console.log(acto);
   }
 
   ngOnInit(): void {
-
     const token = localStorage.getItem('token');
     if (!token) {
       this.router.navigateByUrl('/login');
