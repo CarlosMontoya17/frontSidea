@@ -1,0 +1,50 @@
+[
+	{
+		"id": 1,
+		"nombre": "AGUASCALIENTES"
+	},
+	{
+		"id": 2,
+		"nombre": "ASIENTOS"
+	},
+	{
+		"id": 3,
+		"nombre": "CALVILLO"
+	},
+	{
+		"id": 4,
+		"nombre": "COSIO"
+	},
+	{
+		"id": 5,
+		"nombre": "JESUS MARIA"
+	},
+	{
+		"id": 6,
+		"nombre": "PABELLON DE ARTEAGA"
+	},
+	{
+		"id": 7,
+		"nombre": "RINCON DE ROMOS"
+	},
+	{
+		"id": 8,
+		"nombre": "SAN JOSE DE GRACIA"
+	},
+	{
+		"id": 9,
+		"nombre": "TEPEZALA"
+	},
+	{
+		"id": 10,
+		"nombre": "EL LLANO"
+	},
+	{
+		"id": 11,
+		"nombre": "SAN FRANCISCO DE LOS ROMO"
+	},
+	{
+		"id": 999,
+		"nombre": "DESCONOCIDO"
+	}
+]

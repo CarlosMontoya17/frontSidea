@@ -267,4 +267,6 @@ ol {
 }
 .estatic{
 background-color: #b22234;
+position: sticky
+top:0 ;
 }

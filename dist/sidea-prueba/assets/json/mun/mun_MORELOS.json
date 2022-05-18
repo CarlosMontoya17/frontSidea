@@ -1,0 +1,150 @@
+[
+	{
+		"id": 1,
+		"nombre": "AMACUZAC"
+	},
+	{
+		"id": 2,
+		"nombre": "ATLATLAHUCAN"
+	},
+	{
+		"id": 3,
+		"nombre": "AXOCHIAPAN"
+	},
+	{
+		"id": 4,
+		"nombre": "AYALA"
+	},
+	{
+		"id": 5,
+		"nombre": "COATLAN DEL RIO"
+	},
+	{
+		"id": 6,
+		"nombre": "CUAUTLA"
+	},
+	{
+		"id": 7,
+		"nombre": "CUERNAVACA"
+	},
+	{
+		"id": 8,
+		"nombre": "EMILIANO ZAPATA"
+	},
+	{
+		"id": 9,
+		"nombre": "HUITZILAC"
+	},
+	{
+		"id": 10,
+		"nombre": "JANTETELCO"
+	},
+	{
+		"id": 11,
+		"nombre": "JIUTEPEC"
+	},
+	{
+		"id": 12,
+		"nombre": "JOJUTLA"
+	},
+	{
+		"id": 13,
+		"nombre": "JONACATEPEC"
+	},
+	{
+		"id": 14,
+		"nombre": "MAZATEPEC"
+	},
+	{
+		"id": 15,
+		"nombre": "MIACATLAN"
+	},
+	{
+		"id": 16,
+		"nombre": "OCUITUCO"
+	},
+	{
+		"id": 17,
+		"nombre": "PUENTE DE IXTLA"
+	},
+	{
+		"id": 18,
+		"nombre": "TEMIXCO"
+	},
+	{
+		"id": 19,
+		"nombre": "TEPALCINGO"
+	},
+	{
+		"id": 20,
+		"nombre": "TEPOZTLAN"
+	},
+	{
+		"id": 21,
+		"nombre": "TETECALA"
+	},
+	{
+		"id": 22,
+		"nombre": "TETELA DEL VOLCAN"
+	},
+	{
+		"id": 23,
+		"nombre": "TLALNEPANTLA"
+	},
+	{
+		"id": 24,
+		"nombre": "TLALTIZAPAN DE ZAPATA"
+	},
+	{
+		"id": 25,
+		"nombre": "TLAQUILTENANGO"
+	},
+	{
+		"id": 26,
+		"nombre": "TLAYACAPAN"
+	},
+	{
+		"id": 27,
+		"nombre": "TOTOLAPAN"
+	},
+	{
+		"id": 28,
+		"nombre": "XOCHITEPEC"
+	},
+	{
+		"id": 29,
+		"nombre": "YAUTEPEC"
+	},
+	{
+		"id": 30,
+		"nombre": "YECAPIXTLA"
+	},
+	{
+		"id": 31,
+		"nombre": "ZACATEPEC"
+	},
+	{
+		"id": 32,
+		"nombre": "ZACUALPAN"
+	},
+	{
+		"id": 33,
+		"nombre": "TEMOAC"
+	},
+	{
+		"id": 34,
+		"nombre": "COATETELCO"
+	},
+	{
+		"id": 35,
+		"nombre": "XOXOCOTLA"
+	},
+	{
+		"id": 36,
+		"nombre": "HUEYAPAN"
+	},
+	{
+		"id": 999,
+		"nombre": "DESCONOCIDO"
+	}
+]

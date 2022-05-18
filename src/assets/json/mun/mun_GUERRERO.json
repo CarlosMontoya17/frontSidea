@@ -1,0 +1,330 @@
+[
+	{
+		"id": 1,
+		"nombre": "ACAPULCO DE JUAREZ"
+	},
+	{
+		"id": 2,
+		"nombre": "AHUACUOTZINGO"
+	},
+	{
+		"id": 3,
+		"nombre": "AJUCHITLAN DEL PROGRESO"
+	},
+	{
+		"id": 4,
+		"nombre": "ALCOZAUCA DE GUERRERO"
+	},
+	{
+		"id": 5,
+		"nombre": "ALPOYECA"
+	},
+	{
+		"id": 6,
+		"nombre": "APAXTLA"
+	},
+	{
+		"id": 7,
+		"nombre": "ARCELIA"
+	},
+	{
+		"id": 8,
+		"nombre": "ATENANGO DEL RIO"
+	},
+	{
+		"id": 9,
+		"nombre": "ATLAMAJALCINGO DEL MONTE"
+	},
+	{
+		"id": 10,
+		"nombre": "ATLIXTAC"
+	},
+	{
+		"id": 11,
+		"nombre": "ATOYAC DE ALVAREZ"
+	},
+	{
+		"id": 12,
+		"nombre": "AYUTLA DE LOS LIBRES"
+	},
+	{
+		"id": 13,
+		"nombre": "AZOYU"
+	},
+	{
+		"id": 14,
+		"nombre": "BENITO JUAREZ"
+	},
+	{
+		"id": 15,
+		"nombre": "BUENAVISTA DE CUELLAR"
+	},
+	{
+		"id": 16,
+		"nombre": "COAHUAYUTLA DE JOSE MARIA IZAZAGA"
+	},
+	{
+		"id": 17,
+		"nombre": "COCULA"
+	},
+	{
+		"id": 18,
+		"nombre": "COPALA"
+	},
+	{
+		"id": 19,
+		"nombre": "COPALILLO"
+	},
+	{
+		"id": 20,
+		"nombre": "COPANATOYAC"
+	},
+	{
+		"id": 21,
+		"nombre": "COYUCA DE BENITEZ"
+	},
+	{
+		"id": 22,
+		"nombre": "COYUCA DE CATALAN"
+	},
+	{
+		"id": 23,
+		"nombre": "CUAJINICUILAPA"
+	},
+	{
+		"id": 24,
+		"nombre": "CUALAC"
+	},
+	{
+		"id": 25,
+		"nombre": "CUAUTEPEC"
+	},
+	{
+		"id": 26,
+		"nombre": "CUETZALA DEL PROGRESO"
+	},
+	{
+		"id": 27,
+		"nombre": "CUTZAMALA DE PINZON"
+	},
+	{
+		"id": 28,
+		"nombre": "CHILAPA DE ALVAREZ"
+	},
+	{
+		"id": 29,
+		"nombre": "CHILPANCINGO DE LOS BRAVO"
+	},
+	{
+		"id": 30,
+		"nombre": "FLORENCIO VILLARREAL"
+	},
+	{
+		"id": 31,
+		"nombre": "GENERAL CANUTO A. NERI"
+	},
+	{
+		"id": 32,
+		"nombre": "GENERAL HELIODORO CASTILLO"
+	},
+	{
+		"id": 33,
+		"nombre": "HUAMUXTITLAN"
+	},
+	{
+		"id": 34,
+		"nombre": "HUITZUCO DE LOS FIGUEROA"
+	},
+	{
+		"id": 35,
+		"nombre": "IGUALA DE LA INDEPENDENCIA"
+	},
+	{
+		"id": 36,
+		"nombre": "IGUALAPA"
+	},
+	{
+		"id": 37,
+		"nombre": "IXCATEOPAN DE CUAUHTEMOC"
+	},
+	{
+		"id": 38,
+		"nombre": "ZIHUATANEJO DE AZUETA"
+	},
+	{
+		"id": 39,
+		"nombre": "JUAN R. ESCUDERO"
+	},
+	{
+		"id": 40,
+		"nombre": "LEONARDO BRAVO"
+	},
+	{
+		"id": 41,
+		"nombre": "MALINALTEPEC"
+	},
+	{
+		"id": 42,
+		"nombre": "MARTIR DE CUILAPAN"
+	},
+	{
+		"id": 43,
+		"nombre": "METLATONOC"
+	},
+	{
+		"id": 44,
+		"nombre": "MOCHITLAN"
+	},
+	{
+		"id": 45,
+		"nombre": "OLINALA"
+	},
+	{
+		"id": 46,
+		"nombre": "OMETEPEC"
+	},
+	{
+		"id": 47,
+		"nombre": "PEDRO ASCENCIO ALQUISIRAS"
+	},
+	{
+		"id": 48,
+		"nombre": "PETATLAN"
+	},
+	{
+		"id": 49,
+		"nombre": "PILCAYA"
+	},
+	{
+		"id": 50,
+		"nombre": "PUNGARABATO"
+	},
+	{
+		"id": 51,
+		"nombre": "QUECHULTENANGO"
+	},
+	{
+		"id": 52,
+		"nombre": "SAN LUIS ACATLAN"
+	},
+	{
+		"id": 53,
+		"nombre": "SAN MARCOS"
+	},
+	{
+		"id": 54,
+		"nombre": "SAN MIGUEL TOTOLAPAN"
+	},
+	{
+		"id": 55,
+		"nombre": "TAXCO DE ALARCON"
+	},
+	{
+		"id": 56,
+		"nombre": "TECOANAPA"
+	},
+	{
+		"id": 57,
+		"nombre": "TECPAN DE GALEANA"
+	},
+	{
+		"id": 58,
+		"nombre": "TELOLOAPAN"
+	},
+	{
+		"id": 59,
+		"nombre": "TEPECOACUILCO DE TRUJANO"
+	},
+	{
+		"id": 60,
+		"nombre": "TETIPAC"
+	},
+	{
+		"id": 61,
+		"nombre": "TIXTLA DE GUERRERO"
+	},
+	{
+		"id": 62,
+		"nombre": "TLACOACHISTLAHUACA"
+	},
+	{
+		"id": 63,
+		"nombre": "TLACOAPA"
+	},
+	{
+		"id": 64,
+		"nombre": "TLALCHAPA"
+	},
+	{
+		"id": 65,
+		"nombre": "TLALIXTAQUILLA DE MALDONADO"
+	},
+	{
+		"id": 66,
+		"nombre": "TLAPA DE COMONFORT"
+	},
+	{
+		"id": 67,
+		"nombre": "TLAPEHUALA"
+	},
+	{
+		"id": 68,
+		"nombre": "LA UNION DE ISIDORO MONTES DE OCA"
+	},
+	{
+		"id": 69,
+		"nombre": "XALPATLAHUAC"
+	},
+	{
+		"id": 70,
+		"nombre": "XOCHIHUEHUETLAN"
+	},
+	{
+		"id": 71,
+		"nombre": "XOCHISTLAHUACA"
+	},
+	{
+		"id": 72,
+		"nombre": "ZAPOTITLAN TABLAS"
+	},
+	{
+		"id": 73,
+		"nombre": "ZIRANDARO DE LOS CHAVEZ"
+	},
+	{
+		"id": 74,
+		"nombre": "ZITLALA"
+	},
+	{
+		"id": 75,
+		"nombre": "EDUARDO NERI"
+	},
+	{
+		"id": 76,
+		"nombre": "ACATEPEC"
+	},
+	{
+		"id": 77,
+		"nombre": "MARQUELIA"
+	},
+	{
+		"id": 78,
+		"nombre": "COCHOAPA EL GRANDE"
+	},
+	{
+		"id": 79,
+		"nombre": "JOSE JOAQUIN HERRERA"
+	},
+	{
+		"id": 80,
+		"nombre": "JUCHITAN"
+	},
+	{
+		"id": 81,
+		"nombre": "ILIATENCO"
+	},
+	{
+		"id": 999,
+		"nombre": "DESCONOCIDO"
+	}
+]

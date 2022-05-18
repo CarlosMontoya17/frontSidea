@@ -1,0 +1,238 @@
+[
+	{
+		"id": 1,
+		"nombre": "APOZOL"
+	},
+	{
+		"id": 2,
+		"nombre": "APULCO"
+	},
+	{
+		"id": 3,
+		"nombre": "ATOLINGA"
+	},
+	{
+		"id": 4,
+		"nombre": "BENITO JUAREZ"
+	},
+	{
+		"id": 5,
+		"nombre": "CALERA"
+	},
+	{
+		"id": 6,
+		"nombre": "CAÑITAS DE FELIPE PESCADOR"
+	},
+	{
+		"id": 7,
+		"nombre": "CONCEPCION DEL ORO"
+	},
+	{
+		"id": 8,
+		"nombre": "CUAUHTEMOC"
+	},
+	{
+		"id": 9,
+		"nombre": "CHALCHIHUITES"
+	},
+	{
+		"id": 10,
+		"nombre": "FRESNILLO"
+	},
+	{
+		"id": 11,
+		"nombre": "TRINIDAD GARCIA DE LA CADENA"
+	},
+	{
+		"id": 12,
+		"nombre": "GENARO CODINA"
+	},
+	{
+		"id": 13,
+		"nombre": "GENERAL ENRIQUE ESTRADA"
+	},
+	{
+		"id": 14,
+		"nombre": "GENERAL FRANCISCO R. MURGUIA"
+	},
+	{
+		"id": 15,
+		"nombre": "EL PLATEADO DE JOAQUIN AMARO"
+	},
+	{
+		"id": 16,
+		"nombre": "GENERAL PANFILO NATERA"
+	},
+	{
+		"id": 17,
+		"nombre": "GUADALUPE"
+	},
+	{
+		"id": 18,
+		"nombre": "HUANUSCO"
+	},
+	{
+		"id": 19,
+		"nombre": "JALPA"
+	},
+	{
+		"id": 20,
+		"nombre": "JEREZ"
+	},
+	{
+		"id": 21,
+		"nombre": "JIMENEZ DEL TEUL"
+	},
+	{
+		"id": 22,
+		"nombre": "JUAN ALDAMA"
+	},
+	{
+		"id": 23,
+		"nombre": "JUCHIPILA"
+	},
+	{
+		"id": 24,
+		"nombre": "LORETO"
+	},
+	{
+		"id": 25,
+		"nombre": "LUIS MOYA"
+	},
+	{
+		"id": 26,
+		"nombre": "MAZAPIL"
+	},
+	{
+		"id": 27,
+		"nombre": "MELCHOR OCAMPO"
+	},
+	{
+		"id": 28,
+		"nombre": "MEZQUITAL DEL ORO"
+	},
+	{
+		"id": 29,
+		"nombre": "MIGUEL AUZA"
+	},
+	{
+		"id": 30,
+		"nombre": "MOMAX"
+	},
+	{
+		"id": 31,
+		"nombre": "MONTE ESCOBEDO"
+	},
+	{
+		"id": 32,
+		"nombre": "MORELOS"
+	},
+	{
+		"id": 33,
+		"nombre": "MOYAHUA DE ESTRADA"
+	},
+	{
+		"id": 34,
+		"nombre": "NOCHISTLAN DE MEJIA"
+	},
+	{
+		"id": 35,
+		"nombre": "NORIA DE ANGELES"
+	},
+	{
+		"id": 36,
+		"nombre": "OJOCALIENTE"
+	},
+	{
+		"id": 37,
+		"nombre": "PANUCO"
+	},
+	{
+		"id": 38,
+		"nombre": "PINOS"
+	},
+	{
+		"id": 39,
+		"nombre": "RIO GRANDE"
+	},
+	{
+		"id": 40,
+		"nombre": "SAIN ALTO"
+	},
+	{
+		"id": 41,
+		"nombre": "EL SALVADOR"
+	},
+	{
+		"id": 42,
+		"nombre": "SOMBRERETE"
+	},
+	{
+		"id": 43,
+		"nombre": "SUSTICACAN"
+	},
+	{
+		"id": 44,
+		"nombre": "TABASCO"
+	},
+	{
+		"id": 45,
+		"nombre": "TEPECHITLAN"
+	},
+	{
+		"id": 46,
+		"nombre": "TEPETONGO"
+	},
+	{
+		"id": 47,
+		"nombre": "TEUL DE GONZALEZ ORTEGA"
+	},
+	{
+		"id": 48,
+		"nombre": "TLALTENANGO DE SANCHEZ ROMAN"
+	},
+	{
+		"id": 49,
+		"nombre": "VALPARAISO"
+	},
+	{
+		"id": 50,
+		"nombre": "VETAGRANDE"
+	},
+	{
+		"id": 51,
+		"nombre": "VILLA DE COS"
+	},
+	{
+		"id": 52,
+		"nombre": "VILLA GARCIA"
+	},
+	{
+		"id": 53,
+		"nombre": "VILLA GONZALEZ ORTEGA"
+	},
+	{
+		"id": 54,
+		"nombre": "VILLA HIDALGO"
+	},
+	{
+		"id": 55,
+		"nombre": "VILLANUEVA"
+	},
+	{
+		"id": 56,
+		"nombre": "ZACATECAS"
+	},
+	{
+		"id": 57,
+		"nombre": "TRANCOSO"
+	},
+	{
+		"id": 58,
+		"nombre": "SANTA MARIA DE LA PAZ"
+	},
+	{
+		"id": 999,
+		"nombre": "DESCONOCIDO"
+	}
+]

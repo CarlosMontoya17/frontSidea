@@ -121,6 +121,7 @@ public pinnedBottomRowData!: any[];
   }
 
   setTipoDeEstado(stat:any){
+    console.log(stat);
     this.estado = stat;
     
   }

@@ -1,0 +1,78 @@
+[
+	{
+		"id": 1,
+		"nombre": "AMEALCO DE BONFIL"
+	},
+	{
+		"id": 2,
+		"nombre": "PINAL DE AMOLES"
+	},
+	{
+		"id": 3,
+		"nombre": "ARROYO SECO"
+	},
+	{
+		"id": 4,
+		"nombre": "CADEREYTA DE MONTES"
+	},
+	{
+		"id": 5,
+		"nombre": "COLON"
+	},
+	{
+		"id": 6,
+		"nombre": "CORREGIDORA"
+	},
+	{
+		"id": 7,
+		"nombre": "EZEQUIEL MONTES"
+	},
+	{
+		"id": 8,
+		"nombre": "HUIMILPAN"
+	},
+	{
+		"id": 9,
+		"nombre": "JALPAN DE SERRA"
+	},
+	{
+		"id": 10,
+		"nombre": "LANDA DE MATAMOROS"
+	},
+	{
+		"id": 11,
+		"nombre": "EL MARQUES"
+	},
+	{
+		"id": 12,
+		"nombre": "PEDRO ESCOBEDO"
+	},
+	{
+		"id": 13,
+		"nombre": "PEÑAMILLER"
+	},
+	{
+		"id": 14,
+		"nombre": "QUERETARO"
+	},
+	{
+		"id": 15,
+		"nombre": "SAN JOAQUIN"
+	},
+	{
+		"id": 16,
+		"nombre": "SAN JUAN DEL RIO"
+	},
+	{
+		"id": 17,
+		"nombre": "TEQUISQUIAPAN"
+	},
+	{
+		"id": 18,
+		"nombre": "TOLIMAN"
+	},
+	{
+		"id": 999,
+		"nombre": "DESCONOCIDO"
+	}
+]

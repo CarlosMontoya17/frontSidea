@@ -1,0 +1,70 @@
+[
+	{
+		"id": 2,
+		"nombre": "AZCAPOTZALCO"
+	},
+	{
+		"id": 3,
+		"nombre": "COYOACAN"
+	},
+	{
+		"id": 4,
+		"nombre": "CUAJIMALPA DE MORELOS"
+	},
+	{
+		"id": 5,
+		"nombre": "GUSTAVO A. MADERO"
+	},
+	{
+		"id": 6,
+		"nombre": "IZTACALCO"
+	},
+	{
+		"id": 7,
+		"nombre": "IZTAPALAPA"
+	},
+	{
+		"id": 8,
+		"nombre": "LA MAGDALENA CONTRERAS"
+	},
+	{
+		"id": 9,
+		"nombre": "MILPA ALTA"
+	},
+	{
+		"id": 10,
+		"nombre": "ALVARO OBREGON"
+	},
+	{
+		"id": 11,
+		"nombre": "TLAHUAC"
+	},
+	{
+		"id": 12,
+		"nombre": "TLALPAN"
+	},
+	{
+		"id": 13,
+		"nombre": "XOCHIMILCO"
+	},
+	{
+		"id": 14,
+		"nombre": "BENITO JUAREZ"
+	},
+	{
+		"id": 15,
+		"nombre": "CUAUHTEMOC"
+	},
+	{
+		"id": 16,
+		"nombre": "MIGUEL HIDALGO"
+	},
+	{
+		"id": 17,
+		"nombre": "VENUSTIANO CARRANZA"
+	},
+	{
+		"id": 999,
+		"nombre": "DESCONOCIDO"
+	}
+]

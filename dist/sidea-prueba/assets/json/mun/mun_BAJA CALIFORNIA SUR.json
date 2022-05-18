@@ -1,0 +1,34 @@
+[
+	{
+		"id": 1,
+		"nombre": "COMONDU"
+	},
+	{
+		"id": 2,
+		"nombre": "MULEGE"
+	},
+	{
+		"id": 3,
+		"nombre": "LA PAZ"
+	},
+	{
+		"id": 4,
+		"nombre": "LOS CABOS"
+	},
+	{
+		"id": 5,
+		"nombre": "LORETO"
+	},
+	{
+		"id": 8,
+		"nombre": "LOS CABOS"
+	},
+	{
+		"id": 9,
+		"nombre": "LORETO"
+	},
+	{
+		"id": 999,
+		"nombre": "DESCONOCIDO"
+	}
+]

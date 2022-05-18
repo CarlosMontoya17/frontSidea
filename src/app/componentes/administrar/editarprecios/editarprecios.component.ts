@@ -153,6 +153,7 @@ export class EditarpreciosComponent implements OnInit {
         "nl": this.NUEVOLEON,
         "mex": this.MEXICO,
         "qroo": this.QUINTANAROO,
+        "ext": this.EXTRANJERO
 
       }
     
@@ -310,6 +311,7 @@ export class EditarpreciosComponent implements OnInit {
       this.YUCATAN = this.precios.nac.yuca;
       this.ZACATECAS = this.precios.nac.zaca;
       this.GUANAJUATO = this.precios.nac.guan;
+      this.EXTRANJERO = this.precios.nac.ext;
     } else {
       this.nac = this.precios.nac;
     }

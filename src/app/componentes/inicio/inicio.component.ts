@@ -83,11 +83,11 @@ export class InicioComponent implements OnInit {
   }
   //SE OBTIENEN LOS MUNICIPIOS
   async obtainMunicipios(key:string){
-    await this.readJson.readMunicipios(key).subscribe(data => {
-      this.municipios = data;
-      console.log(this.municipios);
-    });
-
+    if(key != undefined){
+      await this.readJson.readMunicipios(key).subscribe(data => {
+        this.municipios = data;
+      });
+    }
   }
   
    //RECARGAMOS LA PAGINA POR SI MISMA

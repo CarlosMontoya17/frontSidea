@@ -1,0 +1,210 @@
+[
+	{
+		"id": 1,
+		"nombre": "ABASOLO"
+	},
+	{
+		"id": 2,
+		"nombre": "AGUALEGUAS"
+	},
+	{
+		"id": 3,
+		"nombre": "LOS ALDAMAS"
+	},
+	{
+		"id": 4,
+		"nombre": "ALLENDE"
+	},
+	{
+		"id": 5,
+		"nombre": "ANAHUAC"
+	},
+	{
+		"id": 6,
+		"nombre": "APODACA"
+	},
+	{
+		"id": 7,
+		"nombre": "ARAMBERRI"
+	},
+	{
+		"id": 8,
+		"nombre": "BUSTAMANTE"
+	},
+	{
+		"id": 9,
+		"nombre": "CADEREYTA JIMENEZ"
+	},
+	{
+		"id": 10,
+		"nombre": "CARMEN"
+	},
+	{
+		"id": 11,
+		"nombre": "CERRALVO"
+	},
+	{
+		"id": 12,
+		"nombre": "CIENEGA DE FLORES"
+	},
+	{
+		"id": 13,
+		"nombre": "CHINA"
+	},
+	{
+		"id": 14,
+		"nombre": "DOCTOR ARROYO"
+	},
+	{
+		"id": 15,
+		"nombre": "DOCTOR COSS"
+	},
+	{
+		"id": 16,
+		"nombre": "DOCTOR GONZALEZ"
+	},
+	{
+		"id": 17,
+		"nombre": "GALEANA"
+	},
+	{
+		"id": 18,
+		"nombre": "GARCIA"
+	},
+	{
+		"id": 19,
+		"nombre": "SAN PEDRO GARZA GARCIA"
+	},
+	{
+		"id": 20,
+		"nombre": "GENERAL BRAVO"
+	},
+	{
+		"id": 21,
+		"nombre": "GENERAL ESCOBEDO"
+	},
+	{
+		"id": 22,
+		"nombre": "GENERAL TERAN"
+	},
+	{
+		"id": 23,
+		"nombre": "GENERAL TREVIÑO"
+	},
+	{
+		"id": 24,
+		"nombre": "GENERAL ZARAGOZA"
+	},
+	{
+		"id": 25,
+		"nombre": "GENERAL ZUAZUA"
+	},
+	{
+		"id": 26,
+		"nombre": "GUADALUPE"
+	},
+	{
+		"id": 27,
+		"nombre": "LOS HERRERAS"
+	},
+	{
+		"id": 28,
+		"nombre": "HIGUERAS"
+	},
+	{
+		"id": 29,
+		"nombre": "HUALAHUISES"
+	},
+	{
+		"id": 30,
+		"nombre": "ITURBIDE"
+	},
+	{
+		"id": 31,
+		"nombre": "JUAREZ"
+	},
+	{
+		"id": 32,
+		"nombre": "LAMPAZOS DE NARANJO"
+	},
+	{
+		"id": 33,
+		"nombre": "LINARES"
+	},
+	{
+		"id": 34,
+		"nombre": "MARIN"
+	},
+	{
+		"id": 35,
+		"nombre": "MELCHOR OCAMPO"
+	},
+	{
+		"id": 36,
+		"nombre": "MIER Y NORIEGA"
+	},
+	{
+		"id": 37,
+		"nombre": "MINA"
+	},
+	{
+		"id": 38,
+		"nombre": "MONTEMORELOS"
+	},
+	{
+		"id": 39,
+		"nombre": "MONTERREY"
+	},
+	{
+		"id": 40,
+		"nombre": "PARAS"
+	},
+	{
+		"id": 41,
+		"nombre": "PESQUERIA"
+	},
+	{
+		"id": 42,
+		"nombre": "LOS RAMONES"
+	},
+	{
+		"id": 43,
+		"nombre": "RAYONES"
+	},
+	{
+		"id": 44,
+		"nombre": "SABINAS HIDALGO"
+	},
+	{
+		"id": 45,
+		"nombre": "SALINAS VICTORIA"
+	},
+	{
+		"id": 46,
+		"nombre": "SAN NICOLAS DE LOS GARZA"
+	},
+	{
+		"id": 47,
+		"nombre": "HIDALGO"
+	},
+	{
+		"id": 48,
+		"nombre": "SANTA CATARINA"
+	},
+	{
+		"id": 49,
+		"nombre": "SANTIAGO"
+	},
+	{
+		"id": 50,
+		"nombre": "VALLECILLO"
+	},
+	{
+		"id": 51,
+		"nombre": "VILLALDAMA"
+	},
+	{
+		"id": 999,
+		"nombre": "DESCONOCIDO"
+	}
+]

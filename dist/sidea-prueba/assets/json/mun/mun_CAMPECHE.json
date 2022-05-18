@@ -1,0 +1,58 @@
+[
+	{
+		"id": 1,
+		"nombre": "CALKINI"
+	},
+	{
+		"id": 2,
+		"nombre": "CAMPECHE"
+	},
+	{
+		"id": 3,
+		"nombre": "CARMEN"
+	},
+	{
+		"id": 4,
+		"nombre": "CHAMPOTON"
+	},
+	{
+		"id": 5,
+		"nombre": "HECELCHAKAN"
+	},
+	{
+		"id": 6,
+		"nombre": "HOPELCHEN"
+	},
+	{
+		"id": 7,
+		"nombre": "PALIZADA"
+	},
+	{
+		"id": 8,
+		"nombre": "TENABO"
+	},
+	{
+		"id": 9,
+		"nombre": "ESCARCEGA"
+	},
+	{
+		"id": 10,
+		"nombre": "CALAKMUL"
+	},
+	{
+		"id": 11,
+		"nombre": "CANDELARIA"
+	},
+	{
+		"id": 12,
+		"nombre": "SEYBAPLAYA"
+	},
+	{
+		"id": 13,
+		"nombre": "DZITBALCHE"
+	},
+	{
+		"id": 999,
+		"nombre": "DESCONOCIDO"
+	}
+]

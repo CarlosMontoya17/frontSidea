@@ -1,0 +1,430 @@
+[
+	{
+		"id": 1,
+		"nombre": "ABALA"
+	},
+	{
+		"id": 2,
+		"nombre": "ACANCEH"
+	},
+	{
+		"id": 3,
+		"nombre": "AKIL"
+	},
+	{
+		"id": 4,
+		"nombre": "BACA"
+	},
+	{
+		"id": 5,
+		"nombre": "BOKOBA"
+	},
+	{
+		"id": 6,
+		"nombre": "BUCTZOTZ"
+	},
+	{
+		"id": 7,
+		"nombre": "CACALCHEN"
+	},
+	{
+		"id": 8,
+		"nombre": "CALOTMUL"
+	},
+	{
+		"id": 9,
+		"nombre": "CANSAHCAB"
+	},
+	{
+		"id": 10,
+		"nombre": "CANTAMAYEC"
+	},
+	{
+		"id": 11,
+		"nombre": "CELESTUN"
+	},
+	{
+		"id": 12,
+		"nombre": "CENOTILLO"
+	},
+	{
+		"id": 13,
+		"nombre": "CONKAL"
+	},
+	{
+		"id": 14,
+		"nombre": "CUNCUNUL"
+	},
+	{
+		"id": 15,
+		"nombre": "CUZAMA"
+	},
+	{
+		"id": 16,
+		"nombre": "CHACSINKIN"
+	},
+	{
+		"id": 17,
+		"nombre": "CHANKOM"
+	},
+	{
+		"id": 18,
+		"nombre": "CHAPAB"
+	},
+	{
+		"id": 19,
+		"nombre": "CHEMAX"
+	},
+	{
+		"id": 20,
+		"nombre": "CHICXULUB PUEBLO"
+	},
+	{
+		"id": 21,
+		"nombre": "CHICHIMILA"
+	},
+	{
+		"id": 22,
+		"nombre": "CHIKINDZONOT"
+	},
+	{
+		"id": 23,
+		"nombre": "CHOCHOLA"
+	},
+	{
+		"id": 24,
+		"nombre": "CHUMAYEL"
+	},
+	{
+		"id": 25,
+		"nombre": "DZAN"
+	},
+	{
+		"id": 26,
+		"nombre": "DZEMUL"
+	},
+	{
+		"id": 27,
+		"nombre": "DZIDZANTUN"
+	},
+	{
+		"id": 28,
+		"nombre": "DZILAM DE BRAVO"
+	},
+	{
+		"id": 29,
+		"nombre": "DZILAM GONZALEZ"
+	},
+	{
+		"id": 30,
+		"nombre": "DZITAS"
+	},
+	{
+		"id": 31,
+		"nombre": "DZONCAUICH"
+	},
+	{
+		"id": 32,
+		"nombre": "ESPITA"
+	},
+	{
+		"id": 33,
+		"nombre": "HALACHO"
+	},
+	{
+		"id": 34,
+		"nombre": "HOCABA"
+	},
+	{
+		"id": 35,
+		"nombre": "HOCTUN"
+	},
+	{
+		"id": 36,
+		"nombre": "HOMUN"
+	},
+	{
+		"id": 37,
+		"nombre": "HUHI"
+	},
+	{
+		"id": 38,
+		"nombre": "HUNUCMA"
+	},
+	{
+		"id": 39,
+		"nombre": "IXIL"
+	},
+	{
+		"id": 40,
+		"nombre": "IZAMAL"
+	},
+	{
+		"id": 41,
+		"nombre": "KANASIN"
+	},
+	{
+		"id": 42,
+		"nombre": "KANTUNIL"
+	},
+	{
+		"id": 43,
+		"nombre": "KAUA"
+	},
+	{
+		"id": 44,
+		"nombre": "KINCHIL"
+	},
+	{
+		"id": 45,
+		"nombre": "KOPOMA"
+	},
+	{
+		"id": 46,
+		"nombre": "MAMA"
+	},
+	{
+		"id": 47,
+		"nombre": "MANI"
+	},
+	{
+		"id": 48,
+		"nombre": "MAXCANU"
+	},
+	{
+		"id": 49,
+		"nombre": "MAYAPAN"
+	},
+	{
+		"id": 50,
+		"nombre": "MERIDA"
+	},
+	{
+		"id": 51,
+		"nombre": "MOCOCHA"
+	},
+	{
+		"id": 52,
+		"nombre": "MOTUL"
+	},
+	{
+		"id": 53,
+		"nombre": "MUNA"
+	},
+	{
+		"id": 54,
+		"nombre": "MUXUPIP"
+	},
+	{
+		"id": 55,
+		"nombre": "OPICHEN"
+	},
+	{
+		"id": 56,
+		"nombre": "OXKUTZCAB"
+	},
+	{
+		"id": 57,
+		"nombre": "PANABA"
+	},
+	{
+		"id": 58,
+		"nombre": "PETO"
+	},
+	{
+		"id": 59,
+		"nombre": "PROGRESO"
+	},
+	{
+		"id": 60,
+		"nombre": "QUINTANA ROO"
+	},
+	{
+		"id": 61,
+		"nombre": "RIO LAGARTOS"
+	},
+	{
+		"id": 62,
+		"nombre": "SACALUM"
+	},
+	{
+		"id": 63,
+		"nombre": "SAMAHIL"
+	},
+	{
+		"id": 64,
+		"nombre": "SANAHCAT"
+	},
+	{
+		"id": 65,
+		"nombre": "SAN FELIPE"
+	},
+	{
+		"id": 66,
+		"nombre": "SANTA ELENA"
+	},
+	{
+		"id": 67,
+		"nombre": "SEYE"
+	},
+	{
+		"id": 68,
+		"nombre": "SINANCHE"
+	},
+	{
+		"id": 69,
+		"nombre": "SOTUTA"
+	},
+	{
+		"id": 70,
+		"nombre": "SUCILA"
+	},
+	{
+		"id": 71,
+		"nombre": "SUDZAL"
+	},
+	{
+		"id": 72,
+		"nombre": "SUMA"
+	},
+	{
+		"id": 73,
+		"nombre": "TAHDZIU"
+	},
+	{
+		"id": 74,
+		"nombre": "TAHMEK"
+	},
+	{
+		"id": 75,
+		"nombre": "TEABO"
+	},
+	{
+		"id": 76,
+		"nombre": "TECOH"
+	},
+	{
+		"id": 77,
+		"nombre": "TEKAL DE VENEGAS"
+	},
+	{
+		"id": 78,
+		"nombre": "TEKANTO"
+	},
+	{
+		"id": 79,
+		"nombre": "TEKAX"
+	},
+	{
+		"id": 80,
+		"nombre": "TEKIT"
+	},
+	{
+		"id": 81,
+		"nombre": "TEKOM"
+	},
+	{
+		"id": 82,
+		"nombre": "TELCHAC PUEBLO"
+	},
+	{
+		"id": 83,
+		"nombre": "TELCHAC PUERTO"
+	},
+	{
+		"id": 84,
+		"nombre": "TEMAX"
+	},
+	{
+		"id": 85,
+		"nombre": "TEMOZON"
+	},
+	{
+		"id": 86,
+		"nombre": "TEPAKAN"
+	},
+	{
+		"id": 87,
+		"nombre": "TETIZ"
+	},
+	{
+		"id": 88,
+		"nombre": "TEYA"
+	},
+	{
+		"id": 89,
+		"nombre": "TICUL"
+	},
+	{
+		"id": 90,
+		"nombre": "TIMUCUY"
+	},
+	{
+		"id": 91,
+		"nombre": "TINUM"
+	},
+	{
+		"id": 92,
+		"nombre": "TIXCACALCUPUL"
+	},
+	{
+		"id": 93,
+		"nombre": "TIXKOKOB"
+	},
+	{
+		"id": 94,
+		"nombre": "TIXMEHUAC"
+	},
+	{
+		"id": 95,
+		"nombre": "TIXPEHUAL"
+	},
+	{
+		"id": 96,
+		"nombre": "TIZIMIN"
+	},
+	{
+		"id": 97,
+		"nombre": "TUNKAS"
+	},
+	{
+		"id": 98,
+		"nombre": "TZUCACAB"
+	},
+	{
+		"id": 99,
+		"nombre": "UAYMA"
+	},
+	{
+		"id": 100,
+		"nombre": "UCU"
+	},
+	{
+		"id": 101,
+		"nombre": "UMAN"
+	},
+	{
+		"id": 102,
+		"nombre": "VALLADOLID"
+	},
+	{
+		"id": 103,
+		"nombre": "XOCCHEL"
+	},
+	{
+		"id": 104,
+		"nombre": "YAXCABA"
+	},
+	{
+		"id": 105,
+		"nombre": "YAXKUKUL"
+	},
+	{
+		"id": 106,
+		"nombre": "YOBAIN"
+	},
+	{
+		"id": 999,
+		"nombre": "DESCONOCIDO"
+	}
+]

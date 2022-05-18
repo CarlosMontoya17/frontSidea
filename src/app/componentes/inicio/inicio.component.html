@@ -124,7 +124,7 @@
                     <div class="card-body" *ngIf="tipodebusqueda==1">
                         <section id="basic-horizontal-layouts">
                             <div class="row match-height">
-                                <div class="col-md-6 col-12" >
+                                <div class="col-md-6 col-12">
                                     <div class="card">
                                         <div class="card-header ">
                                             <div class="card-block text-center">
@@ -281,7 +281,8 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 style="background-color:#A52A2A ; color: aliceblue; " class="card-title">Busqueda de Actas por Datos
+                                        <h4 style="background-color:#A52A2A ; color: aliceblue; " class="card-title">
+                                            Busqueda de Actas por Datos
                                             Personales</h4>
                                     </div>
                                     <div class="card-content">
@@ -389,8 +390,7 @@
                                                                     </option>
                                                                     <option value="-----------ZS-----">ZACATECAS
                                                                     </option>
-                                                                    <option value="-----------XX-----">NACIDOS
-                                                                        EN EL EXTRANJERO</option>
+                                                                    <option value="-----------XX-----">NACIDOS EN EL EXTRANJERO</option>
                                                                 </select>
                                                             </fieldset>
                                                         </div>
@@ -490,10 +490,12 @@
                                                                 <fa-icon [icon]="Buscar" class="add-user"></fa-icon>
 
                                                             </button>
+
                                                             <button type="reset"
                                                                 class="btn btn-light-secondary me-1 mb-1">Limpiar
                                                                 <fa-icon [icon]="borrar" class="add-user"></fa-icon>
                                                             </button>
+
                                                         </div>
                                                         <div class="card-body col-sm-12 d-flex justify-content-end">
 
@@ -647,7 +649,7 @@
                                                 <h4 style="background-color:#A52A2A ; color: aliceblue; "
                                                     class="card-title ">Búsqueda de Acta por Datos del Registro Civil
                                                 </h4>
-                                                
+
                                             </div>
 
                                         </div>
@@ -657,12 +659,12 @@
                                                     <div class="form-body">
                                                         <div class="row">
 
-                                                              <div class="col">
+                                                            <div class="col">
 
                                                                 <div class="col">
                                                                     <label>Acto registral</label>
                                                                 </div>
-                                                                 <div class="col">
+                                                                <div class="col">
 
                                                                     <fieldset class="form-group">
                                                                         <select class="form-select" id="basicSelect"
@@ -674,7 +676,7 @@
                                                                             <option value="2">DEFUNCION</option>
                                                                             <option value="3">MATRIMONIO</option>
                                                                             <option value="4">DIVORCIO</option>
-                                                                     </select>
+                                                                        </select>
                                                                     </fieldset>
                                                                 </div>
 
@@ -763,9 +765,7 @@
                                                                             </option>
                                                                             <option value="ZACATECAS">32 - ZACATECAS
                                                                             </option>
-                                                                            <option value="NACIDOS
-                                                                            EN EL EXTRANJERO">33 - NACIDOS
-                                                                                EN EL EXTRANJERO</option>
+                                                                            <option value="NACIDOS EN EL EXTRANJERO">33 - NACIDOS EN EL EXTRANJERO</option>
                                                                         </select>
                                                                     </fieldset>
                                                                 </div>
@@ -812,9 +812,9 @@
                                                                             <select class="form-select" id="basicSelect"
                                                                                 name="tipoActa">
 
-                                                                                <option selected hidden>Seleccione la
-                                                                                    Entidad</option>
-                                                                                <option value="1">NACIMIENTO</option>
+                                                                                <option selected hidden>Primero
+                                                                                    seleccione el municipio</option>
+                                                                                <option value="1"></option>
 
                                                                             </select>
                                                                         </fieldset>
@@ -822,34 +822,21 @@
 
 
                                                                 </div>
-                                                                <div class="col">
+                                                                <div class="row justify-content-end">
 
                                                                     <div class="col">
                                                                         <label>Año de registro</label>
                                                                     </div>
 
-                                                                    <div class="col">
-
-                                                                        <fieldset class="form-group">
-                                                                            <select class="form-select" id="basicSelect"
-                                                                                name="tipoActa">
-
-                                                                                <option selected hidden>Seleccione un
-                                                                                    año de Registro</option>
-                                                                                <option value="1">NACIMIENTO</option>
-
-                                                                            </select>
-                                                                        </fieldset>
-                                                                    </div>
-
-
+                                                                    <input type="date" id="start" name="trip-start"
+                                                                        min="1900-01-01" max="2022-12-31">
                                                                 </div>
                                                                 <div class="col">
                                                                     <div class="col">
                                                                         <div class="error-input" id="error-curp">Ingresa
                                                                             numero de Acta</div>
-                                                                        <input type="text" id="curp"
-                                                                            class="form-control" required name="curp"
+                                                                        <input type="text" class="form-control" required
+                                                                            name="Nacta"
                                                                             placeholder="Ingresa tu Numero de Acta"
                                                                             [ngModel]="curp"
                                                                             (ngModelChange)="onChangeCurp($event)">

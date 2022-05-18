@@ -1,0 +1,50 @@
+[
+	{
+		"id": 1,
+		"nombre": "COZUMEL"
+	},
+	{
+		"id": 2,
+		"nombre": "FELIPE CARRILLO PUERTO"
+	},
+	{
+		"id": 3,
+		"nombre": "ISLA MUJERES"
+	},
+	{
+		"id": 4,
+		"nombre": "OTHON P. BLANCO"
+	},
+	{
+		"id": 5,
+		"nombre": "BENITO JUAREZ"
+	},
+	{
+		"id": 6,
+		"nombre": "JOSE MARIA MORELOS"
+	},
+	{
+		"id": 7,
+		"nombre": "LAZARO CARDENAS"
+	},
+	{
+		"id": 8,
+		"nombre": "SOLIDARIDAD"
+	},
+	{
+		"id": 9,
+		"nombre": "TULUM"
+	},
+	{
+		"id": 10,
+		"nombre": "BACALAR"
+	},
+	{
+		"id": 11,
+		"nombre": "PUERTO MORELOS"
+	},
+	{
+		"id": 999,
+		"nombre": "DESCONOCIDO"
+	}
+]
