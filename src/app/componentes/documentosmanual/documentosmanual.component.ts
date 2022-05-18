@@ -120,6 +120,14 @@ public pinnedBottomRowData!: any[];
 
   }
 
+  setTipoDeEstado(stat:any){
+    this.estado = stat;
+    
+  }
+
+
+
+
   clearresponsable() {
     this.responsableSearch = "";
     this.newResponsable = undefined;
