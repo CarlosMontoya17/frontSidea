@@ -26,71 +26,71 @@ declare function closeAlert(): any;
 })
 export class DocumentosmanualComponent implements OnInit {
 
-//VARIABLES
-private gridApi!: GridApi;
-//cambios de vista
-papeleras: boolean = false;
-conteo: boolean = false;
-conteo2: boolean = false;
-conteo3: boolean = false;
+  //VARIABLES
+  private gridApi!: GridApi;
+  //cambios de vista
+  papeleras: boolean = false;
+  conteo: boolean = false;
+  conteo2: boolean = false;
+  conteo3: boolean = false;
 
 
-public imagePath: any;
-hidden: boolean = false;
-hidden2: boolean = true;
-faTrashCan = faTrashCan;
-facalend = faCalendar;
-restored = faTrashRestore;
-papelera = faTrashArrowUp;
-imgURL: any;
-fileTmp: any;
-info: any;
-preview: any = 0;
-vista: boolean = false;
-tipodebusqueda: any = 'Seleccione el tipo de busqueda';
-getciber: any;
-getcortes: any;
-valorabuscar: string = "";
-buscargethistorial: string = "";
-tipo: any;
-estado: any;
-nombredecliente: any;
-apellidosc: any;
-precioyasesor: any;
-namefile: any;
-ciberseleccionado: any;
-// VARIABLES PARA ENVIAR ACTAS
-enviaractas: any;
-enterprise: any;
-provider: any;
-document: any;
-states: any;
-curp: any;
-nombreacta: any;
-request: any;
-price: any;
-usuario: any = 'Usuario';
-result: any = [];
-page: number = 0;
-myInfo: any;
-myRol: any;
-nombreProvedor: String = "";
-nombreEmpresa: string = "";
-nombreasesor: string = "";
-ids: any = [];
-tipos: any = [];
-username: string = "";
-totalPrecio: number = 0;
-totalActas: number = 0;
-cortes: any;
-responsableSearch: string = "";
-newResponsable: any;
-fecha: any;
+  public imagePath: any;
+  hidden: boolean = false;
+  hidden2: boolean = true;
+  faTrashCan = faTrashCan;
+  facalend = faCalendar;
+  restored = faTrashRestore;
+  papelera = faTrashArrowUp;
+  imgURL: any;
+  fileTmp: any;
+  info: any;
+  preview: any = 0;
+  vista: boolean = false;
+  tipodebusqueda: any = 'Seleccione el tipo de busqueda';
+  getciber: any;
+  getcortes: any;
+  valorabuscar: string = "";
+  buscargethistorial: string = "";
+  tipo: any;
+  estado: any;
+  nombredecliente: any;
+  apellidosc: any;
+  precioyasesor: any;
+  namefile: any;
+  ciberseleccionado: any;
+  // VARIABLES PARA ENVIAR ACTAS
+  enviaractas: any;
+  enterprise: any;
+  provider: any;
+  document: any;
+  states: any;
+  curp: any;
+  nombreacta: any;
+  request: any;
+  price: any;
+  usuario: any = 'Usuario';
+  result: any = [];
+  page: number = 0;
+  myInfo: any;
+  myRol: any;
+  nombreProvedor: String = "";
+  nombreEmpresa: string = "";
+  nombreasesor: string = "";
+  ids: any = [];
+  tipos: any = [];
+  username: string = "";
+  totalPrecio: number = 0;
+  totalActas: number = 0;
+  cortes: any;
+  responsableSearch: string = "";
+  newResponsable: any;
+  fecha: any;
 
-gettraerPapelera2: any;
-public rowData!: any[];
-public pinnedBottomRowData!: any[];
-//CONSTRUCTOR
+  gettraerPapelera2: any;
+  public rowData!: any[];
+  public pinnedBottomRowData!: any[];
+  //CONSTRUCTOR
 
 
   constructor(private restService: RestService, private router: Router, private database: DatabaseService, private http: HttpClient) { }
@@ -120,9 +120,9 @@ public pinnedBottomRowData!: any[];
 
   }
 
-  setTipoDeEstado(stat:any){
+  setTipoDeEstado(stat: any) {
     this.estado = stat;
-    
+    console.log(stat);
   }
 
 
@@ -133,45 +133,45 @@ public pinnedBottomRowData!: any[];
     this.newResponsable = undefined;
   }
 
-//ENVIAMOS EL ACTA A LA BASE DE DATOS
-async enviaractamanual() {
-  Swal.fire(
-    {
-      position: 'center',
-      icon: 'success',
-      title: 'Datos Enviados',
-      showConfirmButton: false,
-      timer: 1500
+  //ENVIAMOS EL ACTA A LA BASE DE DATOS
+  async enviaractamanual() {
+    Swal.fire(
+      {
+        position: 'center',
+        icon: 'success',
+        title: 'Datos Enviados',
+        showConfirmButton: false,
+        timer: 1500
+      }
+    )
+
+    this.router.navigateByUrl('/historial');
+    const body = new FormData();
+
+
+
+    let nombrecompleto;
+    if (this.apellidosc == undefined || this.apellidosc == null || this.apellidosc == "") {
+      nombrecompleto = this.nombredecliente
+    } else {
+      nombrecompleto = this.nombredecliente + " " + this.apellidosc;
     }
-  )
 
-  this.router.navigateByUrl('/historial');
-  const body = new FormData();
+    const data = await this.restService.enviarcta(this.ciberseleccionado, this.precioyasesor.superviser, this.tipo, this.curp, this.estado, this.precioyasesor.precio, nombrecompleto, "", this.fileTmp?.fileName).toPromise();
 
+    this.reloadCurrentRoute();
 
-
-  let nombrecompleto;
-  if (this.apellidosc == undefined || this.apellidosc == null || this.apellidosc == "") {
-    nombrecompleto = this.nombredecliente
-  } else {
-    nombrecompleto = this.nombredecliente + " " + this.apellidosc;
   }
 
-  const data = await this.restService.enviarcta(this.ciberseleccionado, this.precioyasesor.superviser, this.tipo, this.curp, this.estado, this.precioyasesor.precio, nombrecompleto, "", this.fileTmp?.fileName).toPromise();
 
-  this.reloadCurrentRoute();
-  
-}
-
-
-//RECARGAMOS LA PAGINA POR SI MISMA
+  //RECARGAMOS LA PAGINA POR SI MISMA
   reloadCurrentRoute() {
     const currentUrl = this.router.url;
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate([currentUrl]);
     });
   }
-//RECARGAMOS LA MISMA PAGINA DESPUES DE QUE SE MANDA A LA PAPELERA
+  //RECARGAMOS LA MISMA PAGINA DESPUES DE QUE SE MANDA A LA PAPELERA
   reloadCurrentRouteLastDelete() {
     const currentUrl = this.router.url;
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
@@ -239,7 +239,7 @@ async enviaractamanual() {
 
     this.router.navigateByUrl("/historial");
 
-}
+  }
   //EDITAMOS LA FECHA DE LOS REGISTROS DE LA TABLA
   EditFecha(id: any) {
     Swal.fire({
@@ -401,12 +401,12 @@ async enviaractamanual() {
       }
     })
   }
-  setTipoDeActa(tipo:any){
+  setTipoDeActa(tipo: any) {
     this.tipo = tipo;
-    
+
   }
 
-  tipoDeDocumento(nombre:string){
+  tipoDeDocumento(nombre: string) {
     let documento: string;
     switch (nombre) {
       case "Asignación de Número de Seguridad Social":
@@ -443,10 +443,10 @@ async enviaractamanual() {
     return documento;
   }
 
-  tipoDeEstado(estado:string){
+  tipoDeEstado(estado: string) {
     let state;
 
-    
+
     switch (estado) {
       case "CHIAPAS":
         state = "chia";
@@ -559,20 +559,23 @@ async enviaractamanual() {
       case "NAYARIT":
         state = "naya";
         break;
+      case "EXTRANJERO":
+        state = "ext";
+        break;
       default:
         state = "";
         break;
     }
     return state;
   }
-  
+
   //SELECCIONAMOS EL CIBER PARA EL ASESOR
   async clickciber(id: any, nombre: any) {
     this.ciberseleccionado = id;
-    let documento:string = this.tipoDeDocumento(this.tipo);
-    let state:string = this.tipoDeEstado(this.estado);
+    let documento: string = this.tipoDeDocumento(this.tipo);
+    let state: string = this.tipoDeEstado(this.estado);
 
-  
+    console.log(state);
     // let documento = this.tipoDeDocumento(this.info.tipo);
     // let state = this.tipoDeDocumento(this.info.state);
     const precioyasesor = await this.restService.getprecioyasesor(documento, state, id).toPromise();
@@ -623,7 +626,7 @@ async enviaractamanual() {
   onChange(event: any) {
     this.tipodebusqueda = event;
   }
-//DESINCRIPTAMOS EL TOKEN PARA OBTENER LOS DATOS Y EL ROL
+  //DESINCRIPTAMOS EL TOKEN PARA OBTENER LOS DATOS Y EL ROL
   async descry() {
 
     var idlocal = localStorage.getItem("id");
@@ -635,7 +638,7 @@ async enviaractamanual() {
     this.myRol = data.data.rol;
   }
 
-//PROTEGEMOS LAS VISTAS PARA NO SER HACKEADAS
+  //PROTEGEMOS LAS VISTAS PARA NO SER HACKEADAS
   ngOnInit(): void {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -705,7 +708,7 @@ async enviaractamanual() {
 
 
   }
-   //REGRESAMOS A LA VISTA ACTUAL CON EL BOTON REGRESAR
+  //REGRESAMOS A LA VISTA ACTUAL CON EL BOTON REGRESAR
   backUp2() {
     this.preview = 0;
     this.fileTmp = null;

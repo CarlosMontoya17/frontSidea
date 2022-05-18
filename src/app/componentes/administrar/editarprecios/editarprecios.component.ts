@@ -207,6 +207,7 @@ export class EditarpreciosComponent implements OnInit {
         text: this.usuarios.username +'-'+this.usuarios.nombre,
       })
     }
+  
 }
 
 
@@ -310,6 +311,7 @@ export class EditarpreciosComponent implements OnInit {
       this.YUCATAN = this.precios.nac.yuca;
       this.ZACATECAS = this.precios.nac.zaca;
       this.GUANAJUATO = this.precios.nac.guan;
+      this.EXTRANJERO = this.precios.nac.ext;
     } else {
       this.nac = this.precios.nac;
     }
@@ -334,7 +336,7 @@ export class EditarpreciosComponent implements OnInit {
     this.datossupervisor = await this.restservice.getidsupervisor(this.usuarios.idSuper).toPromise();
     this.newResponsable = await this.datossupervisor.data;
     this.newUsername = this.usuarios.username;
-    
+    console.log(this.datossupervisor);
   }
   
   estados() {
