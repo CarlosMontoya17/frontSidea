@@ -1,0 +1,46 @@
+[
+	{
+		"id": 1,
+		"nombre": "ARMERIA"
+	},
+	{
+		"id": 2,
+		"nombre": "COLIMA"
+	},
+	{
+		"id": 3,
+		"nombre": "COMALA"
+	},
+	{
+		"id": 4,
+		"nombre": "COQUIMATLAN"
+	},
+	{
+		"id": 5,
+		"nombre": "CUAUHTEMOC"
+	},
+	{
+		"id": 6,
+		"nombre": "IXTLAHUACAN"
+	},
+	{
+		"id": 7,
+		"nombre": "MANZANILLO"
+	},
+	{
+		"id": 8,
+		"nombre": "MINATITLAN"
+	},
+	{
+		"id": 9,
+		"nombre": "TECOMAN"
+	},
+	{
+		"id": 10,
+		"nombre": "VILLA DE ALVAREZ"
+	},
+	{
+		"id": 999,
+		"nombre": "DESCONOCIDO"
+	}
+]

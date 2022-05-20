@@ -1,0 +1,506 @@
+[
+	{
+		"id": 1,
+		"nombre": "ACAMBAY"
+	},
+	{
+		"id": 2,
+		"nombre": "ACOLMAN"
+	},
+	{
+		"id": 3,
+		"nombre": "ACULCO"
+	},
+	{
+		"id": 4,
+		"nombre": "ALMOLOYA DE ALQUISIRAS"
+	},
+	{
+		"id": 5,
+		"nombre": "ALMOLOYA DE JUAREZ"
+	},
+	{
+		"id": 6,
+		"nombre": "ALMOLOYA DEL RIO"
+	},
+	{
+		"id": 7,
+		"nombre": "AMANALCO"
+	},
+	{
+		"id": 8,
+		"nombre": "AMATEPEC"
+	},
+	{
+		"id": 9,
+		"nombre": "AMECAMECA"
+	},
+	{
+		"id": 10,
+		"nombre": "APAXCO"
+	},
+	{
+		"id": 11,
+		"nombre": "ATENCO"
+	},
+	{
+		"id": 12,
+		"nombre": "ATIZAPAN"
+	},
+	{
+		"id": 13,
+		"nombre": "ATIZAPAN DE ZARAGOZA"
+	},
+	{
+		"id": 14,
+		"nombre": "ATLACOMULCO"
+	},
+	{
+		"id": 15,
+		"nombre": "ATLAUTLA"
+	},
+	{
+		"id": 16,
+		"nombre": "AXAPUSCO"
+	},
+	{
+		"id": 17,
+		"nombre": "AYAPANGO"
+	},
+	{
+		"id": 18,
+		"nombre": "CALIMAYA"
+	},
+	{
+		"id": 19,
+		"nombre": "CAPULHUAC"
+	},
+	{
+		"id": 20,
+		"nombre": "COACALCO DE BERRIOZABAL"
+	},
+	{
+		"id": 21,
+		"nombre": "COATEPEC HARINAS"
+	},
+	{
+		"id": 22,
+		"nombre": "COCOTITLAN"
+	},
+	{
+		"id": 23,
+		"nombre": "COYOTEPEC"
+	},
+	{
+		"id": 24,
+		"nombre": "CUAUTITLAN"
+	},
+	{
+		"id": 25,
+		"nombre": "CHALCO"
+	},
+	{
+		"id": 26,
+		"nombre": "CHAPA DE MOTA"
+	},
+	{
+		"id": 27,
+		"nombre": "CHAPULTEPEC"
+	},
+	{
+		"id": 28,
+		"nombre": "CHIAUTLA"
+	},
+	{
+		"id": 29,
+		"nombre": "CHICOLOAPAN"
+	},
+	{
+		"id": 30,
+		"nombre": "CHICONCUAC"
+	},
+	{
+		"id": 31,
+		"nombre": "CHIMALHUACAN"
+	},
+	{
+		"id": 32,
+		"nombre": "DONATO GUERRA"
+	},
+	{
+		"id": 33,
+		"nombre": "ECATEPEC DE MORELOS"
+	},
+	{
+		"id": 34,
+		"nombre": "ECATZINGO"
+	},
+	{
+		"id": 35,
+		"nombre": "HUEHUETOCA"
+	},
+	{
+		"id": 36,
+		"nombre": "HUEYPOXTLA"
+	},
+	{
+		"id": 37,
+		"nombre": "HUIXQUILUCAN"
+	},
+	{
+		"id": 38,
+		"nombre": "ISIDRO FABELA"
+	},
+	{
+		"id": 39,
+		"nombre": "IXTAPALUCA"
+	},
+	{
+		"id": 40,
+		"nombre": "IXTAPAN DE LA SAL"
+	},
+	{
+		"id": 41,
+		"nombre": "IXTAPAN DEL ORO"
+	},
+	{
+		"id": 42,
+		"nombre": "IXTLAHUACA"
+	},
+	{
+		"id": 43,
+		"nombre": "XALATLACO"
+	},
+	{
+		"id": 44,
+		"nombre": "JALTENCO"
+	},
+	{
+		"id": 45,
+		"nombre": "JILOTEPEC"
+	},
+	{
+		"id": 46,
+		"nombre": "JILOTZINGO"
+	},
+	{
+		"id": 47,
+		"nombre": "JIQUIPILCO"
+	},
+	{
+		"id": 48,
+		"nombre": "JOCOTITLAN"
+	},
+	{
+		"id": 49,
+		"nombre": "JOQUICINGO"
+	},
+	{
+		"id": 50,
+		"nombre": "JUCHITEPEC"
+	},
+	{
+		"id": 51,
+		"nombre": "LERMA"
+	},
+	{
+		"id": 52,
+		"nombre": "MALINALCO"
+	},
+	{
+		"id": 53,
+		"nombre": "MELCHOR OCAMPO"
+	},
+	{
+		"id": 54,
+		"nombre": "METEPEC"
+	},
+	{
+		"id": 55,
+		"nombre": "MEXICALTZINGO"
+	},
+	{
+		"id": 56,
+		"nombre": "MORELOS"
+	},
+	{
+		"id": 57,
+		"nombre": "NAUCALPAN DE JUAREZ"
+	},
+	{
+		"id": 58,
+		"nombre": "NEZAHUALCOYOTL"
+	},
+	{
+		"id": 59,
+		"nombre": "NEXTLALPAN"
+	},
+	{
+		"id": 60,
+		"nombre": "NICOLAS ROMERO"
+	},
+	{
+		"id": 61,
+		"nombre": "NOPALTEPEC"
+	},
+	{
+		"id": 62,
+		"nombre": "OCOYOACAC"
+	},
+	{
+		"id": 63,
+		"nombre": "OCUILAN"
+	},
+	{
+		"id": 64,
+		"nombre": "EL ORO"
+	},
+	{
+		"id": 65,
+		"nombre": "OTUMBA"
+	},
+	{
+		"id": 66,
+		"nombre": "OTZOLOAPAN"
+	},
+	{
+		"id": 67,
+		"nombre": "OTZOLOTEPEC"
+	},
+	{
+		"id": 68,
+		"nombre": "OZUMBA"
+	},
+	{
+		"id": 69,
+		"nombre": "PAPALOTLA"
+	},
+	{
+		"id": 70,
+		"nombre": "LA PAZ"
+	},
+	{
+		"id": 71,
+		"nombre": "POLOTITLAN"
+	},
+	{
+		"id": 72,
+		"nombre": "RAYON"
+	},
+	{
+		"id": 73,
+		"nombre": "SAN ANTONIO LA ISLA"
+	},
+	{
+		"id": 74,
+		"nombre": "SAN FELIPE DEL PROGRESO"
+	},
+	{
+		"id": 75,
+		"nombre": "SAN MARTIN DE LAS PIRAMIDES"
+	},
+	{
+		"id": 76,
+		"nombre": "SAN MATEO ATENCO"
+	},
+	{
+		"id": 77,
+		"nombre": "SAN SIMON DE GUERRERO"
+	},
+	{
+		"id": 78,
+		"nombre": "SANTO TOMAS"
+	},
+	{
+		"id": 79,
+		"nombre": "SOYANIQUILPAN DE JUAREZ"
+	},
+	{
+		"id": 80,
+		"nombre": "SULTEPEC"
+	},
+	{
+		"id": 81,
+		"nombre": "TECAMAC"
+	},
+	{
+		"id": 82,
+		"nombre": "TEJUPILCO"
+	},
+	{
+		"id": 83,
+		"nombre": "TEMAMATLA"
+	},
+	{
+		"id": 84,
+		"nombre": "TEMASCALAPA"
+	},
+	{
+		"id": 85,
+		"nombre": "TEMASCALCINGO"
+	},
+	{
+		"id": 86,
+		"nombre": "TEMASCALTEPEC"
+	},
+	{
+		"id": 87,
+		"nombre": "TEMOAYA"
+	},
+	{
+		"id": 88,
+		"nombre": "TENANCINGO"
+	},
+	{
+		"id": 89,
+		"nombre": "TENANGO DEL AIRE"
+	},
+	{
+		"id": 90,
+		"nombre": "TENANGO DEL VALLE"
+	},
+	{
+		"id": 91,
+		"nombre": "TEOLOYUCAN"
+	},
+	{
+		"id": 92,
+		"nombre": "TEOTIHUACAN"
+	},
+	{
+		"id": 93,
+		"nombre": "TEPETLAOXTOC"
+	},
+	{
+		"id": 94,
+		"nombre": "TEPETLIXPA"
+	},
+	{
+		"id": 95,
+		"nombre": "TEPOTZOTLAN"
+	},
+	{
+		"id": 96,
+		"nombre": "TEQUIXQUIAC"
+	},
+	{
+		"id": 97,
+		"nombre": "TEXCALTITLAN"
+	},
+	{
+		"id": 98,
+		"nombre": "TEXCALYACAC"
+	},
+	{
+		"id": 99,
+		"nombre": "TEXCOCO"
+	},
+	{
+		"id": 100,
+		"nombre": "TEZOYUCA"
+	},
+	{
+		"id": 101,
+		"nombre": "TIANGUISTENCO"
+	},
+	{
+		"id": 102,
+		"nombre": "TIMILPAN"
+	},
+	{
+		"id": 103,
+		"nombre": "TLALMANALCO"
+	},
+	{
+		"id": 104,
+		"nombre": "TLALNEPANTLA DE BAZ"
+	},
+	{
+		"id": 105,
+		"nombre": "TLATLAYA"
+	},
+	{
+		"id": 106,
+		"nombre": "TOLUCA"
+	},
+	{
+		"id": 107,
+		"nombre": "TONATICO"
+	},
+	{
+		"id": 108,
+		"nombre": "TULTEPEC"
+	},
+	{
+		"id": 109,
+		"nombre": "TULTITLAN"
+	},
+	{
+		"id": 110,
+		"nombre": "VALLE DE BRAVO"
+	},
+	{
+		"id": 111,
+		"nombre": "VILLA DE ALLENDE"
+	},
+	{
+		"id": 112,
+		"nombre": "VILLA DEL CARBON"
+	},
+	{
+		"id": 113,
+		"nombre": "VILLA GUERRERO"
+	},
+	{
+		"id": 114,
+		"nombre": "VILLA VICTORIA"
+	},
+	{
+		"id": 115,
+		"nombre": "XONACATLAN"
+	},
+	{
+		"id": 116,
+		"nombre": "ZACAZONAPAN"
+	},
+	{
+		"id": 117,
+		"nombre": "ZACUALPAN"
+	},
+	{
+		"id": 118,
+		"nombre": "ZINACANTEPEC"
+	},
+	{
+		"id": 119,
+		"nombre": "ZUMPAHUACAN"
+	},
+	{
+		"id": 120,
+		"nombre": "ZUMPANGO"
+	},
+	{
+		"id": 121,
+		"nombre": "CUAUTITLAN IZCALLI"
+	},
+	{
+		"id": 122,
+		"nombre": "VALLE DE CHALCO SOLIDARIDAD"
+	},
+	{
+		"id": 123,
+		"nombre": "LUVIANOS"
+	},
+	{
+		"id": 124,
+		"nombre": "SAN JOSE DEL RINCON"
+	},
+	{
+		"id": 125,
+		"nombre": "TONANITLA"
+	},
+	{
+		"id": 999,
+		"nombre": "DESCONOCIDO"
+	}
+]

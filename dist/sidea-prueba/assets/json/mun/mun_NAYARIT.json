@@ -1,0 +1,86 @@
+[
+	{
+		"id": 1,
+		"nombre": "ACAPONETA"
+	},
+	{
+		"id": 2,
+		"nombre": "AHUACATLAN"
+	},
+	{
+		"id": 3,
+		"nombre": "AMATLAN DE CAÑAS"
+	},
+	{
+		"id": 4,
+		"nombre": "COMPOSTELA"
+	},
+	{
+		"id": 5,
+		"nombre": "HUAJICORI"
+	},
+	{
+		"id": 6,
+		"nombre": "IXTLAN DEL RIO"
+	},
+	{
+		"id": 7,
+		"nombre": "JALA"
+	},
+	{
+		"id": 8,
+		"nombre": "XALISCO"
+	},
+	{
+		"id": 9,
+		"nombre": "DEL NAYAR"
+	},
+	{
+		"id": 10,
+		"nombre": "ROSAMORADA"
+	},
+	{
+		"id": 11,
+		"nombre": "RUIZ"
+	},
+	{
+		"id": 12,
+		"nombre": "SAN BLAS"
+	},
+	{
+		"id": 13,
+		"nombre": "SAN PEDRO LAGUNILLAS"
+	},
+	{
+		"id": 14,
+		"nombre": "SANTA MARIA DEL ORO"
+	},
+	{
+		"id": 15,
+		"nombre": "SANTIAGO IXCUINTLA"
+	},
+	{
+		"id": 16,
+		"nombre": "TECUALA"
+	},
+	{
+		"id": 17,
+		"nombre": "TEPIC"
+	},
+	{
+		"id": 18,
+		"nombre": "TUXPAN"
+	},
+	{
+		"id": 19,
+		"nombre": "LA YESCA"
+	},
+	{
+		"id": 20,
+		"nombre": "BAHIA DE BANDERAS"
+	},
+	{
+		"id": 999,
+		"nombre": "DESCONOCIDO"
+	}
+]

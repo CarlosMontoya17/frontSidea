@@ -8,10 +8,14 @@ import { Municipios } from './municipios.model';
 })
 export class ReadService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-readMunicipios(key:string){
-  return this.http.get<Municipios>("assets/json/mun/mun_"+key+".json");
-}
+  readMunicipios(key: string) {
+    return this.http.get<Municipios>("assets/json/mun/mun_" + key + ".json");
+  }
+
+  readOficialia(mun: any, id: any) {
+    return this.http.get<Municipios>("assets/json/of/"+mun+"/"+id+".json");
+  }
 
 }

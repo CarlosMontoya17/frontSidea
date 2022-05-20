@@ -1,0 +1,506 @@
+[
+	{
+		"id": 1,
+		"nombre": "ACATIC"
+	},
+	{
+		"id": 2,
+		"nombre": "ACATLAN DE JUAREZ"
+	},
+	{
+		"id": 3,
+		"nombre": "AHUALULCO DE MERCADO"
+	},
+	{
+		"id": 4,
+		"nombre": "AMACUECA"
+	},
+	{
+		"id": 5,
+		"nombre": "AMATITAN"
+	},
+	{
+		"id": 6,
+		"nombre": "AMECA"
+	},
+	{
+		"id": 7,
+		"nombre": "SAN JUANITO DE ESCOBEDO"
+	},
+	{
+		"id": 8,
+		"nombre": "ARANDAS"
+	},
+	{
+		"id": 9,
+		"nombre": "ARENAL"
+	},
+	{
+		"id": 10,
+		"nombre": "ATEMAJAC DE BRIZUELA"
+	},
+	{
+		"id": 11,
+		"nombre": "ATENGO"
+	},
+	{
+		"id": 12,
+		"nombre": "ATENGUILLO"
+	},
+	{
+		"id": 13,
+		"nombre": "ATOTONILCO EL ALTO"
+	},
+	{
+		"id": 14,
+		"nombre": "ATOYAC"
+	},
+	{
+		"id": 15,
+		"nombre": "AUTLAN DE NAVARRO"
+	},
+	{
+		"id": 16,
+		"nombre": "AYOTLAN"
+	},
+	{
+		"id": 17,
+		"nombre": "AYUTLA"
+	},
+	{
+		"id": 18,
+		"nombre": "LA BARCA"
+	},
+	{
+		"id": 19,
+		"nombre": "BOLAÑOS"
+	},
+	{
+		"id": 20,
+		"nombre": "CABO CORRIENTES"
+	},
+	{
+		"id": 21,
+		"nombre": "CASIMIRO CASTILLO"
+	},
+	{
+		"id": 22,
+		"nombre": "CIHUATLAN"
+	},
+	{
+		"id": 23,
+		"nombre": "ZAPOTLAN EL GRANDE"
+	},
+	{
+		"id": 24,
+		"nombre": "COCULA"
+	},
+	{
+		"id": 25,
+		"nombre": "COLOTLAN"
+	},
+	{
+		"id": 26,
+		"nombre": "CONCEPCION DE BUENOS AIRES"
+	},
+	{
+		"id": 27,
+		"nombre": "CUAUTITLAN DE GARCIA BARRAGAN"
+	},
+	{
+		"id": 28,
+		"nombre": "CUAUTLA"
+	},
+	{
+		"id": 29,
+		"nombre": "CUQUIO"
+	},
+	{
+		"id": 30,
+		"nombre": "CHAPALA"
+	},
+	{
+		"id": 31,
+		"nombre": "CHIMALTITAN"
+	},
+	{
+		"id": 32,
+		"nombre": "CHIQUILISTLAN"
+	},
+	{
+		"id": 33,
+		"nombre": "DEGOLLADO"
+	},
+	{
+		"id": 34,
+		"nombre": "EJUTLA"
+	},
+	{
+		"id": 35,
+		"nombre": "ENCARNACION DE DIAZ"
+	},
+	{
+		"id": 36,
+		"nombre": "ETZATLAN"
+	},
+	{
+		"id": 37,
+		"nombre": "EL GRULLO"
+	},
+	{
+		"id": 38,
+		"nombre": "GUACHINANGO"
+	},
+	{
+		"id": 39,
+		"nombre": "GUADALAJARA"
+	},
+	{
+		"id": 40,
+		"nombre": "HOSTOTIPAQUILLO"
+	},
+	{
+		"id": 41,
+		"nombre": "HUEJUCAR"
+	},
+	{
+		"id": 42,
+		"nombre": "HUEJUQUILLA EL ALTO"
+	},
+	{
+		"id": 43,
+		"nombre": "LA HUERTA"
+	},
+	{
+		"id": 44,
+		"nombre": "IXTLAHUACAN DE LOS MEMBRILLOS"
+	},
+	{
+		"id": 45,
+		"nombre": "IXTLAHUACAN DEL RIO"
+	},
+	{
+		"id": 46,
+		"nombre": "JALOSTOTITLAN"
+	},
+	{
+		"id": 47,
+		"nombre": "JAMAY"
+	},
+	{
+		"id": 48,
+		"nombre": "JESUS MARIA"
+	},
+	{
+		"id": 49,
+		"nombre": "JILOTLAN DE LOS DOLORES"
+	},
+	{
+		"id": 50,
+		"nombre": "JOCOTEPEC"
+	},
+	{
+		"id": 51,
+		"nombre": "JUANACATLAN"
+	},
+	{
+		"id": 52,
+		"nombre": "JUCHITLAN"
+	},
+	{
+		"id": 53,
+		"nombre": "LAGOS DE MORENO"
+	},
+	{
+		"id": 54,
+		"nombre": "EL LIMON"
+	},
+	{
+		"id": 55,
+		"nombre": "MAGDALENA"
+	},
+	{
+		"id": 56,
+		"nombre": "SANTA MARIA DEL ORO"
+	},
+	{
+		"id": 57,
+		"nombre": "LA MANZANILLA DE LA PAZ"
+	},
+	{
+		"id": 58,
+		"nombre": "MASCOTA"
+	},
+	{
+		"id": 59,
+		"nombre": "MAZAMITLA"
+	},
+	{
+		"id": 60,
+		"nombre": "MEXTICACAN"
+	},
+	{
+		"id": 61,
+		"nombre": "MEZQUITIC"
+	},
+	{
+		"id": 62,
+		"nombre": "MIXTLAN"
+	},
+	{
+		"id": 63,
+		"nombre": "OCOTLAN"
+	},
+	{
+		"id": 64,
+		"nombre": "OJUELOS DE JALISCO"
+	},
+	{
+		"id": 65,
+		"nombre": "PIHUAMO"
+	},
+	{
+		"id": 66,
+		"nombre": "PONCITLAN"
+	},
+	{
+		"id": 67,
+		"nombre": "PUERTO VALLARTA"
+	},
+	{
+		"id": 68,
+		"nombre": "VILLA PURIFICACION"
+	},
+	{
+		"id": 69,
+		"nombre": "QUITUPAN"
+	},
+	{
+		"id": 70,
+		"nombre": "EL SALTO"
+	},
+	{
+		"id": 71,
+		"nombre": "SAN CRISTOBAL DE LA BARRANCA"
+	},
+	{
+		"id": 72,
+		"nombre": "SAN DIEGO DE ALEJANDRIA"
+	},
+	{
+		"id": 73,
+		"nombre": "SAN JUAN DE LOS LAGOS"
+	},
+	{
+		"id": 74,
+		"nombre": "SAN JULIAN"
+	},
+	{
+		"id": 75,
+		"nombre": "SAN MARCOS"
+	},
+	{
+		"id": 76,
+		"nombre": "SAN MARTIN DE BOLAÑOS"
+	},
+	{
+		"id": 77,
+		"nombre": "SAN MARTIN HIDALGO"
+	},
+	{
+		"id": 78,
+		"nombre": "SAN MIGUEL EL ALTO"
+	},
+	{
+		"id": 79,
+		"nombre": "GOMEZ FARIAS"
+	},
+	{
+		"id": 80,
+		"nombre": "SAN SEBASTIAN DEL OESTE"
+	},
+	{
+		"id": 81,
+		"nombre": "SANTA MARIA DE LOS ANGELES"
+	},
+	{
+		"id": 82,
+		"nombre": "SAYULA"
+	},
+	{
+		"id": 83,
+		"nombre": "TALA"
+	},
+	{
+		"id": 84,
+		"nombre": "TALPA DE ALLENDE"
+	},
+	{
+		"id": 85,
+		"nombre": "TAMAZULA DE GORDIANO"
+	},
+	{
+		"id": 86,
+		"nombre": "TAPALPA"
+	},
+	{
+		"id": 87,
+		"nombre": "TECALITLAN"
+	},
+	{
+		"id": 88,
+		"nombre": "TECOLOTLAN"
+	},
+	{
+		"id": 89,
+		"nombre": "TECHALUTA DE MONTENEGRO"
+	},
+	{
+		"id": 90,
+		"nombre": "TENAMAXTLAN"
+	},
+	{
+		"id": 91,
+		"nombre": "TEOCALTICHE"
+	},
+	{
+		"id": 92,
+		"nombre": "TEOCUITATLAN DE CORONA"
+	},
+	{
+		"id": 93,
+		"nombre": "TEPATITLAN DE MORELOS"
+	},
+	{
+		"id": 94,
+		"nombre": "TEQUILA"
+	},
+	{
+		"id": 95,
+		"nombre": "TEUCHITLAN"
+	},
+	{
+		"id": 96,
+		"nombre": "TIZAPAN EL ALTO"
+	},
+	{
+		"id": 97,
+		"nombre": "TLAJOMULCO DE ZUÑIGA"
+	},
+	{
+		"id": 98,
+		"nombre": "SAN PEDRO TLAQUEPAQUE"
+	},
+	{
+		"id": 99,
+		"nombre": "TOLIMAN"
+	},
+	{
+		"id": 100,
+		"nombre": "TOMATLAN"
+	},
+	{
+		"id": 101,
+		"nombre": "TONALA"
+	},
+	{
+		"id": 102,
+		"nombre": "TONAYA"
+	},
+	{
+		"id": 103,
+		"nombre": "TONILA"
+	},
+	{
+		"id": 104,
+		"nombre": "TOTATICHE"
+	},
+	{
+		"id": 105,
+		"nombre": "TOTOTLAN"
+	},
+	{
+		"id": 106,
+		"nombre": "TUXCACUESCO"
+	},
+	{
+		"id": 107,
+		"nombre": "TUXCUECA"
+	},
+	{
+		"id": 108,
+		"nombre": "TUXPAN"
+	},
+	{
+		"id": 109,
+		"nombre": "UNION DE SAN ANTONIO"
+	},
+	{
+		"id": 110,
+		"nombre": "UNION DE TULA"
+	},
+	{
+		"id": 111,
+		"nombre": "VALLE DE GUADALUPE"
+	},
+	{
+		"id": 112,
+		"nombre": "VALLE DE JUAREZ"
+	},
+	{
+		"id": 113,
+		"nombre": "SAN GABRIEL"
+	},
+	{
+		"id": 114,
+		"nombre": "VILLA CORONA"
+	},
+	{
+		"id": 115,
+		"nombre": "VILLA GUERRERO"
+	},
+	{
+		"id": 116,
+		"nombre": "VILLA HIDALGO"
+	},
+	{
+		"id": 117,
+		"nombre": "CAÑADAS DE OBREGON"
+	},
+	{
+		"id": 118,
+		"nombre": "YAHUALICA DE GONZALEZ GALLO"
+	},
+	{
+		"id": 119,
+		"nombre": "ZACOALCO DE TORRES"
+	},
+	{
+		"id": 120,
+		"nombre": "ZAPOPAN"
+	},
+	{
+		"id": 121,
+		"nombre": "ZAPOTILTIC"
+	},
+	{
+		"id": 122,
+		"nombre": "ZAPOTITLAN DE VADILLO"
+	},
+	{
+		"id": 123,
+		"nombre": "ZAPOTLAN DEL REY"
+	},
+	{
+		"id": 124,
+		"nombre": "ZAPOTLANEJO"
+	},
+	{
+		"id": 125,
+		"nombre": "SAN IGNACIO CERRO GORDO"
+	},
+	{
+		"id": 999,
+		"nombre": "DESCONOCIDO"
+	}
+]

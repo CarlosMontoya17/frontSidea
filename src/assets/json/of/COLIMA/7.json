@@ -1,0 +1,46 @@
+[
+    {
+        "id": 1,
+        "nombre": "MANZANILLO"
+    },
+    {
+        "id": 2,
+        "nombre": "SANTIAGO"
+    },
+    {
+        "id": 4,
+        "nombre": "CAMOTLÁN DE MIRAFLOREZ"
+    },
+    {
+        "id": 5,
+        "nombre": "VENUSTIANO CARRANZA"
+    },
+    {
+        "id": 7,
+        "nombre": "EL CHAVARÍN"
+    },
+    {
+        "id": 8,
+        "nombre": "CHANDIABLO"
+    },
+    {
+        "id": 9,
+        "nombre": "CHAVARIN"
+    },
+    {
+        "id": 11,
+        "nombre": "JALIPA"
+    },
+    {
+        "id": 12,
+        "nombre": "SALAGUA"
+    },
+    {
+        "id": 13,
+        "nombre": "SANTIAGO"
+    },
+    {
+        "id": 14,
+        "nombre": "VENUSTIANO CARRANZA"
+    }
+]

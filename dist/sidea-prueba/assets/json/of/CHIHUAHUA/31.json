@@ -1,0 +1,86 @@
+[
+    {
+        "id": 1,
+        "nombre": "GUERRERO"
+    },
+    {
+        "id": 2,
+        "nombre": "ARISEACHI"
+    },
+    {
+        "id": 3,
+        "nombre": "BASUCHIL"
+    },
+    {
+        "id": 4,
+        "nombre": "CALERA"
+    },
+    {
+        "id": 5,
+        "nombre": "JESUS LUGO"
+    },
+    {
+        "id": 6,
+        "nombre": "LIC A LOPEZ MATEOS"
+    },
+    {
+        "id": 7,
+        "nombre": "MINACA"
+    },
+    {
+        "id": 8,
+        "nombre": "PASCUAL OROZCO"
+    },
+    {
+        "id": 9,
+        "nombre": "PACHERA"
+    },
+    {
+        "id": 10,
+        "nombre": "PAHUIRACHI"
+    },
+    {
+        "id": 11,
+        "nombre": "PEDERNALES"
+    },
+    {
+        "id": 12,
+        "nombre": "PICHACHI"
+    },
+    {
+        "id": 13,
+        "nombre": "RANCHOS DE SANTIAGO"
+    },
+    {
+        "id": 14,
+        "nombre": "SN JOSE BAQUIACHI"
+    },
+    {
+        "id": 15,
+        "nombre": "SN M DE TEMEYCHI"
+    },
+    {
+        "id": 16,
+        "nombre": "SAN PABLO DE LA SIERRA"
+    },
+    {
+        "id": 17,
+        "nombre": "SANTO TOMAS"
+    },
+    {
+        "id": 18,
+        "nombre": "TEMEYCHI"
+    },
+    {
+        "id": 19,
+        "nombre": "TERRERO"
+    },
+    {
+        "id": 20,
+        "nombre": "TOMOCHI"
+    },
+    {
+        "id": 83,
+        "nombre": "TARAHUMARA"
+    }
+]

@@ -1,0 +1,94 @@
+[
+	{
+		"id": 1,
+		"nombre": "CIUDAD CONSTITUCION"
+	},
+	{
+		"id": 2,
+		"nombre": "IGNACIO ZARAGOZA"
+	},
+	{
+		"id": 3,
+		"nombre": "LA PURÍSIMA"
+	},
+	{
+		"id": 4,
+		"nombre": "SANTO DOMINGO"
+	},
+	{
+		"id": 5,
+		"nombre": "PUERTO ADOLFO LOPEZ MATEOS"
+	},
+	{
+		"id": 6,
+		"nombre": "PUERTO ALCATRAZ"
+	},
+	{
+		"id": 7,
+		"nombre": "SAN MIGUEL DE COMONDÚ"
+	},
+	{
+		"id": 8,
+		"nombre": "CIUDAD INSURGENTES"
+	},
+	{
+		"id": 9,
+		"nombre": "PUERTO SAN CARLOS"
+	},
+	{
+		"id": 10,
+		"nombre": "SAN ISIDRO"
+	},
+	{
+		"id": 12,
+		"nombre": "TEPENTU"
+	},
+	{
+		"id": 13,
+		"nombre": "VILLA MORELOS"
+	},
+	{
+		"id": 14,
+		"nombre": "LUIS GONZAGA"
+	},
+	{
+		"id": 15,
+		"nombre": "SAN JOSE DE LA NORIA"
+	},
+	{
+		"id": 17,
+		"nombre": "BAHIA MAGDALENA"
+	},
+	{
+		"id": 18,
+		"nombre": "BENITO JUAREZ"
+	},
+	{
+		"id": 19,
+		"nombre": "SAN JOSE DE COMONDU"
+	},
+	{
+		"id": 20,
+		"nombre": "JESUS MARIA"
+	},
+	{
+		"id": 21,
+		"nombre": "POZA GRANDE"
+	},
+	{
+		"id": 22,
+		"nombre": "CADEJE"
+	},
+	{
+		"id": 23,
+		"nombre": "23"
+	},
+	{
+		"id": 24,
+		"nombre": "SAN SALVADOR-SANTA RITA"
+	},
+	{
+		"id": 25,
+		"nombre": "COMUNDU"
+	}
+]

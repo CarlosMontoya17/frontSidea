@@ -1,0 +1,874 @@
+[
+	{
+		"id": 1,
+		"nombre": "ACAJETE"
+	},
+	{
+		"id": 2,
+		"nombre": "ACATENO"
+	},
+	{
+		"id": 3,
+		"nombre": "ACATLAN"
+	},
+	{
+		"id": 4,
+		"nombre": "ACATZINGO"
+	},
+	{
+		"id": 5,
+		"nombre": "ACTEOPAN"
+	},
+	{
+		"id": 6,
+		"nombre": "AHUACATLAN"
+	},
+	{
+		"id": 7,
+		"nombre": "AHUATLAN"
+	},
+	{
+		"id": 8,
+		"nombre": "AHUAZOTEPEC"
+	},
+	{
+		"id": 9,
+		"nombre": "AHUEHUETITLA"
+	},
+	{
+		"id": 10,
+		"nombre": "AJALPAN"
+	},
+	{
+		"id": 11,
+		"nombre": "ALBINO ZERTUCHE"
+	},
+	{
+		"id": 12,
+		"nombre": "ALJOJUCA"
+	},
+	{
+		"id": 13,
+		"nombre": "ALTEPEXI"
+	},
+	{
+		"id": 14,
+		"nombre": "AMIXTLAN"
+	},
+	{
+		"id": 15,
+		"nombre": "AMOZOC"
+	},
+	{
+		"id": 16,
+		"nombre": "AQUIXTLA"
+	},
+	{
+		"id": 17,
+		"nombre": "ATEMPAN"
+	},
+	{
+		"id": 18,
+		"nombre": "ATEXCAL"
+	},
+	{
+		"id": 19,
+		"nombre": "ATLIXCO"
+	},
+	{
+		"id": 20,
+		"nombre": "ATOYATEMPAN"
+	},
+	{
+		"id": 21,
+		"nombre": "ATZALA"
+	},
+	{
+		"id": 22,
+		"nombre": "ATZITZIHUACAN"
+	},
+	{
+		"id": 23,
+		"nombre": "ATZITZINTLA"
+	},
+	{
+		"id": 24,
+		"nombre": "AXUTLA"
+	},
+	{
+		"id": 25,
+		"nombre": "AYOTOXCO DE GUERRERO"
+	},
+	{
+		"id": 26,
+		"nombre": "CALPAN"
+	},
+	{
+		"id": 27,
+		"nombre": "CALTEPEC"
+	},
+	{
+		"id": 28,
+		"nombre": "CAMOCUAUTLA"
+	},
+	{
+		"id": 29,
+		"nombre": "CAXHUACAN"
+	},
+	{
+		"id": 30,
+		"nombre": "COATEPEC"
+	},
+	{
+		"id": 31,
+		"nombre": "COATZINGO"
+	},
+	{
+		"id": 32,
+		"nombre": "COHETZALA"
+	},
+	{
+		"id": 33,
+		"nombre": "COHUECAN"
+	},
+	{
+		"id": 34,
+		"nombre": "CORONANGO"
+	},
+	{
+		"id": 35,
+		"nombre": "COXCATLAN"
+	},
+	{
+		"id": 36,
+		"nombre": "COYOMEAPAN"
+	},
+	{
+		"id": 37,
+		"nombre": "COYOTEPEC"
+	},
+	{
+		"id": 38,
+		"nombre": "CUAPIAXTLA DE MADERO"
+	},
+	{
+		"id": 39,
+		"nombre": "CUAUTEMPAN"
+	},
+	{
+		"id": 40,
+		"nombre": "CUAUTINCHAN"
+	},
+	{
+		"id": 41,
+		"nombre": "CUAUTLANCINGO"
+	},
+	{
+		"id": 42,
+		"nombre": "CUAYUCA DE ANDRADE"
+	},
+	{
+		"id": 43,
+		"nombre": "CUETZALAN DEL PROGRESO"
+	},
+	{
+		"id": 44,
+		"nombre": "CUYOACO"
+	},
+	{
+		"id": 45,
+		"nombre": "CHALCHICOMULA DE SESMA"
+	},
+	{
+		"id": 46,
+		"nombre": "CHAPULCO"
+	},
+	{
+		"id": 47,
+		"nombre": "CHIAUTLA"
+	},
+	{
+		"id": 48,
+		"nombre": "CHIAUTZINGO"
+	},
+	{
+		"id": 49,
+		"nombre": "CHICONCUAUTLA"
+	},
+	{
+		"id": 50,
+		"nombre": "CHICHIQUILA"
+	},
+	{
+		"id": 51,
+		"nombre": "CHIETLA"
+	},
+	{
+		"id": 52,
+		"nombre": "CHIGMECATITLAN"
+	},
+	{
+		"id": 53,
+		"nombre": "CHIGNAHUAPAN"
+	},
+	{
+		"id": 54,
+		"nombre": "CHIGNAUTLA"
+	},
+	{
+		"id": 55,
+		"nombre": "CHILA"
+	},
+	{
+		"id": 56,
+		"nombre": "CHILA DE LA SAL"
+	},
+	{
+		"id": 57,
+		"nombre": "HONEY"
+	},
+	{
+		"id": 58,
+		"nombre": "CHILCHOTLA"
+	},
+	{
+		"id": 59,
+		"nombre": "CHINANTLA"
+	},
+	{
+		"id": 60,
+		"nombre": "DOMINGO ARENAS"
+	},
+	{
+		"id": 61,
+		"nombre": "ELOXOCHITLAN"
+	},
+	{
+		"id": 62,
+		"nombre": "EPATLAN"
+	},
+	{
+		"id": 63,
+		"nombre": "ESPERANZA"
+	},
+	{
+		"id": 64,
+		"nombre": "FRANCISCO Z. MENA"
+	},
+	{
+		"id": 65,
+		"nombre": "GENERAL FELIPE ANGELES"
+	},
+	{
+		"id": 66,
+		"nombre": "GUADALUPE"
+	},
+	{
+		"id": 67,
+		"nombre": "GUADALUPE VICTORIA"
+	},
+	{
+		"id": 68,
+		"nombre": "HERMENEGILDO GALEANA"
+	},
+	{
+		"id": 69,
+		"nombre": "HUAQUECHULA"
+	},
+	{
+		"id": 70,
+		"nombre": "HUATLATLAUCA"
+	},
+	{
+		"id": 71,
+		"nombre": "HUAUCHINANGO"
+	},
+	{
+		"id": 72,
+		"nombre": "HUEHUETLA"
+	},
+	{
+		"id": 73,
+		"nombre": "HUEHUETLAN EL CHICO"
+	},
+	{
+		"id": 74,
+		"nombre": "HUEJOTZINGO"
+	},
+	{
+		"id": 75,
+		"nombre": "HUEYAPAN"
+	},
+	{
+		"id": 76,
+		"nombre": "HUEYTAMALCO"
+	},
+	{
+		"id": 77,
+		"nombre": "HUEYTLALPAN"
+	},
+	{
+		"id": 78,
+		"nombre": "HUITZILAN DE SERDAN"
+	},
+	{
+		"id": 79,
+		"nombre": "HUITZILTEPEC"
+	},
+	{
+		"id": 80,
+		"nombre": "ATLEQUIZAYAN"
+	},
+	{
+		"id": 81,
+		"nombre": "IXCAMILPA DE GUERRERO"
+	},
+	{
+		"id": 82,
+		"nombre": "IXCAQUIXTLA"
+	},
+	{
+		"id": 83,
+		"nombre": "IXTACAMAXTITLAN"
+	},
+	{
+		"id": 84,
+		"nombre": "IXTEPEC"
+	},
+	{
+		"id": 85,
+		"nombre": "IZUCAR DE MATAMOROS"
+	},
+	{
+		"id": 86,
+		"nombre": "JALPAN"
+	},
+	{
+		"id": 87,
+		"nombre": "JOLALPAN"
+	},
+	{
+		"id": 88,
+		"nombre": "JONOTLA"
+	},
+	{
+		"id": 89,
+		"nombre": "JOPALA"
+	},
+	{
+		"id": 90,
+		"nombre": "JUAN C. BONILLA"
+	},
+	{
+		"id": 91,
+		"nombre": "JUAN GALINDO"
+	},
+	{
+		"id": 92,
+		"nombre": "JUAN N. MENDEZ"
+	},
+	{
+		"id": 93,
+		"nombre": "LAFRAGUA"
+	},
+	{
+		"id": 94,
+		"nombre": "LIBRES"
+	},
+	{
+		"id": 95,
+		"nombre": "LA MAGDALENA TLATLAUQUITEPEC"
+	},
+	{
+		"id": 96,
+		"nombre": "MAZAPILTEPEC DE JUAREZ"
+	},
+	{
+		"id": 97,
+		"nombre": "MIXTLA"
+	},
+	{
+		"id": 98,
+		"nombre": "MOLCAXAC"
+	},
+	{
+		"id": 99,
+		"nombre": "CAÑADA MORELOS"
+	},
+	{
+		"id": 100,
+		"nombre": "NAUPAN"
+	},
+	{
+		"id": 101,
+		"nombre": "NAUZONTLA"
+	},
+	{
+		"id": 102,
+		"nombre": "NEALTICAN"
+	},
+	{
+		"id": 103,
+		"nombre": "NICOLAS BRAVO"
+	},
+	{
+		"id": 104,
+		"nombre": "NOPALUCAN"
+	},
+	{
+		"id": 105,
+		"nombre": "OCOTEPEC"
+	},
+	{
+		"id": 106,
+		"nombre": "OCOYUCAN"
+	},
+	{
+		"id": 107,
+		"nombre": "OLINTLA"
+	},
+	{
+		"id": 108,
+		"nombre": "ORIENTAL"
+	},
+	{
+		"id": 109,
+		"nombre": "PAHUATLAN"
+	},
+	{
+		"id": 110,
+		"nombre": "PALMAR DE BRAVO"
+	},
+	{
+		"id": 111,
+		"nombre": "PANTEPEC"
+	},
+	{
+		"id": 112,
+		"nombre": "PETLALCINGO"
+	},
+	{
+		"id": 113,
+		"nombre": "PIAXTLA"
+	},
+	{
+		"id": 114,
+		"nombre": "PUEBLA"
+	},
+	{
+		"id": 115,
+		"nombre": "QUECHOLAC"
+	},
+	{
+		"id": 116,
+		"nombre": "QUIMIXTLAN"
+	},
+	{
+		"id": 117,
+		"nombre": "RAFAEL LARA GRAJALES"
+	},
+	{
+		"id": 118,
+		"nombre": "LOS REYES DE JUAREZ"
+	},
+	{
+		"id": 119,
+		"nombre": "SAN ANDRES CHOLULA"
+	},
+	{
+		"id": 120,
+		"nombre": "SAN ANTONIO CAÑADA"
+	},
+	{
+		"id": 121,
+		"nombre": "SAN DIEGO LA MESA TOCHIMILTZINGO"
+	},
+	{
+		"id": 122,
+		"nombre": "SAN FELIPE TEOTLALCINGO"
+	},
+	{
+		"id": 123,
+		"nombre": "SAN FELIPE TEPATLAN"
+	},
+	{
+		"id": 124,
+		"nombre": "SAN GABRIEL CHILAC"
+	},
+	{
+		"id": 125,
+		"nombre": "SAN GREGORIO ATZOMPA"
+	},
+	{
+		"id": 126,
+		"nombre": "SAN JERONIMO TECUANIPAN"
+	},
+	{
+		"id": 127,
+		"nombre": "SAN JERONIMO XAYACATLAN"
+	},
+	{
+		"id": 128,
+		"nombre": "SAN JOSE CHIAPA"
+	},
+	{
+		"id": 129,
+		"nombre": "SAN JOSE MIAHUATLAN"
+	},
+	{
+		"id": 130,
+		"nombre": "SAN JUAN ATENCO"
+	},
+	{
+		"id": 131,
+		"nombre": "SAN JUAN ATZOMPA"
+	},
+	{
+		"id": 132,
+		"nombre": "SAN MARTIN TEXMELUCAN"
+	},
+	{
+		"id": 133,
+		"nombre": "SAN MARTIN TOTOLTEPEC"
+	},
+	{
+		"id": 134,
+		"nombre": "SAN MATIAS TLALANCALECA"
+	},
+	{
+		"id": 135,
+		"nombre": "SAN MIGUEL IXITLAN"
+	},
+	{
+		"id": 136,
+		"nombre": "SAN MIGUEL XOXTLA"
+	},
+	{
+		"id": 137,
+		"nombre": "SAN NICOLAS BUENOS AIRES"
+	},
+	{
+		"id": 138,
+		"nombre": "SAN NICOLAS DE LOS RANCHOS"
+	},
+	{
+		"id": 139,
+		"nombre": "SAN PABLO ANICANO"
+	},
+	{
+		"id": 140,
+		"nombre": "SAN PEDRO CHOLULA"
+	},
+	{
+		"id": 141,
+		"nombre": "SAN PEDRO YELOIXTLAHUACA"
+	},
+	{
+		"id": 142,
+		"nombre": "SAN SALVADOR EL SECO"
+	},
+	{
+		"id": 143,
+		"nombre": "SAN SALVADOR EL VERDE"
+	},
+	{
+		"id": 144,
+		"nombre": "SAN SALVADOR HUIXCOLOTLA"
+	},
+	{
+		"id": 145,
+		"nombre": "SAN SEBASTIAN TLACOTEPEC"
+	},
+	{
+		"id": 146,
+		"nombre": "SANTA CATARINA TLALTEMPAN"
+	},
+	{
+		"id": 147,
+		"nombre": "SANTA INES AHUATEMPAN"
+	},
+	{
+		"id": 148,
+		"nombre": "SANTA ISABEL CHOLULA"
+	},
+	{
+		"id": 149,
+		"nombre": "SANTIAGO MIAHUATLAN"
+	},
+	{
+		"id": 150,
+		"nombre": "HUEHUETLAN EL GRANDE"
+	},
+	{
+		"id": 151,
+		"nombre": "SANTO TOMAS HUEYOTLIPAN"
+	},
+	{
+		"id": 152,
+		"nombre": "SOLTEPEC"
+	},
+	{
+		"id": 153,
+		"nombre": "TECALI DE HERRERA"
+	},
+	{
+		"id": 154,
+		"nombre": "TECAMACHALCO"
+	},
+	{
+		"id": 155,
+		"nombre": "TECOMATLAN"
+	},
+	{
+		"id": 156,
+		"nombre": "TEHUACAN"
+	},
+	{
+		"id": 157,
+		"nombre": "TEHUITZINGO"
+	},
+	{
+		"id": 158,
+		"nombre": "TENAMPULCO"
+	},
+	{
+		"id": 159,
+		"nombre": "TEOPANTLAN"
+	},
+	{
+		"id": 160,
+		"nombre": "TEOTLALCO"
+	},
+	{
+		"id": 161,
+		"nombre": "TEPANCO DE LOPEZ"
+	},
+	{
+		"id": 162,
+		"nombre": "TEPANGO DE RODRIGUEZ"
+	},
+	{
+		"id": 163,
+		"nombre": "TEPATLAXCO DE HIDALGO"
+	},
+	{
+		"id": 164,
+		"nombre": "TEPEACA"
+	},
+	{
+		"id": 165,
+		"nombre": "TEPEMAXALCO"
+	},
+	{
+		"id": 166,
+		"nombre": "TEPEOJUMA"
+	},
+	{
+		"id": 167,
+		"nombre": "TEPETZINTLA"
+	},
+	{
+		"id": 168,
+		"nombre": "TEPEXCO"
+	},
+	{
+		"id": 169,
+		"nombre": "TEPEXI DE RODRIGUEZ"
+	},
+	{
+		"id": 170,
+		"nombre": "TEPEYAHUALCO"
+	},
+	{
+		"id": 171,
+		"nombre": "TEPEYAHUALCO DE CUAUHTEMOC"
+	},
+	{
+		"id": 172,
+		"nombre": "TETELA DE OCAMPO"
+	},
+	{
+		"id": 173,
+		"nombre": "TETELES DE AVILA CASTILLO"
+	},
+	{
+		"id": 174,
+		"nombre": "TEZIUTLAN"
+	},
+	{
+		"id": 175,
+		"nombre": "TIANGUISMANALCO"
+	},
+	{
+		"id": 176,
+		"nombre": "TILAPA"
+	},
+	{
+		"id": 177,
+		"nombre": "TLACOTEPEC DE BENITO JUAREZ"
+	},
+	{
+		"id": 178,
+		"nombre": "TLACUILOTEPEC"
+	},
+	{
+		"id": 179,
+		"nombre": "TLACHICHUCA"
+	},
+	{
+		"id": 180,
+		"nombre": "TLAHUAPAN"
+	},
+	{
+		"id": 181,
+		"nombre": "TLALTENANGO"
+	},
+	{
+		"id": 182,
+		"nombre": "TLANEPANTLA"
+	},
+	{
+		"id": 183,
+		"nombre": "TLAOLA"
+	},
+	{
+		"id": 184,
+		"nombre": "TLAPACOYA"
+	},
+	{
+		"id": 185,
+		"nombre": "TLAPANALA"
+	},
+	{
+		"id": 186,
+		"nombre": "TLATLAUQUITEPEC"
+	},
+	{
+		"id": 187,
+		"nombre": "TLAXCO"
+	},
+	{
+		"id": 188,
+		"nombre": "TOCHIMILCO"
+	},
+	{
+		"id": 189,
+		"nombre": "TOCHTEPEC"
+	},
+	{
+		"id": 190,
+		"nombre": "TOTOLTEPEC DE GUERRERO"
+	},
+	{
+		"id": 191,
+		"nombre": "TULCINGO"
+	},
+	{
+		"id": 192,
+		"nombre": "TUZAMAPAN DE GALEANA"
+	},
+	{
+		"id": 193,
+		"nombre": "TZICATLACOYAN"
+	},
+	{
+		"id": 194,
+		"nombre": "VENUSTIANO CARRANZA"
+	},
+	{
+		"id": 195,
+		"nombre": "VICENTE GUERRERO"
+	},
+	{
+		"id": 196,
+		"nombre": "XAYACATLAN DE BRAVO"
+	},
+	{
+		"id": 197,
+		"nombre": "XICOTEPEC"
+	},
+	{
+		"id": 198,
+		"nombre": "XICOTLAN"
+	},
+	{
+		"id": 199,
+		"nombre": "XIUTETELCO"
+	},
+	{
+		"id": 200,
+		"nombre": "XOCHIAPULCO"
+	},
+	{
+		"id": 201,
+		"nombre": "XOCHILTEPEC"
+	},
+	{
+		"id": 202,
+		"nombre": "XOCHITLAN DE VICENTE SUAREZ"
+	},
+	{
+		"id": 203,
+		"nombre": "XOCHITLAN TODOS SANTOS"
+	},
+	{
+		"id": 204,
+		"nombre": "YAONAHUAC"
+	},
+	{
+		"id": 205,
+		"nombre": "YEHUALTEPEC"
+	},
+	{
+		"id": 206,
+		"nombre": "ZACAPALA"
+	},
+	{
+		"id": 207,
+		"nombre": "ZACAPOAXTLA"
+	},
+	{
+		"id": 208,
+		"nombre": "ZACATLAN"
+	},
+	{
+		"id": 209,
+		"nombre": "ZAPOTITLAN"
+	},
+	{
+		"id": 210,
+		"nombre": "ZAPOTITLAN DE MENDEZ"
+	},
+	{
+		"id": 211,
+		"nombre": "ZARAGOZA"
+	},
+	{
+		"id": 212,
+		"nombre": "ZAUTLA"
+	},
+	{
+		"id": 213,
+		"nombre": "ZIHUATEUTLA"
+	},
+	{
+		"id": 214,
+		"nombre": "ZINACATEPEC"
+	},
+	{
+		"id": 215,
+		"nombre": "ZONGOZOTLA"
+	},
+	{
+		"id": 216,
+		"nombre": "ZOQUIAPAN"
+	},
+	{
+		"id": 217,
+		"nombre": "ZOQUITLAN"
+	},
+	{
+		"id": 999,
+		"nombre": "DESCONOCIDO"
+	}
+]

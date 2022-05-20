@@ -1,0 +1,238 @@
+[
+	{
+		"id": 1,
+		"nombre": "AHUALULCO"
+	},
+	{
+		"id": 2,
+		"nombre": "ALAQUINES"
+	},
+	{
+		"id": 3,
+		"nombre": "AQUISMON"
+	},
+	{
+		"id": 4,
+		"nombre": "ARMADILLO DE LOS INFANTE"
+	},
+	{
+		"id": 5,
+		"nombre": "CARDENAS"
+	},
+	{
+		"id": 6,
+		"nombre": "CATORCE"
+	},
+	{
+		"id": 7,
+		"nombre": "CEDRAL"
+	},
+	{
+		"id": 8,
+		"nombre": "CERRITOS"
+	},
+	{
+		"id": 9,
+		"nombre": "CERRO DE SAN PEDRO"
+	},
+	{
+		"id": 10,
+		"nombre": "CIUDAD DEL MAIZ"
+	},
+	{
+		"id": 11,
+		"nombre": "CIUDAD FERNANDEZ"
+	},
+	{
+		"id": 12,
+		"nombre": "TANCANHUITZ"
+	},
+	{
+		"id": 13,
+		"nombre": "CIUDAD VALLES"
+	},
+	{
+		"id": 14,
+		"nombre": "COXCATLAN"
+	},
+	{
+		"id": 15,
+		"nombre": "CHARCAS"
+	},
+	{
+		"id": 16,
+		"nombre": "EBANO"
+	},
+	{
+		"id": 17,
+		"nombre": "GUADALCAZAR"
+	},
+	{
+		"id": 18,
+		"nombre": "HUEHUETLAN"
+	},
+	{
+		"id": 19,
+		"nombre": "LAGUNILLAS"
+	},
+	{
+		"id": 20,
+		"nombre": "MATEHUALA"
+	},
+	{
+		"id": 21,
+		"nombre": "MEXQUITIC DE CARMONA"
+	},
+	{
+		"id": 22,
+		"nombre": "MOCTEZUMA"
+	},
+	{
+		"id": 23,
+		"nombre": "RAYON"
+	},
+	{
+		"id": 24,
+		"nombre": "RIOVERDE"
+	},
+	{
+		"id": 25,
+		"nombre": "SALINAS"
+	},
+	{
+		"id": 26,
+		"nombre": "SAN ANTONIO"
+	},
+	{
+		"id": 27,
+		"nombre": "SAN CIRO DE ACOSTA"
+	},
+	{
+		"id": 28,
+		"nombre": "SAN LUIS POTOSI"
+	},
+	{
+		"id": 29,
+		"nombre": "SAN MARTIN CHALCHICUAUTLA"
+	},
+	{
+		"id": 30,
+		"nombre": "SAN NICOLAS TOLENTINO"
+	},
+	{
+		"id": 31,
+		"nombre": "SANTA CATARINA"
+	},
+	{
+		"id": 32,
+		"nombre": "SANTA MARIA DEL RIO"
+	},
+	{
+		"id": 33,
+		"nombre": "SANTO DOMINGO"
+	},
+	{
+		"id": 34,
+		"nombre": "SAN VICENTE TANCUAYALAB"
+	},
+	{
+		"id": 35,
+		"nombre": "SOLEDAD DE GRACIANO SANCHEZ"
+	},
+	{
+		"id": 36,
+		"nombre": "TAMASOPO"
+	},
+	{
+		"id": 37,
+		"nombre": "TAMAZUNCHALE"
+	},
+	{
+		"id": 38,
+		"nombre": "TAMPACAN"
+	},
+	{
+		"id": 39,
+		"nombre": "TAMPAMOLON CORONA"
+	},
+	{
+		"id": 40,
+		"nombre": "TAMUIN"
+	},
+	{
+		"id": 41,
+		"nombre": "TANLAJAS"
+	},
+	{
+		"id": 42,
+		"nombre": "TANQUIAN DE ESCOBEDO"
+	},
+	{
+		"id": 43,
+		"nombre": "TIERRA NUEVA"
+	},
+	{
+		"id": 44,
+		"nombre": "VANEGAS"
+	},
+	{
+		"id": 45,
+		"nombre": "VENADO"
+	},
+	{
+		"id": 46,
+		"nombre": "VILLA DE ARRIAGA"
+	},
+	{
+		"id": 47,
+		"nombre": "VILLA DE GUADALUPE"
+	},
+	{
+		"id": 48,
+		"nombre": "VILLA DE LA PAZ"
+	},
+	{
+		"id": 49,
+		"nombre": "VILLA DE RAMOS"
+	},
+	{
+		"id": 50,
+		"nombre": "VILLA DE REYES"
+	},
+	{
+		"id": 51,
+		"nombre": "VILLA HIDALGO"
+	},
+	{
+		"id": 52,
+		"nombre": "VILLA JUAREZ"
+	},
+	{
+		"id": 53,
+		"nombre": "AXTLA DE TERRAZAS"
+	},
+	{
+		"id": 54,
+		"nombre": "XILITLA"
+	},
+	{
+		"id": 55,
+		"nombre": "ZARAGOZA"
+	},
+	{
+		"id": 56,
+		"nombre": "VILLA DE ARISTA"
+	},
+	{
+		"id": 57,
+		"nombre": "MATLAPA"
+	},
+	{
+		"id": 58,
+		"nombre": "EL NARANJO"
+	},
+	{
+		"id": 999,
+		"nombre": "DESCONOCIDO"
+	}
+]

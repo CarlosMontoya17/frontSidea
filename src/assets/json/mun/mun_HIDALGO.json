@@ -1,0 +1,342 @@
+[
+	{
+		"id": 1,
+		"nombre": "ACATLAN"
+	},
+	{
+		"id": 2,
+		"nombre": "ACAXOCHITLAN"
+	},
+	{
+		"id": 3,
+		"nombre": "ACTOPAN"
+	},
+	{
+		"id": 4,
+		"nombre": "AGUA BLANCA DE ITURBIDE"
+	},
+	{
+		"id": 5,
+		"nombre": "AJACUBA"
+	},
+	{
+		"id": 6,
+		"nombre": "ALFAJAYUCAN"
+	},
+	{
+		"id": 7,
+		"nombre": "ALMOLOYA"
+	},
+	{
+		"id": 8,
+		"nombre": "APAN"
+	},
+	{
+		"id": 9,
+		"nombre": "EL ARENAL"
+	},
+	{
+		"id": 10,
+		"nombre": "ATITALAQUIA"
+	},
+	{
+		"id": 11,
+		"nombre": "ATLAPEXCO"
+	},
+	{
+		"id": 12,
+		"nombre": "ATOTONILCO EL GRANDE"
+	},
+	{
+		"id": 13,
+		"nombre": "ATOTONILCO DE TULA"
+	},
+	{
+		"id": 14,
+		"nombre": "CALNALI"
+	},
+	{
+		"id": 15,
+		"nombre": "CARDONAL"
+	},
+	{
+		"id": 16,
+		"nombre": "CUAUTEPEC DE HINOJOSA"
+	},
+	{
+		"id": 17,
+		"nombre": "CHAPANTONGO"
+	},
+	{
+		"id": 18,
+		"nombre": "CHAPULHUACAN"
+	},
+	{
+		"id": 19,
+		"nombre": "CHILCUAUTLA"
+	},
+	{
+		"id": 20,
+		"nombre": "ELOXOCHITLAN"
+	},
+	{
+		"id": 21,
+		"nombre": "EMILIANO ZAPATA"
+	},
+	{
+		"id": 22,
+		"nombre": "EPAZOYUCAN"
+	},
+	{
+		"id": 23,
+		"nombre": "FRANCISCO I. MADERO"
+	},
+	{
+		"id": 24,
+		"nombre": "HUASCA DE OCAMPO"
+	},
+	{
+		"id": 25,
+		"nombre": "HUAUTLA"
+	},
+	{
+		"id": 26,
+		"nombre": "HUAZALINGO"
+	},
+	{
+		"id": 27,
+		"nombre": "HUEHUETLA"
+	},
+	{
+		"id": 28,
+		"nombre": "HUEJUTLA DE REYES"
+	},
+	{
+		"id": 29,
+		"nombre": "HUICHAPAN"
+	},
+	{
+		"id": 30,
+		"nombre": "IXMIQUILPAN"
+	},
+	{
+		"id": 31,
+		"nombre": "JACALA DE LEDEZMA"
+	},
+	{
+		"id": 32,
+		"nombre": "JALTOCAN"
+	},
+	{
+		"id": 33,
+		"nombre": "JUAREZ HIDALGO"
+	},
+	{
+		"id": 34,
+		"nombre": "LOLOTLA"
+	},
+	{
+		"id": 35,
+		"nombre": "METEPEC"
+	},
+	{
+		"id": 36,
+		"nombre": "SAN AGUSTIN METZQUITITLAN"
+	},
+	{
+		"id": 37,
+		"nombre": "METZTITLAN"
+	},
+	{
+		"id": 38,
+		"nombre": "MINERAL DEL CHICO"
+	},
+	{
+		"id": 39,
+		"nombre": "MINERAL DEL MONTE"
+	},
+	{
+		"id": 40,
+		"nombre": "LA MISION"
+	},
+	{
+		"id": 41,
+		"nombre": "MIXQUIAHUALA DE JUAREZ"
+	},
+	{
+		"id": 42,
+		"nombre": "MOLANGO DE ESCAMILLA"
+	},
+	{
+		"id": 43,
+		"nombre": "NICOLAS FLORES"
+	},
+	{
+		"id": 44,
+		"nombre": "NOPALA DE VILLAGRAN"
+	},
+	{
+		"id": 45,
+		"nombre": "OMITLAN DE JUAREZ"
+	},
+	{
+		"id": 46,
+		"nombre": "SAN FELIPE ORIZATLAN"
+	},
+	{
+		"id": 47,
+		"nombre": "PACULA"
+	},
+	{
+		"id": 48,
+		"nombre": "PACHUCA DE SOTO"
+	},
+	{
+		"id": 49,
+		"nombre": "PISAFLORES"
+	},
+	{
+		"id": 50,
+		"nombre": "PROGRESO DE OBREGON"
+	},
+	{
+		"id": 51,
+		"nombre": "MINERAL DE LA REFORMA"
+	},
+	{
+		"id": 52,
+		"nombre": "SAN AGUSTIN TLAXIACA"
+	},
+	{
+		"id": 53,
+		"nombre": "SAN BARTOLO TUTOTEPEC"
+	},
+	{
+		"id": 54,
+		"nombre": "SAN SALVADOR"
+	},
+	{
+		"id": 55,
+		"nombre": "SANTIAGO DE ANAYA"
+	},
+	{
+		"id": 56,
+		"nombre": "SANTIAGO TULANTEPEC DE LUGO GUERRERO"
+	},
+	{
+		"id": 57,
+		"nombre": "SINGUILUCAN"
+	},
+	{
+		"id": 58,
+		"nombre": "TASQUILLO"
+	},
+	{
+		"id": 59,
+		"nombre": "TECOZAUTLA"
+	},
+	{
+		"id": 60,
+		"nombre": "TENANGO DE DORIA"
+	},
+	{
+		"id": 61,
+		"nombre": "TEPEAPULCO"
+	},
+	{
+		"id": 62,
+		"nombre": "TEPEHUACAN DE GUERRERO"
+	},
+	{
+		"id": 63,
+		"nombre": "TEPEJI DEL RIO DE OCAMPO"
+	},
+	{
+		"id": 64,
+		"nombre": "TEPETITLAN"
+	},
+	{
+		"id": 65,
+		"nombre": "TETEPANGO"
+	},
+	{
+		"id": 66,
+		"nombre": "VILLA DE TEZONTEPEC"
+	},
+	{
+		"id": 67,
+		"nombre": "TEZONTEPEC DE ALDAMA"
+	},
+	{
+		"id": 68,
+		"nombre": "TIANGUISTENGO"
+	},
+	{
+		"id": 69,
+		"nombre": "TIZAYUCA"
+	},
+	{
+		"id": 70,
+		"nombre": "TLAHUELILPAN"
+	},
+	{
+		"id": 71,
+		"nombre": "TLAHUILTEPA"
+	},
+	{
+		"id": 72,
+		"nombre": "TLANALAPA"
+	},
+	{
+		"id": 73,
+		"nombre": "TLANCHINOL"
+	},
+	{
+		"id": 74,
+		"nombre": "TLAXCOAPAN"
+	},
+	{
+		"id": 75,
+		"nombre": "TOLCAYUCA"
+	},
+	{
+		"id": 76,
+		"nombre": "TULA DE ALLENDE"
+	},
+	{
+		"id": 77,
+		"nombre": "TULANCINGO DE BRAVO"
+	},
+	{
+		"id": 78,
+		"nombre": "XOCHIATIPAN"
+	},
+	{
+		"id": 79,
+		"nombre": "XOCHICOATLAN"
+	},
+	{
+		"id": 80,
+		"nombre": "YAHUALICA"
+	},
+	{
+		"id": 81,
+		"nombre": "ZACUALTIPAN DE ANGELES"
+	},
+	{
+		"id": 82,
+		"nombre": "ZAPOTLAN DE JUAREZ"
+	},
+	{
+		"id": 83,
+		"nombre": "ZEMPOALA"
+	},
+	{
+		"id": 84,
+		"nombre": "ZIMAPAN"
+	},
+	{
+		"id": 999,
+		"nombre": "DESCONOCIDO"
+	}
+]

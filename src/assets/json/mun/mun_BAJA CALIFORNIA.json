@@ -1,0 +1,34 @@
+[
+	{
+		"id": 1,
+		"nombre": "ENSENADA"
+	},
+	{
+		"id": 2,
+		"nombre": "MEXICALI"
+	},
+	{
+		"id": 3,
+		"nombre": "TECATE"
+	},
+	{
+		"id": 4,
+		"nombre": "TIJUANA"
+	},
+	{
+		"id": 5,
+		"nombre": "PLAYAS DE ROSARITO"
+	},
+	{
+		"id": 6,
+		"nombre": "SAN QUINTIN"
+	},
+	{
+		"id": 7,
+		"nombre": "SAN FELIPE"
+	},
+	{
+		"id": 999,
+		"nombre": "DESCONOCIDO"
+	}
+]

@@ -1,0 +1,158 @@
+[
+	{
+		"id": 1,
+		"nombre": "ABASOLO"
+	},
+	{
+		"id": 2,
+		"nombre": "ACUÑA"
+	},
+	{
+		"id": 3,
+		"nombre": "ALLENDE"
+	},
+	{
+		"id": 4,
+		"nombre": "ARTEAGA"
+	},
+	{
+		"id": 5,
+		"nombre": "CANDELA"
+	},
+	{
+		"id": 6,
+		"nombre": "CASTAÑOS"
+	},
+	{
+		"id": 7,
+		"nombre": "CUATROCIENEGAS"
+	},
+	{
+		"id": 8,
+		"nombre": "ESCOBEDO"
+	},
+	{
+		"id": 9,
+		"nombre": "FRANCISCO I. MADERO"
+	},
+	{
+		"id": 10,
+		"nombre": "FRONTERA"
+	},
+	{
+		"id": 11,
+		"nombre": "GENERAL CEPEDA"
+	},
+	{
+		"id": 12,
+		"nombre": "GUERRERO"
+	},
+	{
+		"id": 13,
+		"nombre": "HIDALGO"
+	},
+	{
+		"id": 14,
+		"nombre": "JIMENEZ"
+	},
+	{
+		"id": 15,
+		"nombre": "JUAREZ"
+	},
+	{
+		"id": 16,
+		"nombre": "LAMADRID"
+	},
+	{
+		"id": 17,
+		"nombre": "MATAMOROS"
+	},
+	{
+		"id": 18,
+		"nombre": "MONCLOVA"
+	},
+	{
+		"id": 19,
+		"nombre": "MORELOS"
+	},
+	{
+		"id": 20,
+		"nombre": "MUZQUIZ"
+	},
+	{
+		"id": 21,
+		"nombre": "NADADORES"
+	},
+	{
+		"id": 22,
+		"nombre": "NAVA"
+	},
+	{
+		"id": 23,
+		"nombre": "OCAMPO"
+	},
+	{
+		"id": 24,
+		"nombre": "PARRAS"
+	},
+	{
+		"id": 25,
+		"nombre": "PIEDRAS NEGRAS"
+	},
+	{
+		"id": 26,
+		"nombre": "PROGRESO"
+	},
+	{
+		"id": 27,
+		"nombre": "RAMOS ARIZPE"
+	},
+	{
+		"id": 28,
+		"nombre": "SABINAS"
+	},
+	{
+		"id": 29,
+		"nombre": "SACRAMENTO"
+	},
+	{
+		"id": 30,
+		"nombre": "SALTILLO"
+	},
+	{
+		"id": 31,
+		"nombre": "SAN BUENAVENTURA"
+	},
+	{
+		"id": 32,
+		"nombre": "SAN JUAN DE SABINAS"
+	},
+	{
+		"id": 33,
+		"nombre": "SAN PEDRO"
+	},
+	{
+		"id": 34,
+		"nombre": "SIERRA MOJADA"
+	},
+	{
+		"id": 35,
+		"nombre": "TORREON"
+	},
+	{
+		"id": 36,
+		"nombre": "VIESCA"
+	},
+	{
+		"id": 37,
+		"nombre": "VILLA UNION"
+	},
+	{
+		"id": 38,
+		"nombre": "ZARAGOZA"
+	},
+	{
+		"id": 999,
+		"nombre": "DESCONOCIDO"
+	}
+]

@@ -1,0 +1,74 @@
+[
+	{
+		"id": 1,
+		"nombre": "BALANCAN"
+	},
+	{
+		"id": 2,
+		"nombre": "CARDENAS"
+	},
+	{
+		"id": 3,
+		"nombre": "CENTLA"
+	},
+	{
+		"id": 4,
+		"nombre": "CENTRO"
+	},
+	{
+		"id": 5,
+		"nombre": "COMALCALCO"
+	},
+	{
+		"id": 6,
+		"nombre": "CUNDUACAN"
+	},
+	{
+		"id": 7,
+		"nombre": "EMILIANO ZAPATA"
+	},
+	{
+		"id": 8,
+		"nombre": "HUIMANGUILLO"
+	},
+	{
+		"id": 9,
+		"nombre": "JALAPA"
+	},
+	{
+		"id": 10,
+		"nombre": "JALPA DE MENDEZ"
+	},
+	{
+		"id": 11,
+		"nombre": "JONUTA"
+	},
+	{
+		"id": 12,
+		"nombre": "MACUSPANA"
+	},
+	{
+		"id": 13,
+		"nombre": "NACAJUCA"
+	},
+	{
+		"id": 14,
+		"nombre": "PARAISO"
+	},
+	{
+		"id": 15,
+		"nombre": "TACOTALPA"
+	},
+	{
+		"id": 16,
+		"nombre": "TEAPA"
+	},
+	{
+		"id": 17,
+		"nombre": "TENOSIQUE"
+	},
+	{
+		"id": 999,
+		"nombre": "DESCONOCIDO"
+	}
+]

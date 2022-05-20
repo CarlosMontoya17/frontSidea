@@ -145,7 +145,7 @@ ol {
 
 .panel-cibers {
   position: sticky;
-  top: 20px;
+  top: 230px;
 }
 
 
@@ -240,6 +240,7 @@ ol {
 .contenedor{
   margin: auto;
   width: 110rem;
+  z-index: -1;
 }
 .contenidoprincipal{
   width: 67%;
@@ -263,8 +264,14 @@ ol {
   }
   .contenidoprincipal{
     width: 92%;
+
+  }
+  .contenedor{
+    z-index: -1;
   }
 }
 .estatic{
-background-color: #b22234;
+position: sticky;
+top: 0px;
+z-index: 1;
 }

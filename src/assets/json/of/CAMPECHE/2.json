@@ -1,0 +1,82 @@
+[
+	{
+		"id": 1,
+		"nombre": "SAN FRANCISCO DE CAMPECHE"
+	},
+	{
+		"id": 2,
+		"nombre": "LERMA"
+	},
+	{
+		"id": 3,
+		"nombre": "CHINA"
+	},
+	{
+		"id": 4,
+		"nombre": "TIKIMUL"
+	},
+	{
+		"id": 5,
+		"nombre": "TIXMUCUY"
+	},
+	{
+		"id": 6,
+		"nombre": "POCYAXUN"
+	},
+	{
+		"id": 7,
+		"nombre": "PICH"
+	},
+	{
+		"id": 8,
+		"nombre": "NOHAKAL"
+	},
+	{
+		"id": 9,
+		"nombre": "ALFREDO V BONFIL"
+	},
+	{
+		"id": 10,
+		"nombre": "CASTAMAY"
+	},
+	{
+		"id": 11,
+		"nombre": "ADOLFO RUIZ CORTINES"
+	},
+	{
+		"id": 12,
+		"nombre": "HAMPOLOL"
+	},
+	{
+		"id": 13,
+		"nombre": "NILCHI"
+	},
+	{
+		"id": 14,
+		"nombre": "MELCHOR OCAMPO"
+	},
+	{
+		"id": 15,
+		"nombre": "QUETZAL EDZNA"
+	},
+	{
+		"id": 16,
+		"nombre": "CAYAL"
+	},
+	{
+		"id": 17,
+		"nombre": "BOLONCHEN CAHUICH"
+	},
+	{
+		"id": 18,
+		"nombre": "KANASAYAB"
+	},
+	{
+		"id": 51,
+		"nombre": "HOSPITAL CAMPECHE"
+	},
+	{
+		"id": 120,
+		"nombre": "SIN NOMBRE"
+	}
+]

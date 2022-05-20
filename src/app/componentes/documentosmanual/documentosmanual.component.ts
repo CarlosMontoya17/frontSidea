@@ -120,7 +120,12 @@ export class DocumentosmanualComponent implements OnInit {
 
   }
 
+<<<<<<< HEAD
   setTipoDeEstado(stat: any) {
+=======
+  setTipoDeEstado(stat:any){
+    console.log(stat);
+>>>>>>> Test
     this.estado = stat;
     console.log(stat);
   }

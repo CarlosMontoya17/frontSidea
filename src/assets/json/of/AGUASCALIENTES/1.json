@@ -1,0 +1,78 @@
+[
+	{
+		"id": 1,
+		"nombre": "AGUASCALIENTES"
+	},
+	{
+		"id": 2,
+		"nombre": "CIENEGUILLA"
+	},
+	{
+		"id": 3,
+		"nombre": "LOS CAÑOS"
+	},
+	{
+		"id": 4,
+		"nombre": "JOSE MA. MORELOS"
+	},
+	{
+		"id": 5,
+		"nombre": "JESUS TERAN PEREDO"
+	},
+	{
+		"id": 6,
+		"nombre": "MORELOS"
+	},
+	{
+		"id": 7,
+		"nombre": "PEÑUELAS"
+	},
+	{
+		"id": 8,
+		"nombre": "VILLA JESUS TERAN"
+	},
+	{
+		"id": 9,
+		"nombre": "INSURGENTES"
+	},
+	{
+		"id": 10,
+		"nombre": "AGUASCALIENTES"
+	},
+	{
+		"id": 11,
+		"nombre": "AGUASCALIENTES"
+	},
+	{
+		"id": 12,
+		"nombre": "AGUASCALIENTES"
+	},
+	{
+		"id": 13,
+		"nombre": "AGUASCALIENTES"
+	},
+	{
+		"id": 14,
+		"nombre": "AGUASCALIENTES"
+	},
+	{
+		"id": 15,
+		"nombre": "VALLE DE CACTUS"
+	},
+	{
+		"id": 16,
+		"nombre": "AGUASCALIENTES"
+	},
+	{
+		"id": 17,
+		"nombre": "IMSS"
+	},
+	{
+		"id": 18,
+		"nombre": "UNIDAD MOVIL"
+	},
+	{
+		"id": 19,
+		"nombre": "HOSPITAL HIDALGO"
+	}
+]

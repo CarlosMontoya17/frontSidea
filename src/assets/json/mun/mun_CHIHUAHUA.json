@@ -1,0 +1,274 @@
+[
+	{
+		"id": 1,
+		"nombre": "AHUMADA"
+	},
+	{
+		"id": 2,
+		"nombre": "ALDAMA"
+	},
+	{
+		"id": 3,
+		"nombre": "ALLENDE"
+	},
+	{
+		"id": 4,
+		"nombre": "AQUILES SERDAN"
+	},
+	{
+		"id": 5,
+		"nombre": "ASCENSION"
+	},
+	{
+		"id": 6,
+		"nombre": "BACHINIVA"
+	},
+	{
+		"id": 7,
+		"nombre": "BALLEZA"
+	},
+	{
+		"id": 8,
+		"nombre": "BATOPILAS"
+	},
+	{
+		"id": 9,
+		"nombre": "BOCOYNA"
+	},
+	{
+		"id": 10,
+		"nombre": "BUENAVENTURA"
+	},
+	{
+		"id": 11,
+		"nombre": "CAMARGO"
+	},
+	{
+		"id": 12,
+		"nombre": "CARICHI"
+	},
+	{
+		"id": 13,
+		"nombre": "CASAS GRANDES"
+	},
+	{
+		"id": 14,
+		"nombre": "CORONADO"
+	},
+	{
+		"id": 15,
+		"nombre": "COYAME"
+	},
+	{
+		"id": 16,
+		"nombre": "LA CRUZ"
+	},
+	{
+		"id": 17,
+		"nombre": "CUAUHTEMOC"
+	},
+	{
+		"id": 18,
+		"nombre": "CUSIHUIRIACHI"
+	},
+	{
+		"id": 19,
+		"nombre": "CHIHUAHUA"
+	},
+	{
+		"id": 20,
+		"nombre": "CHINIPAS"
+	},
+	{
+		"id": 21,
+		"nombre": "DELICIAS"
+	},
+	{
+		"id": 22,
+		"nombre": "DOCTOR BELISARIO DOMINGUEZ"
+	},
+	{
+		"id": 23,
+		"nombre": "GALEANA"
+	},
+	{
+		"id": 24,
+		"nombre": "SANTA ISABEL"
+	},
+	{
+		"id": 25,
+		"nombre": "GOMEZ FARIAS"
+	},
+	{
+		"id": 26,
+		"nombre": "GRAN MORELOS"
+	},
+	{
+		"id": 27,
+		"nombre": "GUACHOCHI"
+	},
+	{
+		"id": 28,
+		"nombre": "GUADALUPE"
+	},
+	{
+		"id": 29,
+		"nombre": "GUADALUPE Y CALVO"
+	},
+	{
+		"id": 30,
+		"nombre": "GUAZAPARES"
+	},
+	{
+		"id": 31,
+		"nombre": "GUERRERO"
+	},
+	{
+		"id": 32,
+		"nombre": "HIDALGO DEL PARRAL"
+	},
+	{
+		"id": 33,
+		"nombre": "HUEJOTITAN"
+	},
+	{
+		"id": 34,
+		"nombre": "IGNACIO ZARAGOZA"
+	},
+	{
+		"id": 35,
+		"nombre": "JANOS"
+	},
+	{
+		"id": 36,
+		"nombre": "JIMENEZ"
+	},
+	{
+		"id": 37,
+		"nombre": "JUAREZ"
+	},
+	{
+		"id": 38,
+		"nombre": "JULIMES"
+	},
+	{
+		"id": 39,
+		"nombre": "LOPEZ"
+	},
+	{
+		"id": 40,
+		"nombre": "MADERA"
+	},
+	{
+		"id": 41,
+		"nombre": "MAGUARICHI"
+	},
+	{
+		"id": 42,
+		"nombre": "MANUEL BENAVIDES"
+	},
+	{
+		"id": 43,
+		"nombre": "MATACHI"
+	},
+	{
+		"id": 44,
+		"nombre": "MATAMOROS"
+	},
+	{
+		"id": 45,
+		"nombre": "MEOQUI"
+	},
+	{
+		"id": 46,
+		"nombre": "MORELOS"
+	},
+	{
+		"id": 47,
+		"nombre": "MORIS"
+	},
+	{
+		"id": 48,
+		"nombre": "NAMIQUIPA"
+	},
+	{
+		"id": 49,
+		"nombre": "NONOAVA"
+	},
+	{
+		"id": 50,
+		"nombre": "NUEVO CASAS GRANDES"
+	},
+	{
+		"id": 51,
+		"nombre": "OCAMPO"
+	},
+	{
+		"id": 52,
+		"nombre": "OJINAGA"
+	},
+	{
+		"id": 53,
+		"nombre": "PRAXEDIS G. GUERRERO"
+	},
+	{
+		"id": 54,
+		"nombre": "RIVA PALACIO"
+	},
+	{
+		"id": 55,
+		"nombre": "ROSALES"
+	},
+	{
+		"id": 56,
+		"nombre": "ROSARIO"
+	},
+	{
+		"id": 57,
+		"nombre": "SAN FRANCISCO DE BORJA"
+	},
+	{
+		"id": 58,
+		"nombre": "SAN FRANCISCO DE CONCHOS"
+	},
+	{
+		"id": 59,
+		"nombre": "SAN FRANCISCO DEL ORO"
+	},
+	{
+		"id": 60,
+		"nombre": "SANTA BARBARA"
+	},
+	{
+		"id": 61,
+		"nombre": "SATEVO"
+	},
+	{
+		"id": 62,
+		"nombre": "SAUCILLO"
+	},
+	{
+		"id": 63,
+		"nombre": "TEMOSACHI"
+	},
+	{
+		"id": 64,
+		"nombre": "EL TULE"
+	},
+	{
+		"id": 65,
+		"nombre": "URIQUE"
+	},
+	{
+		"id": 66,
+		"nombre": "URUACHI"
+	},
+	{
+		"id": 67,
+		"nombre": "VALLE DE ZARAGOZA"
+	},
+	{
+		"id": 999,
+		"nombre": "DESCONOCIDO"
+	}
+]

@@ -1,0 +1,190 @@
+[
+	{
+		"id": 1,
+		"nombre": "ABASOLO"
+	},
+	{
+		"id": 2,
+		"nombre": "ACAMBARO"
+	},
+	{
+		"id": 3,
+		"nombre": "SAN MIGUEL DE ALLENDE"
+	},
+	{
+		"id": 4,
+		"nombre": "APASEO EL ALTO"
+	},
+	{
+		"id": 5,
+		"nombre": "APASEO EL GRANDE"
+	},
+	{
+		"id": 6,
+		"nombre": "ATARJEA"
+	},
+	{
+		"id": 7,
+		"nombre": "CELAYA"
+	},
+	{
+		"id": 8,
+		"nombre": "MANUEL DOBLADO"
+	},
+	{
+		"id": 9,
+		"nombre": "COMONFORT"
+	},
+	{
+		"id": 10,
+		"nombre": "CORONEO"
+	},
+	{
+		"id": 11,
+		"nombre": "CORTAZAR"
+	},
+	{
+		"id": 12,
+		"nombre": "CUERAMARO"
+	},
+	{
+		"id": 13,
+		"nombre": "DOCTOR MORA"
+	},
+	{
+		"id": 14,
+		"nombre": "DOLORES HIDALGO"
+	},
+	{
+		"id": 15,
+		"nombre": "GUANAJUATO"
+	},
+	{
+		"id": 16,
+		"nombre": "HUANIMARO"
+	},
+	{
+		"id": 17,
+		"nombre": "IRAPUATO"
+	},
+	{
+		"id": 18,
+		"nombre": "JARAL DEL PROGRESO"
+	},
+	{
+		"id": 19,
+		"nombre": "JERECUARO"
+	},
+	{
+		"id": 20,
+		"nombre": "LEON"
+	},
+	{
+		"id": 21,
+		"nombre": "MOROLEON"
+	},
+	{
+		"id": 22,
+		"nombre": "OCAMPO"
+	},
+	{
+		"id": 23,
+		"nombre": "PENJAMO"
+	},
+	{
+		"id": 24,
+		"nombre": "PUEBLO NUEVO"
+	},
+	{
+		"id": 25,
+		"nombre": "PURISIMA DEL RINCON"
+	},
+	{
+		"id": 26,
+		"nombre": "ROMITA"
+	},
+	{
+		"id": 27,
+		"nombre": "SALAMANCA"
+	},
+	{
+		"id": 28,
+		"nombre": "SALVATIERRA"
+	},
+	{
+		"id": 29,
+		"nombre": "SAN DIEGO DE LA UNION"
+	},
+	{
+		"id": 30,
+		"nombre": "SAN FELIPE"
+	},
+	{
+		"id": 31,
+		"nombre": "SAN FRANCISCO DEL RINCON"
+	},
+	{
+		"id": 32,
+		"nombre": "SAN JOSE ITURBIDE"
+	},
+	{
+		"id": 33,
+		"nombre": "SAN LUIS DE LA PAZ"
+	},
+	{
+		"id": 34,
+		"nombre": "SANTA CATARINA"
+	},
+	{
+		"id": 35,
+		"nombre": "SANTA CRUZ DE JUVENTINO ROSAS"
+	},
+	{
+		"id": 36,
+		"nombre": "SANTIAGO MARAVATIO"
+	},
+	{
+		"id": 37,
+		"nombre": "SILAO"
+	},
+	{
+		"id": 38,
+		"nombre": "TARANDACUAO"
+	},
+	{
+		"id": 39,
+		"nombre": "TARIMORO"
+	},
+	{
+		"id": 40,
+		"nombre": "TIERRA BLANCA"
+	},
+	{
+		"id": 41,
+		"nombre": "URIANGATO"
+	},
+	{
+		"id": 42,
+		"nombre": "VALLE DE SANTIAGO"
+	},
+	{
+		"id": 43,
+		"nombre": "VICTORIA"
+	},
+	{
+		"id": 44,
+		"nombre": "VILLAGRAN"
+	},
+	{
+		"id": 45,
+		"nombre": "XICHU"
+	},
+	{
+		"id": 46,
+		"nombre": "YURIRIA"
+	},
+	{
+		"id": 999,
+		"nombre": "DESCONOCIDO"
+	}
+]

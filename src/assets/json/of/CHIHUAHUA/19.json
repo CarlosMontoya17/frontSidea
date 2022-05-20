@@ -1,0 +1,86 @@
+[
+    {
+        "id": 1,
+        "nombre": "CHIHUAHUA  LIBERTAD Y CALLE 13"
+    },
+    {
+        "id": 2,
+        "nombre": "CHIHUAHUA  OCAMPO # 5000"
+    },
+    {
+        "id": 3,
+        "nombre": "CIENEGA DE ORTIZ"
+    },
+    {
+        "id": 4,
+        "nombre": "COLONIA CUAUHTEMOC"
+    },
+    {
+        "id": 5,
+        "nombre": "EL CHARCO"
+    },
+    {
+        "id": 6,
+        "nombre": "CHUVISCAR"
+    },
+    {
+        "id": 7,
+        "nombre": "LA ESPERANZA"
+    },
+    {
+        "id": 8,
+        "nombre": "EL FARO"
+    },
+    {
+        "id": 9,
+        "nombre": "COLONIA GUADALUPE"
+    },
+    {
+        "id": 10,
+        "nombre": "COLONIA NVO DELICIAS"
+    },
+    {
+        "id": 11,
+        "nombre": "COLONIA OCAMPO"
+    },
+    {
+        "id": 12,
+        "nombre": "COLONIA SACRAMENTO"
+    },
+    {
+        "id": 13,
+        "nombre": "LOS SAUCES"
+    },
+    {
+        "id": 14,
+        "nombre": "EL SAUZ"
+    },
+    {
+        "id": 15,
+        "nombre": "COLONIA SOTO"
+    },
+    {
+        "id": 16,
+        "nombre": "ESTACION TERRAZAS"
+    },
+    {
+        "id": 17,
+        "nombre": "CHIHUAHUA AV TECNOLOGICO #5506"
+    },
+    {
+        "id": 18,
+        "nombre": "CHIHUAHUA"
+    },
+    {
+        "id": 19,
+        "nombre": "ITINERANTE"
+    },
+    {
+        "id": 20,
+        "nombre": "INTER"
+    },
+    {
+        "id": 21,
+        "nombre": "COL. CERES"
+    }
+]

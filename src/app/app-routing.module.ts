@@ -11,6 +11,7 @@ import { StepusuarioComponent } from './componentes/stepusuario/stepusuario.comp
 import { EditarpreciosComponent } from './componentes/administrar/editarprecios/editarprecios.component';
 import { CorteComponent } from './componentes/corte/corte.component';
 import { DocumentosmanualComponent } from './componentes/documentosmanual/documentosmanual.component';
+import { PapeleraComponent } from './componentes/papelera/papelera.component';
 const routes: Routes = [
   {
   path: '',
@@ -62,6 +63,11 @@ const routes: Routes = [
   path: 'manual',
   component: DocumentosmanualComponent
 },
+{
+  path: 'papelera',
+  component: PapeleraComponent
+},
+
 
 
 

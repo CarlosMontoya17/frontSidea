@@ -1,0 +1,102 @@
+[
+	{
+		"id": 1,
+		"nombre": "VILLA DE GUADALUPE"
+	},
+	{
+		"id": 2,
+		"nombre": "SIHOCHAC"
+	},
+	{
+		"id": 3,
+		"nombre": "HOOL"
+	},
+	{
+		"id": 4,
+		"nombre": "SEYBAPLAYA"
+	},
+	{
+		"id": 5,
+		"nombre": "AQUILES SERDAN"
+	},
+	{
+		"id": 6,
+		"nombre": "ARELLANO"
+	},
+	{
+		"id": 7,
+		"nombre": "SILVITUC"
+	},
+	{
+		"id": 8,
+		"nombre": "VILLAMADERO"
+	},
+	{
+		"id": 9,
+		"nombre": "CHAMPOTON"
+	},
+	{
+		"id": 10,
+		"nombre": "XKEULIL"
+	},
+	{
+		"id": 11,
+		"nombre": "MAYA TECUN"
+	},
+	{
+		"id": 12,
+		"nombre": "LEY DE REFORMA AGRARIA"
+	},
+	{
+		"id": 13,
+		"nombre": "CIUDAD DEL SOL"
+	},
+	{
+		"id": 14,
+		"nombre": "LAGUNA GRANDE"
+	},
+	{
+		"id": 15,
+		"nombre": "KESTE"
+	},
+	{
+		"id": 16,
+		"nombre": "ALTAMIRA DE ZINAPARO"
+	},
+	{
+		"id": 17,
+		"nombre": "FELIPE CARRILLO PUERTO"
+	},
+	{
+		"id": 18,
+		"nombre": "MIGUEL COLORADO"
+	},
+	{
+		"id": 19,
+		"nombre": "PIXOYA"
+	},
+	{
+		"id": 20,
+		"nombre": "CENTENARIO"
+	},
+	{
+		"id": 21,
+		"nombre": "5 DE FEBRERO"
+	},
+	{
+		"id": 22,
+		"nombre": "PUSTUNICH"
+	},
+	{
+		"id": 23,
+		"nombre": "VALLE DE YOHALTUN"
+	},
+	{
+		"id": 24,
+		"nombre": "KANASAYAB"
+	},
+	{
+		"id": 25,
+		"nombre": "CONHUAS"
+	}
+]

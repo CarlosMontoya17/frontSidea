@@ -1,0 +1,294 @@
+[
+	{
+		"id": 1,
+		"nombre": "ACONCHI"
+	},
+	{
+		"id": 2,
+		"nombre": "AGUA PRIETA"
+	},
+	{
+		"id": 3,
+		"nombre": "ALAMOS"
+	},
+	{
+		"id": 4,
+		"nombre": "ALTAR"
+	},
+	{
+		"id": 5,
+		"nombre": "ARIVECHI"
+	},
+	{
+		"id": 6,
+		"nombre": "ARIZPE"
+	},
+	{
+		"id": 7,
+		"nombre": "ATIL"
+	},
+	{
+		"id": 8,
+		"nombre": "BACADEHUACHI"
+	},
+	{
+		"id": 9,
+		"nombre": "BACANORA"
+	},
+	{
+		"id": 10,
+		"nombre": "BACERAC"
+	},
+	{
+		"id": 11,
+		"nombre": "BACOACHI"
+	},
+	{
+		"id": 12,
+		"nombre": "BACUM"
+	},
+	{
+		"id": 13,
+		"nombre": "BANAMICHI"
+	},
+	{
+		"id": 14,
+		"nombre": "BAVIACORA"
+	},
+	{
+		"id": 15,
+		"nombre": "BAVISPE"
+	},
+	{
+		"id": 16,
+		"nombre": "BENJAMIN HILL"
+	},
+	{
+		"id": 17,
+		"nombre": "CABORCA"
+	},
+	{
+		"id": 18,
+		"nombre": "CAJEME"
+	},
+	{
+		"id": 19,
+		"nombre": "CANANEA"
+	},
+	{
+		"id": 20,
+		"nombre": "CARBO"
+	},
+	{
+		"id": 21,
+		"nombre": "LA COLORADA"
+	},
+	{
+		"id": 22,
+		"nombre": "CUCURPE"
+	},
+	{
+		"id": 23,
+		"nombre": "CUMPAS"
+	},
+	{
+		"id": 24,
+		"nombre": "DIVISADEROS"
+	},
+	{
+		"id": 25,
+		"nombre": "EMPALME"
+	},
+	{
+		"id": 26,
+		"nombre": "ETCHOJOA"
+	},
+	{
+		"id": 27,
+		"nombre": "FRONTERAS"
+	},
+	{
+		"id": 28,
+		"nombre": "GRANADOS"
+	},
+	{
+		"id": 29,
+		"nombre": "GUAYMAS"
+	},
+	{
+		"id": 30,
+		"nombre": "HERMOSILLO"
+	},
+	{
+		"id": 31,
+		"nombre": "HUACHINERA"
+	},
+	{
+		"id": 32,
+		"nombre": "HUASABAS"
+	},
+	{
+		"id": 33,
+		"nombre": "HUATABAMPO"
+	},
+	{
+		"id": 34,
+		"nombre": "HUEPAC"
+	},
+	{
+		"id": 35,
+		"nombre": "IMURIS"
+	},
+	{
+		"id": 36,
+		"nombre": "MAGDALENA"
+	},
+	{
+		"id": 37,
+		"nombre": "MAZATAN"
+	},
+	{
+		"id": 38,
+		"nombre": "MOCTEZUMA"
+	},
+	{
+		"id": 39,
+		"nombre": "NACO"
+	},
+	{
+		"id": 40,
+		"nombre": "NACORI CHICO"
+	},
+	{
+		"id": 41,
+		"nombre": "NACOZARI DE GARCIA"
+	},
+	{
+		"id": 42,
+		"nombre": "NAVOJOA"
+	},
+	{
+		"id": 43,
+		"nombre": "NOGALES"
+	},
+	{
+		"id": 44,
+		"nombre": "ONAVAS"
+	},
+	{
+		"id": 45,
+		"nombre": "OPODEPE"
+	},
+	{
+		"id": 46,
+		"nombre": "OQUITOA"
+	},
+	{
+		"id": 47,
+		"nombre": "PITIQUITO"
+	},
+	{
+		"id": 48,
+		"nombre": "PUERTO PEÑASCO"
+	},
+	{
+		"id": 49,
+		"nombre": "QUIRIEGO"
+	},
+	{
+		"id": 50,
+		"nombre": "RAYON"
+	},
+	{
+		"id": 51,
+		"nombre": "ROSARIO"
+	},
+	{
+		"id": 52,
+		"nombre": "SAHUARIPA"
+	},
+	{
+		"id": 53,
+		"nombre": "SAN FELIPE DE JESUS"
+	},
+	{
+		"id": 54,
+		"nombre": "SAN JAVIER"
+	},
+	{
+		"id": 55,
+		"nombre": "SAN LUIS RIO COLORADO"
+	},
+	{
+		"id": 56,
+		"nombre": "SAN MIGUEL DE HORCASITAS"
+	},
+	{
+		"id": 57,
+		"nombre": "SAN PEDRO DE LA CUEVA"
+	},
+	{
+		"id": 58,
+		"nombre": "SANTA ANA"
+	},
+	{
+		"id": 59,
+		"nombre": "SANTA CRUZ"
+	},
+	{
+		"id": 60,
+		"nombre": "SARIC"
+	},
+	{
+		"id": 61,
+		"nombre": "SOYOPA"
+	},
+	{
+		"id": 62,
+		"nombre": "SUAQUI GRANDE"
+	},
+	{
+		"id": 63,
+		"nombre": "TEPACHE"
+	},
+	{
+		"id": 64,
+		"nombre": "TRINCHERAS"
+	},
+	{
+		"id": 65,
+		"nombre": "TUBUTAMA"
+	},
+	{
+		"id": 66,
+		"nombre": "URES"
+	},
+	{
+		"id": 67,
+		"nombre": "VILLA HIDALGO"
+	},
+	{
+		"id": 68,
+		"nombre": "VILLA PESQUEIRA"
+	},
+	{
+		"id": 69,
+		"nombre": "YECORA"
+	},
+	{
+		"id": 70,
+		"nombre": "GENERAL PLUTARCO ELIAS CALLES"
+	},
+	{
+		"id": 71,
+		"nombre": "BENITO JUAREZ"
+	},
+	{
+		"id": 72,
+		"nombre": "SAN IGNACIO RIO MUERTO"
+	},
+	{
+		"id": 999,
+		"nombre": "DESCONOCIDO"
+	}
+]

@@ -1,0 +1,178 @@
+[
+	{
+		"id": 1,
+		"nombre": "ABASOLO"
+	},
+	{
+		"id": 2,
+		"nombre": "ALDAMA"
+	},
+	{
+		"id": 3,
+		"nombre": "ALTAMIRA"
+	},
+	{
+		"id": 4,
+		"nombre": "ANTIGUO MORELOS"
+	},
+	{
+		"id": 5,
+		"nombre": "BURGOS"
+	},
+	{
+		"id": 6,
+		"nombre": "BUSTAMANTE"
+	},
+	{
+		"id": 7,
+		"nombre": "CAMARGO"
+	},
+	{
+		"id": 8,
+		"nombre": "CASAS"
+	},
+	{
+		"id": 9,
+		"nombre": "CIUDAD MADERO"
+	},
+	{
+		"id": 10,
+		"nombre": "CRUILLAS"
+	},
+	{
+		"id": 11,
+		"nombre": "GOMEZ FARIAS"
+	},
+	{
+		"id": 12,
+		"nombre": "GONZALEZ"
+	},
+	{
+		"id": 13,
+		"nombre": "GUEMEZ"
+	},
+	{
+		"id": 14,
+		"nombre": "GUERRERO"
+	},
+	{
+		"id": 15,
+		"nombre": "GUSTAVO DIAZ ORDAZ"
+	},
+	{
+		"id": 16,
+		"nombre": "HIDALGO"
+	},
+	{
+		"id": 17,
+		"nombre": "JAUMAVE"
+	},
+	{
+		"id": 18,
+		"nombre": "JIMENEZ"
+	},
+	{
+		"id": 19,
+		"nombre": "LLERA"
+	},
+	{
+		"id": 20,
+		"nombre": "MAINERO"
+	},
+	{
+		"id": 21,
+		"nombre": "EL MANTE"
+	},
+	{
+		"id": 22,
+		"nombre": "MATAMOROS"
+	},
+	{
+		"id": 23,
+		"nombre": "MENDEZ"
+	},
+	{
+		"id": 24,
+		"nombre": "MIER"
+	},
+	{
+		"id": 25,
+		"nombre": "MIGUEL ALEMAN"
+	},
+	{
+		"id": 26,
+		"nombre": "MIQUIHUANA"
+	},
+	{
+		"id": 27,
+		"nombre": "NUEVO LAREDO"
+	},
+	{
+		"id": 28,
+		"nombre": "NUEVO MORELOS"
+	},
+	{
+		"id": 29,
+		"nombre": "OCAMPO"
+	},
+	{
+		"id": 30,
+		"nombre": "PADILLA"
+	},
+	{
+		"id": 31,
+		"nombre": "PALMILLAS"
+	},
+	{
+		"id": 32,
+		"nombre": "REYNOSA"
+	},
+	{
+		"id": 33,
+		"nombre": "RIO BRAVO"
+	},
+	{
+		"id": 34,
+		"nombre": "SAN CARLOS"
+	},
+	{
+		"id": 35,
+		"nombre": "SAN FERNANDO"
+	},
+	{
+		"id": 36,
+		"nombre": "SAN NICOLAS"
+	},
+	{
+		"id": 37,
+		"nombre": "SOTO LA MARINA"
+	},
+	{
+		"id": 38,
+		"nombre": "TAMPICO"
+	},
+	{
+		"id": 39,
+		"nombre": "TULA"
+	},
+	{
+		"id": 40,
+		"nombre": "VALLE HERMOSO"
+	},
+	{
+		"id": 41,
+		"nombre": "VICTORIA"
+	},
+	{
+		"id": 42,
+		"nombre": "VILLAGRAN"
+	},
+	{
+		"id": 43,
+		"nombre": "XICOTENCATL"
+	},
+	{
+		"id": 999,
+		"nombre": "DESCONOCIDO"
+	}
+]

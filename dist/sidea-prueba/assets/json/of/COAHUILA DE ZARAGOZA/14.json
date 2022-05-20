@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "nombre": "SAN CARLOS"
+    },
+    {
+        "id": 2,
+        "nombre": "LA MURALLA"
+    },
+    {
+        "id": 3,
+        "nombre": "PURISIMA"
+    },
+    {
+        "id": 4,
+        "nombre": "PALMIRA"
+    },
+    {
+        "id": 5,
+        "nombre": "JIMENEZ"
+    },
+    {
+        "id": 6,
+        "nombre": "PALESTINA"
+    }
+]

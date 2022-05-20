@@ -73,6 +73,7 @@ export class HistorialComponent implements OnInit {
   usuario: any = 'Usuario';
   result: any = [];
   page: number = 0;
+  pagePapelera: number = 0;
   myInfo: any;
   myRol: any;
   nombreProvedor: String = "";
@@ -698,7 +699,7 @@ export class HistorialComponent implements OnInit {
   //OCULTAMOS LA VISTA DE LOS BOTONES DE LA VISTA DE SUBIR DOCUMENTOS DE FORMA MANUAL
   changeView5() {
 
-    this.papeleras = !this.papeleras;
+    this.router.navigateByUrl('papelera');
 
 
 

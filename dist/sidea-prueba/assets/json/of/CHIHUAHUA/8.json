@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "nombre": "BATOPILAS"
+    },
+    {
+        "id": 2,
+        "nombre": "CERRO COLORADO"
+    },
+    {
+        "id": 3,
+        "nombre": "JESUS MARIA"
+    },
+    {
+        "id": 4,
+        "nombre": "POLANCO"
+    },
+    {
+        "id": 5,
+        "nombre": "SAN IGNACIO"
+    },
+    {
+        "id": 6,
+        "nombre": "YOQUIVO"
+    },
+    {
+        "id": 83,
+        "nombre": "TARAHUMARA"
+    }
+]

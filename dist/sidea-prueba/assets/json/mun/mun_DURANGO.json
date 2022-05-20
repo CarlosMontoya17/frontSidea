@@ -1,0 +1,162 @@
+[
+	{
+		"id": 1,
+		"nombre": "CANATLAN"
+	},
+	{
+		"id": 2,
+		"nombre": "CANELAS"
+	},
+	{
+		"id": 3,
+		"nombre": "CONETO DE COMONFORT"
+	},
+	{
+		"id": 4,
+		"nombre": "CUENCAME"
+	},
+	{
+		"id": 5,
+		"nombre": "DURANGO"
+	},
+	{
+		"id": 6,
+		"nombre": "GENERAL SIMON BOLIVAR"
+	},
+	{
+		"id": 7,
+		"nombre": "GOMEZ PALACIO"
+	},
+	{
+		"id": 8,
+		"nombre": "GUADALUPE VICTORIA"
+	},
+	{
+		"id": 9,
+		"nombre": "GUANACEVI"
+	},
+	{
+		"id": 10,
+		"nombre": "HIDALGO"
+	},
+	{
+		"id": 11,
+		"nombre": "INDE"
+	},
+	{
+		"id": 12,
+		"nombre": "LERDO"
+	},
+	{
+		"id": 13,
+		"nombre": "MAPIMI"
+	},
+	{
+		"id": 14,
+		"nombre": "MEZQUITAL"
+	},
+	{
+		"id": 15,
+		"nombre": "NAZAS"
+	},
+	{
+		"id": 16,
+		"nombre": "NOMBRE DE DIOS"
+	},
+	{
+		"id": 17,
+		"nombre": "OCAMPO"
+	},
+	{
+		"id": 18,
+		"nombre": "EL ORO"
+	},
+	{
+		"id": 19,
+		"nombre": "OTAEZ"
+	},
+	{
+		"id": 20,
+		"nombre": "PANUCO DE CORONADO"
+	},
+	{
+		"id": 21,
+		"nombre": "PEÑON BLANCO"
+	},
+	{
+		"id": 22,
+		"nombre": "POANAS"
+	},
+	{
+		"id": 23,
+		"nombre": "PUEBLO NUEVO"
+	},
+	{
+		"id": 24,
+		"nombre": "RODEO"
+	},
+	{
+		"id": 25,
+		"nombre": "SAN BERNARDO"
+	},
+	{
+		"id": 26,
+		"nombre": "SAN DIMAS"
+	},
+	{
+		"id": 27,
+		"nombre": "SAN JUAN DE GUADALUPE"
+	},
+	{
+		"id": 28,
+		"nombre": "SAN JUAN DEL RIO"
+	},
+	{
+		"id": 29,
+		"nombre": "SAN LUIS DEL CORDERO"
+	},
+	{
+		"id": 30,
+		"nombre": "SAN PEDRO DEL GALLO"
+	},
+	{
+		"id": 31,
+		"nombre": "SANTA CLARA"
+	},
+	{
+		"id": 32,
+		"nombre": "SANTIAGO PAPASQUIARO"
+	},
+	{
+		"id": 33,
+		"nombre": "SUCHIL"
+	},
+	{
+		"id": 34,
+		"nombre": "TAMAZULA"
+	},
+	{
+		"id": 35,
+		"nombre": "TEPEHUANES"
+	},
+	{
+		"id": 36,
+		"nombre": "TLAHUALILO"
+	},
+	{
+		"id": 37,
+		"nombre": "TOPIA"
+	},
+	{
+		"id": 38,
+		"nombre": "VICENTE GUERRERO"
+	},
+	{
+		"id": 39,
+		"nombre": "NUEVO IDEAL"
+	},
+	{
+		"id": 999,
+		"nombre": "DESCONOCIDO"
+	}
+]

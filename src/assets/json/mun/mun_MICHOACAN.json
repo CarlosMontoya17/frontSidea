@@ -1,0 +1,458 @@
+[
+	{
+		"id": 1,
+		"nombre": "ACUITZIO"
+	},
+	{
+		"id": 2,
+		"nombre": "AGUILILLA"
+	},
+	{
+		"id": 3,
+		"nombre": "ALVARO OBREGON"
+	},
+	{
+		"id": 4,
+		"nombre": "ANGAMACUTIRO"
+	},
+	{
+		"id": 5,
+		"nombre": "ANGANGUEO"
+	},
+	{
+		"id": 6,
+		"nombre": "APATZINGAN"
+	},
+	{
+		"id": 7,
+		"nombre": "APORO"
+	},
+	{
+		"id": 8,
+		"nombre": "AQUILA"
+	},
+	{
+		"id": 9,
+		"nombre": "ARIO"
+	},
+	{
+		"id": 10,
+		"nombre": "ARTEAGA"
+	},
+	{
+		"id": 11,
+		"nombre": "BRISEÑAS"
+	},
+	{
+		"id": 12,
+		"nombre": "BUENAVISTA"
+	},
+	{
+		"id": 13,
+		"nombre": "CARACUARO"
+	},
+	{
+		"id": 14,
+		"nombre": "COAHUAYANA"
+	},
+	{
+		"id": 15,
+		"nombre": "COALCOMAN DE VAZQUEZ PALLARES"
+	},
+	{
+		"id": 16,
+		"nombre": "COENEO"
+	},
+	{
+		"id": 17,
+		"nombre": "CONTEPEC"
+	},
+	{
+		"id": 18,
+		"nombre": "COPANDARO"
+	},
+	{
+		"id": 19,
+		"nombre": "COTIJA"
+	},
+	{
+		"id": 20,
+		"nombre": "CUITZEO"
+	},
+	{
+		"id": 21,
+		"nombre": "CHARAPAN"
+	},
+	{
+		"id": 22,
+		"nombre": "CHARO"
+	},
+	{
+		"id": 23,
+		"nombre": "CHAVINDA"
+	},
+	{
+		"id": 24,
+		"nombre": "CHERAN"
+	},
+	{
+		"id": 25,
+		"nombre": "CHILCHOTA"
+	},
+	{
+		"id": 26,
+		"nombre": "CHINICUILA"
+	},
+	{
+		"id": 27,
+		"nombre": "CHUCANDIRO"
+	},
+	{
+		"id": 28,
+		"nombre": "CHURINTZIO"
+	},
+	{
+		"id": 29,
+		"nombre": "CHURUMUCO"
+	},
+	{
+		"id": 30,
+		"nombre": "ECUANDUREO"
+	},
+	{
+		"id": 31,
+		"nombre": "EPITACIO HUERTA"
+	},
+	{
+		"id": 32,
+		"nombre": "ERONGARICUARO"
+	},
+	{
+		"id": 33,
+		"nombre": "GABRIEL ZAMORA"
+	},
+	{
+		"id": 34,
+		"nombre": "HIDALGO"
+	},
+	{
+		"id": 35,
+		"nombre": "LA HUACANA"
+	},
+	{
+		"id": 36,
+		"nombre": "HUANDACAREO"
+	},
+	{
+		"id": 37,
+		"nombre": "HUANIQUEO"
+	},
+	{
+		"id": 38,
+		"nombre": "HUETAMO"
+	},
+	{
+		"id": 39,
+		"nombre": "HUIRAMBA"
+	},
+	{
+		"id": 40,
+		"nombre": "INDAPARAPEO"
+	},
+	{
+		"id": 41,
+		"nombre": "IRIMBO"
+	},
+	{
+		"id": 42,
+		"nombre": "IXTLAN"
+	},
+	{
+		"id": 43,
+		"nombre": "JACONA"
+	},
+	{
+		"id": 44,
+		"nombre": "JIMENEZ"
+	},
+	{
+		"id": 45,
+		"nombre": "JIQUILPAN"
+	},
+	{
+		"id": 46,
+		"nombre": "JUAREZ"
+	},
+	{
+		"id": 47,
+		"nombre": "JUNGAPEO"
+	},
+	{
+		"id": 48,
+		"nombre": "LAGUNILLAS"
+	},
+	{
+		"id": 49,
+		"nombre": "MADERO"
+	},
+	{
+		"id": 50,
+		"nombre": "MARAVATIO"
+	},
+	{
+		"id": 51,
+		"nombre": "MARCOS CASTELLANOS"
+	},
+	{
+		"id": 52,
+		"nombre": "LAZARO CARDENAS"
+	},
+	{
+		"id": 53,
+		"nombre": "MORELIA"
+	},
+	{
+		"id": 54,
+		"nombre": "MORELOS"
+	},
+	{
+		"id": 55,
+		"nombre": "MUGICA"
+	},
+	{
+		"id": 56,
+		"nombre": "NAHUATZEN"
+	},
+	{
+		"id": 57,
+		"nombre": "NOCUPETARO"
+	},
+	{
+		"id": 58,
+		"nombre": "NUEVO PARANGARICUTIRO"
+	},
+	{
+		"id": 59,
+		"nombre": "NUEVO URECHO"
+	},
+	{
+		"id": 60,
+		"nombre": "NUMARAN"
+	},
+	{
+		"id": 61,
+		"nombre": "OCAMPO"
+	},
+	{
+		"id": 62,
+		"nombre": "PAJACUARAN"
+	},
+	{
+		"id": 63,
+		"nombre": "PANINDICUARO"
+	},
+	{
+		"id": 64,
+		"nombre": "PARACUARO"
+	},
+	{
+		"id": 65,
+		"nombre": "PARACHO"
+	},
+	{
+		"id": 66,
+		"nombre": "PATZCUARO"
+	},
+	{
+		"id": 67,
+		"nombre": "PENJAMILLO"
+	},
+	{
+		"id": 68,
+		"nombre": "PERIBAN"
+	},
+	{
+		"id": 69,
+		"nombre": "LA PIEDAD"
+	},
+	{
+		"id": 70,
+		"nombre": "PUREPERO"
+	},
+	{
+		"id": 71,
+		"nombre": "PURUANDIRO"
+	},
+	{
+		"id": 72,
+		"nombre": "QUERENDARO"
+	},
+	{
+		"id": 73,
+		"nombre": "QUIROGA"
+	},
+	{
+		"id": 74,
+		"nombre": "COJUMATLAN DE REGULES"
+	},
+	{
+		"id": 75,
+		"nombre": "LOS REYES"
+	},
+	{
+		"id": 76,
+		"nombre": "SAHUAYO"
+	},
+	{
+		"id": 77,
+		"nombre": "SAN LUCAS"
+	},
+	{
+		"id": 78,
+		"nombre": "SANTA ANA MAYA"
+	},
+	{
+		"id": 79,
+		"nombre": "SALVADOR ESCALANTE"
+	},
+	{
+		"id": 80,
+		"nombre": "SENGUIO"
+	},
+	{
+		"id": 81,
+		"nombre": "SUSUPUATO"
+	},
+	{
+		"id": 82,
+		"nombre": "TACAMBARO"
+	},
+	{
+		"id": 83,
+		"nombre": "TANCITARO"
+	},
+	{
+		"id": 84,
+		"nombre": "TANGAMANDAPIO"
+	},
+	{
+		"id": 85,
+		"nombre": "TANGANCICUARO"
+	},
+	{
+		"id": 86,
+		"nombre": "TANHUATO"
+	},
+	{
+		"id": 87,
+		"nombre": "TARETAN"
+	},
+	{
+		"id": 88,
+		"nombre": "TARIMBARO"
+	},
+	{
+		"id": 89,
+		"nombre": "TEPALCATEPEC"
+	},
+	{
+		"id": 90,
+		"nombre": "TINGAMBATO"
+	},
+	{
+		"id": 91,
+		"nombre": "TINGUINDIN"
+	},
+	{
+		"id": 92,
+		"nombre": "TIQUICHEO DE NICOLAS ROMERO"
+	},
+	{
+		"id": 93,
+		"nombre": "TLALPUJAHUA"
+	},
+	{
+		"id": 94,
+		"nombre": "TLAZAZALCA"
+	},
+	{
+		"id": 95,
+		"nombre": "TOCUMBO"
+	},
+	{
+		"id": 96,
+		"nombre": "TUMBISCATIO"
+	},
+	{
+		"id": 97,
+		"nombre": "TURICATO"
+	},
+	{
+		"id": 98,
+		"nombre": "TUXPAN"
+	},
+	{
+		"id": 99,
+		"nombre": "TUZANTLA"
+	},
+	{
+		"id": 100,
+		"nombre": "TZINTZUNTZAN"
+	},
+	{
+		"id": 101,
+		"nombre": "TZITZIO"
+	},
+	{
+		"id": 102,
+		"nombre": "URUAPAN"
+	},
+	{
+		"id": 103,
+		"nombre": "VENUSTIANO CARRANZA"
+	},
+	{
+		"id": 104,
+		"nombre": "VILLAMAR"
+	},
+	{
+		"id": 105,
+		"nombre": "VISTA HERMOSA"
+	},
+	{
+		"id": 106,
+		"nombre": "YURECUARO"
+	},
+	{
+		"id": 107,
+		"nombre": "ZACAPU"
+	},
+	{
+		"id": 108,
+		"nombre": "ZAMORA"
+	},
+	{
+		"id": 109,
+		"nombre": "ZINAPARO"
+	},
+	{
+		"id": 110,
+		"nombre": "ZINAPECUARO"
+	},
+	{
+		"id": 111,
+		"nombre": "ZIRACUARETIRO"
+	},
+	{
+		"id": 112,
+		"nombre": "ZITACUARO"
+	},
+	{
+		"id": 113,
+		"nombre": "JOSE SIXTO VERDUZCO"
+	},
+	{
+		"id": 999,
+		"nombre": "DESCONOCIDO"
+	}
+]

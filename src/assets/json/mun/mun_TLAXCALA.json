@@ -1,0 +1,246 @@
+[
+	{
+		"id": 1,
+		"nombre": "AMAXAC DE GUERRERO"
+	},
+	{
+		"id": 2,
+		"nombre": "APETATITLAN DE ANTONIO CARVAJAL"
+	},
+	{
+		"id": 3,
+		"nombre": "ATLANGATEPEC"
+	},
+	{
+		"id": 4,
+		"nombre": "ATLTZAYANCA"
+	},
+	{
+		"id": 5,
+		"nombre": "APIZACO"
+	},
+	{
+		"id": 6,
+		"nombre": "CALPULALPAN"
+	},
+	{
+		"id": 7,
+		"nombre": "EL CARMEN TEQUEXQUITLA"
+	},
+	{
+		"id": 8,
+		"nombre": "CUAPIAXTLA"
+	},
+	{
+		"id": 9,
+		"nombre": "CUAXOMULCO"
+	},
+	{
+		"id": 10,
+		"nombre": "CHIAUTEMPAN"
+	},
+	{
+		"id": 11,
+		"nombre": "MUÑOZ DE DOMINGO ARENAS"
+	},
+	{
+		"id": 12,
+		"nombre": "ESPAÑITA"
+	},
+	{
+		"id": 13,
+		"nombre": "HUAMANTLA"
+	},
+	{
+		"id": 14,
+		"nombre": "HUEYOTLIPAN"
+	},
+	{
+		"id": 15,
+		"nombre": "IXTACUIXTLA DE MARIANO MATAMOROS"
+	},
+	{
+		"id": 16,
+		"nombre": "IXTENCO"
+	},
+	{
+		"id": 17,
+		"nombre": "MAZATECOCHCO DE JOSE MARIA MORELOS"
+	},
+	{
+		"id": 18,
+		"nombre": "CONTLA DE JUAN CUAMATZI"
+	},
+	{
+		"id": 19,
+		"nombre": "TEPETITLA DE LARDIZABAL"
+	},
+	{
+		"id": 20,
+		"nombre": "SANCTORUM DE LAZARO CARDENAS"
+	},
+	{
+		"id": 21,
+		"nombre": "NANACAMILPA DE MARIANO ARISTA"
+	},
+	{
+		"id": 22,
+		"nombre": "ACUAMANALA DE MIGUEL HIDALGO"
+	},
+	{
+		"id": 23,
+		"nombre": "NATIVITAS"
+	},
+	{
+		"id": 24,
+		"nombre": "PANOTLA"
+	},
+	{
+		"id": 25,
+		"nombre": "SAN PABLO DEL MONTE"
+	},
+	{
+		"id": 26,
+		"nombre": "SANTA CRUZ TLAXCALA"
+	},
+	{
+		"id": 27,
+		"nombre": "TENANCINGO"
+	},
+	{
+		"id": 28,
+		"nombre": "TEOLOCHOLCO"
+	},
+	{
+		"id": 29,
+		"nombre": "TEPEYANCO"
+	},
+	{
+		"id": 30,
+		"nombre": "TERRENATE"
+	},
+	{
+		"id": 31,
+		"nombre": "TETLA DE LA SOLIDARIDAD"
+	},
+	{
+		"id": 32,
+		"nombre": "TETLATLAHUCA"
+	},
+	{
+		"id": 33,
+		"nombre": "TLAXCALA"
+	},
+	{
+		"id": 34,
+		"nombre": "TLAXCO"
+	},
+	{
+		"id": 35,
+		"nombre": "TOCATLAN"
+	},
+	{
+		"id": 36,
+		"nombre": "TOTOLAC"
+	},
+	{
+		"id": 37,
+		"nombre": "ZITLALTEPEC DE TRINIDAD SANCHEZ SANTOS"
+	},
+	{
+		"id": 38,
+		"nombre": "TZOMPANTEPEC"
+	},
+	{
+		"id": 39,
+		"nombre": "XALOZTOC"
+	},
+	{
+		"id": 40,
+		"nombre": "XALTOCAN"
+	},
+	{
+		"id": 41,
+		"nombre": "PAPALOTLA DE XICOHTENCATL"
+	},
+	{
+		"id": 42,
+		"nombre": "XICOHTZINCO"
+	},
+	{
+		"id": 43,
+		"nombre": "YAUHQUEMEHCAN"
+	},
+	{
+		"id": 44,
+		"nombre": "ZACATELCO"
+	},
+	{
+		"id": 45,
+		"nombre": "BENITO JUAREZ"
+	},
+	{
+		"id": 46,
+		"nombre": "EMILIANO ZAPATA"
+	},
+	{
+		"id": 47,
+		"nombre": "LAZARO CARDENAS"
+	},
+	{
+		"id": 48,
+		"nombre": "LA MAGDALENA TLALTELULCO"
+	},
+	{
+		"id": 49,
+		"nombre": "SAN DAMIAN TEXOLOC"
+	},
+	{
+		"id": 50,
+		"nombre": "SAN FRANCISCO TETLANOHCAN"
+	},
+	{
+		"id": 51,
+		"nombre": "SAN JERONIMO ZACUALPAN"
+	},
+	{
+		"id": 52,
+		"nombre": "SAN JOSE TEACALCO"
+	},
+	{
+		"id": 53,
+		"nombre": "SAN JUAN HUACTZINCO"
+	},
+	{
+		"id": 54,
+		"nombre": "SAN LORENZO AXOCOMANITLA"
+	},
+	{
+		"id": 55,
+		"nombre": "SAN LUCAS TECOPILCO"
+	},
+	{
+		"id": 56,
+		"nombre": "SANTA ANA NOPALUCAN"
+	},
+	{
+		"id": 57,
+		"nombre": "SANTA APOLONIA TEACALCO"
+	},
+	{
+		"id": 58,
+		"nombre": "SANTA CATARINA AYOMETLA"
+	},
+	{
+		"id": 59,
+		"nombre": "SANTA CRUZ QUILEHTLA"
+	},
+	{
+		"id": 60,
+		"nombre": "SANTA ISABEL XILOXOXTLA"
+	},
+	{
+		"id": 999,
+		"nombre": "DESCONOCIDO"
+	}
+]

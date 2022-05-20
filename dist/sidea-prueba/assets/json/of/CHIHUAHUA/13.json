@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "nombre": "CASAS GRANDES"
+    },
+    {
+        "id": 2,
+        "nombre": "EJ. GUADALUPE VICTORIA"
+    },
+    {
+        "id": 3,
+        "nombre": "EJIDO HERNANDEZ"
+    },
+    {
+        "id": 4,
+        "nombre": "EJIDO HEROINA"
+    },
+    {
+        "id": 5,
+        "nombre": "IGNACIO ZARAGOZA"
+    },
+    {
+        "id": 6,
+        "nombre": "COLONIA JUAREZ"
+    },
+    {
+        "id": 7,
+        "nombre": "MATA ORTIZ"
+    },
+    {
+        "id": 8,
+        "nombre": "COLONIA PACHECO"
+    }
+]

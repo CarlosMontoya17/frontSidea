@@ -1,0 +1,18 @@
+[
+	{
+		"id": 1,
+		"nombre": "ASIENTOS"
+	},
+	{
+		"id": 2,
+		"nombre": "CIENEGA GRANDE"
+	},
+	{
+		"id": 3,
+		"nombre": "PILOTOS"
+	},
+	{
+		"id": 4,
+		"nombre": "VILLA JUAREZ"
+	}
+]

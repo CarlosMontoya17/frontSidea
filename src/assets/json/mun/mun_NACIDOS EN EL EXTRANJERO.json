@@ -1,0 +1,474 @@
+[
+	{
+		"id": 3,
+		"nombre": "ALEMANIA"
+	},
+	{
+		"id": 7,
+		"nombre": "ARABIA SAUDITA"
+	},
+	{
+		"id": 8,
+		"nombre": "ARGELIA"
+	},
+	{
+		"id": 9,
+		"nombre": "ARGENTINA"
+	},
+	{
+		"id": 10,
+		"nombre": "AUSTRALIA"
+	},
+	{
+		"id": 11,
+		"nombre": "AUSTRIA"
+	},
+	{
+		"id": 16,
+		"nombre": "BELGICA"
+	},
+	{
+		"id": 17,
+		"nombre": "BELICE"
+	},
+	{
+		"id": 21,
+		"nombre": "BOLIVIA"
+	},
+	{
+		"id": 23,
+		"nombre": "BRASIL"
+	},
+	{
+		"id": 27,
+		"nombre": "CANADA"
+	},
+	{
+		"id": 28,
+		"nombre": "COLOMBIA"
+	},
+	{
+		"id": 32,
+		"nombre": "COREA DEL SUR"
+	},
+	{
+		"id": 34,
+		"nombre": "COSTA RICA"
+	},
+	{
+		"id": 35,
+		"nombre": "CUBA"
+	},
+	{
+		"id": 37,
+		"nombre": "CHECOSLOVAQUIA"
+	},
+	{
+		"id": 38,
+		"nombre": "CHILE"
+	},
+	{
+		"id": 39,
+		"nombre": "CHINA"
+	},
+	{
+		"id": 41,
+		"nombre": "DINAMARCA"
+	},
+	{
+		"id": 44,
+		"nombre": "ECUADOR"
+	},
+	{
+		"id": 45,
+		"nombre": "EGIPTO"
+	},
+	{
+		"id": 46,
+		"nombre": "EL SALVADOR"
+	},
+	{
+		"id": 49,
+		"nombre": "ESPAÑA"
+	},
+	{
+		"id": 50,
+		"nombre": "ESTADOS UNIDOS DE AMERICA"
+	},
+	{
+		"id": 53,
+		"nombre": "FILIPINAS"
+	},
+	{
+		"id": 54,
+		"nombre": "FINLANDIA"
+	},
+	{
+		"id": 55,
+		"nombre": "FRANCIA"
+	},
+	{
+		"id": 60,
+		"nombre": "GRECIA"
+	},
+	{
+		"id": 61,
+		"nombre": "GUATEMALA"
+	},
+	{
+		"id": 66,
+		"nombre": "HAITI"
+	},
+	{
+		"id": 67,
+		"nombre": "HONDURAS"
+	},
+	{
+		"id": 68,
+		"nombre": "HUNGRIA"
+	},
+	{
+		"id": 70,
+		"nombre": "INDIA"
+	},
+	{
+		"id": 71,
+		"nombre": "INDONESIA"
+	},
+	{
+		"id": 72,
+		"nombre": "IRAN"
+	},
+	{
+		"id": 74,
+		"nombre": "IRLANDA"
+	},
+	{
+		"id": 77,
+		"nombre": "ISRAEL"
+	},
+	{
+		"id": 78,
+		"nombre": "ITALIA"
+	},
+	{
+		"id": 80,
+		"nombre": "JAMAICA"
+	},
+	{
+		"id": 81,
+		"nombre": "JAPON"
+	},
+	{
+		"id": 84,
+		"nombre": "KENYA"
+	},
+	{
+		"id": 87,
+		"nombre": "LIBANO BEIRUT"
+	},
+	{
+		"id": 92,
+		"nombre": "MALASIA"
+	},
+	{
+		"id": 93,
+		"nombre": "LIBANO"
+	},
+	{
+		"id": 97,
+		"nombre": "MARRUECOS"
+	},
+	{
+		"id": 102,
+		"nombre": "ALTO VOLTA"
+	},
+	{
+		"id": 103,
+		"nombre": "ANGOLA"
+	},
+	{
+		"id": 105,
+		"nombre": "BENNIN"
+	},
+	{
+		"id": 106,
+		"nombre": "NICARAGUA"
+	},
+	{
+		"id": 107,
+		"nombre": "BURUNDI"
+	},
+	{
+		"id": 108,
+		"nombre": "CABO VERDE"
+	},
+	{
+		"id": 109,
+		"nombre": "NORUEGA"
+	},
+	{
+		"id": 110,
+		"nombre": "NUEVA ZELANDIA"
+	},
+	{
+		"id": 111,
+		"nombre": "COSTA DE MARFIL"
+	},
+	{
+		"id": 112,
+		"nombre": "PAISES BAJOS ( HOLANDA )"
+	},
+	{
+		"id": 113,
+		"nombre": "DJIBOUTI"
+	},
+	{
+		"id": 114,
+		"nombre": "PANAMA"
+	},
+	{
+		"id": 115,
+		"nombre": "ETIOPIA"
+	},
+	{
+		"id": 116,
+		"nombre": "PARAGUAY"
+	},
+	{
+		"id": 117,
+		"nombre": "PERU"
+	},
+	{
+		"id": 118,
+		"nombre": "POLONIA"
+	},
+	{
+		"id": 119,
+		"nombre": "PORTUGAL"
+	},
+	{
+		"id": 120,
+		"nombre": "PUERTO RICO"
+	},
+	{
+		"id": 121,
+		"nombre": "GUINEA ECUATORIAL"
+	},
+	{
+		"id": 122,
+		"nombre": "R.U.G BRETANA  E IRLANDA NTE"
+	},
+	{
+		"id": 123,
+		"nombre": "KENYA"
+	},
+	{
+		"id": 124,
+		"nombre": "LESOTHO"
+	},
+	{
+		"id": 125,
+		"nombre": "LIBERIA"
+	},
+	{
+		"id": 126,
+		"nombre": "REPUBLICA DOMINICANA"
+	},
+	{
+		"id": 127,
+		"nombre": "MALAWI"
+	},
+	{
+		"id": 128,
+		"nombre": "MALI"
+	},
+	{
+		"id": 129,
+		"nombre": "MARRUECOS"
+	},
+	{
+		"id": 130,
+		"nombre": "MAURICIO"
+	},
+	{
+		"id": 131,
+		"nombre": "RUMANIA"
+	},
+	{
+		"id": 132,
+		"nombre": "MOZAMBIQUE"
+	},
+	{
+		"id": 133,
+		"nombre": "NIGER"
+	},
+	{
+		"id": 134,
+		"nombre": "NIGERIA"
+	},
+	{
+		"id": 135,
+		"nombre": "REPUBLICA CENTRO AFRICANA"
+	},
+	{
+		"id": 136,
+		"nombre": "REPUBLICA UNIDA DE CAMERUN"
+	},
+	{
+		"id": 137,
+		"nombre": "REPUBLICA UNIDA DE TANZANIA"
+	},
+	{
+		"id": 138,
+		"nombre": "RODESIA"
+	},
+	{
+		"id": 139,
+		"nombre": "RWANDA"
+	},
+	{
+		"id": 140,
+		"nombre": "SINGAPUR"
+	},
+	{
+		"id": 141,
+		"nombre": "SANTO TOME Y PRINCIPE"
+	},
+	{
+		"id": 142,
+		"nombre": "SENEGAL"
+	},
+	{
+		"id": 143,
+		"nombre": "SUDAFRICA"
+	},
+	{
+		"id": 144,
+		"nombre": "SIERRA LEONA"
+	},
+	{
+		"id": 145,
+		"nombre": "SUECIA"
+	},
+	{
+		"id": 146,
+		"nombre": "SUIZA"
+	},
+	{
+		"id": 149,
+		"nombre": "TAILANDIA"
+	},
+	{
+		"id": 150,
+		"nombre": "TUNEZ"
+	},
+	{
+		"id": 151,
+		"nombre": "TRINIDAD Y TOBAGO"
+	},
+	{
+		"id": 152,
+		"nombre": "ZAIRE"
+	},
+	{
+		"id": 153,
+		"nombre": "TURQUIA"
+	},
+	{
+		"id": 155,
+		"nombre": "RUSIA"
+	},
+	{
+		"id": 156,
+		"nombre": "URUGUAY"
+	},
+	{
+		"id": 157,
+		"nombre": "VENEZUELA"
+	},
+	{
+		"id": 161,
+		"nombre": "YUGOSLAVIA"
+	},
+	{
+		"id": 164,
+		"nombre": "ZIMBABWE"
+	},
+	{
+		"id": 165,
+		"nombre": "NAMIBIA"
+	},
+	{
+		"id": 166,
+		"nombre": "REPUBLICA CHECA"
+	},
+	{
+		"id": 167,
+		"nombre": "ESLOVAQUIA"
+	},
+	{
+		"id": 168,
+		"nombre": "ESLOVENIA"
+	},
+	{
+		"id": 199,
+		"nombre": "Otros Paises Africa"
+	},
+	{
+		"id": 215,
+		"nombre": "ESTADOS UNIDOS DE NORTE AMERICA"
+	},
+	{
+		"id": 219,
+		"nombre": "GUYANA"
+	},
+	{
+		"id": 230,
+		"nombre": "SANTA LUCIA"
+	},
+	{
+		"id": 321,
+		"nombre": "KUWAIT"
+	},
+	{
+		"id": 329,
+		"nombre": "QATAR"
+	},
+	{
+		"id": 337,
+		"nombre": "VIETNAM DEL NORTE"
+	},
+	{
+		"id": 405,
+		"nombre": "AUSTRIA"
+	},
+	{
+		"id": 410,
+		"nombre": "VATICANO"
+	},
+	{
+		"id": 423,
+		"nombre": "NORUEGA"
+	},
+	{
+		"id": 427,
+		"nombre": "INGLATERRA"
+	},
+	{
+		"id": 601,
+		"nombre": "UCRANIA"
+	},
+	{
+		"id": 604,
+		"nombre": "PAKISTAN"
+	},
+	{
+		"id": 695,
+		"nombre": "EMIRATOS ARABES UNIDOS"
+	},
+	{
+		"id": 999,
+		"nombre": "DESCONOCIDO"
+	}
+]
