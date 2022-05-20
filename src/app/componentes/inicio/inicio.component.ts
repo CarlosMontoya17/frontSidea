@@ -111,7 +111,6 @@ export class InicioComponent implements OnInit {
 
   }
   //SE OBTIENEN LOS MUNICIPIOS
-<<<<<<< HEAD
   async obtainMunicipios(key:string){
     if(key != undefined){
       await this.readJson.readMunicipios(key).subscribe(data => {
@@ -119,7 +118,6 @@ export class InicioComponent implements OnInit {
           });
     }
     
-=======
   async obtainMunicipios() {
     this.oficialiaSelect = null;
     if (this.estadoxRc != undefined) {
@@ -167,7 +165,6 @@ export class InicioComponent implements OnInit {
       });
     }
 
->>>>>>> Test
 
   }
 
