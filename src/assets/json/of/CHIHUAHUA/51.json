@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "nombre": "OCAMPO"
+    },
+    {
+        "id": 2,
+        "nombre": "AGUA CALIENTE"
+    },
+    {
+        "id": 3,
+        "nombre": "BASASEACHI"
+    },
+    {
+        "id": 4,
+        "nombre": "CAJURICHI"
+    },
+    {
+        "id": 5,
+        "nombre": "CANDAMENA"
+    },
+    {
+        "id": 6,
+        "nombre": "EL CONCHENO"
+    },
+    {
+        "id": 7,
+        "nombre": "PINOS ALTOS"
+    },
+    {
+        "id": 8,
+        "nombre": "YOQUIVO"
+    },
+    {
+        "id": 9,
+        "nombre": "HUAJUMAR"
+    },
+    {
+        "id": 83,
+        "nombre": "TARAHUMARA"
+    }
+]

@@ -1,0 +1,38 @@
+[
+	{
+		"id": 1,
+		"nombre": "ESCARCEGA"
+	},
+	{
+		"id": 2,
+		"nombre": "BENITO JUAREZ II"
+	},
+	{
+		"id": 3,
+		"nombre": "DON SAMUEL"
+	},
+	{
+		"id": 4,
+		"nombre": "HARO"
+	},
+	{
+		"id": 5,
+		"nombre": "LUNA"
+	},
+	{
+		"id": 6,
+		"nombre": "CONQUISTA CAMPESINA"
+	},
+	{
+		"id": 7,
+		"nombre": "LAGUNA GRANDE"
+	},
+	{
+		"id": 8,
+		"nombre": "SILVITUC"
+	},
+	{
+		"id": 51,
+		"nombre": "HOSPITAL ESCARCEGA"
+	}
+]

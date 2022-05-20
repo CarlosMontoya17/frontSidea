@@ -1,0 +1,66 @@
+[
+	{
+		"id": 1,
+		"nombre": "SANTA ROSALIA"
+	},
+	{
+		"id": 2,
+		"nombre": "MULEGE"
+	},
+	{
+		"id": 3,
+		"nombre": "VIZCAÍNO"
+	},
+	{
+		"id": 4,
+		"nombre": "SAN IGNACIO"
+	},
+	{
+		"id": 5,
+		"nombre": "GUERRERO NEGRO"
+	},
+	{
+		"id": 6,
+		"nombre": "BAHIA ASUNCIÓN"
+	},
+	{
+		"id": 7,
+		"nombre": "LA BOCANA"
+	},
+	{
+		"id": 8,
+		"nombre": "BAHIA TORTUGAS"
+	},
+	{
+		"id": 9,
+		"nombre": "PUNTA ABREOJOS"
+	},
+	{
+		"id": 10,
+		"nombre": "SAN JOSE DE GRACIA"
+	},
+	{
+		"id": 11,
+		"nombre": "SAN JOSE DE MAGDALENA"
+	},
+	{
+		"id": 12,
+		"nombre": "ISLA SAN MARCOS"
+	},
+	{
+		"id": 13,
+		"nombre": "SAN BRUNO"
+	},
+	{
+		"id": 14,
+		"nombre": "SANTA AGUEDA"
+	},
+	{
+		"id": 15,
+		"nombre": "GUSTAVO DIAZ ORDAZ"
+	},
+	{
+		"id": 16,
+		"nombre": "SAN LUCAS"
+	}
+]

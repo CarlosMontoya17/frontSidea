@@ -1,0 +1,102 @@
+[
+	{
+		"id": 1,
+		"nombre": "ATASTA"
+	},
+	{
+		"id": 2,
+		"nombre": "CANDELARIA"
+	},
+	{
+		"id": 3,
+		"nombre": "ESCARCEGA"
+	},
+	{
+		"id": 4,
+		"nombre": "FELIPE CARRILLO PUERTO"
+	},
+	{
+		"id": 5,
+		"nombre": "ISLA AGUADA"
+	},
+	{
+		"id": 6,
+		"nombre": "MIGUEL ALEMAN"
+	},
+	{
+		"id": 7,
+		"nombre": "LUNA"
+	},
+	{
+		"id": 8,
+		"nombre": "MIGUEL COLORADO"
+	},
+	{
+		"id": 9,
+		"nombre": "EL NARANJO"
+	},
+	{
+		"id": 10,
+		"nombre": "N C P EDO DE MEXICO"
+	},
+	{
+		"id": 11,
+		"nombre": "NUEVO PROGRESO"
+	},
+	{
+		"id": 12,
+		"nombre": "PIXOYAL"
+	},
+	{
+		"id": 13,
+		"nombre": "SABANCUY"
+	},
+	{
+		"id": 14,
+		"nombre": "CD DEL CARMEN"
+	},
+	{
+		"id": 15,
+		"nombre": "SAN ANTONIO CARDENAS"
+	},
+	{
+		"id": 16,
+		"nombre": "MIGUEL HIDALGO Y COSTILLA"
+	},
+	{
+		"id": 17,
+		"nombre": "CHICBUL"
+	},
+	{
+		"id": 18,
+		"nombre": "CONQUISTA CAMPESINA"
+	},
+	{
+		"id": 19,
+		"nombre": "MAMANTEL"
+	},
+	{
+		"id": 20,
+		"nombre": "AGUACATAL"
+	},
+	{
+		"id": 21,
+		"nombre": "HARO"
+	},
+	{
+		"id": 22,
+		"nombre": "CINCO DE FEBRERO"
+	},
+	{
+		"id": 23,
+		"nombre": "DON SAMUEL"
+	},
+	{
+		"id": 24,
+		"nombre": "BENITO JUAREZ DOS"
+	},
+	{
+		"id": 51,
+		"nombre": "HOSPITAL CARMEN"
+	}
+]

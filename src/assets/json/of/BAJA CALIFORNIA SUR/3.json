@@ -1,0 +1,38 @@
+[
+	{
+		"id": 0,
+		"nombre": "OFICILIA CENTRAL"
+	},
+	{
+		"id": 1,
+		"nombre": "LA PAZ"
+	},
+	{
+		"id": 2,
+		"nombre": "SAN ANTONIO"
+	},
+	{
+		"id": 3,
+		"nombre": "TODOS SANTOS"
+	},
+	{
+		"id": 4,
+		"nombre": "SAN JUAN DE LOS PLANES"
+	},
+	{
+		"id": 5,
+		"nombre": "LOS BARRILES"
+	},
+	{
+		"id": 6,
+		"nombre": "LAS POCITAS"
+	},
+	{
+		"id": 7,
+		"nombre": "LA PAZ"
+	},
+	{
+		"id": 10,
+		"nombre": "SAN BARTOLO"
+	}
+]

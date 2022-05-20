@@ -26,6 +26,7 @@ import { CorteComponent } from './componentes/corte/corte.component';
 import { BuscarhistorialPipe } from './servicios/database/pipeHistorial/buscarhistorial.pipe';
 import { RegistrosComponent } from './componentes/registros/registros.component';
 import { DocumentosmanualComponent } from './componentes/documentosmanual/documentosmanual.component';
+import { PapeleraComponent } from './componentes/papelera/papelera.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +46,8 @@ import { DocumentosmanualComponent } from './componentes/documentosmanual/docume
     CorteComponent,
     BuscarhistorialPipe,
     RegistrosComponent,
-    DocumentosmanualComponent
+    DocumentosmanualComponent,
+    PapeleraComponent
   ],
   imports: [
     BrowserModule,

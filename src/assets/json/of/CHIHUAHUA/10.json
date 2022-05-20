@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "nombre": "BUENAVENTURA"
+    },
+    {
+        "id": 2,
+        "nombre": "BENITO JUAREZ"
+    },
+    {
+        "id": 3,
+        "nombre": "EL PROGRESO"
+    },
+    {
+        "id": 4,
+        "nombre": "RICARDO FLORES MAGON"
+    },
+    {
+        "id": 5,
+        "nombre": "SAN LORENZO"
+    },
+    {
+        "id": 6,
+        "nombre": "EJ. CONSTITUCION"
+    }
+]

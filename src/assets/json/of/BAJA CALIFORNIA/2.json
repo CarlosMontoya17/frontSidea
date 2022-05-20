@@ -1,0 +1,62 @@
+[
+	{
+		"id": 1,
+		"nombre": "MEXICALI PALACIO MPAL."
+	},
+	{
+		"id": 2,
+		"nombre": "COLONIA PROGRESO"
+	},
+	{
+		"id": 3,
+		"nombre": "GONZALEZ ORTEGA"
+	},
+	{
+		"id": 4,
+		"nombre": "CIUDAD MORELOS"
+	},
+	{
+		"id": 5,
+		"nombre": "GUADALUPE VICTORIA"
+	},
+	{
+		"id": 6,
+		"nombre": "SAN FELIPE"
+	},
+	{
+		"id": 7,
+		"nombre": "CERRO PRIETO COAHUILA"
+	},
+	{
+		"id": 8,
+		"nombre": "EJ. HECHICERA"
+	},
+	{
+		"id": 9,
+		"nombre": "ALGODONES"
+	},
+	{
+		"id": 10,
+		"nombre": "BATAQUEZ"
+	},
+	{
+		"id": 11,
+		"nombre": "P. BENITO JUAREZ"
+	},
+	{
+		"id": 12,
+		"nombre": "EJ. HERMOSILLO"
+	},
+	{
+		"id": 13,
+		"nombre": "COLS. NUEVAS"
+	},
+	{
+		"id": 14,
+		"nombre": "ESTACION DELTA"
+	},
+	{
+		"id": 15,
+		"nombre": "V. CARRANZA"
+	}
+]

@@ -92,5 +92,15 @@ export class RestService {
       const headers = new HttpHeaders({ 'x-access-token': final! });
       return this.http.post(api+'/api/actas/requests/createOne/',datos , {headers});
   }
+
+
+  obtainActasRequest(){
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var token: any = i.toString(CryptoJS.enc.Utf8);
+    var parteuno = token.slice(1);
+    var final = parteuno.slice(0, -1);
+    const headers = new HttpHeaders({ 'x-access-token': final! });
+    return this.http.get('http://actasalinstante.com:3030/api/actas/requests/obtainAll/' , { headers });
+  }
   
 } 

@@ -1,0 +1,46 @@
+[
+	{
+		"id": 1,
+		"nombre": "TIJUANA PALACIO MPAL."
+	},
+	{
+		"id": 2,
+		"nombre": "LA MESA"
+	},
+	{
+		"id": 3,
+		"nombre": "LA PRESA"
+	},
+	{
+		"id": 4,
+		"nombre": "PLAYAS DE TIJUANA"
+	},
+	{
+		"id": 5,
+		"nombre": "SAN ANTONIO DE LOS BUENOS"
+	},
+	{
+		"id": 6,
+		"nombre": "MESA DE OTAY"
+	},
+	{
+		"id": 7,
+		"nombre": "LA PRESA, ZONA ORIENTE"
+	},
+	{
+		"id": 8,
+		"nombre": "CENTENARIO OTAY"
+	},
+	{
+		"id": 9,
+		"nombre": "SANCHEZ TABOADA"
+	},
+	{
+		"id": 10,
+		"nombre": "CERRO COLORADO"
+	},
+	{
+		"id": 11,
+		"nombre": "CENTRO"
+	}
+]

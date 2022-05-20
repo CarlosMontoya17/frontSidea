@@ -1,0 +1,42 @@
+[
+	{
+		"id": 1,
+		"nombre": "SAN ANTONIO SODA"
+	},
+	{
+		"id": 2,
+		"nombre": "JOSEFA ORTIZ DE DOMINGUEZ"
+	},
+	{
+		"id": 3,
+		"nombre": "LA VIRGENCITA DE LA CANDELARIA"
+	},
+	{
+		"id": 4,
+		"nombre": "ZOH LAGUNA"
+	},
+	{
+		"id": 5,
+		"nombre": "SILVICTUC"
+	},
+	{
+		"id": 6,
+		"nombre": "ALTAMIRA DE ZINAPARO"
+	},
+	{
+		"id": 7,
+		"nombre": "LAGUNA GRANDE"
+	},
+	{
+		"id": 8,
+		"nombre": "CONSTITUCION"
+	},
+	{
+		"id": 9,
+		"nombre": "XPUJIL"
+	},
+	{
+		"id": 10,
+		"nombre": "JOSE MARIA MORELOS Y PAVON"
+	}
+]

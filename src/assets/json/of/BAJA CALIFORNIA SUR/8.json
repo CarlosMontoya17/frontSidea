@@ -1,0 +1,22 @@
+[
+	{
+		"id": 1,
+		"nombre": "SAN JOSE DEL CABO"
+	},
+	{
+		"id": 2,
+		"nombre": "CABO SAN LUCAS"
+	},
+	{
+		"id": 3,
+		"nombre": "SANTIAGO"
+	},
+	{
+		"id": 4,
+		"nombre": "MIRAFLORES"
+	},
+	{
+		"id": 5,
+		"nombre": "LA RIBERA"
+	}
+]

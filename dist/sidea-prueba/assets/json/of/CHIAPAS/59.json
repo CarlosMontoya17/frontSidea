@@ -1,0 +1,74 @@
+[
+    {
+        "id": 0,
+        "nombre": "OCOSINGO"
+    },
+    {
+        "id": 1,
+        "nombre": "OCOSINGO 3 PTE. Y 1 AV. SUR 12"
+    },
+    {
+        "id": 2,
+        "nombre": "POB. SAN QUINTIN AGENCIA MPAL."
+    },
+    {
+        "id": 3,
+        "nombre": "POB. SANTO DOMINGO AGENCIA MPA"
+    },
+    {
+        "id": 4,
+        "nombre": "POB. MONTE LIBANO AGENCIA MPAL"
+    },
+    {
+        "id": 5,
+        "nombre": "POB. LAS TAZAS AGENCIA MPAL."
+    },
+    {
+        "id": 6,
+        "nombre": "POB BENEMERITO DE LAS AMERICAS"
+    },
+    {
+        "id": 7,
+        "nombre": "OCOSINGO 1 AV. SUR S/N"
+    },
+    {
+        "id": 8,
+        "nombre": "POBLACION ABASOLO A. MPAL."
+    },
+    {
+        "id": 9,
+        "nombre": "OCOSINGO (NUEVA PELESTINA)"
+    },
+    {
+        "id": 11,
+        "nombre": "OCOSINGO (DAMASCO)"
+    },
+    {
+        "id": 12,
+        "nombre": "OCOSINGO (POBLADO NVO. FCO. LEON)"
+    },
+    {
+        "id": 46,
+        "nombre": "CHOL"
+    },
+    {
+        "id": 59,
+        "nombre": "LACANDON"
+    },
+    {
+        "id": 63,
+        "nombre": "MAYA PENINSULAR"
+    },
+    {
+        "id": 89,
+        "nombre": "TOJOLOBAL"
+    },
+    {
+        "id": 92,
+        "nombre": "TZELTAL-TZOTZIL"
+    },
+    {
+        "id": 96,
+        "nombre": "ZOQUE"
+    }
+]

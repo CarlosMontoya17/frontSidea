@@ -32,6 +32,36 @@ button:hover{
   box-shadow: none;
 }
 
+#pharaph{
+	white-space: pre-line;
+}
+.myHeaders{
+	position: sticky;
+	top: 0px;
+}
+
+/* .headerColor{ background: linear-gradient(0deg, rgba(212,68,25,1) 0%, rgba(164,63,63,1) 100%); } */
+
+.buttonDwnl{
+	width: 20rem;
+	margin-left: 28%;
+	background-color: #43b956;
+	border-radius: 20rem;
+	cursor: pointer;
+}
+
+.tableScroll{
+
+	height: 28rem;
+	overflow: hidden;
+	overflow-y: scroll;
+}
+
+.buttonDwnl:hover{
+	background-color: #ffffff;
+	color: #212121;
+}
+
 .contenidoprincipal{
 	width: 67%;
 	padding-left: 25px;
@@ -44,6 +74,7 @@ button:hover{
 	display: inline-block;
 	vertical-align: text-top;
   }
+
   @media screen and (min-width: 1500px) and (max-width: 5000px) { 
 	.navprincipal{
 	  width: 5%;
@@ -74,6 +105,7 @@ button:hover{
 
 		/* background-color: rgb(0, 255, 68); */
 	  }
+
   }
   @media screen and (min-width: 100px) and (max-width: 699px) { 
 	.oculto{
@@ -83,12 +115,16 @@ button:hover{
 		font-size: 10px;
 	}
 	.contenidoprincipal{
-		width: 90%;
-		margin-left: 5em;
+		width: 87%;
+		margin-left: 3em;
+		margin-right: 50rem;
 		/* background-color: rgb(0, 255, 68); */
 	  }
 	  .navprincipal:hover{
 		position:sticky;
 		z-index:3000;
 	}
+
+
+
   }

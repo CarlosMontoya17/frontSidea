@@ -75,7 +75,7 @@ export class EditarpreciosComponent implements OnInit {
   NUEVOLEON: number = 0;
   MEXICO: number = 0;
   QUINTANAROO: number = 0;
-  EXTRANJERO: number = 120;
+  EXTRANJERO: number = 0;
   precios: any = [];
 
   datossupervisor: any = [];
@@ -275,7 +275,7 @@ export class EditarpreciosComponent implements OnInit {
       this.router.navigateByUrl('/administrar');
     }
     this.precios = this.usuarios.precios;
-    if (this.precios.nac.chia!) {
+    if (typeof(this.precios.nac) != "number") {
       this.estados();
       this.CHIAPAS = this.precios.nac.chia;
       this.AGUASCALIENTES = this.precios.nac.agua;

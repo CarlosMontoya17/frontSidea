@@ -1,0 +1,75 @@
+<!-- SIDEBAR EN LA CLASE SIDERBARCOMPONENTE -->
+<div class="navprincipal">
+    <app-sidebar></app-sidebar>
+    </div>
+    <div class="contenidoprincipal">
+        <app-sidebarpanelhistorial></app-sidebarpanelhistorial>
+<div class="card mx-auto" style="width: 100%;">
+    <div class="form-group">
+      <div class="input-group mb-3">
+        <!-- FORMULARIO DE PAPEPELERA  Y LUEGO MOSTRARLOS -->
+      </div>
+      
+      <!-- <h1 style="text-align: center;">Papelera</h1> -->
+        <!-- <h5 >&bull;HISTORIAL&bull;</h5> -->
+        <h6 style="text-align: center;" class="firstH1">
+            <b >
+              <div  class="Welcome" id="firstHeader">&bull;Pape</div>
+              <div class="to" id="firstHeader">le</div>
+              <div class="the" id="firstHeader">ra&bull;</div>
+             
+            </b>
+          </h6>
+    </div>
+  
+    <table style=" border-radius: 1rem !important; font-size:1.2em;" class="table table-responsive">
+  
+      <thead>
+        <tr>
+          <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">#</th>
+          <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Id</th>
+          <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Tipo de documento
+          </th>
+          <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Curp</th>
+          <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000;font-size:1.2em;">Estado</th>
+          <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Nombre</th>
+          <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Ciber</th>
+          <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Asesor</th>
+          <th scope="col" *ngIf="myRol == 'Admin'"
+            style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Precio del acta al negocio</th>
+          <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Se solicito</th>
+          <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Borrado por</th>
+          <th scope="col" style="background-color:rgba(255,255,81,90%); color: #000; font-size:1.2em;">Fecha</th>
+        </tr>
+      </thead>
+      
+      <!-- SE PAGINA LA PAGINA Y CON EL PIPE SE BUSCA PAGINA POR PAGINA PARA OBTENER LA CURP -->
+      <tbody>
+        <tr style="cursor: pointer;"
+          *ngFor="let papel of gettraerPapelera2 | paginate: { itemsPerPage: 20, currentPage: page } ">
+          <td style=" color: #000; font-size:1.1em; ">{{papel?.i}}</td>
+          <td style=" color: #000; font-size:1.1em; ">{{papel?.id}}</td>
+          <td style=" color: #000; font-size:1.1em; ">{{papel?.document}}</td>
+  
+          <td style=" color: #000; font-size:1.1em; ">{{papel?.curp}}</td>
+          <td style=" color: #000; font-size:1.1em; ">{{papel?.states}}</td>
+          <td style=" color: #000; font-size:1.1em; ">{{papel?.nombreacta}}</td>
+          <td style=" color: #000; font-size:1.1em; ">{{papel?.provider}}</td>
+          <td style=" color: #000; font-size:1.1em; ">{{papel?.enterprise}}</td>
+          <td *ngIf="myRol == 'Admin'" style=" color: #000; font-size:1.1em; ">$ {{papel?.price }}</td>
+          <td style=" color: #000; font-size:1.1em; ">{{papel?.requested}}</td>
+          <td style=" color: #000; font-size:1.1em; ">{{papel?.culpable.nombre}}</td>
+          <td style=" color: #000; font-size:1.1em; ">
+            {{ papel?.createdAt | date:'yyyy-MM-dd' }}
+          </td>
+          <fa-icon [icon]="restored" class="add-user" (click)="restaurarPapelera(cortes.id,cortes.document)"></fa-icon>
+     
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+    <div class="card-body text-center">
+        <button class="conteo3" (click)="Volver2()">Regresar</button>
+    </div>
+  </div>
+</div>

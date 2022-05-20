@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "nombre": "BALLEZA"
+    },
+    {
+        "id": 2,
+        "nombre": "BAQUIRIACHI"
+    },
+    {
+        "id": 3,
+        "nombre": "CRISTOBAL COLON"
+    },
+    {
+        "id": 4,
+        "nombre": "GRAL. CARLOS PACHECO"
+    },
+    {
+        "id": 5,
+        "nombre": "GUAZARACHI"
+    },
+    {
+        "id": 6,
+        "nombre": "SAN JUAN"
+    },
+    {
+        "id": 7,
+        "nombre": "TECORICHI"
+    },
+    {
+        "id": 8,
+        "nombre": "EL VERGEL"
+    },
+    {
+        "id": 83,
+        "nombre": "TARAHUMARA"
+    }
+]

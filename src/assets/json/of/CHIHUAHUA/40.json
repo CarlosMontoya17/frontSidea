@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "nombre": "MADERA"
+    },
+    {
+        "id": 2,
+        "nombre": "CHUHUICHUPA"
+    },
+    {
+        "id": 3,
+        "nombre": "MINERAL DE DOLORES"
+    },
+    {
+        "id": 4,
+        "nombre": "NICILAS BRAVO"
+    },
+    {
+        "id": 5,
+        "nombre": "LA NORTENA"
+    },
+    {
+        "id": 6,
+        "nombre": "LAS VARAS"
+    },
+    {
+        "id": 7,
+        "nombre": "EL MADERAL"
+    }
+]
