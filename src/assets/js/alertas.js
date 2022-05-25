@@ -1,5 +1,7 @@
 // import 'animate.css';
 
+
+
 function loader() {
     let timerInterval
     Swal.fire({
@@ -92,8 +94,8 @@ function Notifications(message, status){
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
-        showCancelButton: true,
-        cancelButtonText: 'Ok'
+        confirmButton: true,
+        confirmButtonText: 'Ok',
       })
       
       Toast.fire({

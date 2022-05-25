@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
+import { InicioComponent } from '../../componentes/inicio/inicio.component';
 @Injectable({
   providedIn: 'root'
 })

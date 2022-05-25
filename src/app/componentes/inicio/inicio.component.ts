@@ -137,7 +137,7 @@ export class InicioComponent implements OnInit {
 
 
   //OBTENER SOLICITUDES ENVIADAS
-  async obtainARequests() {
+  public async obtainARequests() {
     this.requestsView = !this.requestsView;
     if(this.requestsView == true){
       this.tipodebusqueda = 'Seleccione el tipo de busqueda';
@@ -176,7 +176,7 @@ export class InicioComponent implements OnInit {
       });
     }
 
-    console.log(this.requests);
+    // console.log(this.requests);
 
   }
 
@@ -635,3 +635,4 @@ export class InicioComponent implements OnInit {
 
 
 }
+
