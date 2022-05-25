@@ -3,14 +3,14 @@
   </div>
   <div class="contenidoprincipal">
     <app-sidebarpanelhistorial></app-sidebarpanelhistorial>
-<div class="contenedor">
+<div class="contenedor  animate__animated animate__fadeIn">
   <h4 class="text-center">USUARIOS</h4>
   <div  *ngIf="agregarusuario" style="margin-top: 1rem; width: 100%; background-color: #f0f0f0; ">
     <div class="card-body">
-      <div class="card-title text-center" style="margin-bottom: 2em;" >
+      <div class="card-title text-center animate__animated animate__fadeIn" style="margin-bottom: 2em;" >
         <h5>AGREGAR USUARIO</h5>
       </div>
-      <div class="row">
+      <div class="row animate__animated animate__fadeIn">
         <div class="col align-self-start">
           <div class="d-flex justify-content-between">
             <span>
@@ -583,13 +583,13 @@
 
 
 
-      <div class="mb-3">
+      <div class="mb-3 ">
         <h6>Buscar</h6>
         <input type="text" class="form-control" placeholder="Nombre a buscar" [(ngModel)]="buscarCiber"
           name="buscarCiber" (keyup)="resetPagination()">
       </div>
 
-      <table class="table table-dark table-hover table-striped letras">
+      <table class="table table-dark table-hover table-striped letras ">
         <thead>
           <tr>
             <th scope="col" style="width: 5em; text-align: center;">Id</th>

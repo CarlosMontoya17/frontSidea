@@ -312,7 +312,7 @@ async gettraerPapelera() {
   const data: any = await this.restService.Getpapelera().toPromise();
 
   this.gettraerPapelera2 = data;
- 
+
   if (data.lenght != 0) {
     closeAlert();
   }

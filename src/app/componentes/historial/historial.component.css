@@ -5186,9 +5186,7 @@ button:hover{
   color: #000000 !important;
   margin: 10px auto !important;
   display: block;
-  /* Button is responsive to font size.*/  
-  
-  /* box-shadow: 0 0 0 2px white, 0 0 0 4px blue; */
+
 }
 .conteo2 {
   
@@ -5204,7 +5202,7 @@ button:hover{
   margin: 25px;
   display: inline-block;
   font-family: "Montserrat", Helvetica, sans-serif;
-  font-size: 18px;
+  font-size: 15px;
   color: #000000 !important;
   margin: 10px auto !important;
   display: block;

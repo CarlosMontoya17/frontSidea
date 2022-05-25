@@ -130,6 +130,35 @@ export class AdminService {
     const headers = new HttpHeaders({ 'x-access-token': final! });
     return this.http.get(urlApi+'/api/historial/getRegistersAt/'+date,{headers});
   }
+//PUBLICIDAD
+
+sendImages(body: FormData): Observable<any> {
+  var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+  var token: any = i.toString(CryptoJS.enc.Utf8);
+  var parteuno = token.slice(1);
+  var final = parteuno.slice(0, -1);
+  const headers = new HttpHeaders({ 'x-access-token': final! });
+  return this.http.post(`http://actasalinstante.com:3030/api/ads/up/`, body, { headers })
+}
+
+
+getNames(){
+  var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+  var token: any = i.toString(CryptoJS.enc.Utf8);
+  var parteuno = token.slice(1);
+  var final = parteuno.slice(0, -1);
+  const headers = new HttpHeaders({ 'x-access-token': final! });
+  return this.http.get(urlApi+'/api/ads/getNames/',{headers});
+}
+
+GetImages(id:any){
+  var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+  var token: any = i.toString(CryptoJS.enc.Utf8);
+  var parteuno = token.slice(1);
+  var final = parteuno.slice(0, -1);
+  const headers = new HttpHeaders({ 'x-access-token': final! });
+  return this.http.get<any>(urlApi+'/api/ads/getImage/'+id,{headers});
+}
 
 
 
@@ -151,9 +180,14 @@ export class AdminService {
 
 
 
-
-getImages(categoria:any){
-  return this.http.get(urlApi+'/sidea/api/imgs/get/'+categoria, this.httpOptions);
+getImages(tipo:any){
+  var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+  var token: any = i.toString(CryptoJS.enc.Utf8);
+  var parteuno = token.slice(1);
+  var final = parteuno.slice(0, -1);
+  const headers = new HttpHeaders({ 'x-access-token': final! });
+  return this.http.get<any>(urlApi+'/api/ads/getImage/'+tipo,{headers});
+ // return this.http.get(urlApi+'/api/ads/getImage/'+categoria, this.httpOptions);
 }
 
 

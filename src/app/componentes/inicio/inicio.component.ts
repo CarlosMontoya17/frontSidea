@@ -11,10 +11,13 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { faFileArrowDown} from '@fortawesome/free-solid-svg-icons';
+import { faRotate } from '@fortawesome/free-solid-svg-icons';
 import * as CryptoJS from 'crypto-js';
 //Servicios
 import { ReadService } from './models/read.service';
 
+declare function showDetailsActas(comments:any):any;
+declare function loader():any;
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
@@ -26,7 +29,7 @@ export class InicioComponent implements OnInit {
   faBook = faBook;
 
   requestsView: boolean = false;
-
+  faRotate = faRotate;
   faCircleCheck = faCircleCheck;
   faCircleXmark = faCircleXmark;
   faFileArrowDown = faFileArrowDown;
@@ -46,7 +49,7 @@ export class InicioComponent implements OnInit {
   fecha_actual: any = new Date();
   fecha: any;
   cadenadigital: any;
-
+  valorabuscar: string = "";
 
   alerts: any = [];
   faCircleExclamation = faCircleExclamation;
@@ -113,6 +116,10 @@ export class InicioComponent implements OnInit {
   //SE OBTIENEN LOS MUNICIPIOS
   async obtainMunicipios() {
     this.oficialiaSelect = null;
+    this.municipioSelect = null;
+
+    this.oficialias = [];
+    this.municipios = [];
     if (this.estadoxRc != undefined) {
 
       this.estadoSelect = this.estadoxRc;
@@ -124,9 +131,18 @@ export class InicioComponent implements OnInit {
   }
 
 
+  showDetails(comments:any){
+    showDetailsActas(comments+ ", Intente con otro tipo de busqueda");
+  }
+
+
   //OBTENER SOLICITUDES ENVIADAS
   async obtainARequests() {
     this.requestsView = !this.requestsView;
+    if(this.requestsView == true){
+      this.tipodebusqueda = 'Seleccione el tipo de busqueda';
+    }
+
     this.requests = [];
     const data: any = await this.restservice.obtainActasRequest().toPromise();
     for (let i = 0; i < data.length; i++) {
@@ -134,13 +150,13 @@ export class InicioComponent implements OnInit {
       switch (data[i].type) {
         case "CURP":
 
-          metadata = "TIPO:" + data[i].metadata.type + "\nCURP:" + data[i].metadata.curp + "\nESTADO:" + data[i].metadata.state;
+          metadata = "TIPO: " + data[i].metadata.type + "\nCURP: " + data[i].metadata.curp + "\nESTADO: " + data[i].metadata.state;
           break;
         case "Cadena Digital":
-          metadata = "CADENA:" + data[i].metadata.cadena;
+          metadata = "CADENA: " + data[i].metadata.cadena;
           break;
         case "Datos Personales":
-          metadata = "TIPO:" + data[i].metadata.type + "\nESTADO:" + data[i].metadata.state + "\nNOMBRES:" + data[i].metadata.nombre + "\n1er APELLIDO:" + data[i].metadata.primerapellido + "\n2do APELLIDO:" + data[i].metadata.segundoapelido + "\nSEXO:" + data[i].metadata.sexo + "\nNACIMIENTO:" + data[i].metadata.fecnac;
+          metadata = "TIPO: " + data[i].metadata.type + "\nESTADO: " + data[i].metadata.state + "\nNOMBRES: " + data[i].metadata.nombre + "\n1er APELLIDO: " + data[i].metadata.primerapellido + "\n2do APELLIDO: " + data[i].metadata.segundoapelido + "\nSEXO: " + data[i].metadata.sexo + "\nFECHA NAC.: " + data[i].metadata.fecnac;
           break;
         case "Datos del Registro Civil":
           break;
@@ -149,15 +165,18 @@ export class InicioComponent implements OnInit {
           break;
       }
       this.requests.push({
+        "nm": i+1,
         "id": data[i].id,
         "type": data[i].type,
         "metadata": metadata,
         "createdAt": data[i].createdAt,
         "send": data[i].send,
-        "comments": data[i].comments
+        "comments": data[i].comments,
+        "url": data[i].url
       });
     }
 
+    console.log(this.requests);
 
   }
 
@@ -172,6 +191,9 @@ export class InicioComponent implements OnInit {
   //SE OBTIENEN LAS OFICIALIAS
   async getOfic() {
     this.oficialiaSelect = null;
+    this.oficialias = [];
+
+
     if (this.municipioSelect != undefined) {
       let parts = this.municipioSelect.split("-");
       let id = Number(parts[0]);
@@ -192,6 +214,18 @@ export class InicioComponent implements OnInit {
     this.requestsView = !this.requestsView;
   }
 
+  async downloadActa(id:any, url:any){
+    if(url != null){
+      await this.restservice.getMyActa(id).subscribe(data => {
+        const a = document.createElement('a')
+          const objectUrl = URL.createObjectURL(data)
+          a.href = objectUrl
+          a.download = url;
+          a.click();
+          URL.revokeObjectURL(objectUrl);
+      });
+    }
+  }
 
   //BUSCAR POR CURP
   async buscar() {
@@ -229,7 +263,7 @@ export class InicioComponent implements OnInit {
           "metadata": { "type": this.acto, "state": this.entidad, "curp": this.curp.toUpperCase() }
         }
       );
-
+        
     }
     else if (this.tipodebusqueda == '2') {
 
@@ -244,8 +278,9 @@ export class InicioComponent implements OnInit {
 
 
     else if (this.tipodebusqueda == '3') {
-      if (this.acto != "MATRIMONIO" || this.acto != "DIVORCIO") {
-
+      
+      if (this.acto != "MATRIMONIO" && this.acto != "DIVORCIO") {
+        // console.log("No es matrimonio o divorcio!");
         try {
           var fechas = this.fechaNacimiento.toString().split("-");
           datosdeenvio.push(
@@ -269,9 +304,26 @@ export class InicioComponent implements OnInit {
 
       }
       else {
-
+        try {
+          datosdeenvio.push(
+            {
+              "type": "Datos Personales",
+              "metadata": {
+                "type": this.acto, 
+                "state": this.entidad,
+                "nombre": this.nombres.toUpperCase(), 
+                "primerapellido": this.primerApellido.toUpperCase(),
+                "segundoapelido": this.segundoApellido.toUpperCase(),
+                "snombre": this.nombresSec.toUpperCase(), 
+                "sprimerapellido": this.primerApellidoSec.toUpperCase(),
+                "ssegundoapellido": this.segundoApellidoSec.toUpperCase()
+              }
+            }
+          );
+        } catch (error) {
+          this.alerts = ["Ingresa todos los datos"];
+        }
       }
-
     }
     else if (this.tipodebusqueda == '4') {
       datosdeenvio.push(
@@ -280,7 +332,7 @@ export class InicioComponent implements OnInit {
           "metadata": {
             "type": this.acto, "state": this.estadoSelect,
             "municipio": this.nombres.toUpperCase(), "primerapellido": this.primerApellido.toUpperCase(),
-            "segundoapelido": this.segundoApellido.toUpperCase(),
+            "segundoapellido": this.segundoApellido.toUpperCase(),
             "sexo": this.sexo,
             "fecnac": fechas[2] + "/" + fechas[1] + "/" + fechas[0]
           }
@@ -288,15 +340,18 @@ export class InicioComponent implements OnInit {
       );
 
     }
-    // const acto = this.restservice.SolicitudactasporCurp(datosdeenvio[0]).toPromise();
-    // Swal.fire({
-    //   position: 'center',
-    //   icon: 'success',
-    //   title: 'Datos enviados ',
-    //   showConfirmButton: false,
-    //   timer: 1500
-    // })
-    // this.reloadCurrentRoute();
+
+
+    const acto = this.restservice.SolicitudactasporCurp(datosdeenvio[0]).toPromise();
+
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Datos enviados ',
+      showConfirmButton: false,
+      timer: 1500
+    })
+    this.reloadCurrentRoute();
   }
 
   clearAllVariables() {
@@ -552,15 +607,14 @@ export class InicioComponent implements OnInit {
     this.router.navigateByUrl("/historial");
   }
   onChange(event: any) {
-
-
-
-
-
+    if(this.requestsView == true){
+      this.requestsView = false;
+    }
     this.tipodebusqueda = event;
-    console.log(event);
+    // console.log(event);
   }
   onChangeTwo(event: any) {
+
     this.actoRegistral = event;
   }
 

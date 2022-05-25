@@ -13,7 +13,7 @@
    
     </b>
   </h1>
-    <div class="col">
+    <div class="col  animate__animated animate__fadeIn">
   
       <h1>&bull;Cargar documentos de forma manual&bull;</h1>
       
@@ -24,7 +24,7 @@
             <div class="card-body">
               <div class="form-outline">
                 <h5 style="color: #efb810" class="card-title">Tipo de documento</h5>
-                <!-- <li class="list-group-item">{{ info?.tipo }}</li> -->
+                <!-- <li class="list-group-item">{{ info?.tipo }}</li>  -->
   
               
                 <div class="dropdown">
@@ -63,7 +63,7 @@
                 <!-- <li class="list-group-item">{{ info?.curp }}</li> -->
   
                 <input style="text-transform:uppercase ;" type="text" [(ngModel)]="curp">
-                <!-- <label class="form-label" for="form1">Search</label> -->
+                <!-- <label class="form-label" ,gggmgkggffgfgf for="form1">Search</laliioiuooubel> -->
               </div>
             </div>
           </div>
@@ -82,45 +82,44 @@
                   
 
                     <ul class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton1">
-                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('CHIAPAS')">CHIAPAS</a></li>
-                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('BAJA CALIFORNIA SUR')">BAJA CALIFORNIA SUR</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('AGUASCALIENTES')">AGUASCALIENTES</a></li>
                       <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('BAJA CALIFORNIA')">BAJA CALIFORNIA</a></li>
-                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('YUCATAN')">YUCATAN</a></li>
-                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('VERACRUZ')">VERACRUZ</a></li>
-                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('VERACRUZ DE IGNACIO DE LA')">VERACRUZ DE IGNACIO DE LA</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('BAJA CALIFORNIA SUR')">BAJA CALIFORNIA SUR</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('CAMPECHE')">CAMPECHE</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('CIUDAD DE MEXICO')">CIUDAD DE MEXICO</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('CDMX')">CDMX</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('CHIAPAS')">CHIAPAS</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('CHIHUAHUA')">CHIHUAHUA</a></li>
                       <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('COAHUILA')">COAHUILA</a></li>
                       <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('COAHUILA DE ZARAGOZA')">COAHUILA DE ZARAGOZA</a></li>
-                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('MICHOACAN')">MICHOACAN</a></li>
-                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('MICHOACAN DE OCAMPO')">MICHOACAN DE OCAMPO</a></li>
-                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('TLAXCALA')">TLAXCALA</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('COLIMA')">COLIMA</a></li>
                       <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('DURANGO')">DURANGO</a></li>
-                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('AGUASCALIENTES')">AGUASCALIENTES</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('GUANAJUATO')">GUANAJUATO</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('GUERRERO')">GUERRERO</a></li>
                       <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('HIDALGO')">HIDALGO</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('JALISCO')">JALISCO</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('MEXICO')">MEXICO</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('MICHOACAN')">MICHOACAN</a></li>
+                       <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('MICHOACAN DE OCAMPO')">MICHOACAN DE OCAMPO</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('MORELOS')">MORELOS</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('NAYARIT')">NAYARIT</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('NUEVO LEON')">NUEVO LEON</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('OAXACA')">OAXACA</a></li>
                       <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('PUEBLA')">PUEBLA</a></li>
                       <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('QUERETARO')">QUERETARO</a></li>
-                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('CHIHUAHUA')">CHIHUAHUA</a></li>
-                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('OAXACA')">OAXACA</a></li>
-                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('SONORA')">SONORA</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('QUINTANA ROO')">QUINTANA ROO</a></li>
                       <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('SAN LUIS POTOSI')">SAN LUIS POTOSI</a></li>
                       <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('SINALOA')">SINALOA</a></li>
-                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('GUERRERO')">GUERRERO</a></li>
-                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('ZACATECAS')">ZACATECAS</a></li>
-                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('TAMAULIPAS')">TAMAULIPAS</a></li>
-                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('MORELOS')">MORELOS</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('SONORA')">SONORA</a></li>
                       <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('TABASCO')">TABASCO</a></li>
-                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('GUANAJUATO')">GUANAJUATO</a></li>
-                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('COLIMA')">COLIMA</a></li>
-                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('JALISCO')">JALISCO</a></li>
-                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('CDMX')">CDMX</a></li>
-                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('CIUDAD DE MEXICO')">CIUDAD DE MEXICO</a></li>
-                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('CAMPECHE')">CAMPECHE</a></li>
-                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('NUEVO LEON')">NUEVO LEON</a></li>
-                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('MEXICO')">MEXICO</a></li>
-                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('QUINTANA ROO')">QUINTANA ROO</a></li>
-                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('NAYARIT')">NAYARIT</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('TAMAULIPAS')">TAMAULIPAS</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('TLAXCALA')">TLAXCALA</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('VERACRUZ')">VERACRUZ</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('VERACRUZ DE IGNACIO DE LA')">VERACRUZ DE IGNACIO DE LA</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('YUCATAN')">YUCATAN</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('ZACATECAS')">ZACATECAS</a></li>
                       <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('EXTRANJERO')">EXTRANJERO</a></li>         
-                         
-                                   
+
                     </ul>
 
 
@@ -130,7 +129,7 @@
 
 
 
-                <!-- <input style="text-transform:uppercase ;" type="text" [(ngModel)]="estado"> -->
+                <!-- <input style="text-transform:uppercase ; tthththhgnnytyfyhhfththjtgnht" type="text" [(ngModel)]="estado"> -->
               </div>
             </div>
           </div>

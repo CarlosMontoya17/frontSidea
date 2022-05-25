@@ -33,6 +33,24 @@ span-.btn{
   
   */
 }
+.ads{
+  margin-left: 1rem;
+  margin-top: 1rem;
+  width: 20rem;
+  position: relative;
+  transition: transform .2s; 
+}
+
+.ads:hover{
+  cursor: pointer;
+  width: 21rem;
+  position:sticky;
+  transform: scale(1.2); 
+  z-index: 2;
+
+  
+}
+
 
 /* Full screen size animations */
 
@@ -72,6 +90,15 @@ span-.btn{
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
   width: 8em;
+  /*
+  aniamtion-name: displaceContent2;
+  animation-duration: 1s;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  widht: 8em;
+  
+  */
 }
 
 @keyframes displaceContent2 {
@@ -539,6 +566,14 @@ span-.btn{
     animation-delay: 0s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
+    /*
+    animation-name: displaceContent17;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation:iteration-count: 1;
+    animation-fill-mode: forwards;
+    
+    */
   }
 
   .to {
@@ -548,6 +583,16 @@ span-.btn{
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
     width: 8em;
+    /*
+    animation-name: displaceConttent18;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-iteration-cont: 1;
+    animation-fill-mode: forwards;
+    widht: 8em;
+    
+    
+    */
   }
 
   .the {
@@ -557,6 +602,14 @@ span-.btn{
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
     width: -1000px;
+    /*
+    animation-name: displaceContent19;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    widht: -1000px;
+
+    */
   }
 
   .Future {
@@ -566,6 +619,23 @@ span-.btn{
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
     width: -1000px;
+    /*
+    animation--name: 1s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode:forwads;
+    widht: -1000px;
+    
+    */
+    /*
+    animation-name: displaceCount20;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-iteration-count: forwards;
+    animation-fil-mode: forwards;
+    widht: -1000px;
+    
+    */
   }
 }
 
@@ -686,26 +756,145 @@ span-.btn{
 	  height: 100%;
 	  position: relative;
 	  background-color: black;
+    /*
+    widht: 5%;
+    heigth: 100vh;
+    height: 100%;
+    position: relative;;
+    background-color: black;
+    
+    */
+    /*
+    widht: 5%;
+    height: 100vh;
+    heighy: 100%;
+    position: relative;
+    background-color: black;
+    
+    */
 	}
 	.contenidoprincipal{
 	  width: 92%;
     margin-left: 5em;
+    /*
+    widht: 92%;
+    margin-left: 5em;
+    */
 	  /* background-color: blue; */
 	}
   .navprincipal:hover{
 		position:sticky;
 		z-index:3000;
+    /*
+    position: sticky
+    z-index:3000;
+    */
 	}
   }
   @media screen and (min-width: 700px) and (max-width: 1500px) { 
     .navprincipal:hover{
       position:sticky;
       z-index:3000;
+      
     }
     .contenidoprincipal{
       width: 90%;
       margin-left: 5em;
-  
-      /* background-color: rgb(0, 255, 68); */
+    
       }
     }
+    .list-group-item.active {
+      -webkit-animation: bounceright 0.3s alternate ease infinite;
+    animation: bounceright 0.3s alternate ease infinite;
+      z-index: 2;
+      color: #fff;
+      background-color: #f4c284;
+      border-color: #f4c284;
+      font-family: "Montserrat", Helvetica, sans-serif;
+      font-size: 17px;
+    /* color: #000000 !important; */
+      display: inline-block;
+      text-align: center;
+      text-rendering: auto;
+      
+  }
+  .btn-success2 {
+    background: #5aae51;
+    box-shadow: 0 0 0 2px rgb(158, 156, 156), 0 0 0 4px rgb(0, 0, 0);
+    -webkit-animation: bounceright 0.3s alternate ease infinite;
+    animation: bounceright 0.3s alternate ease infinite;
+    text-align: center;
+    text-rendering: auto;
+    height: 7vh;
+    overflow: hidden;
+    box-sizing: border-box;
+    margin: 15px;
+    display: inline-block;
+    font-family: "Montserrat", Helvetica, sans-serif;
+    font-size: 20px;
+    width: 16.5vh;
+    color: #000000 !important;
+    margin: 10px auto !important;
+    display: block;
+   
+}
+  .btn-success {
+    background: #5aae51;
+    box-shadow: 0 0 0 2px rgb(158, 156, 156), 0 0 0 4px rgb(0, 0, 0);
+    -webkit-animation: bounceright 0.3s alternate ease infinite;
+    animation: bounceright 0.3s alternate ease infinite;
+    text-align: center;
+    text-rendering: auto;
+    height: 4.5vh;
+    overflow: hidden;
+    box-sizing: border-box;
+    margin: 15px;
+    display: inline-block;
+    font-family: "Montserrat", Helvetica, sans-serif;
+    font-size: 20px;
+    width: 15vh;
+    color: #000000 !important;
+    margin: 10px auto !important;
+    display: block;
+   
+}
+
+
+@-webkit-keyframes bounceright {
+  from {
+    -webkit-transform: translateX(0);
+  }
+  to {
+    -webkit-transform: translateX(3px);
+  }
+}
+@-webkit-keyframes wiggle {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(30deg);
+  }
+}
+@keyframes bounceright {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(3px);
+  }
+}
+@keyframes wiggle {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(30deg);
+  }
+}
+
+element.style {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}

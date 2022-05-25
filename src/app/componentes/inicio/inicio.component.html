@@ -1,26 +1,26 @@
-<div class="navprincipal">
+<div class="navprincipal ">
     <app-sidebar></app-sidebar>
 </div>
-<div class="contenidoprincipal">
+<div class="contenidoprincipal ">
     <app-sidebarpanelhistorial></app-sidebarpanelhistorial>
 
-
-
-    <div class="card" style="background-color: #212121; color: white; height: 3rem; justify-content: center;">
+    <div class="card  animate__animated animate__fadeIn" style="background-color: #212121; color: white; height: 3rem; justify-content: center;">
         <div class="card-body" style="margin-top: 1rem;">
             <div class="card-title">
                 <div class="row">
                     <div class="col">
-                        <h3> <fa-icon [icon]="faFaceGrin"></fa-icon> Bienvenido(a), {{ usuario }} </h3>
+                        <h3>
+                            <fa-icon [icon]="faFaceGrin"></fa-icon> Bienvenido(a), {{ usuario }}
+                        </h3>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <br>
-    <div class="card">
+    <div class="card  animate__animated animate__fadeIn">
 
-        <div class="card-header text-center"> 
+        <div class="card-header text-center">
             <h4 class="card-title">ACTAS</h4>
         </div>
 
@@ -31,7 +31,8 @@
                 <div class="col">
                     <h5 class="card-title">SOLICITAR ACTA</h5>
                     <p class="card-text">BUSQUEDA POR</p>
-                    <select class="form-select" id="basicSelect" [ngModel]="tipodebusqueda" (ngModelChange)="onChange($event)">
+                    <select class="form-select" id="basicSelect" [ngModel]="tipodebusqueda"
+                        (ngModelChange)="onChange($event)">
                         <option selected hidden>Seleccione el tipo de busqueda</option>
                         <option value="1">CURP</option>
                         <option value="2">Cadena digital</option>
@@ -42,19 +43,21 @@
                 <div class="col" style=" border-left: 2px solid rgb(58, 58, 58);">
                     <h5 class="card-title">ARCHIVOS</h5>
                     <p class="card-text">DETALLES DE SOLICITUDES</p>
-                    <button (click)="obtainARequests()" class="btn" type="submit"  style="background-color: white; color: black !important;">
+                    <button (click)="obtainARequests()" class="btn" type="submit"
+                        style="background-color: white; color: black !important;">
                         <fa-icon [icon]="faBook"></fa-icon>
                         &nbsp;
-                        Ver Solicitudes</button>
+                        Ver Solicitudes
+                    </button>
                 </div>
-                
+
             </div>
 
-            
+
         </div>
     </div>
     <br>
-    <div class="card contenedorEdit" *ngIf="tipodebusqueda != 'Seleccione el tipo de busqueda'">
+    <div class="card contenedorEdit animate__animated animate__fadeIn" *ngIf="tipodebusqueda != 'Seleccione el tipo de busqueda'">
 
         <!-- <div class="card-body" *ngIf="tipodebusqueda==1">
             <section id="basic-horizontal-layouts">
@@ -777,12 +780,12 @@
             </section>
         </div> -->
 
-        
-        <div class="card-header text-center" style="background-color: #A52A2A; color: white;" >
-            <h5 class="card-title" *ngIf="tipodebusqueda==1">CURP</h5>
-            <h5 class="card-title" *ngIf="tipodebusqueda==2">CADENA DIGITAL</h5>
-            <h5 class="card-title" *ngIf="tipodebusqueda==3">DATOS PERSONALES</h5>
-            <h5 class="card-title" *ngIf="tipodebusqueda==4">DATOS DE REGISTRO CIVIL</h5>
+
+        <div class="card-header text-center  animate__animated animate__fadeIn" style="background-color: #A52A2A; color: white;">
+            <h5 class="card-title  animate__animated animate__fadeIn" *ngIf="tipodebusqueda==1">CURP</h5>
+            <h5 class="card-title  animate__animated animate__fadeIn" *ngIf="tipodebusqueda==2">CADENA DIGITAL</h5>
+            <h5 class="card-title  animate__animated animate__fadeIn" *ngIf="tipodebusqueda==3">DATOS PERSONALES</h5>
+            <h5 class="card-title  animate__animated animate__fadeIn" *ngIf="tipodebusqueda==4">DATOS DE REGISTRO CIVIL</h5>
         </div>
 
         <div class="card-body" *ngIf="tipodebusqueda==1">
@@ -790,34 +793,31 @@
                 <fa-icon [icon]="faCircleExclamation"></fa-icon>
                 {{alerts[0]}}
                 <fa-icon [icon]="faCircleExclamation"></fa-icon>
-              </div>
+            </div>
 
             <div class="row">
                 <div class="col">
                     <label for="first-name-column">Acto Registral*:</label>
-                    <select class="form-select" id="basicSelect" name="tipoActa"
-                    [ngModel]="actoRegistral"
-                    (ngModelChange)="onChangeTwo($event)">
-                    <option selected hidden>Seleccione el acto registral</option>
-                    <option value="1">NACIMIENTO</option>
-                    <option value="2">DEFUNCION</option>
-                    <option value="3">MATRIMONIO</option>
-                    <option value="4">DIVORCIO</option>
+                    <select class="form-select" id="basicSelect" name="tipoActa" [ngModel]="actoRegistral"
+                        (ngModelChange)="onChangeTwo($event)">
+                        <option selected hidden>Seleccione el acto registral</option>
+                        <option value="1">NACIMIENTO</option>
+                        <option value="2">DEFUNCION</option>
+                        <option value="3">MATRIMONIO</option>
+                        <option value="4">DIVORCIO</option>
 
-                </select>
+                    </select>
                 </div>
                 <div class="col">
                     <label for="first-name-column">CURP*:</label>
-                    <input type="text" id="curp" class="form-control" required
-                    style="text-transform:uppercase" name="curp"
-                    placeholder="Ingresa tu CURP" [ngModel]="curp"
-                    (ngModelChange)="onChangeCurp($event)">
+                    <input type="text" id="curp" class="form-control" required style="text-transform:uppercase"
+                        name="curp" placeholder="Ingresa tu CURP" [ngModel]="curp"
+                        (ngModelChange)="onChangeCurp($event)">
                 </div>
 
                 <div class="col">
                     <label for="first-name-column">Entidad de Registro:</label>
-                    <input class="form-control" name="entidad" required
-                    [(ngModel)]="entidad" readonly>
+                    <input class="form-control" name="entidad" required [(ngModel)]="entidad" readonly>
                 </div>
             </div>
             <br>
@@ -828,8 +828,7 @@
                     </button>
                 </div>
                 <div class="col">
-                    <button type="reset"
-                        class="btn btn-light-secondary me-1 mb-1">Limpiar
+                    <button type="reset" class="btn btn-light-secondary me-1 mb-1">Limpiar
                         <fa-icon [icon]="borrar" class="add-user"></fa-icon>
                     </button>
                 </div>
@@ -843,17 +842,16 @@
                 <fa-icon [icon]="faCircleExclamation"></fa-icon>
                 {{alerts[0]}}
                 <fa-icon [icon]="faCircleExclamation"></fa-icon>
-              </div>
-            
+            </div>
+
             <div class="row">
                 <div class="col-2 align-middle">
                     <label for="first-name-column">Cadena Digital*:</label>
                 </div>
                 <div class="col">
-                    <input type="text" id="curp" class="form-control" required
-                    style="text-transform:uppercase" name="cadenadigital"
-                    placeholder="Ingresa la Cadena Digital"
-                    [(ngModel)]="cadenadigital">
+                    <input type="text" id="curp" class="form-control" required style="text-transform:uppercase"
+                        name="cadenadigital" placeholder="Ingresa la Cadena Digital" [(ngModel)]="cadenadigital">
+                        
                 </div>
             </div>
             <br>
@@ -864,10 +862,9 @@
                     </button>
                 </div>
                 <div class="col">
-                    <button type="reset"
-                    class="btn btn-light-secondary me-1 mb-1">Limpiar
-                    <fa-icon [icon]="borrar" class="add-user"></fa-icon>
-                </button>
+                    <button id="conteo2" (click)="buscar()" type="reset">Limpiar
+                        <fa-icon [icon]="borrar" class="add-user"></fa-icon>
+                    </button>
                 </div>
             </div>
         </div>
@@ -877,7 +874,7 @@
                 <fa-icon [icon]="faCircleExclamation"></fa-icon>
                 {{alerts[0]}}
                 <fa-icon [icon]="faCircleExclamation"></fa-icon>
-              </div>
+            </div>
 
             <div class="row">
                 <div class="col">
@@ -897,138 +894,133 @@
                 </div>
                 <div class="col">
                     <label for="first-name-column">Entidad de registro*:</label>
-                    <select class="form-select" id="estados" name="estados" [ngModel]="entidad" (ngModelChange)="onChangeCurp($event)">
-                                                        <option selected hidden>
-                                                            {{entidad}}</option>
-                                                        <option value="-----------AS-----">
-                                                            AGUASCALIENTES</option>
-                                                        <option value="-----------BC-----">BAJA
-                                                            CALIFORNIA</option>
-                                                        <option value="-----------CB-----">BAJA
-                                                            CALIFORNIA SUR</option>
-                                                        <option value="-----------CC-----">CAMPECHE
-                                                        </option>
-                                                        <option value="-----------CS-----">CHIAPAS
-                                                        </option>
-                                                        <option value="-----------CH-----">CHIHUAHUA
-                                                        </option>
-                                                        <option value="-----------DF-----">DISTRITO
-                                                            FEDERAL</option>
-                                                        <option value="-----------CL-----">COAHUILA
-                                                            DE ZARAGOZA</option>
-                                                        <option value="-----------CM-----">COLIMA
-                                                        </option>
-                                                        <option value="-----------DG-----">DURANGO
-                                                        </option>
-                                                        <option value="-----------GT-----">
-                                                            GUANAJUATO</option>
-                                                        <option value="-----------GR-----">GUERRERO
-                                                        </option>
-                                                        <option value="-----------HG-----">HIDALGO
-                                                        </option>
-                                                        <option value="-----------JC-----">JALISCO
-                                                        </option>
-                                                        <option value="-----------MC-----">ESTADO DE
-                                                            MEXICO</option>
-                                                        <option value="-----------MN-----">MICHOACAN
-                                                        </option>
-                                                        <option value="-----------MR-----">MORELOS
-                                                        </option>
-                                                        <option value="-----------NT-----">NAYARIT
-                                                        </option>
-                                                        <option value="-----------NL-----">NUEVO
-                                                            LEON</option>
-                                                        <option value="-----------OC-----">OAXACA
-                                                        </option>
-                                                        <option value="-----------PL-----">PUEBLA
-                                                        </option>
-                                                        <option value="-----------QO-----">QUERETARO
-                                                        </option>
-                                                        <option value="-----------QR-----">QUINTANA
-                                                            ROO</option>
-                                                        <option value="-----------SP-----">SAN LUIS
-                                                            POTOSI</option>
-                                                        <option value="-----------SL-----">SINALOA
-                                                        </option>
-                                                        <option value="-----------SR-----">SONORA
-                                                        </option>
-                                                        <option value="-----------TC-----">TABASCO
-                                                        </option>
-                                                        <option value="-----------TS-----">
-                                                            TAMAULIPAS</option>
-                                                        <option value="-----------TL-----">TLAXCALA
-                                                        </option>
-                                                        <option value="-----------VZ-----">VERACRUZ
-                                                        </option>
-                                                        <option value="-----------YN-----">YUCATAN
-                                                        </option>
-                                                        <option value="-----------ZS-----">ZACATECAS
-                                                        </option>
-                                                        <option value="-----------XX-----">NACIDOS EN EL EXTRANJERO
-                                                        </option>
+                    <select class="form-select" id="estados" name="estados" [ngModel]="entidad"
+                        (ngModelChange)="onChangeCurp($event)">
+                        <option selected hidden>
+                            {{entidad}}</option>
+                        <option value="-----------AS-----">
+                            AGUASCALIENTES</option>
+                        <option value="-----------BC-----">BAJA
+                            CALIFORNIA</option>
+                        <option value="-----------CB-----">BAJA
+                            CALIFORNIA SUR</option>
+                        <option value="-----------CC-----">CAMPECHE
+                        </option>
+                        <option value="-----------CS-----">CHIAPAS
+                        </option>
+                        <option value="-----------CH-----">CHIHUAHUA
+                        </option>
+                        <option value="-----------DF-----">DISTRITO
+                            FEDERAL</option>
+                        <option value="-----------CL-----">COAHUILA
+                            DE ZARAGOZA</option>
+                        <option value="-----------CM-----">COLIMA
+                        </option>
+                        <option value="-----------DG-----">DURANGO
+                        </option>
+                        <option value="-----------GT-----">
+                            GUANAJUATO</option>
+                        <option value="-----------GR-----">GUERRERO
+                        </option>
+                        <option value="-----------HG-----">HIDALGO
+                        </option>
+                        <option value="-----------JC-----">JALISCO
+                        </option>
+                        <option value="-----------MC-----">ESTADO DE
+                            MEXICO</option>
+                        <option value="-----------MN-----">MICHOACAN
+                        </option>
+                        <option value="-----------MR-----">MORELOS
+                        </option>
+                        <option value="-----------NT-----">NAYARIT
+                        </option>
+                        <option value="-----------NL-----">NUEVO
+                            LEON</option>
+                        <option value="-----------OC-----">OAXACA
+                        </option>
+                        <option value="-----------PL-----">PUEBLA
+                        </option>
+                        <option value="-----------QO-----">QUERETARO
+                        </option>
+                        <option value="-----------QR-----">QUINTANA
+                            ROO</option>
+                        <option value="-----------SP-----">SAN LUIS
+                            POTOSI</option>
+                        <option value="-----------SL-----">SINALOA
+                        </option>
+                        <option value="-----------SR-----">SONORA
+                        </option>
+                        <option value="-----------TC-----">TABASCO
+                        </option>
+                        <option value="-----------TS-----">
+                            TAMAULIPAS</option>
+                        <option value="-----------TL-----">TLAXCALA
+                        </option>
+                        <option value="-----------VZ-----">VERACRUZ
+                        </option>
+                        <option value="-----------YN-----">YUCATAN
+                        </option>
+                        <option value="-----------ZS-----">ZACATECAS
+                        </option>
+                        <option value="-----------XX-----">NACIDOS EN EL EXTRANJERO
+                        </option>
                     </select>
                 </div>
             </div>
             <br>
-            <h6 class="text-center">DATOS DE LA(S) PERSONA(S)</h6> 
+            <h6 class="text-center">DATOS DE LA(S) PERSONA(S)</h6>
             <p>
                 <code></code><code><hr></code>
             </p>
             <div class="row">
-                <p class="text-center" *ngIf='actoRegistral ==  "3" || actoRegistral == "4"'>PRIMERA PERSONA</p> 
+                <p class="text-center" *ngIf='actoRegistral ==  "3" || actoRegistral == "4"'>PRIMERA PERSONA</p>
                 <div class="col">
                     <div class="form-group">
                         <label for="city-column">Nombre(s)*:</label>
-                        <input [(ngModel)]="nombres" name="nombres" type="text"
-                            id="nombrePersonal" style="text-transform:uppercase"
-                            class="form-control" placeholder="Ingresa los nombres">
+                        <input [(ngModel)]="nombres" name="nombres" type="text" id="nombrePersonal"
+                            style="text-transform:uppercase" class="form-control" placeholder="Ingresa los nombres">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="city-column">Primer Apellido*:</label>
-                        <input [(ngModel)]="primerApellido" type="text" id="apellidoP"
-                        style="text-transform:uppercase" class="form-control"
-                        name="primerApellido" placeholder="Ingresa el primer apellido">
+                        <input [(ngModel)]="primerApellido" type="text" id="apellidoP" style="text-transform:uppercase"
+                            class="form-control" name="primerApellido" placeholder="Ingresa el primer apellido">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="city-column">Segundo Apellido*:</label>
-                        <input [(ngModel)]="segundoApellido" type="text" id="apellidoM"
-                        style="text-transform:uppercase" class="form-control"
-                        name="segundoApellido"
-                        placeholder="Ingresa el segundo apellido">
+                        <input [(ngModel)]="segundoApellido" type="text" id="apellidoM" style="text-transform:uppercase"
+                            class="form-control" name="segundoApellido" placeholder="Ingresa el segundo apellido">
                     </div>
                 </div>
             </div>
             <br>
 
             <div class="row" *ngIf='actoRegistral ==  "3" || actoRegistral == "4"'>
-                <p class="text-center">SEGUNDA PERSONA</p> 
+                <p class="text-center">SEGUNDA PERSONA</p>
                 <div class="col">
                     <div class="form-group">
                         <label for="city-column">Nombre(s)*:</label>
-                        <input [(ngModel)]="nombresSec" name="nombresSec" type="text"
-                            id="nombrePersonal" style="text-transform:uppercase"
-                            class="form-control" placeholder="Ingresa los nombres">
+                        <input [(ngModel)]="nombresSec" name="nombresSec" type="text" id="nombrePersonal"
+                            style="text-transform:uppercase" class="form-control" placeholder="Ingresa los nombres">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="city-column">Primer Apellido*:</label>
                         <input [(ngModel)]="primerApellidoSec" type="text" id="apellidoP"
-                        style="text-transform:uppercase" class="form-control"
-                        name="primerApellidoSec" placeholder="Ingresa el primer apellido">
+                            style="text-transform:uppercase" class="form-control" name="primerApellidoSec"
+                            placeholder="Ingresa el primer apellido">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="city-column">Segundo Apellido*:</label>
                         <input [(ngModel)]="segundoApellidoSec" type="text" id="apellidoM"
-                        style="text-transform:uppercase" class="form-control"
-                        name="segundoApellidoSec"
-                        placeholder="Ingresa el segundo apellido">
+                            style="text-transform:uppercase" class="form-control" name="segundoApellidoSec"
+                            placeholder="Ingresa el segundo apellido">
                     </div>
                 </div>
             </div>
@@ -1038,35 +1030,35 @@
             <br>
 
 
-            <div class="row">
+            <div class="row" *ngIf='actoRegistral !=  "3" && actoRegistral != "4"'>
                 <div class="col">
                     <label for="email-id-column">
                         Sexo*:
                     </label>
-                    
+
                     <div class="group">
-                        <div class="form-check" >
-                            <input class="form-check-input" [(ngModel)]="sexo" name="sexo" type="radio" name="flexRadioDefault" value="Mujer" id="flexRadioDefault1" checked>
+                        <div class="form-check">
+                            <input class="form-check-input" [(ngModel)]="sexo" name="sexo" type="radio"
+                                name="flexRadioDefault" value="Mujer" id="flexRadioDefault1" checked>
                             <label class="form-check-label" for="flexRadioDefault1">
-                              Mujer
+                                Mujer
                             </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" [(ngModel)]="sexo" name="sexo" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="Hombre">
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" [(ngModel)]="sexo" name="sexo" type="radio"
+                                name="flexRadioDefault" id="flexRadioDefault2" value="Hombre">
                             <label class="form-check-label" for="flexRadioDefault2">
-                              Hombre
+                                Hombre
                             </label>
-                          </div>
+                        </div>
                     </div>
-                    
+
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="company-column">Fecha de nacimiento</label>
-                        <input [(ngModel)]="fechaNacimiento" type="date"
-                        class="form-control" name="fechaNacimiento"
-                        id="fechadeNacimiento" placeholder="dd/mm/yyyy" min="1997/01/01"
-                        max="2030/12/31">
+                        <input [(ngModel)]="fechaNacimiento" type="date" class="form-control" name="fechaNacimiento"
+                            id="fechadeNacimiento" placeholder="dd/mm/yyyy" min="1997/01/01" max="2030/12/31">
                     </div>
                 </div>
             </div>
@@ -1077,7 +1069,7 @@
                         <fa-icon [icon]="Buscar" class="add-user"></fa-icon>
                     </button>
                 </div>
-                
+
                 <div class="col">
                     <button type="reset" class="btn btn-light-secondary me-1 mb-1">Limpiar
                         <fa-icon [icon]="borrar" class="add-user"></fa-icon>
@@ -1085,7 +1077,7 @@
                 </div>
 
             </div>
-        
+
 
         </div>
 
@@ -1094,7 +1086,7 @@
                 <fa-icon [icon]="faCircleExclamation"></fa-icon>
                 {{alerts[0]}}
                 <fa-icon [icon]="faCircleExclamation"></fa-icon>
-              </div>
+            </div>
             <div class="row">
                 <div class="col">
                     <label for="first-name-column">Acto registral*:</label>
@@ -1111,90 +1103,88 @@
                 </div>
                 <div class="col">
                     <label for="first-name-column">Entidad de registro*:</label>
-                    <select class="form-select" id="basicSelect" name="tipoActa"
-                                                                [(ngModel)]="estadoxRc" name="estadoxRc"
-                                                                (click)='obtainMunicipios()'>
+                    <select class="form-select" id="basicSelect" name="tipoActa" [(ngModel)]="estadoxRc"
+                        name="estadoxRc" (click)='obtainMunicipios()'>
 
-                                                                <option value="1 - AGUASCALIENTES">
-                                                                    1 - AGUASCALIENTES</option>
-                                                                <option value="2 - BAJA CALIFORNIA">2 - BAJA
-                                                                    CALIFORNIA</option>
-                                                                <option value="3 - BAJA CALIFORNIA SUR">3 - BAJA
-                                                                    CALIFORNIA SUR</option>
-                                                                <option value="4 - CAMPECHE">4 - CAMPECHE
-                                                                </option>
-                                                                <option value="5 - CHIAPAS">5 - CHIAPAS
-                                                                </option>
-                                                                <option value="6 - CHIHUAHUA">6 - CHIHUAHUA
-                                                                </option>
-                                                                <option value="7 - DISTRITO">7 - DISTRITO
-                                                                    FEDERAL</option>
-                                                                <option value="8 - COAHUILA">8. - COAHUILA
-                                                                    DE ZARAGOZA</option>
-                                                                <option value="9 - COLIMA">9 - COLIMA
-                                                                </option>
-                                                                <option value="10 - DURANGO">10 - DURANGO
-                                                                </option>
-                                                                <option value="11 - GUANAJUATO">
-                                                                    11 - GUANAJUATO</option>
-                                                                <option value="12 - GUERRERO">12 - GUERRERO
-                                                                </option>
-                                                                <option value="13 - HIDALGO">13 - HIDALGO
-                                                                </option>
-                                                                <option value="14 - JALISCO">14 - JALISCO
-                                                                </option>
-                                                                <option value="15 - ESTADO DE MEXICO">15 - ESTADO DE
-                                                                    MEXICO</option>
-                                                                <option value="16 - MICHOACAN">16 - MICHOACAN
-                                                                </option>
-                                                                <option value="17 - MORELOS">17 - MORELOS
-                                                                </option>
-                                                                <option value="18 - NAYARIT">18 - NAYARIT
-                                                                </option>
-                                                                <option value="19 - NUEVO LEON">19 - NUEVO
-                                                                    LEON</option>
-                                                                <option value="20 - OAXACA">20 - OAXACA
-                                                                </option>
-                                                                <option value="21 - PUEBLA">21 - PUEBLA
-                                                                </option>
-                                                                <option value="22 - QUERETARO">22 - QUERETARO
-                                                                </option>
-                                                                <option value="23 - QUINTANA">23 - QUINTANA
-                                                                    ROO</option>
-                                                                <option value="24 - SAN LUIS POTOSI">24 - SAN LUIS
-                                                                    POTOSI</option>
-                                                                <option value="25 - SINALOA">25 - SINALOA
-                                                                </option>
-                                                                <option value="26 - SONORA">26 - SONORA
-                                                                </option>
-                                                                <option value="27 - TABASCO">27 - TABASCO
-                                                                </option>
-                                                                <option value="28 - TAMAULIPAS">
-                                                                    28 - TAMAULIPAS</option>
-                                                                <option value="29 - TLAXCALA">29 - TLAXCALA
-                                                                </option>
-                                                                <option value="30 - VERACRUZ">30 - VERACRUZ
-                                                                </option>
-                                                                <option value="31 - YUCATAN">31 - YUCATAN
-                                                                </option>
-                                                                <option value="32 - ZACATECAS">32 - ZACATECAS
-                                                                </option>
-                                                                <option value="39 - NACIDOS EN EL EXTRANJERO">39 -
-                                                                    NACIDOS EN EL EXTRANJERO</option>
+                        <option value="1 - AGUASCALIENTES">
+                            1 - AGUASCALIENTES</option>
+                        <option value="2 - BAJA CALIFORNIA">2 - BAJA
+                            CALIFORNIA</option>
+                        <option value="3 - BAJA CALIFORNIA SUR">3 - BAJA
+                            CALIFORNIA SUR</option>
+                        <option value="4 - CAMPECHE">4 - CAMPECHE
+                        </option>
+                        <option value="5 - CHIAPAS">5 - CHIAPAS
+                        </option>
+                        <option value="6 - CHIHUAHUA">6 - CHIHUAHUA
+                        </option>
+                        <option value="7 - DISTRITO">7 - DISTRITO
+                            FEDERAL</option>
+                        <option value="8 - COAHUILA">8. - COAHUILA
+                            DE ZARAGOZA</option>
+                        <option value="9 - COLIMA">9 - COLIMA
+                        </option>
+                        <option value="10 - DURANGO">10 - DURANGO
+                        </option>
+                        <option value="11 - GUANAJUATO">
+                            11 - GUANAJUATO</option>
+                        <option value="12 - GUERRERO">12 - GUERRERO
+                        </option>
+                        <option value="13 - HIDALGO">13 - HIDALGO
+                        </option>
+                        <option value="14 - JALISCO">14 - JALISCO
+                        </option>
+                        <option value="15 - ESTADO DE MEXICO">15 - ESTADO DE
+                            MEXICO</option>
+                        <option value="16 - MICHOACAN">16 - MICHOACAN
+                        </option>
+                        <option value="17 - MORELOS">17 - MORELOS
+                        </option>
+                        <option value="18 - NAYARIT">18 - NAYARIT
+                        </option>
+                        <option value="19 - NUEVO LEON">19 - NUEVO
+                            LEON</option>
+                        <option value="20 - OAXACA">20 - OAXACA
+                        </option>
+                        <option value="21 - PUEBLA">21 - PUEBLA
+                        </option>
+                        <option value="22 - QUERETARO">22 - QUERETARO
+                        </option>
+                        <option value="23 - QUINTANA">23 - QUINTANA
+                            ROO</option>
+                        <option value="24 - SAN LUIS POTOSI">24 - SAN LUIS
+                            POTOSI</option>
+                        <option value="25 - SINALOA">25 - SINALOA
+                        </option>
+                        <option value="26 - SONORA">26 - SONORA
+                        </option>
+                        <option value="27 - TABASCO">27 - TABASCO
+                        </option>
+                        <option value="28 - TAMAULIPAS">
+                            28 - TAMAULIPAS</option>
+                        <option value="29 - TLAXCALA">29 - TLAXCALA
+                        </option>
+                        <option value="30 - VERACRUZ">30 - VERACRUZ
+                        </option>
+                        <option value="31 - YUCATAN">31 - YUCATAN
+                        </option>
+                        <option value="32 - ZACATECAS">32 - ZACATECAS
+                        </option>
+                        <option value="39 - NACIDOS EN EL EXTRANJERO">39 -
+                            NACIDOS EN EL EXTRANJERO</option>
                     </select>
                 </div>
                 <div class="col">
                     <label for="first-name-column">Municipio de registro*:</label>
-                    <select class="form-select" id="basicSelect"
-                    [(ngModel)]="municipioSelect" name="municipioSelect"
-                    (click)="getOfic()">
+                    <select class="form-select" id="basicSelect" [(ngModel)]="municipioSelect" name="municipioSelect"
+                        (click)="getOfic()">
 
-                    <option selected hidden>Seleccione la
-                        Entidad</option>
-                    <option *ngFor="let municipio of municipios">
-                        {{ municipio.id }} - {{ municipio.nombre
-                        }}
-                    </option>
+                        <option selected hidden>Seleccione la
+                            Entidad</option>
+                        <option *ngFor="let municipio of municipios">
+                            {{ municipio.id }} - {{ municipio.nombre
+                            }}
+                        </option>
 
                     </select>
                 </div>
@@ -1204,33 +1194,31 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="city-column">Oficialia de Registro*:</label>
-                        <select class="form-select" id="basicSelect"
-                        [(ngModel)]="oficialiaSelect" name="oficialiaSelect"
-                        (click)="resetOficialia()">
+                        <select class="form-select" id="basicSelect" [(ngModel)]="oficialiaSelect"
+                            name="oficialiaSelect" (click)="resetOficialia()">
 
-                        <option selected hidden>Primero
-                            seleccione el municipio</option>
-                        <option *ngFor="let Oficialia of oficialias">
-                            {{ Oficialia.id }} - {{ Oficialia.nombre }}
-                        </option>
+                            <option selected hidden>Primero
+                                seleccione el municipio</option>
+                            <option *ngFor="let Oficialia of oficialias">
+                                {{ Oficialia.id }} - {{ Oficialia.nombre }}
+                            </option>
 
-                    </select>
+                        </select>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="city-column">Año de Registro*:</label>
-                        <input [(ngModel)]="yearActa" name="yearActa" type="number"
-                        min="1900" max="2099" step="1" class="form-control" />
+                        <input [(ngModel)]="yearActa" name="yearActa" type="number" min="1900" max="2099" step="1"
+                            class="form-control" />
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="city-column">Número de Acta*:</label>
-                        <input type="text" class="form-control" required
-                        name="Nacta" placeholder="Ingresa tu Numero de Acta"
-                        [(ngModel)]="numActa" name="numActa"
-                        (ngModelChange)="onChangeCurp($event)">
+                        <input type="text" class="form-control" required name="Nacta"
+                            placeholder="Ingresa tu Numero de Acta" [(ngModel)]="numActa" name="numActa"
+                            (ngModelChange)="onChangeCurp($event)">
                     </div>
                 </div>
             </div>
@@ -1243,61 +1231,87 @@
                     </button>
                 </div>
                 <div class="col">
-                    <button type="reset"
-                    class="btn btn-light-secondary me-1 mb-1">Limpiar
-                    <fa-icon [icon]="borrar" class="add-user"></fa-icon>
-                </button>
+                    <button type="reset" class="btn btn-light-secondary me-1 mb-1">Limpiar
+                        <fa-icon [icon]="borrar" class="add-user"></fa-icon>
+                    </button>
                 </div>
             </div>
         </div>
 
     </div>
 
-    <div class="card" *ngIf="requestsView == true">
-        <div class="card-header text-center">
-            <h5>SOLICITUDES</h5>
-        </div>
-        <div class="card-body">
-            <div class="tableScroll">
-                <table class="table table-striped table-dark table-responsive table-hover">
-                    <thead class="text-center myHeaders">
-                      <tr>
-                        <th scope="col" class="headerColor" style="border-right: 2px solid rgb(119, 119, 119); width: 3rem;">Id</th>
-                        <th scope="col" class="headerColor" style="border-right: 2px solid rgb(119, 119, 119); width: 15rem;">Busqueda Por</th>
-                        <th scope="col" class="headerColor" style="border-right: 2px solid rgb(119, 119, 119); width: 20rem;">Datos del Acta</th>
-                        <th scope="col" class="headerColor" style="border-right: 2px solid rgb(119, 119, 119); width: 8rem;">Solicitado</th>
-                        <th scope="col" class="headerColor" style="border-right: 2px solid rgb(119, 119, 119); width: 10rem;">Estado</th>
-                        <th scope="col" class="headerColor" style="width: 40rem;">Resultados</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let req of requests">
-                        <th scope="row" style="border-right: 2px solid rgb(209, 209, 209); vertical-align: middle; text-align: center;">{{req.id}}</th>
-                        <td style="border-right: 2px solid rgb(209, 209, 209); text-align: center; vertical-align: middle;">{{req.type}}</td>
-                        <td style="border-right: 2px solid rgb(209, 209, 209); vertical-align: middle;" id="pharaph">{{req.metadata}}</td>
-                        <td style="border-right: 2px solid rgb(209, 209, 209); vertical-align: middle; text-align: center;" type="date">{{ req.createdAt | date:'dd/MM/yyyy' }}</td>
-                        <td style="border-right: 2px solid rgb(209, 209, 209); vertical-align: middle; text-align: center;">
-                            <fa-icon [icon]="faCircleCheck" style="color: rgb(68, 189, 68);" *ngIf="req.send==true && req.comments=='Enviado'" title="Estado"></fa-icon>
-                            <fa-icon [icon]="faCircleExclamation" style="color: rgb(230, 219, 79);" *ngIf="req.send==false" title="Estado"></fa-icon>
-                            <fa-icon [icon]="faCircleXmark" style="color: rgb(218, 119, 119);" *ngIf="req.send==true && req.comments!='Enviado'" title="Estado"></fa-icon>
-                        </td>
-                        <td style="vertical-align: middle; text-align: justify;" *ngIf="req.comments != 'Enviado'">
-                            {{req.comments}}.
-                        </td>
-                        <td style="vertical-align: middle; text-align: center;" *ngIf="req.comments == 'Enviado'">
-                            <div class="buttonDwnl" style="user-select: none;">
-                                <fa-icon [icon]="faFileArrowDown"></fa-icon>
-                                
-                                &nbsp;Descargar Archivo
-                            </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-        </div>
-    </div>
 
+
+
+       
+        <div class="container" *ngIf="requestsView == true">
+
+            <div class="row">
+                <h4 class="text-center animate__animated animate__bounceIn">SOLICITUDES</h4>
+                <br>
+            </div>
+
+            <div class="row">
+                <div class="input-group mb-2">
+                    <span class="input-group-text" id="basic-addon3">BUSCAR</span>
+                    <input  [(ngModel)]="valorabuscar" name="valorabuscar" type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                </div>
+            </div>
+
+            <div class="row">
+
+                
+                <div class="card animate__animated animate__fadeIn" style="width: 18rem; margin-right: 1rem; margin-bottom: 1rem;" *ngFor="let req of requests | pipeacta: valorabuscar" >
+                    <span class="position-absolute top-45 start-90 translate-middle badge rounded-pill bg-primary">
+                        {{ req.nm }}
+                      </span>
+                    <img style="width: fit-content;" src="assets/documents/nacimiento.png" *ngIf='req.metadata.includes("NACIMIENTO")' class="card-img-top" alt="...">
+                    <img style="width: fit-content;" src="assets/documents/defuncion.png"  *ngIf='req.metadata.includes("DEFUNCION")' class="card-img-top" alt="...">
+                    <img style="width: fit-content;" src="assets/documents/divorcio.png" *ngIf='req.metadata.includes("DIVORCIO")' class="card-img-top" alt="...">
+                    <img style="width: fit-content;" src="assets/documents/matrimonio.png" *ngIf='req.metadata.includes("MATRIMONIO")' class="card-img-top" alt="...">
+                    <img style="width: fit-content;" src="assets/documents/desconocido.png" *ngIf='req.metadata.includes("CADENA")' class="card-img-top" alt="...">
+                    <!-- <img style="width: fit-content;" src="assets/documents/cotizadas.jpg"  class="card-img-top" alt="...">
+                    <img style="width: fit-content;" src="assets/documents/rfc.png" class="card-img-top" alt="...">
+                    <img style="width: fit-content;" src="assets/documents/nss.png" class="card-img-top" alt="...">
+                    <img style="width: fit-content;" src="assets/documents/vigencia.png" class="card-img-top" alt="..."> -->
+                    <div class="card-body text-center">
+                        <h5 class="card-title" *ngIf='req.metadata.includes("NACIMIENTO")'>ACTA DE NACIMIENTO</h5>
+                        <h5 class="card-title" *ngIf='req.metadata.includes("DEFUNCION")'>ACTA DE DEFUNCIÓN</h5>
+                        <h5 class="card-title" *ngIf='req.metadata.includes("MATRIMONIO")'>ACTA DE MATRIMONIO</h5>
+                        <h5 class="card-title" *ngIf='req.metadata.includes("DIVORCIO")'>ACTA DE DIVORCIO</h5>
+                        <h5 class="card-title" *ngIf='req.metadata.includes("CADENA")'>DESCONOCIDO</h5>
+
+                        <p class="card-text">{{ req.type }} - {{ req.createdAt | date:'dd/MM/yyyy' }} </p>
+                        <p class="card-text" id="pharaph" class="tableScroll">{{ req.metadata }}</p>
+                        
+                        
+                        
+                    
+
+                    </div>
+                    <div class="card-footer text-center">
+                        <a class="btn btn-success" (click)="downloadActa(req.id, req.url)" *ngIf="req.comments == 'Enviado'">
+                            <fa-icon [icon]="faFileArrowDown"></fa-icon>
+        
+                            &nbsp;Descargar
+                        </a>
+
+                        <a class="btn btn-danger" (click)="showDetails(req.comments)" *ngIf="req.comments != 'Enviado' && req.comments != null">
+                            <fa-icon [icon]="faCircleXmark"></fa-icon>
+        
+                            &nbsp;Detalles
+                        </a>
+
+                        <a class="btn btn-warning" *ngIf="req.comments == null">
+                            <fa-icon [icon]="faRotate"></fa-icon>
+        
+                            &nbsp;En proceso
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
 
 </div>

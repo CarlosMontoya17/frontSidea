@@ -42,6 +42,10 @@ button:hover{
 
 /* .headerColor{ background: linear-gradient(0deg, rgba(212,68,25,1) 0%, rgba(164,63,63,1) 100%); } */
 
+
+
+
+
 .buttonDwnl{
 	width: 20rem;
 	margin-left: 28%;
@@ -52,9 +56,9 @@ button:hover{
 
 .tableScroll{
 
-	height: 28rem;
+	height: 8rem;
 	overflow: hidden;
-	overflow-y: scroll;
+	overflow-y: auto;
 }
 
 .buttonDwnl:hover{

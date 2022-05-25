@@ -1,14 +1,14 @@
 <div class="navprincipal">
     <app-sidebar></app-sidebar>
-    </div>
+</div>
 <div class="contenidoprincipal">
     <app-sidebarpanelhistorial></app-sidebarpanelhistorial>
     <div id="app">
-        
-        <div id="main" class="card-body text-center">
+
+        <div id="main" class="card-body text-center  animate__animated animate__fadeIn">
             <h6 class="firstH1">
                 <b>
-                                <!-- TITULOS DE CABECERA-->
+                    <!-- TITULOS DE CABECERA-->
                     <div class="Welcome" id="firstHeader">&bull;Publ</div>
                     <div class="to" id="firstHeader">ici</div>
                     <div class="the" id="firstHeader">dad&bull;</div>
@@ -17,7 +17,7 @@
 
             <form action="" method="POST">
 
-                <div class="card-header">
+                <div style="background-color:#f4c284 ;" class="card-header">
                     <h5 class="card-title">Subir archivos</h5>
                 </div>
 
@@ -25,30 +25,154 @@
                 <div id="historial" class="file-area">
 
                 </div>
-                            <!-- SE SELECCIONA A QUE APARTADO SE DESEA SUBIR-->
-                <div class="input-group mb-3">
-                    <select class="form-select" id="inputGroupSelect08" (change)="selectOption($event)">
+                <!-- SE SELECCIONA A QUE APARTADO SE DESEA SUBIR-->
+                <div class="input-group mb-3  animate__animated animate__fadeIn">
+                    <select class="form-select  animate__animated animate__fadeIn" id="inputGroupSelect08" (change)="selectOption($event)"
+                        (click)="changeView4()">
                         <option value="0" selected hidden="">Elija el grupo de imagen</option>
-                        <option value="nacimiento">Nacimiento</option>
-                        <option value="matrimonio">Matrimonio</option>
-                        <option value="divorcio">Divorcio</option>
-                        <option value="defuncion">Defuncion</option>
-                        <option value="altasCurp">Altas Curp</option>
-                        <option value="correcionCurp">Correcion de CURP</option>
-                        <option value="constanciaFiscal">Constancia de situacion fiscal</option>
-                        <option value="constanciaI">Constancia de Inhabilitación</option>
-                        <option value="facturacionE">Facturacion electronica</option>
-                        <option value="general">General</option>
+                        <option value="Acta de Nacimiento">Nacimiento</option>
+                        <option value="Acta de Matrimonio">Matrimonio</option>
+                        <option value="Acta de Divorcio">Divorcio</option>
+                        <option value="Acta de Defuncion">Defuncion</option>
+                        <option value="Altas Curp">Altas Curp</option>
+                        <option value="Correcion de Curp">Correcion de CURP</option>
+                        <option value="Constancia de Situacion Fiscal">Constancia de situacion fiscal</option>
+                        <option value="Constancia de Inhabilitación">Constancia de Inhabilitación</option>
+                        <option value="Facturacion Electronica">Facturacion Electronica</option>
+
                     </select>
                 </div>
+
+
+                <div id="historial" class="file-area">
+
+                    <!-- SOLTAR PDF -->
+                    <div class="file-dummy  animate__animated animate__fadeIn" *ngIf="selectOpt!=0 ">
+                        <div class="btn btn-default">
+                            <input #file accept="application/jpg" type="file" flow-btn style="position: absolute;"
+                                (change)="getFile($event)" (change)="preview56(file.files)">
+                            <img [src]="imgURL" height="100%" width="100%" *ngIf="imgURL">
+                            <span (change)="getFile($event)" style="color: #f4c284;" *ngIf="fileTmp==null">Arrastra tu
+                                Imagen o da click
+                                aqui para importarlo </span>
+
+                            <span style="color: #333333; font-size: larger;">{{fileTmp?.fileName }}</span>
+
+                            <!-- OPTIENE EL NOMBRE DEL PDF -->
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <input #file type="file" accept='image/*' (change)="preview(file.files)" />
+                  
+                -->
+
+
+                <!-- STYLE DE DROP -->
+                <style>
+                    @-webkit-keyframes bounceright {
+                        from {
+                            -webkit-transform: translateX(0);
+                        }
+
+                        to {
+                            -webkit-transform: translateX(3px);
+                        }
+                    }
+
+                    @-webkit-keyframes wiggle {
+                        from {
+                            -webkit-transform: rotate(0deg);
+                        }
+
+                        to {
+                            -webkit-transform: rotate(30deg);
+                        }
+                    }
+
+                    @keyframes bounceright {
+                        from {
+                            transform: translateX(0);
+                        }
+
+                        to {
+                            transform: translateX(3px);
+                        }
+                    }
+
+                    @keyframes wiggle {
+                        from {
+                            transform: rotate(0deg);
+                        }
+
+                        to {
+                            transform: rotate(30deg);
+                        }
+                    }
+
+                    .file-area {
+                        width: 100%;
+                        position: relative;
+                        font-size: 18px;
+                        -webkit-animation: bounceright 0.3s alternate ease infinite;
+                        animation: bounceright 0.3s alternate ease infinite;
+                    }
+
+                    .file-area input[type=file] {
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        opacity: 1;
+                        cursor: pointer;
+
+
+                    }
+
+                    .file-area .file-dummy {
+                        width: 100%;
+                        padding: 50px 30px;
+                        border: 2.8px dashed #7a7b7d;
+                        background-color: #fff;
+                        text-align: center;
+                        transition: background 0.3s ease-in-out;
+
+                    }
+
+                    .file-area .file-dummy .success {
+                        border-color: #77dd77;
+                    }
+
+                    .file-area:hover .file-dummy {
+                        border: 3px dashed #77dd77;
+                    }
+
+                    .file-area input[type=file]:valid+.file-dummy {
+                        border-color: #fdfd96;
+                    }
+
+                    .file-area input[type=file]:valid+.file-dummy .success {
+                        border-color: #77dd77;
+                    }
+
+                    .file-area input[type=file]:valid+.file-dummy .default {
+                        border-color: #77dd77;
+                    }
+                </style>
+                <!-- FIN DE SOLTAR PDF -->
+                <a (click)="addImg()" class="btn btn-success">Subir archivo</a>
+
                 <!-- SE CARGAN LAS IMAGENES PARA SUBIRLAS-->
-                <input type="file" class="basic-filepond" id="archivo" accept="application/jpg"
-                    (change)="preview1($event)">
-                <a (click)="addImg()" class="btn btn-success" style="margin: 1rem;">Subir archivo</a>
+                <!-- 
+                <a (click)="addImg()" class="btn btn-success" style="margin: 1rem;">Subir archivo</a> -->
             </form>
-            
+
             <div class="container">
-                
+
                 <hr class="mt-2 mb-5">
                 <section id="groups">
                     <div class="row">
@@ -57,41 +181,66 @@
                                 <div class="card-body"
                                     style="display: grid; align-items: center; justify-content: center;">
                                     <div class="list-group list-group-horizontal-sm mb-1 text-center"  role="tablist">
-                                        <a class="list-group-item list-group-item-action active"  id="list-sunday-list"
+
+                                        <a class="list-group-item list-group-item-action active" id="Nacimiento"
                                             data-bs-toggle="list" href="#list-sunday" role="tab"
-                                            (click)="getImages('nacimiento')">Nacimiento</a>
+                                            (click)="ver()" (click)="VerImagenes()"  (click)="setTipoDeActa('Acta de Nacimiento')">Nacimiento</a>
+
                                         <a class="list-group-item list-group-item-action" id="list-monday-list0"
-                                            (click)="getImages('matrimonio')" data-bs-toggle="list" href="#list-monday"
-                                            role="tab">Matrimonio</a>
+                                        (click)="ver()" (click)="VerImagenes()"     (click)="setTipoDeActa('Acta de Matrimonio')" data-bs-toggle="list"
+                                            href="Matrimonio" role="tab">Matrimonio</a>
+
                                         <a class="list-group-item list-group-item-action" id="list-tuesday-list11"
-                                            (click)="getImages('divorcio')" data-bs-toggle="list" href="#list-tuesday"
-                                            role="tab">Divorcio</a>
+                                        (click)="ver()" (click)="VerImagenes()" (click)="setTipoDeActa('Acta de Divorcio')" data-bs-toggle="list"
+                                            href="Divorcio" role="tab">Divorcio</a>
+
                                         <a class="list-group-item list-group-item-action" id="list-tuesday-list22"
-                                            (click)="getImages('defuncion')" data-bs-toggle="list" href="#list-nuevo"
-                                            role="tab">Defunción</a>
+                                        (click)="ver()" (click)="VerImagenes()"  (click)="setTipoDeActa('Acta de Defuncion')" data-bs-toggle="list"
+                                            href="Defunción" role="tab">Defunción</a>
+
                                         <a class="list-group-item list-group-item-action" id="list-tuesday-list1"
-                                            (click)="getImages('altas curp')" data-bs-toggle="list" href="#list-nuevo"
+                                        (click)="ver()" (click)="VerImagenes()" (click)="setTipoDeActa('Altas curp')" data-bs-toggle="list" href="Altas Curp"
                                             role="tab">Altas Curp</a>
-                                        <a class="list-group-item list-group-item-action" id="list-tuesday-list2"
-                                            (click)="getImages('correcion de curp')" data-bs-toggle="list"
+
+                                        <a class="list-group-item list-group-item-action" id="Correcion de Curp"
+                                        (click)="ver()" (click)="VerImagenes()"  (click)="setTipoDeActa('Correcion de curp')" data-bs-toggle="list"
                                             href="#list-nuevo" role="tab">Correcion de Curp</a>
-                                        <a class="list-group-item list-group-item-action" id="list-tuesday-list3"
-                                            (click)="getImages('situacion fiscal')" data-bs-toggle="list"
+
+                                        <a class="list-group-item list-group-item-action" id="Situacion fiscal"
+                                        (click)="ver()" (click)="VerImagenes()"  (click)="setTipoDeActa('Situacion fiscal')" data-bs-toggle="list"
                                             href="#list-nuevo" role="tab">Situacion fiscal</a>
-                                        <a class="list-group-item list-group-item-action" id="list-tuesday-list4"
-                                            (click)="getImages('inhabilitacion')" data-bs-toggle="list"
+
+                                        <a class="list-group-item list-group-item-action" id="Inhabilitación"
+                                        (click)="ver()" (click)="VerImagenes()"   (click)="setTipoDeActa('Inhabilitacion')" data-bs-toggle="list"
                                             href="#list-nuevo" role="tab">Inhabilitación</a>
-                                        <a class="list-group-item list-group-item-action" id="list-tuesday-list5"
-                                            (click)="getImages('Facturacion electronica')" data-bs-toggle="list"
+
+                                        <a class="list-group-item list-group-item-action" id="Facturacion electronica"
+                                        (click)="ver()" (click)="VerImagenes()"    (click)="setTipoDeActa('Facturacion electronica')" data-bs-toggle="list"
                                             href="#list-nuevo" role="tab">Facturacion electronica</a>
+                                            
                                         <a class="list-group-item list-group-item-action" id="list-tuesday-list6"
-                                            (click)="getImages('general')" data-bs-toggle="list" href="#list-nuevo"
+                                        (click)="ver()" (click)="VerImagenes()"   (click)="setTipoDeActa('General')" data-bs-toggle="list" href="General"
                                             role="tab">General </a>
                                     </div>
 
+                                    <!-- <a (click)="ver()" (click)="VerImagenes()" class="btn btn-success" style="margin: 1rem;" >Ver imagenes</a> -->
+                                   
+                                    <div class="row" *ngIf="verImagenes">
+                                        <h4 class="text-center animate__animated animate__bounceIn ">  {{tipo }}</h4>
+                                        <div class="card ads " *ngFor="let name of getnames">
+                                            <img (click)="showImage(name.id, name.tipo)"
+                                             src="http://actasalinstante.com:3030/api/ads/getImage/{{name.id}}"
+                                                title="{{name.tipo}}">
+                                        </div>
+                                    </div>
+
+
+
+
+
                                     <div class="buttons"
                                         style="margin: 1rem; display: grid; align-items: center; justify-content: center; ">
-                                        <a class="btn btn-success" (click)="descargar()">Descargar publicidad</a>
+                                        <!-- <a class="btn btn-success2">Descargar publicidad</a> -->
                                     </div>
                                 </div>
                             </div>
@@ -99,6 +248,8 @@
                     </div>
                     <div class="row match-height">
                         <div class="card-group">
+
+                            
                             <!-- <div class="col-lg-3 col-md-4 col-6" >
                                 <a  data-lightbox="roadtrip"><img class="example-image"
                                        alt="image-3" height="400" width="300"></a>
@@ -110,6 +261,12 @@
                     </div>
                 </section>
             </div>
+
+         
+
+
+
+
         </div>
     </div>
-    </div>
+</div>

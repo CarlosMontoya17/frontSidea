@@ -15,6 +15,7 @@ import * as XLSX from 'xlsx'
 import { faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 import { faTrashArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { faTrashRestore } from '@fortawesome/free-solid-svg-icons';
+
 declare function loader(): any;
 declare function closeAlert(): any;
 
@@ -33,7 +34,7 @@ export class HistorialComponent implements OnInit {
   conteo: boolean = false;
   conteo2: boolean = false;
   conteo3: boolean = false;
-
+  docPath:string = "";
 
   public imagePath: any;
   hidden: boolean = false;
@@ -465,9 +466,6 @@ export class HistorialComponent implements OnInit {
       case "CHIAPAS":
         state = "chia";
         break;
-      case "CHIAPAS":
-        state = "chia";
-        break;
       case "BAJA CALIFORNIA SUR":
         state = "bcs";
         break;
@@ -760,8 +758,33 @@ export class HistorialComponent implements OnInit {
       }
     }
   }
+  Volver2() {
 
-
+    this.reloadCurrentRoute();
+  }
+  
+  
+  preview56(files:any) {
+    this.docPath = '   '; 
+    if (files.length === 0)
+      return;
+ 
+    var mimeType = files[0].type;
+    if (mimeType.match(/pdf\/*/) == null) {
+     
+      return;
+    }
+    
+    var reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files[0]); 
+    reader.onload = (_event) => { 
+      this.imgURL = reader.result; 
+     
+      
+    }
+  }
+  
   //SOLTAMOS EL DOCUMENTO PDF AL APARTADO DE DOCUMENTOS
   getFile($event: any): void {
     //TODO esto captura el archivo!

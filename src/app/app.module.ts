@@ -27,6 +27,8 @@ import { BuscarhistorialPipe } from './servicios/database/pipeHistorial/buscarhi
 import { RegistrosComponent } from './componentes/registros/registros.component';
 import { DocumentosmanualComponent } from './componentes/documentosmanual/documentosmanual.component';
 import { PapeleraComponent } from './componentes/papelera/papelera.component';
+import { PipeactaPipe } from './servicios/database/PipeActa/pipeacta.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +49,8 @@ import { PapeleraComponent } from './componentes/papelera/papelera.component';
     BuscarhistorialPipe,
     RegistrosComponent,
     DocumentosmanualComponent,
-    PapeleraComponent
+    PapeleraComponent,
+    PipeactaPipe
   ],
   imports: [
     BrowserModule,
