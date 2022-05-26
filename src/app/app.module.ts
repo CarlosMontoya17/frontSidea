@@ -28,6 +28,9 @@ import { RegistrosComponent } from './componentes/registros/registros.component'
 import { DocumentosmanualComponent } from './componentes/documentosmanual/documentosmanual.component';
 import { PapeleraComponent } from './componentes/papelera/papelera.component';
 import { PipeactaPipe } from './servicios/database/PipeActa/pipeacta.pipe';
+import { PreferencesComponent } from './componentes/inicio/new/preferences/preferences.component';
+
+
 
 @NgModule({
   declarations: [
@@ -50,7 +53,8 @@ import { PipeactaPipe } from './servicios/database/PipeActa/pipeacta.pipe';
     RegistrosComponent,
     DocumentosmanualComponent,
     PapeleraComponent,
-    PipeactaPipe
+    PipeactaPipe,
+    PreferencesComponent
   ],
   imports: [
     BrowserModule,

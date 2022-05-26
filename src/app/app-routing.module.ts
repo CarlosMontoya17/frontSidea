@@ -12,6 +12,7 @@ import { EditarpreciosComponent } from './componentes/administrar/editarprecios/
 import { CorteComponent } from './componentes/corte/corte.component';
 import { DocumentosmanualComponent } from './componentes/documentosmanual/documentosmanual.component';
 import { PapeleraComponent } from './componentes/papelera/papelera.component';
+import { PreferencesComponent } from './componentes/inicio/new/preferences/preferences.component';
 const routes: Routes = [
   {
   path: '',
@@ -67,6 +68,11 @@ const routes: Routes = [
   path: 'papelera',
   component: PapeleraComponent
 },
+
+{
+  path: 'preferences',
+  component: PreferencesComponent
+}
 
 
 

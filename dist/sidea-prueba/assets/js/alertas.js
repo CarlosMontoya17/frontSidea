@@ -1,7 +1,5 @@
 // import 'animate.css';
 
-
-
 function loader() {
     let timerInterval
     Swal.fire({
@@ -64,13 +62,161 @@ function ShowImageAd(id, tipo) {
             })
         }
 
-
     }
 
     );
+    edit();
 }
 
+function edit() {
+    var text_title = "Scrivi qualcosa";
+    var imageLoader = document.getElementById('imageLoader');
+    imageLoader.addEventListener('change', handleImage, false);
+    var canvas = document.getElementById('imageCanvas');
+    var ctx = canvas.getContext('2d');
+    var img = new Image();
 
+    img.crossOrigin = "anonymous";
+
+    var img2 = new Image();
+    img2.src = 'http://ampark.it/roshelle/logo-dualipa.png';
+
+
+
+    window.addEventListener('load', DrawPlaceholder)
+
+    function DrawPlaceholder() {
+        img.onload = function () {
+            DrawOverlay(img);
+            DrawText();
+            DynamicText(img)
+        };
+        img.src = 'https://picsum.photos/500/500/?random';
+
+    }
+    function DrawOverlay(img) {
+        ctx.drawImage(img, 0, 0);
+        ctx.fillStyle = "transparent";
+        ctx.fillStyle = 'rgba(30, 144, 255, 0)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // ctx.drawImage(img2,20,380, 331, 100);
+
+    }
+
+
+
+    function DrawText() {
+        ctx.fillStyle = "white";
+        ctx.textBaseline = 'middle';
+        ctx.font = "50px 'Montserrat'";
+        if (text_title != "Scrivi qualcosa") {
+            ctx.strokeText('', 50, 50);
+        } else {
+            ctx.strokeText(text_title, 50, 50);
+        }
+
+    }
+
+    function DynamicText(img) {
+        document.getElementById('name').addEventListener('keyup', function () {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            DrawOverlay(img);
+            DrawText();
+            text_title = this.value;
+            if (text_title.length > 25) {
+                ctx.font = "20px 'Montserrat'";
+            } else if (text_title.length > 19) {
+                ctx.font = "30px 'Montserrat'";
+            } else if (text_title.length > 15) {
+                ctx.font = "40px 'Montserrat'";
+            }
+
+            ctx.fillText(text_title, 50, 50);
+        });
+    }
+
+    function handleImage(e) {
+        var reader = new FileReader();
+        var img = "";
+        var src = "";
+        reader.onload = function (event) {
+            img = new Image();
+            img.onload = function () {
+                canvas.width = 500;
+                canvas.height = 500;
+                ctx.drawImage(img, 0, 0);
+                drawImageProp(ctx, this, 0, 0, canvas.width, canvas.height, 0.5, 0.5);
+            }
+            img.src = event.target.result;
+            src = event.target.result;
+            canvas.classList.add("show");
+            DrawOverlay(img);
+            DrawText();
+            DynamicText(img);
+        }
+
+        reader.readAsDataURL(e.target.files[0]);
+
+    }
+
+    function convertToImage() {
+        window.open(canvas.toDataURL('png'));
+    }
+    document.getElementById('download').onclick = function download() {
+        convertToImage();
+    }
+
+
+    function drawImageProp(ctx, img, x, y, w, h, offsetX, offsetY) {
+
+        if (arguments.length === 2) {
+            x = y = 0;
+            w = ctx.canvas.width;
+            h = ctx.canvas.height;
+        }
+
+        /// default offset is center
+        offsetX = typeof offsetX === 'number' ? offsetX : 0.5;
+        offsetY = typeof offsetY === 'number' ? offsetY : 0.5;
+
+        /// keep bounds [0.0, 1.0]
+        if (offsetX < 0) offsetX = 0;
+        if (offsetY < 0) offsetY = 0;
+        if (offsetX > 1) offsetX = 1;
+        if (offsetY > 1) offsetY = 1;
+
+        var iw = img.width,
+            ih = img.height,
+            r = Math.min(w / iw, h / ih),
+            nw = iw * r,   /// new prop. width
+            nh = ih * r,   /// new prop. height
+            cx, cy, cw, ch, ar = 1;
+
+        /// decide which gap to fill    
+        if (nw < w) ar = w / nw;
+        if (nh < h) ar = h / nh;
+        nw *= ar;
+        nh *= ar;
+
+        /// calc source rectangle
+        cw = iw / (nw / w);
+        ch = ih / (nh / h);
+
+        cx = (iw - cw) * offsetX;
+        cy = (ih - ch) * offsetY;
+
+        /// make sure source rectangle is valid
+        if (cx < 0) cx = 0;
+        if (cy < 0) cy = 0;
+        if (cw > iw) cw = iw;
+        if (ch > ih) ch = ih;
+
+        /// fill image in dest. rectangle
+        ctx.drawImage(img, cx, cy, cw, ch, x, y, w, h);
+    }
+}
 
 function download(url, tipo) {
     axios({
@@ -90,16 +236,18 @@ function download(url, tipo) {
 
 
 
-function Notifications(message, status){
+function Notifications(message, status) {
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
         confirmButton: true,
         confirmButtonText: 'Ok',
-      })
-      
-      Toast.fire({
+    })
+
+    Toast.fire({
         icon: status,
         title: message
-      });
+    }).then((result) => {
+        return result;
+    });
 }

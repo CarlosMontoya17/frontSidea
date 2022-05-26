@@ -2,12 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/servicios/admin.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+
+
+
 import * as CryptoJS from 'crypto-js';
+
+
 declare function loader(): any;
 declare function closeAlert(): any;
 declare function img_preview(): any;
 declare function ShowImageAd(id:any,tipo:any):any;
-
+declare function edit(): any;
+declare function show(): any;
 
 
 @Component({
@@ -36,9 +42,11 @@ image:any;
 sanitizer:any;
   constructor(private adminservice: AdminService, private router: Router) { }
 
+
   ngOnInit(): void {
 
   }
+
   VerImagenes(){
     this.getnombres();
 
@@ -178,8 +186,11 @@ sanitizer:any;
 
 showImage(id:any, tipo:any){
   ShowImageAd(id, tipo);
+ 
 }
-
+editimage(){
+  edit();
+}
   async getnombres() {
 
     if (localStorage.getItem('token') != null) {

@@ -27,8 +27,8 @@
                 </div>
                 <!-- SE SELECCIONA A QUE APARTADO SE DESEA SUBIR-->
                 <div class="input-group mb-3  animate__animated animate__fadeIn">
-                    <select class="form-select  animate__animated animate__fadeIn" id="inputGroupSelect08" (change)="selectOption($event)"
-                        (click)="changeView4()">
+                    <select class="form-select  animate__animated animate__fadeIn" id="inputGroupSelect08"
+                        (change)="selectOption($event)" (click)="changeView4()">
                         <option value="0" selected hidden="">Elija el grupo de imagen</option>
                         <option value="Acta de Nacimiento">Nacimiento</option>
                         <option value="Acta de Matrimonio">Matrimonio</option>
@@ -180,60 +180,68 @@
                             <div class="card-content">
                                 <div class="card-body"
                                     style="display: grid; align-items: center; justify-content: center;">
-                                    <div class="list-group list-group-horizontal-sm mb-1 text-center"  role="tablist">
+                                    <div class="list-group list-group-horizontal-sm mb-1 text-center" role="tablist">
 
                                         <a class="list-group-item list-group-item-action active" id="Nacimiento"
-                                            data-bs-toggle="list" href="#list-sunday" role="tab"
-                                            (click)="ver()" (click)="VerImagenes()"  (click)="setTipoDeActa('Acta de Nacimiento')">Nacimiento</a>
+                                            data-bs-toggle="list" href="#list-sunday" role="tab" (click)="ver()"
+                                            (click)="VerImagenes()"
+                                            (click)="setTipoDeActa('Acta de Nacimiento')">Nacimiento</a>
 
                                         <a class="list-group-item list-group-item-action" id="list-monday-list0"
-                                        (click)="ver()" (click)="VerImagenes()"     (click)="setTipoDeActa('Acta de Matrimonio')" data-bs-toggle="list"
+                                            (click)="ver()" (click)="VerImagenes()"
+                                            (click)="setTipoDeActa('Acta de Matrimonio')" data-bs-toggle="list"
                                             href="Matrimonio" role="tab">Matrimonio</a>
 
                                         <a class="list-group-item list-group-item-action" id="list-tuesday-list11"
-                                        (click)="ver()" (click)="VerImagenes()" (click)="setTipoDeActa('Acta de Divorcio')" data-bs-toggle="list"
+                                            (click)="ver()" (click)="VerImagenes()"
+                                            (click)="setTipoDeActa('Acta de Divorcio')" data-bs-toggle="list"
                                             href="Divorcio" role="tab">Divorcio</a>
 
                                         <a class="list-group-item list-group-item-action" id="list-tuesday-list22"
-                                        (click)="ver()" (click)="VerImagenes()"  (click)="setTipoDeActa('Acta de Defuncion')" data-bs-toggle="list"
+                                            (click)="ver()" (click)="VerImagenes()"
+                                            (click)="setTipoDeActa('Acta de Defuncion')" data-bs-toggle="list"
                                             href="Defunción" role="tab">Defunción</a>
 
                                         <a class="list-group-item list-group-item-action" id="list-tuesday-list1"
-                                        (click)="ver()" (click)="VerImagenes()" (click)="setTipoDeActa('Altas curp')" data-bs-toggle="list" href="Altas Curp"
-                                            role="tab">Altas Curp</a>
+                                            (click)="ver()" (click)="VerImagenes()"
+                                            (click)="setTipoDeActa('Altas curp')" data-bs-toggle="list"
+                                            href="Altas Curp" role="tab">Altas Curp</a>
 
                                         <a class="list-group-item list-group-item-action" id="Correcion de Curp"
-                                        (click)="ver()" (click)="VerImagenes()"  (click)="setTipoDeActa('Correcion de curp')" data-bs-toggle="list"
+                                            (click)="ver()" (click)="VerImagenes()"
+                                            (click)="setTipoDeActa('Correcion de curp')" data-bs-toggle="list"
                                             href="#list-nuevo" role="tab">Correcion de Curp</a>
 
                                         <a class="list-group-item list-group-item-action" id="Situacion fiscal"
-                                        (click)="ver()" (click)="VerImagenes()"  (click)="setTipoDeActa('Situacion fiscal')" data-bs-toggle="list"
+                                            (click)="ver()" (click)="VerImagenes()"
+                                            (click)="setTipoDeActa('Situacion fiscal')" data-bs-toggle="list"
                                             href="#list-nuevo" role="tab">Situacion fiscal</a>
 
                                         <a class="list-group-item list-group-item-action" id="Inhabilitación"
-                                        (click)="ver()" (click)="VerImagenes()"   (click)="setTipoDeActa('Inhabilitacion')" data-bs-toggle="list"
+                                            (click)="ver()" (click)="VerImagenes()"
+                                            (click)="setTipoDeActa('Inhabilitacion')" data-bs-toggle="list"
                                             href="#list-nuevo" role="tab">Inhabilitación</a>
 
                                         <a class="list-group-item list-group-item-action" id="Facturacion electronica"
-                                        (click)="ver()" (click)="VerImagenes()"    (click)="setTipoDeActa('Facturacion electronica')" data-bs-toggle="list"
+                                            (click)="ver()" (click)="VerImagenes()"
+                                            (click)="setTipoDeActa('Facturacion electronica')" data-bs-toggle="list"
                                             href="#list-nuevo" role="tab">Facturacion electronica</a>
-                                            
+
                                         <a class="list-group-item list-group-item-action" id="list-tuesday-list6"
-                                        (click)="ver()" (click)="VerImagenes()"   (click)="setTipoDeActa('General')" data-bs-toggle="list" href="General"
-                                            role="tab">General </a>
+                                            (click)="ver()" (click)="VerImagenes()" (click)="setTipoDeActa('General')"
+                                            data-bs-toggle="list" href="General" role="tab">General </a>
                                     </div>
 
                                     <!-- <a (click)="ver()" (click)="VerImagenes()" class="btn btn-success" style="margin: 1rem;" >Ver imagenes</a> -->
-                                   
+
                                     <div class="row" *ngIf="verImagenes">
-                                        <h4 class="text-center animate__animated animate__bounceIn ">  {{tipo }}</h4>
+                                        <h4 class="text-center animate__animated animate__bounceIn "> {{tipo }}</h4>
                                         <div class="card ads " *ngFor="let name of getnames">
-                                            <img (click)="showImage(name.id, name.tipo)"
-                                             src="http://actasalinstante.com:3030/api/ads/getImage/{{name.id}}"
+                                            <img (click)="showImage(name.id, name.tipo)"  (click)="editimage()"
+                                                src="http://actasalinstante.com:3030/api/ads/getImage/{{name.id}}"
                                                 title="{{name.tipo}}">
                                         </div>
                                     </div>
-
 
 
 
@@ -249,7 +257,7 @@
                     <div class="row match-height">
                         <div class="card-group">
 
-                            
+
                             <!-- <div class="col-lg-3 col-md-4 col-6" >
                                 <a  data-lightbox="roadtrip"><img class="example-image"
                                        alt="image-3" height="400" width="300"></a>
@@ -262,7 +270,7 @@
                 </section>
             </div>
 
-         
+
 
 
 

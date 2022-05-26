@@ -43,7 +43,7 @@
                 <div class="col" style=" border-left: 2px solid rgb(58, 58, 58);">
                     <h5 class="card-title">ARCHIVOS</h5>
                     <p class="card-text">DETALLES DE SOLICITUDES</p>
-                    <button (click)="obtainARequests()" class="btn" type="submit"
+                    <button (click)="view()" class="btn" type="submit"
                         style="background-color: white; color: black !important;">
                         <fa-icon [icon]="faBook"></fa-icon>
                         &nbsp;
@@ -798,9 +798,9 @@
             <div class="row">
                 <div class="col">
                     <label for="first-name-column">Acto Registral*:</label>
-                    <select class="form-select" id="basicSelect" name="tipoActa" [ngModel]="actoRegistral"
-                        (ngModelChange)="onChangeTwo($event)">
-                        <option selected hidden>Seleccione el acto registral</option>
+                    <select class="form-select" id="basicSelect" name="actoRegistral" [ngModel]="actoRegistral"
+                        (ngModelChange)="onChangeTwo($event)" required>
+                        <option value="Seleccione el acto registral">Seleccione el acto registral</option>
                         <option value="1">NACIMIENTO</option>
                         <option value="2">DEFUNCION</option>
                         <option value="3">MATRIMONIO</option>
@@ -810,14 +810,14 @@
                 </div>
                 <div class="col">
                     <label for="first-name-column">CURP*:</label>
-                    <input type="text" id="curp" class="form-control" required style="text-transform:uppercase"
-                        name="curp" placeholder="Ingresa tu CURP" [ngModel]="curp"
-                        (ngModelChange)="onChangeCurp($event)">
+                    <input onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" type="text" id="curp" class="form-control"  style="text-transform:uppercase"
+                        name="curp" placeholder="Ingresa tu CURP" [(ngModel)]="curp"
+                        (ngModelChange)="onChangeCurp($event)" required>
                 </div>
 
                 <div class="col">
                     <label for="first-name-column">Entidad de Registro:</label>
-                    <input class="form-control" name="entidad" required [(ngModel)]="entidad" readonly>
+                    <input class="form-control" name="entidad"  [(ngModel)]="entidad" readonly required>
                 </div>
             </div>
             <br>
@@ -828,7 +828,7 @@
                     </button>
                 </div>
                 <div class="col">
-                    <button type="reset" class="btn btn-light-secondary me-1 mb-1">Limpiar
+                    <button (click)="clearCURP()" type="reset" class="btn btn-light-secondary me-1 mb-1" >Limpiar
                         <fa-icon [icon]="borrar" class="add-user"></fa-icon>
                     </button>
                 </div>
@@ -849,7 +849,7 @@
                     <label for="first-name-column">Cadena Digital*:</label>
                 </div>
                 <div class="col">
-                    <input type="text" id="curp" class="form-control" required style="text-transform:uppercase"
+                    <input onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) )"  type="text" id="cadenadigital" class="form-control" required style="text-transform:uppercase"
                         name="cadenadigital" placeholder="Ingresa la Cadena Digital" [(ngModel)]="cadenadigital">
                         
                 </div>
@@ -862,7 +862,7 @@
                     </button>
                 </div>
                 <div class="col">
-                    <button id="conteo2" (click)="buscar()" type="reset">Limpiar
+                    <button id="conteo2" (click)="ClearCADENADIGITAL()"  type="reset">Limpiar
                         <fa-icon [icon]="borrar" class="add-user"></fa-icon>
                     </button>
                 </div>
@@ -878,9 +878,9 @@
 
             <div class="row">
                 <div class="col">
-                    <label for="first-name-column">Acto registral*:</label>
+                    <label  for="first-name-column">Acto registral*:</label>
 
-                    <select class="form-select" id="basicSelectDatos" name="tipoActaDatos" [ngModel]="actoRegistral"
+                    <select  style="background-color:#57585a  ; color: white;" class="form-select" id="tipoActaDatos" name="tipoActaDatos" [(ngModel)]="actoRegistral"
                         (ngModelChange)="onChangeTwo($event)">
                         <option selected>
                             Seleccione el acto registral
@@ -977,21 +977,21 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="city-column">Nombre(s)*:</label>
-                        <input [(ngModel)]="nombres" name="nombres" type="text" id="nombrePersonal"
+                        <input onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))"  [(ngModel)]="nombres" name="nombres" type="text" id="nombrePersonal"
                             style="text-transform:uppercase" class="form-control" placeholder="Ingresa los nombres">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="city-column">Primer Apellido*:</label>
-                        <input [(ngModel)]="primerApellido" type="text" id="apellidoP" style="text-transform:uppercase"
+                        <input onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))"  [(ngModel)]="primerApellido" type="text" id="apellidoP" style="text-transform:uppercase"
                             class="form-control" name="primerApellido" placeholder="Ingresa el primer apellido">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="city-column">Segundo Apellido*:</label>
-                        <input [(ngModel)]="segundoApellido" type="text" id="apellidoM" style="text-transform:uppercase"
+                        <input onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))"  [(ngModel)]="segundoApellido" type="text" id="apellidoM" style="text-transform:uppercase"
                             class="form-control" name="segundoApellido" placeholder="Ingresa el segundo apellido">
                     </div>
                 </div>
@@ -1003,14 +1003,14 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="city-column">Nombre(s)*:</label>
-                        <input [(ngModel)]="nombresSec" name="nombresSec" type="text" id="nombrePersonal"
+                        <input onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))"  [(ngModel)]="nombresSec" name="nombresSec" type="text" id="nombrePersonal"
                             style="text-transform:uppercase" class="form-control" placeholder="Ingresa los nombres">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="city-column">Primer Apellido*:</label>
-                        <input [(ngModel)]="primerApellidoSec" type="text" id="apellidoP"
+                        <input onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" [(ngModel)]="primerApellidoSec" type="text" id="apellidoP"
                             style="text-transform:uppercase" class="form-control" name="primerApellidoSec"
                             placeholder="Ingresa el primer apellido">
                     </div>
@@ -1018,7 +1018,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="city-column">Segundo Apellido*:</label>
-                        <input [(ngModel)]="segundoApellidoSec" type="text" id="apellidoM"
+                        <input onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))"  [(ngModel)]="segundoApellidoSec" type="text" id="apellidoM"
                             style="text-transform:uppercase" class="form-control" name="segundoApellidoSec"
                             placeholder="Ingresa el segundo apellido">
                     </div>
@@ -1071,7 +1071,7 @@
                 </div>
 
                 <div class="col">
-                    <button type="reset" class="btn btn-light-secondary me-1 mb-1">Limpiar
+                    <button (click)="clearActoRegistral()" type="reset" class="btn btn-light-secondary me-1 mb-1">Limpiar
                         <fa-icon [icon]="borrar" class="add-user"></fa-icon>
                     </button>
                 </div>
@@ -1231,7 +1231,7 @@
                     </button>
                 </div>
                 <div class="col">
-                    <button type="reset" class="btn btn-light-secondary me-1 mb-1">Limpiar
+                    <button (click)="clearDatosdelregistrocivil()" type="reset" class="btn btn-light-secondary me-1 mb-1">Limpiar
                         <fa-icon [icon]="borrar" class="add-user"></fa-icon>
                     </button>
                 </div>
@@ -1252,13 +1252,46 @@
             </div>
 
             <div class="row">
-                <div class="input-group mb-2">
-                    <span class="input-group-text" id="basic-addon3">BUSCAR</span>
-                    <input  [(ngModel)]="valorabuscar" name="valorabuscar" type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row text-center">
+                            <h5> FILTROS </h5>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col">
+                                <h6 class="text-center"> BUSCAR POR DATOS PROPORCIONADOS </h6>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon3">
+                                        <fa-icon [icon]="Buscar"></fa-icon>
+                                    </span>
+
+                                    <input  [(ngModel)]="valorabuscar" name="valorabuscar" type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                </div>
+                            </div>
+                            <div class="col text-center">
+                                <div class="dropdown">
+                                    <h6 class="text-center"> SELECCIONAR CORTE </h6>
+                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                      Seleccionar Corte
+                                    </a>
+                                  
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                      <li><a class="dropdown-item">Actual</a></li>
+                                    </ul>
+                                  </div>
+                            </div>
+                        </div>
+
+                        
+                    </div>
                 </div>
+
+                
             </div>
 
-            <div class="row">
+            <div class="row" style="margin-top: 1rem;">
 
                 
                 <div class="card animate__animated animate__fadeIn" style="width: 18rem; margin-right: 1rem; margin-bottom: 1rem;" *ngFor="let req of requests | pipeacta: valorabuscar" >
@@ -1296,13 +1329,13 @@
                             &nbsp;Descargar
                         </a>
 
-                        <a class="btn btn-danger" (click)="showDetails(req.comments)" *ngIf="req.comments != 'Enviado' && req.comments != null">
+                        <a class="btn btn-danger" (click)="showDetails(req.comments)" *ngIf="req.comments != 'Enviado' && req.comments != null && req.comments != '.'">
                             <fa-icon [icon]="faCircleXmark"></fa-icon>
         
                             &nbsp;Detalles
                         </a>
 
-                        <a class="btn btn-warning" *ngIf="req.comments == null">
+                        <a class="btn btn-warning" *ngIf="req.comments == null || req.comments == '.'">
                             <fa-icon [icon]="faRotate"></fa-icon>
         
                             &nbsp;En proceso
@@ -1315,3 +1348,5 @@
         </div>
 
 </div>
+
+<!-- <app-preferences class="row justify-content-center align-items-center" style="position: sticky; top: 0; z-index: 2000;"></app-preferences> -->

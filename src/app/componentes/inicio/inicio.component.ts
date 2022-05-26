@@ -10,14 +10,17 @@ import { faFaceGrin } from '@fortawesome/free-solid-svg-icons';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
-import { faFileArrowDown} from '@fortawesome/free-solid-svg-icons';
+import { faFileArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { faRotate } from '@fortawesome/free-solid-svg-icons';
+
+import { Observable } from 'rxjs';
 import * as CryptoJS from 'crypto-js';
+
 //Servicios
 import { ReadService } from './models/read.service';
 
-declare function showDetailsActas(comments:any):any;
-declare function loader():any;
+declare function showDetailsActas(comments: any): any;
+declare function loader(): any;
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
@@ -35,7 +38,7 @@ export class InicioComponent implements OnInit {
   faFileArrowDown = faFileArrowDown;
   faFaceGrin = faFaceGrin;
   tipodebusqueda: any = 'Seleccione el tipo de busqueda';
-  actoRegistral: any = '  Seleccione el acto registral';
+  actoRegistral: any = 'Seleccione el acto registral';
   preview: any = 0;
   entidadValue: any = 0;
   entidad: any = 'Entidad registro';
@@ -99,13 +102,51 @@ export class InicioComponent implements OnInit {
 
 
   requests: any = [];
-  constructor(private router: Router, private restservice: RestService, private readJson: ReadService) { }
+
+  dataset$: Observable<any>;
+
+  constructor(private router: Router, private restservice: RestService, private readJson: ReadService) { 
+    this.dataset$ = readJson.getObtainsCards;
+    this.dataset$.subscribe(data => {
+      this.requests = data;
+
+    })
+  }
 
 
 
 
   onChnageEntidad(value: any) {
     this.entidadValue = value;
+  }
+  clearCURP(){
+    this.actoRegistral = "Seleccione el acto registral";
+    this.entidad = "";
+    this.curp = "";
+  }
+  ClearCADENADIGITAL(){
+    this.cadenadigital = "";
+ 
+  }
+  clearActoRegistral(){
+    this.actoRegistral = "Seleccione el acto registral";
+    this.entidad = "Seleccione la entidad de registro";
+    this.nombres = "";
+    this.nombresSec = "";
+    this.primerApellido = "";
+    this.segundoApellido = "";
+    this.fechaNacimiento = "";
+  }
+
+
+  clearDatosdelregistrocivil(){
+    this.actoRegistral = "Seleccione el acto registral";
+    this.estadoxRc = "";
+    this.municipioSelect = "";
+    this.oficialiaSelect = "";
+    this.yearActa = "";
+    this.numActa = "";
+    this.fechaNacimiento = "";
   }
   //CERRAMOS SESION
   logout() {
@@ -131,15 +172,14 @@ export class InicioComponent implements OnInit {
   }
 
 
-  showDetails(comments:any){
-    showDetailsActas(comments+ ", Intente con otro tipo de busqueda");
+  showDetails(comments: any) {
+    showDetailsActas(comments + " Intente con otro tipo de busqueda");
   }
 
 
   //OBTENER SOLICITUDES ENVIADAS
   public async obtainARequests() {
-    this.requestsView = !this.requestsView;
-    if(this.requestsView == true){
+    if (this.requestsView == true) {
       this.tipodebusqueda = 'Seleccione el tipo de busqueda';
     }
 
@@ -165,7 +205,7 @@ export class InicioComponent implements OnInit {
           break;
       }
       this.requests.push({
-        "nm": i+1,
+        "nm": i + 1,
         "id": data[i].id,
         "type": data[i].type,
         "metadata": metadata,
@@ -210,25 +250,27 @@ export class InicioComponent implements OnInit {
   }
 
 
-  view(){
+  view() {
     this.requestsView = !this.requestsView;
+    this.obtainARequests();
   }
 
-  async downloadActa(id:any, url:any){
-    if(url != null){
+  async downloadActa(id: any, url: any) {
+    if (url != null) {
       await this.restservice.getMyActa(id).subscribe(data => {
         const a = document.createElement('a')
-          const objectUrl = URL.createObjectURL(data)
-          a.href = objectUrl
-          a.download = url;
-          a.click();
-          URL.revokeObjectURL(objectUrl);
+        const objectUrl = URL.createObjectURL(data)
+        a.href = objectUrl
+        a.download = url;
+        a.click();
+        URL.revokeObjectURL(objectUrl);
       });
     }
   }
 
   //BUSCAR POR CURP
   async buscar() {
+
     switch (this.actoRegistral) {
       case "1": {
         this.acto = 'NACIMIENTO';
@@ -257,31 +299,162 @@ export class InicioComponent implements OnInit {
     // }
     let datosdeenvio = [];
     if (this.tipodebusqueda == '1') {
-      datosdeenvio.push(
-        {
-          "type": "CURP",
-          "metadata": { "type": this.acto, "state": this.entidad, "curp": this.curp.toUpperCase() }
-        }
-      );
-        
+
+      if (this.acto == "" || this.acto == undefined) {
+        Swal.fire(
+          {
+            position: 'center',
+            icon: 'error',
+            title: 'Llena todos los campos',
+            showConfirmButton: false,
+            timer: 1500
+          }
+        );
+      }
+      else if (this.curp == "" || this.curp.length < 18) {
+
+
+          let digit = this.curp.length;
+
+          Swal.fire(
+            {
+              position: 'center',
+              icon: 'error',
+              title: `Te hacen falta ${Math.abs(18 - Number(digit))} digitos en la CURP`,
+              showConfirmButton: false,
+              timer: 1500
+            }
+          );
+
+        } 
+      else if (this.curp.length > 18) {
+          let digit = this.curp.length;
+          Swal.fire(
+            {
+              position: 'center',
+              icon: 'error',
+              title: `Te sobran ${Math.abs(18 - Number(digit))} digitos en la CURP`,
+              showConfirmButton: false,
+              timer: 1500
+            }
+          );
+      }
+      else if (this.curp.length == 18 && this.acto != undefined && this.acto != "") {
+        datosdeenvio.push(
+          {
+            "type": "CURP",
+            "metadata": { "type": this.acto, "state": this.entidad, "curp": this.curp.toUpperCase() }
+          }
+        );
+      }
+
+
     }
     else if (this.tipodebusqueda == '2') {
 
-      datosdeenvio.push(
-        {
-          "type": "Cadena Digital",
-          "metadata": { "cadena": this.cadenadigital }
+      try {
+
+        if (this.cadenadigital == undefined || this.cadenadigital.length != 20) {
+          Swal.fire(
+            {
+              position: 'center',
+              icon: 'error',
+              title: 'Llena todos los campos',
+              showConfirmButton: false,
+              timer: 1500
+            }
+          );
+          this.alerts = ["Ingresa todos los datos"];
+
+          if (this.cadenadigital == 0 || this.cadenadigital.length < 20) {
+
+
+            let digit = this.cadenadigital.length;
+
+            Swal.fire(
+              {
+                position: 'center',
+                icon: 'error',
+                title: `Te hacen falta ${Math.abs(20 - Number(digit))} digito(s) en la CADENA DIGITAL`,
+                showConfirmButton: false,
+                timer: 1500
+              }
+            );
+            this.alerts = [`Te hacen falta ${Math.abs(20 - Number(digit))} digito(s) en la CADENA DIGITAL`];
+
+          } else if (this.cadenadigital.length > 20) {
+            let digit = this.cadenadigital.length;
+            Swal.fire(
+              {
+                position: 'center',
+                icon: 'error',
+                title: `Te sobran ${Math.abs(20 - Number(digit))} digito(s) en la CADENA DIGITAL`,
+                showConfirmButton: false,
+                timer: 1500
+              }
+            );
+
+            this.alerts = [`Te sobran ${Math.abs(20 - Number(digit))} digito(s) en la CADENA DIGITAL`];
+
+          }
         }
-      );
+        else {
+          datosdeenvio.push(
+            {
+              "type": "Cadena Digital",
+              "metadata": { "cadena": this.cadenadigital }
+            }
+          );
+
+
+        }
+
+
+      }
+      catch {
+        Swal.fire(
+          {
+            position: 'center',
+            icon: 'error',
+            title: 'Llena todos los campos',
+            showConfirmButton: false,
+            timer: 1500
+          }
+        );
+      }
+
+
+
 
     }
 
 
     else if (this.tipodebusqueda == '3') {
+
+
       
+
       if (this.acto != "MATRIMONIO" && this.acto != "DIVORCIO") {
-        // console.log("No es matrimonio o divorcio!");
+    
+        if (this.acto == "" || this.acto == undefined
+        || this.entidad == "" || this.entidad == undefined
+        || this.nombres == "" || this.nombres == undefined
+        || this.sexo == "" || this.sexo == undefined
+        || this.fechaNacimiento == "" || this.fechaNacimiento == undefined) {
+          this.alerts = ["Ingresa todos los datos"];
+        Swal.fire(
+          {
+            position: 'center',
+            icon: 'error',
+            title: 'Llena todos los campos',
+            showConfirmButton: false,
+            timer: 1500
+          }
+        );
+      }
+      else{
         try {
+          
           var fechas = this.fechaNacimiento.toString().split("-");
           datosdeenvio.push(
             {
@@ -297,31 +470,79 @@ export class InicioComponent implements OnInit {
           );
 
 
-
         } catch (error) {
           this.alerts = ["Ingresa todos los datos"];
+          Swal.fire(
+            {
+              position: 'center',
+              icon: 'error',
+              title: 'Llena todos los campos',
+              showConfirmButton: false,
+              timer: 1500
+            }
+          );
         }
 
       }
+      }
+
       else {
+        if (this.actoRegistral == "" || this.actoRegistral == undefined
+        || this.entidad == "" || this.entidad == undefined
+        || this.nombres == "" || this.nombres == undefined
+        || this.primerApellido == "" || this.primerApellido == undefined
+        || this.segundoApellido == "" || this.segundoApellido == undefined
+        || this.nombresSec ==  "" || this.nombresSec == undefined
+        || this.primerApellidoSec == "" || this.primerApellidoSec == undefined
+        || this.segundoApellidoSec == "" || this.segundoApellidoSec == undefined)
+       {
+        Swal.fire(
+          {
+            position: 'center',
+            icon: 'error',
+            title: 'Llena todos los campos',
+            showConfirmButton: false,
+            timer: 1500
+          }
+        );
+
+       }
+       else
         try {
-          datosdeenvio.push(
-            {
-              "type": "Datos Personales",
-              "metadata": {
-                "type": this.acto, 
-                "state": this.entidad,
-                "nombre": this.nombres.toUpperCase(), 
-                "primerapellido": this.primerApellido.toUpperCase(),
-                "segundoapelido": this.segundoApellido.toUpperCase(),
-                "snombre": this.nombresSec.toUpperCase(), 
-                "sprimerapellido": this.primerApellidoSec.toUpperCase(),
-                "ssegundoapellido": this.segundoApellidoSec.toUpperCase()
-              }
+         
+     
+        datosdeenvio.push(
+          {
+            "type": "Datos Personales",
+            "metadata": {
+              "type": this.acto,
+              "state": this.entidad,
+              "nombre": this.nombres.toUpperCase(),
+              "primerapellido": this.primerApellido.toUpperCase(),
+              "segundoapelido": this.segundoApellido.toUpperCase(),
+              "snombre": this.nombresSec.toUpperCase(),
+              "sprimerapellido": this.primerApellidoSec.toUpperCase(),
+              "ssegundoapellido": this.segundoApellidoSec.toUpperCase()
             }
-          );
+          }
+        );
+
+
+        
+         
+      
         } catch (error) {
           this.alerts = ["Ingresa todos los datos"];
+          Swal.fire(
+            {
+              position: 'center',
+              icon: 'error',
+              title: 'Llena todos los campos',
+              showConfirmButton: false,
+              timer: 1500
+            }
+          );
+         
         }
       }
     }
@@ -338,20 +559,25 @@ export class InicioComponent implements OnInit {
           }
         }
       );
+    }
 
+  
+    if (datosdeenvio.length != 0) {
+      this.restservice.SolicitudactasporCurp(datosdeenvio[0]).subscribe((data: any) => {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Datos enviados ',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this.reloadCurrentRoute();
+        this.readJson.setViewCards(false);
+      });
     }
 
 
-    const acto = this.restservice.SolicitudactasporCurp(datosdeenvio[0]).toPromise();
 
-    Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'Datos enviados ',
-      showConfirmButton: false,
-      timer: 1500
-    })
-    this.reloadCurrentRoute();
   }
 
   clearAllVariables() {
@@ -607,7 +833,7 @@ export class InicioComponent implements OnInit {
     this.router.navigateByUrl("/historial");
   }
   onChange(event: any) {
-    if(this.requestsView == true){
+    if (this.requestsView == true) {
       this.requestsView = false;
     }
     this.tipodebusqueda = event;
@@ -624,6 +850,10 @@ export class InicioComponent implements OnInit {
       this.router.navigateByUrl('/login');
     }
 
+    this.requestsView = this.readJson.getViewCards();
+    if(this.requestsView == true){
+      this.obtainARequests();
+    }
     var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
     let userName = usuario.toString(CryptoJS.enc.Utf8);
     let arreglo = userName?.split('"');

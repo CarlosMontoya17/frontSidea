@@ -1,0 +1,12 @@
+.selectionable:hover {
+    cursor: pointer;
+    outline: thick solid rgba(45, 209, 224, 0.226);;
+}
+
+.buttonsGroup {
+    /* margin-left: auto; */
+    background-color: white;
+    width: 50%;
+    align-self: center !important;
+    margin-bottom: 1rem;
+}
