@@ -41,6 +41,13 @@ export class EditarpreciosComponent implements OnInit {
   nss: number = 0;
   rfc: number = 0;
   inh: number = 0;
+  //Nuevos servicios
+  ret: number = 0;
+  sus: number = 0;
+  ecu: number = 0;
+  reset: number = 0;
+  arfc: number = 0;
+  dnac: number =  0;
   vista: boolean = false;
 
   BAJACALIFORNIA: number = 0;
@@ -166,7 +173,14 @@ export class EditarpreciosComponent implements OnInit {
         "der": this.der,
         "nss": this.nss,
         "rfc": this.rfc,
-        "inh": this.inh
+        "inh": this.inh,
+
+        "ret": this.ret,
+        "sus": this.sus ,
+        "ecu": this.ecu ,
+        "reset":this.reset,
+        "arfc": this.arfc,
+        "dnac": this.dnac,
       }
     }
     
@@ -180,7 +194,14 @@ export class EditarpreciosComponent implements OnInit {
         "der": this.der,
         "nss": this.nss,
         "rfc": this.rfc,
-        "inh": this.inh
+        "inh": this.inh,
+
+        "ret": this. ret,
+        "sus": this.sus ,
+        "ecu": this.ecu ,
+        "reset": this.reset,
+        "arfc":  this.arfc,
+        "dnac":  this.dnac,
       }
     }
 
@@ -232,7 +253,15 @@ export class EditarpreciosComponent implements OnInit {
     }
     else if (this.currentStep == 1) {
       if (!this.porEstados) {
-        if (this.nac != 0 && this.mat != 0 && this.def != 0 && this.div != 0 && this.cot != 0 && this.der != 0 && this.nss != 0 && this.rfc != 0 && this.inh != 0) {
+        if (this.nac != 0 && this.mat != 0 && this.def != 0 && this.div != 0 && this.cot != 0 && this.der != 0 && this.nss != 0 && this.rfc != 0 && 
+          this.inh != 0
+          && this.ret != 0
+          && this.ecu != 0
+          && this.reset != 0
+          && this.arfc != 0
+          && this.dnac != 0
+          
+          ) {
           this.alert = [];
           this.currentStep++;
         }
@@ -241,7 +270,15 @@ export class EditarpreciosComponent implements OnInit {
         }
       }
       else {
-        if (this.mat != 0 && this.def != 0 && this.div != 0 && this.cot != 0 && this.der != 0 && this.nss != 0 && this.rfc != 0 && this.inh != 0) {
+        if (this.mat != 0 && this.def != 0 && this.div != 0 && this.cot != 0 && this.der != 0 && this.nss != 0 && this.rfc != 0 && 
+          this.inh != 0
+          && this.ret != 0
+          && this.ecu != 0
+          && this.reset != 0
+          && this.arfc != 0
+          && this.dnac != 0
+          
+          ) {
           this.alert = [];
           this.currentStep++;
         }
@@ -325,6 +362,14 @@ export class EditarpreciosComponent implements OnInit {
     this.inh = this.precios.inh;
     this.der = this.precios.der;
     this.div = this.precios.div;
+
+    this.ret = this.precios.ret;
+    this.sus = this.precios.sus;
+    this.ecu = this.precios.ecu;
+    this.reset = this.precios.reset;
+    this.arfc = this.precios.arfc;
+    this.dnac = this.precios.dnac;
+
     this.Negocio = this.usuarios.nombre;
     this.tipoNegocio = this.usuarios.type;
     if (this.usuarios.Status == false) {

@@ -39,7 +39,7 @@ export class AdministrarComponent implements OnInit {
   alert: any = [];
 
   usernameLocal: string = "";
-
+//Lista de precios de actas
   nac: number = 0;
   mat: number = 150;
   def: number = 160;
@@ -49,8 +49,17 @@ export class AdministrarComponent implements OnInit {
   nss: number = 50;
   rfc: number = 100;
   inh: number = 140;
-  vista: boolean = false;
+  //Nuevos servicios
+  ret: number = 0;
+  sus: number = 0;
+  ecu: number = 0;
+  reset: number = 0;
+  arfc: number = 0;
+  dnac: number =  0;
 
+
+  vista: boolean = false;
+//Lista de precios por estado
   BAJACALIFORNIA: number = 140;
   YUCATAN: number = 135;
   BAJACALIFORNIASUR: number = 130;
@@ -85,7 +94,7 @@ export class AdministrarComponent implements OnInit {
   QUINTANAROO: number = 50;
   EXTRANJERO: number = 120;
   precios: any = [];
-
+////////////////////////////
   tipodebusqueda: any = 'Seleccione el tipo de busqueda';
   preview: any = 0;
   usuarios: any;
@@ -147,6 +156,13 @@ export class AdministrarComponent implements OnInit {
       this.nss = 50;
       this.rfc = 100;
       this.inh = 130;
+      ///Nuevos Servicios
+      this. ret = 100;
+      this.sus = 100;
+      this.ecu = 200;
+      this.reset = 650;
+      this.arfc = 1700;
+      this.dnac =  1700;
       //Estados
       this.BAJACALIFORNIA = 130;
       this.YUCATAN = 125;
@@ -192,6 +208,13 @@ export class AdministrarComponent implements OnInit {
       this.nss = 40;
       this.rfc = 120;
       this.inh = 130;
+
+      this. ret = 100;
+      this.sus = 100;
+      this.ecu = 200;
+      this.reset = 650;
+      this.arfc = 1700;
+      this.dnac =  1700;
       //Estados
       this.BAJACALIFORNIA = 140;
       this.YUCATAN = 135;
@@ -237,6 +260,12 @@ export class AdministrarComponent implements OnInit {
       this.nss = 50;
       this.rfc = 100;
       this.inh = 130;
+      this. ret = 100;
+      this.sus = 100;
+      this.ecu = 200;
+      this.reset = 650;
+      this.arfc = 1700;
+      this.dnac =  1700;
       //Estados
       this.BAJACALIFORNIA = 140;
       this.YUCATAN = 135;
@@ -385,7 +414,14 @@ export class AdministrarComponent implements OnInit {
           "der": this.der,
           "nss": this.nss,
           "rfc": this.rfc,
-          "inh": this.inh
+          "inh": this.inh,
+
+         "ret": this. ret,
+         "sus": this.sus ,
+         "ecu": this.ecu ,
+         "reset": this.reset,
+         "arfc":  this.arfc,
+         "dnac":  this.dnac,
         }
       }
       else {
@@ -398,7 +434,13 @@ export class AdministrarComponent implements OnInit {
           "der": this.der,
           "nss": this.nss,
           "rfc": this.rfc,
-          "inh": this.inh
+          "inh": this.inh,
+          "ret": this. ret,
+         "sus": this.sus ,
+         "ecu": this.ecu ,
+         "reset": this.reset,
+         "arfc":  this.arfc,
+         "dnac":  this.dnac,
         }
       }
       let idSuper;
@@ -450,7 +492,21 @@ export class AdministrarComponent implements OnInit {
     }
     else if (this.currentStep == 1) {
       if (!this.porEstados) {
-        if (this.nac != 0 && this.mat != 0 && this.def != 0 && this.div != 0 && this.cot != 0 && this.der != 0 && this.nss != 0 && this.rfc != 0 && this.inh != 0) {
+        if (this.nac != 0 && 
+          this.mat != 0 && this.def != 0 
+          && this.div != 0 && 
+          this.cot != 0 &&
+           this.der != 0 && 
+           this.nss != 0 && 
+           this.rfc != 0 && 
+           this.inh != 0 
+           && this.ret != 0
+           && this.ecu != 0
+           && this.reset != 0
+           && this.arfc != 0
+           && this.dnac != 0
+     
+           ) {
           this.alert = [];
           this.currentStep++;
         }
@@ -459,7 +515,12 @@ export class AdministrarComponent implements OnInit {
         }
       }
       else {
-        if (this.mat != 0 && this.def != 0 && this.div != 0 && this.cot != 0 && this.der != 0 && this.nss != 0 && this.rfc != 0 && this.inh != 0) {
+        if (this.mat != 0 && this.def != 0 && this.div != 0 && this.cot != 0 && this.der != 0 && this.nss != 0 && this.rfc != 0 && this.inh != 0 
+         && this.ret != 0
+          && this.ecu != 0
+          && this.reset != 0
+          && this.arfc != 0
+          && this.dnac != 0) {
           this.alert = [];
           this.currentStep++;
         }

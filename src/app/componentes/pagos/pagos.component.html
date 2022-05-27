@@ -173,7 +173,7 @@
                             <tr *ngFor="let acta of corteDelUsuario;  let infexof = index; " style="cursor: pointer;">
                                 <th scope="row" style="width: 3em !important;">{{ infexof + 1 }}</th>
                                 <td style=" font-size:1.0em; width: 13rem !important; height: 5rem !important;">{{ acta.document }}</td>
-                                <td style=" font-size:1.0em; width: 8rem !important;">{{ acta.createdAt | date:'yyyy-MM-dd' }} </td>
+                                <td style=" font-size:1.0em; width: 8rem !important;">{{ acta.createdAt | date:'dd-MM-yyyy' }} </td>
                                 <td style=" font-size:1.0em; width: 10rem !important;">{{ acta.states }} </td>
                                 <td style=" font-size:1.0em; width: 20rem !important;"> {{ acta.nombreacta }}</td>
                                 <td style=" font-size:1.0em; width: 10rem !important;"> {{ acta.curp }}</td>
@@ -210,7 +210,7 @@
                                 <tr *ngFor="let acta of items;  let indexof = index; " style="cursor: pointer;">
                                     <th scope="row" style="width: 3em !important;">{{ indexOfItems[0][indexof] }}</th>
                                     <td style=" font-size:1.0em; width: 13rem !important; height: 5rem !important;">{{ acta.document }}</td>
-                                    <td style=" font-size:1.0em; width: 8rem !important;">{{ acta.createdAt | date:'yyyy-MM-dd' }} </td>
+                                    <td style=" font-size:1.0em; width: 8rem !important;">{{ acta.createdAt | date:'dd-MM-yyyy' }} </td>
                                     <td style=" font-size:1.0em; width: 10rem !important;">{{ acta.states }} </td>
                                     <td style=" font-size:1.0em; width: 20rem !important;"> {{ acta.nombreacta }}</td>
                                     <td style=" font-size:1.0em; width: 10rem !important;"> {{ acta.curp }}</td>

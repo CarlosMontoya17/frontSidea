@@ -129,8 +129,6 @@ function edit() {
 
 
     function DrawText() {
-
-        
         ctx.fillStyle = "white";
         ctx.textBaseline = 'middle';
         ctx.font = "50px 'Montserrat'";

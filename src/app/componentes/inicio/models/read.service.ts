@@ -8,7 +8,7 @@ import { Requested } from './actas_req.model';
   providedIn: 'root'
 })
 export class ReadService {
-  private getRequested: BehaviorSubject<any> = new BehaviorSubject<any>({});
+  private getRequested: BehaviorSubject<any> = new BehaviorSubject<any>([]);
 
 
   view:boolean = false;
@@ -28,7 +28,7 @@ export class ReadService {
   }
 
   set ObtainCards(req: any){
-        this.getRequested.next(req);
+      this.getRequested.next(req);
   }
 
   setViewCards(value:any){

@@ -274,8 +274,16 @@
     </div>
   </div>
   <div id="canvas-wrap">
-     <canvas style="display:block" id="imageCanvas" width=500px height=500px>
-        <canvas id="canvasID"></canvas>
+     <canvas   *ngFor="let names of getnames" style="display:block" id="imageCanvas" width=500px height=500px>
+       
+        
+        <canvas  id="canvasID">   
+
+            <img (click)="showImages(names.id, names.tipo)"  (click)="editimage()"
+            src="http://actasalinstante.com:3030/api/ads/getImage/{{names.id}}"
+            title="{{names.tipo}}">
+
+        </canvas>
     </canvas> 
   </div>
   

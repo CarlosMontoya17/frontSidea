@@ -13,7 +13,7 @@ import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { faFileArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { faRotate } from '@fortawesome/free-solid-svg-icons';
 
-import { Observable } from 'rxjs';
+import { map, Observable, switchMap } from 'rxjs';
 import * as CryptoJS from 'crypto-js';
 
 //Servicios
@@ -105,30 +105,45 @@ export class InicioComponent implements OnInit {
 
   dataset$: Observable<any>;
 
-  constructor(private router: Router, private restservice: RestService, private readJson: ReadService) { 
+  constructor(private router: Router, private restservice: RestService, private readJson: ReadService) {
     this.dataset$ = readJson.getObtainsCards;
-    this.dataset$.subscribe(data => {
-      this.requests = data;
-
-    })
+    this.dataset$.subscribe((data:any) => {
+        this.requests = data;
+    });
+    
+    // this.dataset$.subscribe((data:any) => {
+    //   this.ProcessData(data);
+    //   // console.log( this.requests[0] );
+    //   // console.log( "----------------------");
+    //   // console.log( data );
+    //   // this.requests[0] = data[0];
+    // })
   }
 
 
+
+
+  autoCompleteDate() {
+    if (this.fechaNacimiento.length == 2 || this.fechaNacimiento.length == 5) {
+      this.fechaNacimiento = this.fechaNacimiento + "/";
+    }
+
+  }
 
 
   onChnageEntidad(value: any) {
     this.entidadValue = value;
   }
-  clearCURP(){
+  clearCURP() {
     this.actoRegistral = "Seleccione el acto registral";
     this.entidad = "";
     this.curp = "";
   }
-  ClearCADENADIGITAL(){
+  ClearCADENADIGITAL() {
     this.cadenadigital = "";
- 
+
   }
-  clearActoRegistral(){
+  clearActoRegistral() {
     this.actoRegistral = "Seleccione el acto registral";
     this.entidad = "Seleccione la entidad de registro";
     this.nombres = "";
@@ -139,7 +154,7 @@ export class InicioComponent implements OnInit {
   }
 
 
-  clearDatosdelregistrocivil(){
+  clearDatosdelregistrocivil() {
     this.actoRegistral = "Seleccione el acto registral";
     this.estadoxRc = "";
     this.municipioSelect = "";
@@ -196,7 +211,14 @@ export class InicioComponent implements OnInit {
           metadata = "CADENA: " + data[i].metadata.cadena;
           break;
         case "Datos Personales":
-          metadata = "TIPO: " + data[i].metadata.type + "\nESTADO: " + data[i].metadata.state + "\nNOMBRES: " + data[i].metadata.nombre + "\n1er APELLIDO: " + data[i].metadata.primerapellido + "\n2do APELLIDO: " + data[i].metadata.segundoapelido + "\nSEXO: " + data[i].metadata.sexo + "\nFECHA NAC.: " + data[i].metadata.fecnac;
+
+          if (data[i].metadata.sexo != undefined) {
+            metadata = "TIPO: " + data[i].metadata.type + "\nESTADO: " + data[i].metadata.state + "\nNOMBRES: " + data[i].metadata.nombre + "\n1er APELLIDO: " + data[i].metadata.primerapellido + "\n2do APELLIDO: " + data[i].metadata.segundoapelido + "\nSEXO: " + data[i].metadata.sexo + "\nFECHA NAC.: " + data[i].metadata.fecnac;
+
+          }
+          else {
+            metadata = "TIPO: " + data[i].metadata.type + "\nESTADO: " + data[i].metadata.state + "\nNOMBRES (1): " + data[i].metadata.nombre + "\n1er APELLIDO (1): " + data[i].metadata.primerapellido + "\n2do APELLIDO (1): " + data[i].metadata.segundoapelido + "\nNOMBRES (2): " + data[i].metadata.snombre + "\n1er APELLIDO (2): " + data[i].metadata.sprimerapellido + "\n2do APELLIDO (2): " + data[i].metadata.ssegundoapellido;
+          }
           break;
         case "Datos del Registro Civil":
           break;
@@ -314,30 +336,30 @@ export class InicioComponent implements OnInit {
       else if (this.curp == "" || this.curp.length < 18) {
 
 
-          let digit = this.curp.length;
+        let digit = this.curp.length;
 
-          Swal.fire(
-            {
-              position: 'center',
-              icon: 'error',
-              title: `Te hacen falta ${Math.abs(18 - Number(digit))} digitos en la CURP`,
-              showConfirmButton: false,
-              timer: 1500
-            }
-          );
+        Swal.fire(
+          {
+            position: 'center',
+            icon: 'error',
+            title: `Te hacen falta ${Math.abs(18 - Number(digit))} digitos en la CURP`,
+            showConfirmButton: false,
+            timer: 1500
+          }
+        );
 
-        } 
+      }
       else if (this.curp.length > 18) {
-          let digit = this.curp.length;
-          Swal.fire(
-            {
-              position: 'center',
-              icon: 'error',
-              title: `Te sobran ${Math.abs(18 - Number(digit))} digitos en la CURP`,
-              showConfirmButton: false,
-              timer: 1500
-            }
-          );
+        let digit = this.curp.length;
+        Swal.fire(
+          {
+            position: 'center',
+            icon: 'error',
+            title: `Te sobran ${Math.abs(18 - Number(digit))} digitos en la CURP`,
+            showConfirmButton: false,
+            timer: 1500
+          }
+        );
       }
       else if (this.curp.length == 18 && this.acto != undefined && this.acto != "") {
         datosdeenvio.push(
@@ -432,45 +454,15 @@ export class InicioComponent implements OnInit {
     else if (this.tipodebusqueda == '3') {
 
 
-      
+
 
       if (this.acto != "MATRIMONIO" && this.acto != "DIVORCIO") {
         console.log(this.entidad);
         if (this.acto == "" || this.acto == undefined
-        || this.entidad == "" || this.entidad == undefined
-        || this.nombres == "" || this.nombres == undefined
-        || this.sexo == "" || this.sexo == undefined
-        || this.fechaNacimiento == "" || this.fechaNacimiento == undefined) {
-          this.alerts = ["Ingresa todos los datos"];
-        Swal.fire(
-          {
-            position: 'center',
-            icon: 'error',
-            title: 'Llena todos los campos',
-            showConfirmButton: false,
-            timer: 1500
-          }
-        );
-      }
-      else{
-        try {
-          
-          var fechas = this.fechaNacimiento.toString().split("-");
-          datosdeenvio.push(
-            {
-              "type": "Datos Personales",
-              "metadata": {
-                "type": this.acto, "state": this.entidad,
-                "nombre": this.nombres.toUpperCase(), "primerapellido": this.primerApellido.toUpperCase(),
-                "segundoapelido": this.segundoApellido.toUpperCase(),
-                "sexo": this.sexo,
-                "fecnac": fechas
-              }
-            }
-          );
-
-
-        } catch (error) {
+          || this.entidad == "" || this.entidad == undefined
+          || this.nombres == "" || this.nombres == undefined
+          || this.sexo == "" || this.sexo == undefined
+          || this.fechaNacimiento == "" || this.fechaNacimiento == undefined) {
           this.alerts = ["Ingresa todos los datos"];
           Swal.fire(
             {
@@ -483,54 +475,174 @@ export class InicioComponent implements OnInit {
           );
         }
 
-      }
+        //init
+
+        else if (this.fechaNacimiento == "" || this.fechaNacimiento.length < 10) {
+
+
+          let digit = this.fechaNacimiento.length;
+
+          Swal.fire(
+            {
+              position: 'center',
+              icon: 'error',
+              title: `Te hacen falta ${Math.abs(10 - Number(digit))} digitos en la Fecha de Nacimiento`,
+              showConfirmButton: false,
+              timer: 1500
+            }
+          );
+
+        }
+        else if (this.fechaNacimiento.length > 10) {
+          let digit = this.fechaNacimiento.length;
+          Swal.fire(
+            {
+              position: 'center',
+              icon: 'error',
+              title: `Te sobran ${Math.abs(10 - Number(digit))} digitos en la Fecha de Nacimiento`,
+              showConfirmButton: false,
+              timer: 1500
+            }
+          );
+        }
+
+
+
+
+        //end
+
+
+
+        else {
+          try {
+
+            var fechas = this.fechaNacimiento.toString().split("-");
+            datosdeenvio.push(
+              {
+                "type": "Datos Personales",
+                "metadata": {
+                  "type": this.acto, "state": this.entidad,
+                  "nombre": this.nombres.toUpperCase(), "primerapellido": this.primerApellido.toUpperCase(),
+                  "segundoapelido": this.segundoApellido.toUpperCase(),
+                  "sexo": this.sexo,
+                  "fecnac": fechas
+                }
+              }
+            );
+
+
+          } catch (error) {
+            this.alerts = ["Ingresa todos los datos"];
+            Swal.fire(
+              {
+                position: 'center',
+                icon: 'error',
+                title: 'Llena todos los campos',
+                showConfirmButton: false,
+                timer: 1500
+              }
+            );
+          }
+
+        }
       }
 
       else {
         if (this.actoRegistral == "" || this.actoRegistral == undefined
-        || this.entidad == "" || this.entidad == undefined
-        || this.nombres == "" || this.nombres == undefined
-        || this.primerApellido == "" || this.primerApellido == undefined
-        || this.segundoApellido == "" || this.segundoApellido == undefined
-        || this.nombresSec ==  "" || this.nombresSec == undefined
-        || this.primerApellidoSec == "" || this.primerApellidoSec == undefined
-        || this.segundoApellidoSec == "" || this.segundoApellidoSec == undefined)
-       {
-        Swal.fire(
-          {
-            position: 'center',
-            icon: 'error',
-            title: 'Llena todos los campos',
-            showConfirmButton: false,
-            timer: 1500
-          }
-        );
-
-       }
-       else
-        try {
-         
-     
-        datosdeenvio.push(
-          {
-            "type": "Datos Personales",
-            "metadata": {
-              "type": this.acto,
-              "state": this.entidad,
-              "nombre": this.nombres.toUpperCase(),
-              "primerapellido": this.primerApellido.toUpperCase(),
-              "segundoapelido": this.segundoApellido.toUpperCase(),
-              "snombre": this.nombresSec.toUpperCase(),
-              "sprimerapellido": this.primerApellidoSec.toUpperCase(),
-              "ssegundoapellido": this.segundoApellidoSec.toUpperCase()
+          || this.entidad == "" || this.entidad == undefined
+          || this.nombres == "" || this.nombres == undefined
+          || this.primerApellido == "" || this.primerApellido == undefined
+          || this.segundoApellido == "" || this.segundoApellido == undefined
+          || this.nombresSec == "" || this.nombresSec == undefined
+          || this.primerApellidoSec == "" || this.primerApellidoSec == undefined
+          || this.segundoApellidoSec == "" || this.segundoApellidoSec == undefined) {
+          Swal.fire(
+            {
+              position: 'center',
+              icon: 'error',
+              title: 'Llena todos los campos',
+              showConfirmButton: false,
+              timer: 1500
             }
+          );
+
+        }
+        else
+
+          if (this.acto == "" || this.acto == undefined) {
+            Swal.fire(
+              {
+                position: 'center',
+                icon: 'error',
+                title: 'Llena todos los campos',
+                showConfirmButton: false,
+                timer: 1500
+              }
+            );
           }
-        );
+          else if (this.curp == "" || this.curp.length < 18) {
 
 
-        
-         
-      
+            let digit = this.curp.length;
+
+            Swal.fire(
+              {
+                position: 'center',
+                icon: 'error',
+                title: `Te hacen falta ${Math.abs(18 - Number(digit))} digitos en la CURP`,
+                showConfirmButton: false,
+                timer: 1500
+              }
+            );
+
+          }
+          else if (this.curp.length > 18) {
+            let digit = this.curp.length;
+            Swal.fire(
+              {
+                position: 'center',
+                icon: 'error',
+                title: `Te sobran ${Math.abs(18 - Number(digit))} digitos en la CURP`,
+                showConfirmButton: false,
+                timer: 1500
+              }
+            );
+          }
+          else if (this.curp.length == 18 && this.acto != undefined && this.acto != "") {
+            datosdeenvio.push(
+              {
+                "type": "CURP",
+                "metadata": { "type": this.acto, "state": this.entidad, "curp": this.curp.toUpperCase() }
+              }
+            );
+          }
+
+
+
+
+        try {
+
+
+          datosdeenvio.push(
+            {
+              "type": "Datos Personales",
+              "metadata": {
+                "type": this.acto,
+                "state": this.entidad,
+                "nombre": this.nombres.toUpperCase(),
+                "primerapellido": this.primerApellido.toUpperCase(),
+                "segundoapelido": this.segundoApellido.toUpperCase(),
+                "snombre": this.nombresSec.toUpperCase(),
+                "sprimerapellido": this.primerApellidoSec.toUpperCase(),
+                "ssegundoapellido": this.segundoApellidoSec.toUpperCase()
+              }
+            }
+          );
+
+
+
+
+
         } catch (error) {
           this.alerts = ["Ingresa todos los datos"];
           Swal.fire(
@@ -542,7 +654,7 @@ export class InicioComponent implements OnInit {
               timer: 1500
             }
           );
-         
+
         }
       }
     }
@@ -561,7 +673,7 @@ export class InicioComponent implements OnInit {
       );
     }
 
-  
+
     if (datosdeenvio.length != 0) {
       this.restservice.SolicitudactasporCurp(datosdeenvio[0]).subscribe((data: any) => {
         Swal.fire({
@@ -851,7 +963,7 @@ export class InicioComponent implements OnInit {
     }
 
     this.requestsView = this.readJson.getViewCards();
-    if(this.requestsView == true){
+    if (this.requestsView == true) {
       this.obtainARequests();
     }
     var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");

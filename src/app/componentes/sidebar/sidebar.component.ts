@@ -29,7 +29,7 @@ export class SidebarComponent implements OnInit {
 
 
   public data:any;
-  public requests:any;
+  public requests:any = [];
   constructor(private restservice:RestService,private read:ReadService, private router:Router, private loginservice:LoginService, private adminService:AdminService, private socketClient:SocketService) {
 
    }
@@ -54,7 +54,7 @@ export class SidebarComponent implements OnInit {
   public async obtainARequests() {
     this.requests = [];
     const data: any = await this.restservice.obtainActasRequest().toPromise();
-    for (let i = 0; i < data.length; i++) {
+    for (let i = 0; i < 1; i++) {
       let metadata = "";
       switch (data[i].type) {
         case "CURP":
@@ -85,7 +85,6 @@ export class SidebarComponent implements OnInit {
       });
     }
 
-    // console.log(this.requests);
 
   }
 

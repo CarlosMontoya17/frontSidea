@@ -47,6 +47,8 @@ sanitizer:any;
 
   }
 
+
+  
   VerImagenes(){
     this.getnombres();
 
@@ -193,7 +195,7 @@ showImages(id:any, tipo:any){
  
 }
 editimage(){
-  edit();
+  
 }
   async getnombres() {
 

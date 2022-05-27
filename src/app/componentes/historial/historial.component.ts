@@ -34,12 +34,12 @@ export class HistorialComponent implements OnInit {
   conteo: boolean = false;
   conteo2: boolean = false;
   conteo3: boolean = false;
-  docPath:string = "";
+  docPath: string = "";
 
   public imagePath: any;
   hidden: boolean = false;
   hidden2: boolean = true;
-  excel : boolean = false;
+  excel: boolean = false;
   faTrashCan = faTrashCan;
   facalend = faCalendarDays;
   restored = faTrashRestore;
@@ -96,9 +96,9 @@ export class HistorialComponent implements OnInit {
   //CONSTRUCTOR
   constructor(private restService: RestService, private router: Router, private database: DatabaseService, private http: HttpClient) { }
 
-    descargarexcelvista(){
-      this.excel = !this.excel;
-    }
+  descargarexcelvista() {
+    this.excel = !this.excel;
+  }
   exportexcel(): void {
 
     var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
@@ -454,6 +454,11 @@ export class HistorialComponent implements OnInit {
       case "CONSTANCIA DE NO INHABILITACIÓN":
         documento = "inh";
         break;
+
+      case "AVISO PARA RETENCIÓN DE DESCUENTOS":
+        documento = "ret";
+        break;
+
       default:
         documento = "";
         break;
@@ -762,29 +767,29 @@ export class HistorialComponent implements OnInit {
 
     this.reloadCurrentRoute();
   }
-  
-  
-  preview56(files:any) {
-    this.docPath = '   '; 
+
+
+  preview56(files: any) {
+    this.docPath = '   ';
     if (files.length === 0)
       return;
- 
+
     var mimeType = files[0].type;
     if (mimeType.match(/pdf\/*/) == null) {
-     
+
       return;
     }
-    
+
     var reader = new FileReader();
     this.imagePath = files;
-    reader.readAsDataURL(files[0]); 
-    reader.onload = (_event) => { 
-      this.imgURL = reader.result; 
-     
-      
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      this.imgURL = reader.result;
+
+
     }
   }
-  
+
   //SOLTAMOS EL DOCUMENTO PDF AL APARTADO DE DOCUMENTOS
   getFile($event: any): void {
     //TODO esto captura el archivo!

@@ -144,7 +144,7 @@ export class PagosComponent implements OnInit {
     XLSX.utils.book_append_sheet(wb, ws, 'Corte ' + this.CiberSelect);
 
     /* Exportamos a excel */
-    XLSX.writeFile(wb, "Pagos-" + this.CiberSelect + "-Por: " + arreglo[1] + ".xlsx");
+    XLSX.writeFile(wb, "Pagos-" + this.CiberSelect + "-Por: " + arreglo[1] + ".csv");
     /*     Swal.fire({
           position: 'center',
           icon: 'success',

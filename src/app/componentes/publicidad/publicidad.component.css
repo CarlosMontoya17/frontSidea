@@ -899,5 +899,44 @@ element.style {
   justify-content: center;
 }
 
+body {
+  background: #222;
+  color: rgb(0, 0, 0);
+  position: relative;
+  text-align: center;
+  font-size: 1rem;
+  font-family: sans-serif;
+  padding-bottom: 3em;
+}
+.page-wrap {
+  display: inline-block;
+  margin: 2em auto;
+}
+.controls__input {
+  display: block;
+  margin: 0 auto;
+  background: none;
+  border: none;
+  font-size: 1em;
+  padding-bottom: 0.5em;
+  border-bottom: 2px solid #ccc;
+  text-align: center;
+  outline: none;
+  color: rgb(0, 0, 0);
+}
+.controls__btn {
+  background: dodgerblue;
+  color: #fff;
+  border: none;
+  font-size: 1em;
+}
+.controls__label {
+  display: block;
+  font-size: 0.8em;
+  padding-top: 0.3em;
+  margin-bottom: 2em;
+}
+
+
 
 
