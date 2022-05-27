@@ -188,6 +188,10 @@ showImage(id:any, tipo:any){
   ShowImageAd(id, tipo);
  
 }
+showImages(id:any, tipo:any){
+  ShowImageAd(id, tipo);
+ 
+}
 editimage(){
   edit();
 }

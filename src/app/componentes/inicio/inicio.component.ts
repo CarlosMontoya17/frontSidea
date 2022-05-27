@@ -41,7 +41,7 @@ export class InicioComponent implements OnInit {
   actoRegistral: any = 'Seleccione el acto registral';
   preview: any = 0;
   entidadValue: any = 0;
-  entidad: any = 'Entidad registro';
+  entidad: any;
   bdEstado: any;
   curp: any = '';
   nose: any;
@@ -216,7 +216,7 @@ export class InicioComponent implements OnInit {
       });
     }
 
-    // console.log(this.requests);
+    //  // console.log(this.requests);
 
   }
 
@@ -435,7 +435,7 @@ export class InicioComponent implements OnInit {
       
 
       if (this.acto != "MATRIMONIO" && this.acto != "DIVORCIO") {
-    
+        console.log(this.entidad);
         if (this.acto == "" || this.acto == undefined
         || this.entidad == "" || this.entidad == undefined
         || this.nombres == "" || this.nombres == undefined
@@ -464,7 +464,7 @@ export class InicioComponent implements OnInit {
                 "nombre": this.nombres.toUpperCase(), "primerapellido": this.primerApellido.toUpperCase(),
                 "segundoapelido": this.segundoApellido.toUpperCase(),
                 "sexo": this.sexo,
-                "fecnac": fechas[2] + "/" + fechas[1] + "/" + fechas[0]
+                "fecnac": fechas
               }
             }
           );
@@ -690,7 +690,7 @@ export class InicioComponent implements OnInit {
         }
         case 'MC': {
           this.entidadValue = 15;
-          this.entidad = 'ESTADO DE MEXICO';
+          this.entidad = 'MEXICO';
           this.bdEstado = 'n14';
           this.nose = "15";
           break;

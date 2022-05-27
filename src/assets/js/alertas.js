@@ -100,13 +100,37 @@ function edit() {
         ctx.fillStyle = 'rgba(30, 144, 255, 0)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // ctx.drawImage(img2,20,380, 331, 100);
+        //ctx.drawImage(img2,20,380, 331, 100); 
+        //ctx-drawingin imahedfbgfh
+        //ctx.fillStyle = 'rgba(30,144,255,100)'
+        //ctx-fillStyle = "Transpartent";
+        //
+        /*
+        function DrawText(){
+            ctx.fillStyle = "white";
+            ctx.textBaseline = 'middle';
+            if(text_tittle != "Scrivi qualcosa"){
+                ctx.strokeText('',50,50);
 
-    }
+            }else
+            {
+                ctx.strokeText(Title_title,50,50);
+                ctx.fillStyle = "white";
+                ctx.textBaseline = "middle";
+
+            }
+
+        }
+        
+        
+        */   
+ }
 
 
 
     function DrawText() {
+
+        
         ctx.fillStyle = "white";
         ctx.textBaseline = 'middle';
         ctx.font = "50px 'Montserrat'";
@@ -156,6 +180,13 @@ function edit() {
             DrawText();
             DynamicText(img);
         }
+
+        /*
+        
+        
+        
+        
+        */ 
 
         reader.readAsDataURL(e.target.files[0]);
 

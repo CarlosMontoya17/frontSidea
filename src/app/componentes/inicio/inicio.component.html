@@ -894,7 +894,7 @@
                 </div>
                 <div class="col">
                     <label for="first-name-column">Entidad de registro*:</label>
-                    <select class="form-select" id="estados" name="estados" [ngModel]="entidad"
+                    <select  class="form-select" id="estados" name="estados" [(ngModel)]="entidad"
                         (ngModelChange)="onChangeCurp($event)">
                         <option selected hidden>
                             {{entidad}}</option>
@@ -977,7 +977,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="city-column">Nombre(s)*:</label>
-                        <input onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))"  [(ngModel)]="nombres" name="nombres" type="text" id="nombrePersonal"
+                        <input onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122  || event.charCode >= 32 && event.charCode <= 32 ))"  [(ngModel)]="nombres" name="nombres" type="text" id="nombrePersonal"
                             style="text-transform:uppercase" class="form-control" placeholder="Ingresa los nombres">
                     </div>
                 </div>
@@ -1057,8 +1057,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="company-column">Fecha de nacimiento</label>
-                        <input [(ngModel)]="fechaNacimiento" type="date" class="form-control" name="fechaNacimiento"
-                            id="fechadeNacimiento" placeholder="dd/mm/yyyy" min="1997/01/01" max="2030/12/31">
+                        <input  onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode >= 47 && event.charCode <= 47))"    [(ngModel)]="fechaNacimiento" type="text" class="form-control" name="fechaNacimiento">
                     </div>
                 </div>
             </div>

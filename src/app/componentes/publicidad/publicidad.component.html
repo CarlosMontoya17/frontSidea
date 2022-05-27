@@ -258,6 +258,31 @@
                         <div class="card-group">
 
 
+
+                        
+<div class="page-wrap">
+  <div class="controls">
+    <!-- <input class="controls__input" type="file" id="imageLoader" name="imageLoader"/>
+    <label class="controls__label" for="name">First, choose an image.</label>
+     -->
+    <input class="controls__input text-center " id="name" type="text" value=""/>
+    <label class="controls__label text-center" for="name">Overlay Text</label>
+    <div class="card ads " *ngFor="let names of getnames">
+        <img (click)="showImages(names.id, names.tipo)"  (click)="editimage()"
+            src="http://actasalinstante.com:3030/api/ads/getImage/{{names.id}}"
+            title="{{names.tipo}}">
+    </div>
+  </div>
+  <div id="canvas-wrap">
+     <canvas style="display:block" id="imageCanvas" width=500px height=500px>
+        <canvas id="canvasID"></canvas>
+    </canvas> 
+  </div>
+  
+</div>
+
+
+
                             <!-- <div class="col-lg-3 col-md-4 col-6" >
                                 <a  data-lightbox="roadtrip"><img class="example-image"
                                        alt="image-3" height="400" width="300"></a>
