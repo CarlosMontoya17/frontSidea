@@ -37,6 +37,8 @@ export class SidebarComponent implements OnInit {
   public ngOnInit(): void {
     this.descry();
     this.socketClient.onNewNotify().subscribe( (data:any) => {
+      console.log(data.data.id_req);
+
       if( this.userid ==  data.data.id_req ){
         this.notify(data.data.message, data.data.status);
         this.obtainARequests();

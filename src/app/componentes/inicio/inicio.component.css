@@ -40,7 +40,25 @@ button:hover{
 	top: 0px;
 }
 
-/* .headerColor{ background: linear-gradient(0deg, rgba(212,68,25,1) 0%, rgba(164,63,63,1) 100%); } */
+.selectionable:hover {
+    cursor: pointer;
+    outline: thick solid rgba(45, 209, 224, 0.226);;
+}
+
+
+.buttonsGroup {
+    /* margin-left: auto; */
+    background-color: white;
+    width: 50%;
+    align-self: center !important;
+    margin-bottom: 1rem;
+}
+.imagesSelectable {
+	display: block; 
+	width: 100vw; 
+	object-fit: cover;
+}
+
 
 
 

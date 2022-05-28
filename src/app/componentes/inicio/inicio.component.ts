@@ -103,14 +103,16 @@ export class InicioComponent implements OnInit {
 
   requests: any = [];
 
+  selectable: Boolean = false;
+
   dataset$: Observable<any>;
 
   constructor(private router: Router, private restservice: RestService, private readJson: ReadService) {
     this.dataset$ = readJson.getObtainsCards;
-    this.dataset$.subscribe((data:any) => {
-        this.requests = data;
+    this.dataset$.subscribe((data: any) => {
+      this.requests = data;
     });
-    
+
     // this.dataset$.subscribe((data:any) => {
     //   this.ProcessData(data);
     //   // console.log( this.requests[0] );
@@ -290,8 +292,7 @@ export class InicioComponent implements OnInit {
     }
   }
 
-  //BUSCAR POR CURP
-  async buscar() {
+  switchSelectable() {
 
     switch (this.actoRegistral) {
       case "1": {
@@ -314,12 +315,6 @@ export class InicioComponent implements OnInit {
       }
     }
 
-
-    // {
-    //   "type": "CURP",
-    //   "metadata": {"type":"NACIMIENTO","state":"OAXACA","curp":"NACK990503HRRSV07"}
-    // }
-    let datosdeenvio = [];
     if (this.tipodebusqueda == '1') {
 
       if (this.acto == "" || this.acto == undefined) {
@@ -361,21 +356,12 @@ export class InicioComponent implements OnInit {
           }
         );
       }
-      else if (this.curp.length == 18 && this.acto != undefined && this.acto != "") {
-        datosdeenvio.push(
-          {
-            "type": "CURP",
-            "metadata": { "type": this.acto, "state": this.entidad, "curp": this.curp.toUpperCase() }
-          }
-        );
+      else {
+        this.selectable = !this.selectable;
       }
-
-
     }
     else if (this.tipodebusqueda == '2') {
-
       try {
-
         if (this.cadenadigital == undefined || this.cadenadigital.length != 20) {
           Swal.fire(
             {
@@ -389,10 +375,7 @@ export class InicioComponent implements OnInit {
           this.alerts = ["Ingresa todos los datos"];
 
           if (this.cadenadigital == 0 || this.cadenadigital.length < 20) {
-
-
             let digit = this.cadenadigital.length;
-
             Swal.fire(
               {
                 position: 'center',
@@ -420,18 +403,6 @@ export class InicioComponent implements OnInit {
 
           }
         }
-        else {
-          datosdeenvio.push(
-            {
-              "type": "Cadena Digital",
-              "metadata": { "cadena": this.cadenadigital }
-            }
-          );
-
-
-        }
-
-
       }
       catch {
         Swal.fire(
@@ -445,17 +416,8 @@ export class InicioComponent implements OnInit {
         );
       }
 
-
-
-
     }
-
-
     else if (this.tipodebusqueda == '3') {
-
-
-
-
       if (this.acto != "MATRIMONIO" && this.acto != "DIVORCIO") {
         console.log(this.entidad);
         if (this.acto == "" || this.acto == undefined
@@ -474,12 +436,7 @@ export class InicioComponent implements OnInit {
             }
           );
         }
-
-        //init
-
         else if (this.fechaNacimiento == "" || this.fechaNacimiento.length < 10) {
-
-
           let digit = this.fechaNacimiento.length;
 
           Swal.fire(
@@ -505,31 +462,10 @@ export class InicioComponent implements OnInit {
             }
           );
         }
-
-
-
-
-        //end
-
-
-
         else {
           try {
-
             var fechas = this.fechaNacimiento.toString().split("-");
-            datosdeenvio.push(
-              {
-                "type": "Datos Personales",
-                "metadata": {
-                  "type": this.acto, "state": this.entidad,
-                  "nombre": this.nombres.toUpperCase(), "primerapellido": this.primerApellido.toUpperCase(),
-                  "segundoapelido": this.segundoApellido.toUpperCase(),
-                  "sexo": this.sexo,
-                  "fecnac": fechas
-                }
-              }
-            );
-
+            this.selectable = !this.selectable;
 
           } catch (error) {
             this.alerts = ["Ingresa todos los datos"];
@@ -546,7 +482,127 @@ export class InicioComponent implements OnInit {
 
         }
       }
+      else{
+        if (this.acto == "" || this.acto == undefined) {
+          Swal.fire(
+            {
+              position: 'center',
+              icon: 'error',
+              title: 'Llena todos los campos',
+              showConfirmButton: false,
+              timer: 1500
+            }
+          );
+        }
+        else if (this.curp == "" || this.curp.length < 18) {
 
+
+          let digit = this.curp.length;
+
+          Swal.fire(
+            {
+              position: 'center',
+              icon: 'error',
+              title: `Te hacen falta ${Math.abs(18 - Number(digit))} digitos en la CURP`,
+              showConfirmButton: false,
+              timer: 1500
+            }
+          );
+
+        }
+        else if (this.curp.length > 18) {
+          let digit = this.curp.length;
+          Swal.fire(
+            {
+              position: 'center',
+              icon: 'error',
+              title: `Te sobran ${Math.abs(18 - Number(digit))} digitos en la CURP`,
+              showConfirmButton: false,
+              timer: 1500
+            }
+          );
+        }
+        else{
+          this.selectable = !this.selectable;
+        }
+      }
+    }
+    
+
+    
+  }
+
+  //BUSCAR POR CURP
+  async buscar(pref:string) {
+
+    let datosdeenvio = [];
+    if (this.tipodebusqueda == '1') {
+      if (this.curp.length == 18 && this.acto != undefined && this.acto != "") {
+        datosdeenvio.push(
+          {
+            "type": "CURP",
+            "metadata": { "type": this.acto, "state": this.entidad, "curp": this.curp.toUpperCase() },
+            "preferences": pref
+          }
+        );
+      }
+    }
+    else if (this.tipodebusqueda == '2') {
+      try {
+        if (this.cadenadigital != undefined || this.cadenadigital.length == 20) {
+          datosdeenvio.push(
+            {
+              "type": "Cadena Digital",
+              "metadata": { "cadena": this.cadenadigital },
+              "preferences": pref
+            }
+          );
+        }
+      }
+      catch {
+        Swal.fire(
+          {
+            position: 'center',
+            icon: 'error',
+            title: 'Llena todos los campos',
+            showConfirmButton: false,
+            timer: 1500
+          }
+        );
+      }
+    }
+
+
+    else if (this.tipodebusqueda == '3') {
+      if (this.acto != "MATRIMONIO" && this.acto != "DIVORCIO") {
+          try {
+            var fechas = this.fechaNacimiento.toString().split("-");
+            datosdeenvio.push(
+              {
+                "type": "Datos Personales",
+                "metadata": {
+                  "type": this.acto, "state": this.entidad,
+                  "nombre": this.nombres.toUpperCase(), "primerapellido": this.primerApellido.toUpperCase(),
+                  "segundoapelido": this.segundoApellido.toUpperCase(),
+                  "sexo": this.sexo,
+                  "fecnac": fechas
+                },
+                "preferences": pref
+              }
+            );
+          } catch (error) {
+            this.alerts = ["Ingresa todos los datos"];
+            Swal.fire(
+              {
+                position: 'center',
+                icon: 'error',
+                title: 'Llena todos los campos',
+                showConfirmButton: false,
+                timer: 1500
+              }
+            );
+          }
+      }
       else {
         if (this.actoRegistral == "" || this.actoRegistral == undefined
           || this.entidad == "" || this.entidad == undefined
@@ -568,47 +624,7 @@ export class InicioComponent implements OnInit {
 
         }
         else
-
-          if (this.acto == "" || this.acto == undefined) {
-            Swal.fire(
-              {
-                position: 'center',
-                icon: 'error',
-                title: 'Llena todos los campos',
-                showConfirmButton: false,
-                timer: 1500
-              }
-            );
-          }
-          else if (this.curp == "" || this.curp.length < 18) {
-
-
-            let digit = this.curp.length;
-
-            Swal.fire(
-              {
-                position: 'center',
-                icon: 'error',
-                title: `Te hacen falta ${Math.abs(18 - Number(digit))} digitos en la CURP`,
-                showConfirmButton: false,
-                timer: 1500
-              }
-            );
-
-          }
-          else if (this.curp.length > 18) {
-            let digit = this.curp.length;
-            Swal.fire(
-              {
-                position: 'center',
-                icon: 'error',
-                title: `Te sobran ${Math.abs(18 - Number(digit))} digitos en la CURP`,
-                showConfirmButton: false,
-                timer: 1500
-              }
-            );
-          }
-          else if (this.curp.length == 18 && this.acto != undefined && this.acto != "") {
+          if (this.curp.length == 18 && this.acto != undefined && this.acto != "") {
             datosdeenvio.push(
               {
                 "type": "CURP",
@@ -616,13 +632,7 @@ export class InicioComponent implements OnInit {
               }
             );
           }
-
-
-
-
         try {
-
-
           datosdeenvio.push(
             {
               "type": "Datos Personales",
@@ -635,14 +645,10 @@ export class InicioComponent implements OnInit {
                 "snombre": this.nombresSec.toUpperCase(),
                 "sprimerapellido": this.primerApellidoSec.toUpperCase(),
                 "ssegundoapellido": this.segundoApellidoSec.toUpperCase()
-              }
+              },
+              "preferences": pref
             }
           );
-
-
-
-
-
         } catch (error) {
           this.alerts = ["Ingresa todos los datos"];
           Swal.fire(
@@ -658,20 +664,20 @@ export class InicioComponent implements OnInit {
         }
       }
     }
-    else if (this.tipodebusqueda == '4') {
-      datosdeenvio.push(
-        {
-          "type": "Datos del Registro civil",
-          "metadata": {
-            "type": this.acto, "state": this.estadoSelect,
-            "municipio": this.nombres.toUpperCase(), "primerapellido": this.primerApellido.toUpperCase(),
-            "segundoapellido": this.segundoApellido.toUpperCase(),
-            "sexo": this.sexo,
-            "fecnac": fechas[2] + "/" + fechas[1] + "/" + fechas[0]
-          }
-        }
-      );
-    }
+    // else if (this.tipodebusqueda == '4') {
+    //   datosdeenvio.push(
+    //     {
+    //       "type": "Datos del Registro civil",
+    //       "metadata": {
+    //         "type": this.acto, "state": this.estadoSelect,
+    //         "municipio": this.nombres.toUpperCase(), "primerapellido": this.primerApellido.toUpperCase(),
+    //         "segundoapellido": this.segundoApellido.toUpperCase(),
+    //         "sexo": this.sexo,
+    //         "fecnac": fechas[2] + "/" + fechas[1] + "/" + fechas[0]
+    //       }
+    //     }
+    //   );
+    // }
 
 
     if (datosdeenvio.length != 0) {
