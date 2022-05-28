@@ -403,6 +403,9 @@ export class InicioComponent implements OnInit {
 
           }
         }
+        else{
+          this.selectable = !this.selectable;
+        }
       }
       catch {
         Swal.fire(
