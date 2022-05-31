@@ -1333,7 +1333,7 @@
                             &nbsp;Detalles
                         </a>
 
-                        <a class="btn btn-warning" *ngIf="req.comments == null || req.comments == '.' && req.url == null">
+                        <a class="btn btn-warning" *ngIf="req.comments == null && req.url == null">
                             <fa-icon [icon]="faRotate"></fa-icon>
         
                             &nbsp;En proceso

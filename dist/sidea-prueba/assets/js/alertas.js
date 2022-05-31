@@ -117,7 +117,7 @@ function edit() {
                 ctx.strokeText(Title_title,50,50);
                 ctx.fillStyle = "white";
                 ctx.textBaseline = "middle";
-
+                    
             }
 
         }
@@ -136,6 +136,7 @@ function edit() {
             ctx.strokeText('', 50, 50);
         } else {
             ctx.strokeText(text_title, 50, 50);
+       
         }
 
     }
@@ -143,7 +144,7 @@ function edit() {
     function DynamicText(img) {
         document.getElementById('name').addEventListener('keyup', function () {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+    
             DrawOverlay(img);
             DrawText();
             text_title = this.value;
@@ -180,9 +181,7 @@ function edit() {
         }
 
         /*
-        
-        
-        
+    
         
         */ 
 
