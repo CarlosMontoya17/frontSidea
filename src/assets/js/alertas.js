@@ -101,6 +101,7 @@ function edit() {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         //ctx.drawImage(img2,20,380, 331, 100); 
+   
         //ctx-drawingin imahedfbgfh
         //ctx.fillStyle = 'rgba(30,144,255,100)'
         //ctx-fillStyle = "Transpartent";
@@ -117,7 +118,7 @@ function edit() {
                 ctx.strokeText(Title_title,50,50);
                 ctx.fillStyle = "white";
                 ctx.textBaseline = "middle";
-                    
+
             }
 
         }
