@@ -51,11 +51,11 @@ export class PagosComponent implements OnInit {
   //Tabla
   cortes: any;
   NumerodeActas: any;
-
+  MyrolCliente:boolean = false;
   porEnviar: boolean = false;
 
   fechasParaBuscarClientes: any;
-
+  usernameLocal: string = "";
   public rowData!: any[];
   public pinnedBottomRowData!: any[];
   //Tabla
@@ -90,7 +90,7 @@ export class PagosComponent implements OnInit {
   //TABLE
   corteSeleccionado: string = "Seleccionar corte";
 
-
+  myRol: any;
 
 
   fechaDeUsuarioSeleccionada: any;
@@ -120,8 +120,25 @@ export class PagosComponent implements OnInit {
     this.fechasParaBuscarClientes = await this.database.getAllDates().toPromise();
   }
 
+  //DESINCRIPTAMOS EL TOKEN PARA OBTENER LOS DATOS Y EL ROL
+  async descry() {
 
+    var idlocal = localStorage.getItem("id");
+    var i = CryptoJS.AES.decrypt(idlocal || '{}', "id");
+    var id: any = i.toString(CryptoJS.enc.Utf8);
+    this.result.push(id);
 
+    const data: any = await this.database.getmydata(id).toPromise();
+    this.myRol = data.data.rol;
+  }
+
+  ClienteVista() {
+    if (this.myRol != 'Cliente') {
+      this.MyrolCliente = !this.MyrolCliente;
+    }
+  
+    
+  }
 
 
 
@@ -496,14 +513,50 @@ export class PagosComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+
+
     const token = localStorage.getItem('token');
-    if (!token) {
-      this.router.navigateByUrl('/login');
+    const usuario = localStorage.getItem('usuario');
+
+    const un = CryptoJS.AES.decrypt(usuario || '{}', "usuario");
+    const UserName = un.toString(CryptoJS.enc.Utf8);
+    const i = localStorage.getItem('id');
+    const is = CryptoJS.AES.decrypt(i || '{}', "id");
+    const id = is.toString(CryptoJS.enc.Utf8);
+  
+    const array = UserName.split('"');
+    this.usernameLocal = array[1];
+    
+    const data: any = await this.database.getmydata(id).toPromise();
+    this.myRol = data.data.rol;
+
+    if(this.myRol != 'Cliente'){
+    
+
+      this.getAllDates();
+      this.getClientsByDateSelected(null);
+  
+      if (!token) {
+        this.router.navigateByUrl('/login');
+      }
+ 
+     
+  
+    }
+    else{
+
+      this.router.navigateByUrl('/inicio');
+  
+
     }
 
-    this.getAllDates();
-    this.getClientsByDateSelected(null);
+
+
+
+
+    
+
   }
 
 

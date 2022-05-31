@@ -240,7 +240,9 @@ export class InicioComponent implements OnInit {
       });
     }
 
-    //  // console.log(this.requests);
+    
+
+    //  console.log(this.requests);
 
   }
 
@@ -537,6 +539,26 @@ export class InicioComponent implements OnInit {
 
   //BUSCAR POR CURP
   async buscar(pref:string) {
+    switch (this.actoRegistral) {
+      case "1": {
+        this.acto = 'NACIMIENTO';
+        break;
+      }
+      case "2": {
+        this.acto = 'DEFUNCION';
+
+        break;
+      }
+      case "3": {
+        this.acto = 'MATRIMONIO';
+
+        break;
+      }
+      case "4": {
+        this.acto = 'DIVORCIO';
+        break;
+      }
+    }
 
     let datosdeenvio = [];
     if (this.tipodebusqueda == '1') {
@@ -630,41 +652,54 @@ export class InicioComponent implements OnInit {
           if (this.curp.length == 18 && this.acto != undefined && this.acto != "") {
             datosdeenvio.push(
               {
-                "type": "CURP",
-                "metadata": { "type": this.acto, "state": this.entidad, "curp": this.curp.toUpperCase() }
+                "type": "Datos Personales",
+                "metadata": {
+                  "type": this.acto,
+                  "state": this.entidad,
+                  "nombre": this.nombres.toUpperCase(),
+                  "primerapellido": this.primerApellido.toUpperCase(),
+                  "segundoapelido": this.segundoApellido.toUpperCase(),
+                  "snombre": this.nombresSec.toUpperCase(),
+                  "sprimerapellido": this.primerApellidoSec.toUpperCase(),
+                  "ssegundoapellido": this.segundoApellidoSec.toUpperCase()
+                },
+                "preferences": pref
               }
             );
           }
-        try {
-          datosdeenvio.push(
-            {
-              "type": "Datos Personales",
-              "metadata": {
-                "type": this.acto,
-                "state": this.entidad,
-                "nombre": this.nombres.toUpperCase(),
-                "primerapellido": this.primerApellido.toUpperCase(),
-                "segundoapelido": this.segundoApellido.toUpperCase(),
-                "snombre": this.nombresSec.toUpperCase(),
-                "sprimerapellido": this.primerApellidoSec.toUpperCase(),
-                "ssegundoapellido": this.segundoApellidoSec.toUpperCase()
-              },
-              "preferences": pref
+          else{
+            try {
+              datosdeenvio.push(
+                {
+                  "type": "Datos Personales",
+                  "metadata": {
+                    "type": this.acto,
+                    "state": this.entidad,
+                    "nombre": this.nombres.toUpperCase(),
+                    "primerapellido": this.primerApellido.toUpperCase(),
+                    "segundoapelido": this.segundoApellido.toUpperCase(),
+                    "snombre": this.nombresSec.toUpperCase(),
+                    "sprimerapellido": this.primerApellidoSec.toUpperCase(),
+                    "ssegundoapellido": this.segundoApellidoSec.toUpperCase()
+                  },
+                  "preferences": pref
+                }
+              );
+            } catch (error) {
+              this.alerts = ["Ingresa todos los datos"];
+              Swal.fire(
+                {
+                  position: 'center',
+                  icon: 'error',
+                  title: 'Llena todos los campos',
+                  showConfirmButton: false,
+                  timer: 1500
+                }
+              );
+    
             }
-          );
-        } catch (error) {
-          this.alerts = ["Ingresa todos los datos"];
-          Swal.fire(
-            {
-              position: 'center',
-              icon: 'error',
-              title: 'Llena todos los campos',
-              showConfirmButton: false,
-              timer: 1500
-            }
-          );
-
-        }
+          }
+        
       }
     }
     // else if (this.tipodebusqueda == '4') {
@@ -681,6 +716,7 @@ export class InicioComponent implements OnInit {
     //     }
     //   );
     // }
+
 
 
     if (datosdeenvio.length != 0) {

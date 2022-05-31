@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { SocketService } from '../../servicios/socket/socket.service';
 import { ReadService } from '../inicio/models/read.service';
 import { RestService } from '../historial/rest.service';
+import {DatabaseService} from '../database/database.service';
 import Swal from 'sweetalert2';
 
 
@@ -30,33 +31,34 @@ export class SidebarComponent implements OnInit {
 
   public data:any;
   public requests:any = [];
-  constructor(private restservice:RestService,private read:ReadService, private router:Router, private loginservice:LoginService, private adminService:AdminService, private socketClient:SocketService) {
+  constructor(private database: DatabaseService,private restservice:RestService,private read:ReadService, private router:Router, private loginservice:LoginService, private adminService:AdminService, private socketClient:SocketService) {
 
    }
 
   public ngOnInit(): void {
     this.descry();
-    this.socketClient.onNewNotify().subscribe( (data:any) => {
-      console.log(data.data.id_req);
 
-      if( this.userid ==  data.data.id_req ){
-        this.notify(data.data.message, data.data.status);
-        this.obtainARequests();
-        this.read.ObtainCards = this.requests;
+      this.socketClient.onNewNotify().subscribe( (data:any) => {
 
-      }
-    });
+        if( this.userid ==  data.data.id_req ){
+          this.notify(data.data.message, data.data.status);
+          this.obtainARequests();
+          this.read.ObtainCards = this.requests;
+  
+        }
+      },
+      (err:any) => {
+        console.log("");
+      });
+
     
-    
-
-
   }
 
 
   public async obtainARequests() {
     this.requests = [];
     const data: any = await this.restservice.obtainActasRequest().toPromise();
-    for (let i = 0; i < 1; i++) {
+    for (let i = 0; i < data.length; i++) {
       let metadata = "";
       switch (data[i].type) {
         case "CURP":
@@ -137,7 +139,7 @@ logout(){
 
 
 
-descry(){
+async descry(){
   if(localStorage.getItem('token')!=null){
     if(localStorage.getItem('usuario')!=null){
       var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
@@ -148,6 +150,9 @@ descry(){
       var idValue = CryptoJS.AES.decrypt(localStorage.getItem('id') || '{}', "id");
       this.userid = idValue.toString(CryptoJS.enc.Utf8);
       
+      const data: any = await this.database.getmydata(this.userid).toPromise();
+      this.myRol = data.data.rol;
+
     }
     }
     }

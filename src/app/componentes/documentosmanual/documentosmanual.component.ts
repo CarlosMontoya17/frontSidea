@@ -36,6 +36,7 @@ export class DocumentosmanualComponent implements OnInit {
 
 
   public imagePath: any;
+  MyrolCliente:boolean = false;
   hidden: boolean = false;
   hidden2: boolean = true;
   faTrashCan = faTrashCan;
@@ -86,7 +87,7 @@ export class DocumentosmanualComponent implements OnInit {
   responsableSearch: string = "";
   newResponsable: any;
   fecha: any;
-
+  usernameLocal: string = "";
   gettraerPapelera2: any;
   public rowData!: any[];
   public pinnedBottomRowData!: any[];
@@ -235,6 +236,15 @@ export class DocumentosmanualComponent implements OnInit {
       }
     })
   }
+
+  ClienteVista() {
+    if (this.myRol != 'Cliente') {
+      this.MyrolCliente = !this.MyrolCliente;
+    }
+  
+    
+  }
+
   Volver2() {
 
     this.router.navigateByUrl("/historial");
@@ -639,15 +649,52 @@ export class DocumentosmanualComponent implements OnInit {
   }
 
   //PROTEGEMOS LAS VISTAS PARA NO SER HACKEADAS
-  ngOnInit(): void {
+  async ngOnInit() {
+
     const token = localStorage.getItem('token');
-    if (!token) {
-      this.router.navigateByUrl('/login');
+    const usuario = localStorage.getItem('usuario');
+
+    const un = CryptoJS.AES.decrypt(usuario || '{}', "usuario");
+    const UserName = un.toString(CryptoJS.enc.Utf8);
+    const i = localStorage.getItem('id');
+    const is = CryptoJS.AES.decrypt(i || '{}', "id");
+    const id = is.toString(CryptoJS.enc.Utf8);
+  
+    const array = UserName.split('"');
+    this.usernameLocal = array[1];
+    
+    const data: any = await this.database.getmydata(id).toPromise();
+    this.myRol = data.data.rol;
+
+    if(this.myRol != 'Cliente'){
+    
+
+      this.getAllCibers();
+      this.descry();
+  
+  
+      if (!token) {
+        this.router.navigateByUrl('/login');
+      }
+ 
+     
+  
+    }
+    else{
+
+      this.router.navigateByUrl('/inicio');
+  
+
     }
 
 
-    this.getAllCibers();
-    this.descry();
+
+
+
+
+
+
+
 
   }
   //OBTENEMOS TODOS LOS CIBER PARA EL BUSCADOR

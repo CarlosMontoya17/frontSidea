@@ -77,6 +77,7 @@ export class HistorialComponent implements OnInit {
   pagePapelera: number = 0;
   myInfo: any;
   myRol: any;
+  MyrolCliente:boolean = false;
   nombreProvedor: String = "";
   nombreEmpresa: string = "";
   nombreasesor: string = "";
@@ -646,22 +647,29 @@ export class HistorialComponent implements OnInit {
   }
 
   //PROTEGEMOS LAS VISTAS PARA NO SER HACKEADAS
-  ngOnInit(): void {
+  async ngOnInit() {
     const token = localStorage.getItem('token');
+    var idlocal = localStorage.getItem("id");
+    var i = CryptoJS.AES.decrypt(idlocal || '{}', "id");
+    var id: any = i.toString(CryptoJS.enc.Utf8);
+    this.result.push(id);
+    const data: any = await this.database.getmydata(id).toPromise();
+    this.myRol = data.data.rol;
+
     if (!token) {
       this.router.navigateByUrl('/login');
     }
-
-
-    this.getAllCibers();
-    this.descry();
-
+    if(this.myRol != 'Cliente'){
+      this.getAllCibers();
+    }
+    else{
+      this.router.navigateByUrl('/inicio');
+    }
   }
   //OBTENEMOS TODOS LOS CIBER PARA EL BUSCADOR
   async getAllCibers() {
     let arreglo: any = await this.restService.getuser().toPromise();
     this.getciber = arreglo;
-
   }
 
   /*   CAMBIO DE VISTA DE LA TABLA CORTE  */
@@ -670,56 +678,42 @@ export class HistorialComponent implements OnInit {
       loader();
     }
     this.vista = !this.vista;
-
     this.getcorte();
     this.gettraerPapelera();
-
+  }
+  ClienteVista() {
+    if (this.myRol != 'Cliente') {
+      this.MyrolCliente = !this.MyrolCliente;
+    }
+  
+    
   }
   //CAMBIAMOS LA VISTA DE LA TABLA DE DCOUMENTOS
   changeView2() {
-
     this.conteo = !this.conteo;
-
     this.getcorte();
     this.gettraerPapelera();
   }
   //CAMBIAMOS LA VISTA D ELA TABLA SUBIR ARCHIVOS MANUAL
   changeView3() {
-
     this.conteo2 = !this.conteo2;
-
-
-
   }
   //OCULTAMOS LA VISTA DE LOS BOTONES DE SUBIR EN DUCMENTOS
   changeView4() {
-
     this.conteo3 = !this.conteo3;
-
-
-
   }
   //OCULTAMOS LA VISTA DE LOS BOTONES DE LA VISTA DE SUBIR DOCUMENTOS DE FORMA MANUAL
   changeView5() {
-
     this.router.navigateByUrl('papelera');
-
-
-
   }
   changeView6() {
-
     this.excel = !this.excel;
-
-
-
   }
   //REGRESAMOS A LA VISTA ACTUAL CON EL BOTON REGRESAR
   backUp() {
     this.preview = 0;
     this.fileTmp = null;
     this.reloadCurrentRoute();
-
 
   }
   //REGRESAMOS A LA VISTA ACTUAL CON EL BOTON REGRESAR

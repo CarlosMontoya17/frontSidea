@@ -65,6 +65,7 @@ const routes: Routes = [
   component: DocumentosmanualComponent
 },
 {
+  
   path: 'papelera',
   component: PapeleraComponent
 },

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/servicios/admin.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { DatabaseService } from 'src/app/servicios/database/database.service';
 
 
 
@@ -36,17 +37,60 @@ export class PublicidadComponent implements OnInit {
   verImagenes:boolean= false;
 getnames:any;
 tipo:any;
-
-
+usernameLocal: string = "";
+myRol: any;
 image:any;
 sanitizer:any;
-  constructor(private adminservice: AdminService, private router: Router) { }
 
+ 
+MyrolCliente:boolean = false;
 
-  ngOnInit(): void {
-
+  constructor(private adminservice: AdminService, private router: Router, private database: DatabaseService, private adminService:AdminService) { }
+  ClienteVista() {
+    if (this.myRol != 'Cliente') {
+      this.MyrolCliente = !this.MyrolCliente;
+    }
+  
+    
   }
 
+  async ngOnInit() {
+
+    const token = localStorage.getItem('token');
+    const usuario = localStorage.getItem('usuario');
+
+    const un = CryptoJS.AES.decrypt(usuario || '{}', "usuario");
+    const UserName = un.toString(CryptoJS.enc.Utf8);
+    const i = localStorage.getItem('id');
+    const is = CryptoJS.AES.decrypt(i || '{}', "id");
+    const id = is.toString(CryptoJS.enc.Utf8);
+  
+    const array = UserName.split('"');
+    this.usernameLocal = array[1];
+    
+    const data: any = await this.database.getmydata(id).toPromise();
+    this.myRol = data.data.rol;
+
+    if(this.myRol != 'Cliente'){
+    
+
+  
+  
+  
+      if (!token) {
+        this.router.navigateByUrl('/login');
+      }
+ 
+     
+  
+    }
+    else{
+
+      this.router.navigateByUrl('/inicio');
+  
+
+    }
+  }
 
   
   VerImagenes(){

@@ -1,4 +1,7 @@
 <!-- SIDEBAR EN LA CLASE SIDERBARCOMPONENTE -->
+<div *ngIf="myRol != ClienteVista()" >
+
+
 <div class="navprincipal">
   <app-sidebar></app-sidebar>
   </div>
@@ -176,8 +179,8 @@
             <div class="card-body">
               <div class="form-outline">
                 <h5 style="color: #efb810" class="card-title">Precio</h5>
-                <!-- <li class="list-group-item">{{precioyasesor?.precio}}</li> -->
-                <input type="text">{{precioyasesor?.precio}}
+           <li class="list-group-item">{{precioyasesor?.precio}}</li>
+               
               </div>
             </div>
           </div>
@@ -215,3 +218,7 @@
     </div>
     <button class="conteo3" (click)="Volver2()">Regresar</button>
   </div>
+
+
+</div>
+

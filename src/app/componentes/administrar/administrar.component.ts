@@ -37,7 +37,7 @@ export class AdministrarComponent implements OnInit {
   newResponsable: any;
   newidSuper: any;
   alert: any = [];
-
+  MyrolCliente:boolean = false;
   usernameLocal: string = "";
 //Lista de precios de actas
   nac: number = 0;
@@ -56,7 +56,7 @@ export class AdministrarComponent implements OnInit {
   reset: number = 0;
   arfc: number = 0;
   dnac: number =  0;
-
+  myRol: any;
 
   vista: boolean = false;
 //Lista de precios por estado
@@ -136,6 +136,14 @@ export class AdministrarComponent implements OnInit {
     this.vista = !this.vista;
 
   }
+  ClienteVista() {
+    if (this.myRol != 'Cliente') {
+      this.MyrolCliente = !this.MyrolCliente;
+    }
+  
+    
+  }
+
   //BOTON PARA AGREGAR UN NUEVO USUARIO
   agregaUsuario() {
     this.agregarusuario = !this.agregarusuario;
@@ -567,11 +575,14 @@ export class AdministrarComponent implements OnInit {
     }
     if (this.newRol != "") {
       const providers = await this.database.getAllProviders(this.newRol).toPromise();
+      console.log(this.myData.rol)
+      console.log(providers)
       if (providers) {
         this.providers = providers;
       }
     }
   }
+
   //SELECCIONAMOS EL CIBER
   selectProvider(provider: string) {
     if (this.responsableSearch != "") {
@@ -591,8 +602,8 @@ export class AdministrarComponent implements OnInit {
     this.myData = mydata?.data;
   }
 
-  ngOnInit(): void {
-    this.getAllUsers();
+  async ngOnInit() {
+
     const token = localStorage.getItem('token');
     const usuario = localStorage.getItem('usuario');
 
@@ -601,17 +612,51 @@ export class AdministrarComponent implements OnInit {
     const i = localStorage.getItem('id');
     const is = CryptoJS.AES.decrypt(i || '{}', "id");
     const id = is.toString(CryptoJS.enc.Utf8);
-    this.getMyData(id);
+  
     const array = UserName.split('"');
     this.usernameLocal = array[1];
+    
+    const data: any = await this.database.getmydata(id).toPromise();
+    this.myRol = data.data.rol;
 
-    if (!token) {
-      this.router.navigateByUrl('/login');
+    if(this.myRol != 'Cliente'){
+      this.getAllUsers();
+
+  
+      if (!token) {
+        this.router.navigateByUrl('/login');
+      }
+ 
+      this.setPriceUsername();
+  
     }
-    this.setPriceUsername();
+    else{
+
+      this.router.navigateByUrl('/inicio');
+  
+
+    }
+
+
+
+
+
   }
+
+
   onChange(event: any) {
     this.tipodebusqueda = event;
+  }
+   //DESINCRIPTAMOS EL TOKEN PARA OBTENER LOS DATOS Y EL ROL
+   async descry() {
+
+    var idlocal = localStorage.getItem("id");
+    var i = CryptoJS.AES.decrypt(idlocal || '{}', "id");
+    var id: any = i.toString(CryptoJS.enc.Utf8);
+    this.result.push(id);
+
+    const data: any = await this.database.getmydata(id).toPromise();
+    this.myRol = data.data.rol;
   }
 
 }

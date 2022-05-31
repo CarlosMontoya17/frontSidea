@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { AgGridAngular } from 'ag-grid-angular';
 import 'ag-grid-enterprise';
 import { RestService } from '../historial/rest.service';
@@ -34,21 +35,21 @@ export class RegistrosComponent implements OnInit {
   pinnedBottomRowData!: any[];
   filtrados: any;
   utilidad: any;
-
+  myRol: any;
   ///Totales
   totalDocumentos: number = 0;
   totalPrecioVendido: number = 0;
   totalPrecioAPagar: number = 0;
   totalUtilidad: number = 0;
-
-
+  usernameLocal: string = "";
+  MyrolCliente:boolean = false;
   //Datos para Tabla
   fechas:any;
   fechaSeleccionada:any;
   usuariosEnFecha:any;
   data:any;
 
-  constructor(private restservice: RestService, private database: DatabaseService, private adminService:AdminService) {
+  constructor(private restservice: RestService, private database: DatabaseService, private adminService:AdminService, private router: Router) {
     let AG_GRID_LOCALE_EN = getArray();
     this.localeText = AG_GRID_LOCALE_EN;
     this.columnDefs = [
@@ -81,11 +82,54 @@ export class RegistrosComponent implements OnInit {
       nonEditableColumn: { editable: false },
     };
   }
+  ClienteVista() {
+    if (this.myRol != 'Cliente') {
+      this.MyrolCliente = !this.MyrolCliente;
+    }
+  
+    
+  }
+  async ngOnInit() {
 
-  ngOnInit(): void {
+    const token = localStorage.getItem('token');
+    const usuario = localStorage.getItem('usuario');
+
+    const un = CryptoJS.AES.decrypt(usuario || '{}', "usuario");
+    const UserName = un.toString(CryptoJS.enc.Utf8);
+    const i = localStorage.getItem('id');
+    const is = CryptoJS.AES.decrypt(i || '{}', "id");
+    const id = is.toString(CryptoJS.enc.Utf8);
+  
+    const array = UserName.split('"');
+    this.usernameLocal = array[1];
+    
+    const data: any = await this.database.getmydata(id).toPromise();
+    this.myRol = data.data.rol;
+
+    if(this.myRol != 'Cliente'){
+    
+
     //this.getcorte();
     this.getDates();
     this.setDate(null);
+  
+  
+      if (!token) {
+        this.router.navigateByUrl('/login');
+      }
+ 
+     
+  
+    }
+    else{
+
+      this.router.navigateByUrl('/inicio');
+  
+
+    }
+
+
+
     
   }
   onFilterChanged(params: GridOptions): void {

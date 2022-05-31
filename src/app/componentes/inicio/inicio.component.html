@@ -1321,7 +1321,7 @@
 
                     </div>
                     <div class="card-footer text-center">
-                        <a class="btn btn-success" (click)="downloadActa(req.id, req.url)" *ngIf="req.comments == 'Enviado'">
+                        <a class="btn btn-success" (click)="downloadActa(req.id, req.url)" *ngIf="req.url != null && req.comments == 'Enviado'">
                             <fa-icon [icon]="faFileArrowDown"></fa-icon>
         
                             &nbsp;Descargar
@@ -1333,7 +1333,7 @@
                             &nbsp;Detalles
                         </a>
 
-                        <a class="btn btn-warning" *ngIf="req.comments == null || req.comments == '.'">
+                        <a class="btn btn-warning" *ngIf="req.comments == null || req.comments == '.' && req.url == null">
                             <fa-icon [icon]="faRotate"></fa-icon>
         
                             &nbsp;En proceso
