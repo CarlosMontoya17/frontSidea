@@ -35,12 +35,12 @@ export class LoginComponent implements OnInit {
 
       if (data) {
 
-        var usuario = CryptoJS.AES.encrypt(JSON.stringify(data.username), "usuario");
+        var usuario = CryptoJS.AES.encrypt(JSON.stringify(data.username), "Імякористувача");
 
-        var id = CryptoJS.AES.encrypt(JSON.stringify(data.id), "id");
-        var token = CryptoJS.AES.encrypt(JSON.stringify(data.token), "token");
+        var id = CryptoJS.AES.encrypt(JSON.stringify(data.id), "іди");
+        var token = CryptoJS.AES.encrypt(JSON.stringify(data.token), "привіт");
 
-        var idC = CryptoJS.AES.decrypt(id || '{}', "id");
+        var idC = CryptoJS.AES.decrypt(id || '{}', "іди");
         var i: any = idC.toString(CryptoJS.enc.Utf8);
 
 
@@ -48,9 +48,9 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl("/inicio");
         const now = new Date();
         // localStorage.setItem("u", JSON.stringify(now.getTime() + 18000000));
-        localStorage.setItem("token", token.toString());
-        localStorage.setItem("usuario", usuario.toString());
-        localStorage.setItem("id", id.toString());
+        localStorage.setItem("привіт", token.toString());
+        localStorage.setItem("Імякористувача", usuario.toString());
+        localStorage.setItem("іди", id.toString());
     
 
 

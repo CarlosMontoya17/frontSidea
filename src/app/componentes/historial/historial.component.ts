@@ -102,7 +102,7 @@ export class HistorialComponent implements OnInit {
   }
   exportexcel(): void {
 
-    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
+    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('Імякористувача') || '{}', "Імякористувача");
     let userName = usuario.toString(CryptoJS.enc.Utf8);
     let arreglo = userName.split('"');
 
@@ -198,7 +198,7 @@ export class HistorialComponent implements OnInit {
   }
   //EXPPRTAMOS A EXCEL LA TABLA
   onBtnExport() {
-    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
+    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('Імякористувача') || '{}', "Імякористувача");
     let userName = usuario.toString(CryptoJS.enc.Utf8);
     let arreglo = userName.split('"');
 
@@ -217,7 +217,7 @@ export class HistorialComponent implements OnInit {
       cancelButtonText: 'No, cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+        var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
         var token: any = i.toString(CryptoJS.enc.Utf8);
         var parteuno = token.slice(1);
         var final = parteuno.slice(0, -1);
@@ -266,7 +266,7 @@ export class HistorialComponent implements OnInit {
       cancelButtonText: 'No, cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+        var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
         var token: any = i.toString(CryptoJS.enc.Utf8);
         var parteuno = token.slice(1);
         var final = parteuno.slice(0, -1);
@@ -320,7 +320,7 @@ export class HistorialComponent implements OnInit {
       cancelButtonText: 'No, cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+        var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
         var token: any = i.toString(CryptoJS.enc.Utf8);
         var parteuno = token.slice(1);
         var final = parteuno.slice(0, -1);
@@ -375,7 +375,7 @@ export class HistorialComponent implements OnInit {
       cancelButtonText: 'No, cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+        var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
         var token: any = i.toString(CryptoJS.enc.Utf8);
         var parteuno = token.slice(1);
         var final = parteuno.slice(0, -1);
@@ -614,9 +614,9 @@ export class HistorialComponent implements OnInit {
   //OPTENEMOS TODO EL CORTE DE LAS ACTAS Y ASESORES
   async getcorte() {
 
-    if (localStorage.getItem('token') != null) {
-      if (localStorage.getItem('id') != null) {
-        var usuario = CryptoJS.AES.decrypt(localStorage.getItem('id') || '{}', "id");
+    if (localStorage.getItem('привіт') != null) {
+      if (localStorage.getItem('іди') != null) {
+        var usuario = CryptoJS.AES.decrypt(localStorage.getItem('іди') || '{}', "іди");
         let id = usuario.toString(CryptoJS.enc.Utf8);
 
         const data: any = await this.restService.getcorte(id).toPromise();
@@ -637,8 +637,8 @@ export class HistorialComponent implements OnInit {
   //DESINCRIPTAMOS EL TOKEN PARA OBTENER LOS DATOS Y EL ROL
   async descry() {
 
-    var idlocal = localStorage.getItem("id");
-    var i = CryptoJS.AES.decrypt(idlocal || '{}', "id");
+    var idlocal = localStorage.getItem("іди");
+    var i = CryptoJS.AES.decrypt(idlocal || '{}', "іди");
     var id: any = i.toString(CryptoJS.enc.Utf8);
     this.result.push(id);
 
@@ -648,9 +648,9 @@ export class HistorialComponent implements OnInit {
 
   //PROTEGEMOS LAS VISTAS PARA NO SER HACKEADAS
   async ngOnInit() {
-    const token = localStorage.getItem('token');
-    var idlocal = localStorage.getItem("id");
-    var i = CryptoJS.AES.decrypt(idlocal || '{}', "id");
+    const token = localStorage.getItem('привіт');
+    var idlocal = localStorage.getItem("іди");
+    var i = CryptoJS.AES.decrypt(idlocal || '{}', "іди");
     var id: any = i.toString(CryptoJS.enc.Utf8);
     this.result.push(id);
     const data: any = await this.database.getmydata(id).toPromise();

@@ -1002,7 +1002,7 @@ export class InicioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('привіт');
     if (!token) {
       this.router.navigateByUrl('/login');
     }
@@ -1011,7 +1011,7 @@ export class InicioComponent implements OnInit {
     if (this.requestsView == true) {
       this.obtainARequests();
     }
-    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
+    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('Імякористувача') || '{}', "Імякористувача");
     let userName = usuario.toString(CryptoJS.enc.Utf8);
     let arreglo = userName?.split('"');
     this.usuario = arreglo[1];

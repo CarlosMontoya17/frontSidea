@@ -14,7 +14,7 @@ export class LoginService {
     return data;
   }
   async adduser(username: any, password: any, rol: any, type: any, idSuper: any, precios: any, status: any, nombre: any) {
-    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
     var token: any = i.toString(CryptoJS.enc.Utf8);
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);

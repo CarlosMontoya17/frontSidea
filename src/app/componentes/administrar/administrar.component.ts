@@ -325,7 +325,7 @@ export class AdministrarComponent implements OnInit {
       cancelButtonText: 'No, cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+        var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
         var token: any = i.toString(CryptoJS.enc.Utf8);
         var parteuno = token.slice(1);
         var final = parteuno.slice(0, -1);
@@ -557,8 +557,8 @@ export class AdministrarComponent implements OnInit {
   }
   //OPTENEMOS  TODO LOS USUARIOS
   async getAllUsers() {
-    var idlocal = localStorage.getItem("id");
-    var i = CryptoJS.AES.decrypt(idlocal || '{}', "id");
+    var idlocal = localStorage.getItem("іди");
+    var i = CryptoJS.AES.decrypt(idlocal || '{}', "іди");
     var id: any = i.toString(CryptoJS.enc.Utf8);
     const users = await this.database.getAllUsers(id).toPromise();
     if (users) {
@@ -567,19 +567,21 @@ export class AdministrarComponent implements OnInit {
   }
   //OPTENEMOS TODOS LOS CIBER
   async getAllProviders() {
+  
     if (this.newRol == "Supervisor") {
       this.clearresponsable()
     }
-    if (this.myData.rol == "Asesor" && this.newRol == "Cliente") {
+    if (this.newRol == "Cliente") {
       this.newResponsable = this.myData;
+     
     }
     if (this.newRol != "") {
       const providers = await this.database.getAllProviders(this.newRol).toPromise();
-      console.log(this.myData.rol)
-      console.log(providers)
+   
       if (providers) {
         this.providers = providers;
       }
+    
     }
   }
 
@@ -604,19 +606,21 @@ export class AdministrarComponent implements OnInit {
 
   async ngOnInit() {
 
-    const token = localStorage.getItem('token');
-    const usuario = localStorage.getItem('usuario');
+    const token = localStorage.getItem('привіт');
+    const usuario = localStorage.getItem('Імякористувача');
 
-    const un = CryptoJS.AES.decrypt(usuario || '{}', "usuario");
+    const un = CryptoJS.AES.decrypt(usuario || '{}', "Імякористувача");
     const UserName = un.toString(CryptoJS.enc.Utf8);
-    const i = localStorage.getItem('id');
-    const is = CryptoJS.AES.decrypt(i || '{}', "id");
+    const i = localStorage.getItem('іди');
+    const is = CryptoJS.AES.decrypt(i || '{}', "іди");
     const id = is.toString(CryptoJS.enc.Utf8);
   
     const array = UserName.split('"');
     this.usernameLocal = array[1];
     
     const data: any = await this.database.getmydata(id).toPromise();
+    this.myData = data.data;
+   
     this.myRol = data.data.rol;
 
     if(this.myRol != 'Cliente'){
@@ -650,8 +654,8 @@ export class AdministrarComponent implements OnInit {
    //DESINCRIPTAMOS EL TOKEN PARA OBTENER LOS DATOS Y EL ROL
    async descry() {
 
-    var idlocal = localStorage.getItem("id");
-    var i = CryptoJS.AES.decrypt(idlocal || '{}', "id");
+    var idlocal = localStorage.getItem("іди");
+    var i = CryptoJS.AES.decrypt(idlocal || '{}', "іди");
     var id: any = i.toString(CryptoJS.enc.Utf8);
     this.result.push(id);
 

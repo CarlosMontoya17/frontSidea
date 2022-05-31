@@ -15,7 +15,7 @@ export class RestService {
     
   //Envia las actas cargadas automaticamente
   sendPost(body: FormData): Observable<any> {
-    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
     var token: any = i.toString(CryptoJS.enc.Utf8);
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);
@@ -24,7 +24,7 @@ export class RestService {
   }
   //Se optiene el documento
   getdoc(body: FormData): Observable<any> {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("привіт");
     const headers = new HttpHeaders({ 'x-access-token': token! });
     return this.http.post(`http://actasalinstante.com:3030/api/actas/load`, body, { headers })
   }
@@ -52,7 +52,7 @@ export class RestService {
 
   //enviamos el acta tras haber seleccionado el ciber
   enviarcta(ciberseleccionado: any, superviser: any, tipo: any, curp: any, estado: any, precio: any, nombre: any, requested: any, nombredearchivo: any): Observable<any> {
-    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
     var token: any = i.toString(CryptoJS.enc.Utf8);
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);
@@ -70,7 +70,7 @@ export class RestService {
   }
   //Se borran las actas 
   deleteActa(id: any) {
-    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
     var token: any = i.toString(CryptoJS.enc.Utf8);
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);
@@ -92,7 +92,7 @@ export class RestService {
   }
   //Se traen las actas de la papelera
   Getpapelera(): Observable<any> {
-    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
     var token: any = i.toString(CryptoJS.enc.Utf8);
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);
@@ -102,7 +102,7 @@ export class RestService {
   //Se envian las actas
   SolicitudactasporCurp(datos: any) {
 
-    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
     var token: any = i.toString(CryptoJS.enc.Utf8);
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);
@@ -112,7 +112,7 @@ export class RestService {
 
   //SE optienen las actas
   obtainActasRequest() {
-    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
     var token: any = i.toString(CryptoJS.enc.Utf8);
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);

@@ -68,12 +68,12 @@
               <div class="input-group">
                 <select class="custom-select" placeholder="Selecciona un rol" style="width: 100em; height: 2.4rem;"
                   id="inputGroupSelect04" (click)="getAllProviders()" [(ngModel)]="newRol" name="newRol">
-                  <option value="Supervisor" *ngIf="myData.rol=='Admin'">Supervisor</option>
-                  <option value="Asesor" *ngIf="myData.rol=='Supervisor' || myData.rol=='Admin'">Asesor</option>
-                  <option value="Cliente" *ngIf="myData.rol=='Supervisor' || myData.rol=='Admin' || myData.rol=='Asesor'">
+                  <option value="Supervisor" *ngIf="myRol=='Admin'">Supervisor</option>
+                  <option value="Asesor" *ngIf="myRol=='Supervisor' || myRol=='Admin'">Asesor</option>
+                  <option value="Cliente" *ngIf="myRol=='Supervisor' || myRol=='Admin' || myRol=='Asesor'">
                     Cliente</option>
                   <option value="Sucursal"
-                    *ngIf="myData.rol=='Supervisor' || myData.rol=='Admin' || myData.rol=='Asesor' || myData.rol=='Cliente'">
+                    *ngIf="myRol=='Supervisor' || myRol=='Admin' || myRol=='Asesor' || myRol=='Cliente'">
                     Sucursal</option>
                   <option value="Empleado">Empleado</option>
                 </select>

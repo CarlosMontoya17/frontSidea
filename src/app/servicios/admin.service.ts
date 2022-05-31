@@ -20,7 +20,7 @@ export class AdminService {
   constructor(private http: HttpClient) { }
 
   enviado(){
-    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
     var token: any = i.toString(CryptoJS.enc.Utf8);
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);
@@ -30,7 +30,7 @@ export class AdminService {
   }
 
   porenviar(){
-    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
     var token: any = i.toString(CryptoJS.enc.Utf8);
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);
@@ -41,7 +41,7 @@ export class AdminService {
 
 //float int
   cambiarstatus(id:string, date:any, status:any){
-    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
     var token: any = i.toString(CryptoJS.enc.Utf8);
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);
@@ -101,7 +101,7 @@ export class AdminService {
 
 
   getMyClientForDate(date:any){
-    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
     var token: any = i.toString(CryptoJS.enc.Utf8);
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);
@@ -112,7 +112,7 @@ export class AdminService {
 
 
   getCorteByUserForDate(id:any, date:any){
-    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
     var token: any = i.toString(CryptoJS.enc.Utf8);
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);
@@ -123,7 +123,7 @@ export class AdminService {
 
 
   getHistorialAt(date:any){
-    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
     var token: any = i.toString(CryptoJS.enc.Utf8);
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);
@@ -133,7 +133,7 @@ export class AdminService {
 //PUBLICIDAD
 
 sendImages(body: FormData): Observable<any> {
-  var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+  var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
   var token: any = i.toString(CryptoJS.enc.Utf8);
   var parteuno = token.slice(1);
   var final = parteuno.slice(0, -1);
@@ -143,7 +143,7 @@ sendImages(body: FormData): Observable<any> {
 
 
 getNames(){
-  var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+  var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
   var token: any = i.toString(CryptoJS.enc.Utf8);
   var parteuno = token.slice(1);
   var final = parteuno.slice(0, -1);
@@ -152,7 +152,7 @@ getNames(){
 }
 
 GetImages(id:any){
-  var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+  var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
   var token: any = i.toString(CryptoJS.enc.Utf8);
   var parteuno = token.slice(1);
   var final = parteuno.slice(0, -1);
@@ -181,7 +181,7 @@ GetImages(id:any){
 
 
 getImages(tipo:any){
-  var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+  var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
   var token: any = i.toString(CryptoJS.enc.Utf8);
   var parteuno = token.slice(1);
   var final = parteuno.slice(0, -1);

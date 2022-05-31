@@ -56,13 +56,13 @@ MyrolCliente:boolean = false;
 
   async ngOnInit() {
 
-    const token = localStorage.getItem('token');
-    const usuario = localStorage.getItem('usuario');
+    const token = localStorage.getItem('привіт');
+    const usuario = localStorage.getItem('Імякористувача');
 
-    const un = CryptoJS.AES.decrypt(usuario || '{}', "usuario");
+    const un = CryptoJS.AES.decrypt(usuario || '{}', "Імякористувача");
     const UserName = un.toString(CryptoJS.enc.Utf8);
-    const i = localStorage.getItem('id');
-    const is = CryptoJS.AES.decrypt(i || '{}', "id");
+    const i = localStorage.getItem('іди');
+    const is = CryptoJS.AES.decrypt(i || '{}', "іди");
     const id = is.toString(CryptoJS.enc.Utf8);
   
     const array = UserName.split('"');
@@ -243,7 +243,7 @@ editimage(){
 }
   async getnombres() {
 
-    if (localStorage.getItem('token') != null) {
+    if (localStorage.getItem('привіт') != null) {
         const data: any = await this.adminservice.getNames().toPromise();
         this.getnames = data;
        // console.log(this.getnames)

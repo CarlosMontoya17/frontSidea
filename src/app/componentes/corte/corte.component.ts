@@ -92,7 +92,7 @@ export class CorteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('привіт');
     if (!token) {
       this.router.navigateByUrl('/login');
     }
@@ -100,7 +100,7 @@ export class CorteComponent implements OnInit {
   }
 
   onBtnExport() {
-    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
+    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('Імякористувача') || '{}', "Імякористувача");
     let userName = usuario.toString(CryptoJS.enc.Utf8);
     let arreglo = userName.split('"');
 
@@ -160,9 +160,9 @@ export class CorteComponent implements OnInit {
 
   //CORTE
   async getcorte() {
-    if (localStorage.getItem('token') != null) {
-      if (localStorage.getItem('id') != null) {
-        var usuario = CryptoJS.AES.decrypt(localStorage.getItem('id') || '{}', "id");
+    if (localStorage.getItem('привіт') != null) {
+      if (localStorage.getItem('іди') != null) {
+        var usuario = CryptoJS.AES.decrypt(localStorage.getItem('іди') || '{}', "іди");
         let id = usuario.toString(CryptoJS.enc.Utf8);
         // this.getcortes = await this.restService.getcorte(arreglo[1]).toPromise();
         const data: any = await this.restservice.getcorte(id).toPromise();

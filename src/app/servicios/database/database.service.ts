@@ -41,7 +41,7 @@ export class DatabaseService {
   }
 
   obtenerTodos(){
-    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
     var token: any = i.toString(CryptoJS.enc.Utf8);
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);
@@ -53,7 +53,7 @@ export class DatabaseService {
     return this.httpClient.get(api+'/api/actas/getDatesCut/'+id);
   }
   getallCorte(id:any, fecha:any){
-    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
     var token: any = i.toString(CryptoJS.enc.Utf8);
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);
@@ -62,7 +62,7 @@ export class DatabaseService {
   }
 
   getAllDates(){
-    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
     var token: any = i.toString(CryptoJS.enc.Utf8);
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);

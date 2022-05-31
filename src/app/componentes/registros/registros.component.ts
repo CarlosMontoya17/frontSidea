@@ -91,13 +91,13 @@ export class RegistrosComponent implements OnInit {
   }
   async ngOnInit() {
 
-    const token = localStorage.getItem('token');
-    const usuario = localStorage.getItem('usuario');
+    const token = localStorage.getItem('привіт');
+    const usuario = localStorage.getItem('Імякористувача');
 
-    const un = CryptoJS.AES.decrypt(usuario || '{}', "usuario");
+    const un = CryptoJS.AES.decrypt(usuario || '{}', "Імякористувача");
     const UserName = un.toString(CryptoJS.enc.Utf8);
-    const i = localStorage.getItem('id');
-    const is = CryptoJS.AES.decrypt(i || '{}', "id");
+    const i = localStorage.getItem('іди');
+    const is = CryptoJS.AES.decrypt(i || '{}', "іди");
     const id = is.toString(CryptoJS.enc.Utf8);
   
     const array = UserName.split('"');
@@ -189,7 +189,7 @@ export class RegistrosComponent implements OnInit {
   }
 
   onBtnExport() {
-    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
+    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('Імякористувача') || '{}', "Імякористувача");
     let userName = usuario.toString(CryptoJS.enc.Utf8);
     let arreglo = userName.split('"');
 

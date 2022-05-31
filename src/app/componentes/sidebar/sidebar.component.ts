@@ -140,14 +140,14 @@ logout(){
 
 
 async descry(){
-  if(localStorage.getItem('token')!=null){
-    if(localStorage.getItem('usuario')!=null){
-      var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
+  if(localStorage.getItem('привіт')!=null){
+    if(localStorage.getItem('Імякористувача')!=null){
+      var usuario = CryptoJS.AES.decrypt(localStorage.getItem('Імякористувача') || '{}', "Імякористувача");
       let userName = usuario.toString(CryptoJS.enc.Utf8);
       let arreglo = userName?.split('"');
       this.usuario = arreglo[1];
 
-      var idValue = CryptoJS.AES.decrypt(localStorage.getItem('id') || '{}', "id");
+      var idValue = CryptoJS.AES.decrypt(localStorage.getItem('іди') || '{}', "іди");
       this.userid = idValue.toString(CryptoJS.enc.Utf8);
       
       const data: any = await this.database.getmydata(this.userid).toPromise();

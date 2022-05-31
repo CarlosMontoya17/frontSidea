@@ -110,7 +110,7 @@ export class PagosComponent implements OnInit {
     private adminService: AdminService
   ) {
     this.data$ = adminService.getSelect;
-    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('id') || '{}', "id");
+    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('іди') || '{}', "іди");
     let userName = usuario.toString(CryptoJS.enc.Utf8);
     let arreglo = userName.split('"');
   }
@@ -123,8 +123,8 @@ export class PagosComponent implements OnInit {
   //DESINCRIPTAMOS EL TOKEN PARA OBTENER LOS DATOS Y EL ROL
   async descry() {
 
-    var idlocal = localStorage.getItem("id");
-    var i = CryptoJS.AES.decrypt(idlocal || '{}', "id");
+    var idlocal = localStorage.getItem("іди");
+    var i = CryptoJS.AES.decrypt(idlocal || '{}', "іди");
     var id: any = i.toString(CryptoJS.enc.Utf8);
     this.result.push(id);
 
@@ -146,7 +146,7 @@ export class PagosComponent implements OnInit {
 
 
   exportexcel(): void {
-    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
+    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('Імякористувача') || '{}', "Імякористувача");
     let userName = usuario.toString(CryptoJS.enc.Utf8);
     let arreglo = userName.split('"');
 
@@ -488,7 +488,7 @@ export class PagosComponent implements OnInit {
     if (filter == 1 && this.filter1 == false) {
       this.filter1 = true;
       this.filter2 = false;
-      var usuario = CryptoJS.AES.decrypt(localStorage.getItem('id') || '{}', "id");
+      var usuario = CryptoJS.AES.decrypt(localStorage.getItem('іди') || '{}', "іди");
       let userName = usuario.toString(CryptoJS.enc.Utf8);
       let arreglo = userName.split('"');
       let users: any = await this.database.getAllClients(arreglo[1]).toPromise();
@@ -501,8 +501,8 @@ export class PagosComponent implements OnInit {
     else if (filter == 2 && this.filter2 == false) {
       this.filter2 = true;
       this.filter1 = false;
-      var idlocal = localStorage.getItem("id");
-      var i = CryptoJS.AES.decrypt(idlocal || '{}', "id");
+      var idlocal = localStorage.getItem("іди");
+      var i = CryptoJS.AES.decrypt(idlocal || '{}', "іди");
       var id: any = i.toString(CryptoJS.enc.Utf8);
       const users: any = await this.database.getAllUsers(id).toPromise();
       let enterprises: any = [];
@@ -516,13 +516,13 @@ export class PagosComponent implements OnInit {
   async ngOnInit() {
 
 
-    const token = localStorage.getItem('token');
-    const usuario = localStorage.getItem('usuario');
+    const token = localStorage.getItem('привіт');
+    const usuario = localStorage.getItem('Імякористувача');
 
-    const un = CryptoJS.AES.decrypt(usuario || '{}', "usuario");
+    const un = CryptoJS.AES.decrypt(usuario || '{}', "Імякористувача");
     const UserName = un.toString(CryptoJS.enc.Utf8);
-    const i = localStorage.getItem('id');
-    const is = CryptoJS.AES.decrypt(i || '{}', "id");
+    const i = localStorage.getItem('іди');
+    const is = CryptoJS.AES.decrypt(i || '{}', "іди");
     const id = is.toString(CryptoJS.enc.Utf8);
   
     const array = UserName.split('"');
@@ -531,7 +531,7 @@ export class PagosComponent implements OnInit {
     const data: any = await this.database.getmydata(id).toPromise();
     this.myRol = data.data.rol;
 
-    if(this.myRol != 'Cliente'){
+    if(this.myRol != ''){
     
 
       this.getAllDates();
@@ -609,7 +609,7 @@ export class PagosComponent implements OnInit {
 
   //EXPORTAR EL CORTE 
   onBtnExport() {
-    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
+    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('Імякористувача') || '{}', "Імякористувача");
     let userName = usuario.toString(CryptoJS.enc.Utf8);
     let arreglo = userName.split('"');
     this.gridApi.exportDataAsCsv({ fileName: 'Corte-' + arreglo[1] + '.csv' });
@@ -617,7 +617,7 @@ export class PagosComponent implements OnInit {
 
   //SE OPTIENE EL TOKEN Y TRAE EL CLIENTE ACUTAL CON EL PRECIO TOTAL
   async requestData() {
-    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
     var token: any = i.toString(CryptoJS.enc.Utf8);
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);
@@ -659,9 +659,9 @@ export class PagosComponent implements OnInit {
   }
   //CORTE
   async getcorte() {
-    if (localStorage.getItem('token') != null) {
-      if (localStorage.getItem('usuario') != null) {
-        var usuario = CryptoJS.AES.decrypt(localStorage.getItem('usuario') || '{}', "usuario");
+    if (localStorage.getItem('привіт') != null) {
+      if (localStorage.getItem('Імякористувача') != null) {
+        var usuario = CryptoJS.AES.decrypt(localStorage.getItem('Імякористувача') || '{}', "Імякористувача");
         let userName = usuario.toString(CryptoJS.enc.Utf8);
         let arreglo = userName.split('"');
         this.rowData = await this.restservice.getcorte(arreglo[1]).toPromise();

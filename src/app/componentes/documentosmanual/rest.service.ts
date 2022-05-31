@@ -11,7 +11,7 @@ export class RestService {
   constructor(private http: HttpClient) {
   }
   sendPost(body: FormData): Observable<any> {
-    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
     var token: any = i.toString(CryptoJS.enc.Utf8);
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);
@@ -19,7 +19,7 @@ export class RestService {
     return this.http.post(`http://actasalinstante.com:3030/api/actas/load`, body, { headers })
   }
   getdoc(body: FormData): Observable<any> {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("привіт");
     const headers = new HttpHeaders({ 'x-access-token': token! });
     return this.http.post(`http://actasalinstante.com:3030/api/actas/load`, body, { headers })
   }
@@ -38,7 +38,7 @@ export class RestService {
   }
 
   enviarcta(ciberseleccionado: any, superviser: any, tipo: any, curp: any, estado: any, precio: any, nombre: any, requested: any,nombredearchivo:any): Observable<any> {
-    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
     var token: any = i.toString(CryptoJS.enc.Utf8);
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);
@@ -56,7 +56,7 @@ export class RestService {
   }
 
   deleteActa(id: any) {
-    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
     var token: any = i.toString(CryptoJS.enc.Utf8);
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);
@@ -75,7 +75,7 @@ export class RestService {
   }
 
   Getpapelera( ): Observable<any> {
-    var i = CryptoJS.AES.decrypt(localStorage.getItem("token") || '{}', "token");
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
     var token: any = i.toString(CryptoJS.enc.Utf8);
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);

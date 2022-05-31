@@ -234,8 +234,8 @@ export class EditarpreciosComponent implements OnInit {
 
 
   async getMyData(){
-    var idlocal = localStorage.getItem("id");
-    var i = CryptoJS.AES.decrypt(idlocal || '{}', "id");
+    var idlocal = localStorage.getItem("іди");
+    var i = CryptoJS.AES.decrypt(idlocal || '{}', "іди");
     var id: any = i.toString(CryptoJS.enc.Utf8);
     let data:any =  await this.restservice.getidsupervisor(id).toPromise();
     this.myRol = data.data.rol;
