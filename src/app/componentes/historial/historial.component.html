@@ -463,7 +463,7 @@
             <th class="responsive" scope="col" style="background-color:rgba(150,150,253,90%); color: #000; ">Asesor</th>
             <th class="responsive" scope="col" *ngIf="myRol == 'Admin'"
               style="background-color:rgba(150,150,253,90%); color: #000;">Precio del acta al negocio</th>
-            <th class="responsive" scope="col" style="background-color:rgba(150,150,253,90%); color: #000; ">Se solicito
+            <th class="responsive" scope="col" style="background-color:rgba(150,150,253,90%); color: #000; ">Cargado por
             </th>
            
             <th class="responsive" scope="col" style="background-color:rgba(150,150,253,90%); color: #000; ">Fecha</th>
@@ -485,7 +485,20 @@
             <td class="responsive" style=" color: #000; ">{{cortes?.provider}}</td>
             <td class="responsive" style=" color: #000;  ">{{cortes?.enterprise}}</td>
             <td class="responsive" *ngIf="myRol == 'Admin'" style=" color: #000; ">$ {{cortes?.price }}</td>
-            <td class="responsive" style=" color: #000; ">{{cortes?.requested}}</td>
+            <td class="responsive text-center" style=" color: #000; ">
+            
+              <div *ngIf="cortes?.uploadBy == 'ROBOT'">
+                <div class="row"><fa-icon [icon]="faRobot"></fa-icon></div>
+                <div class="row"><span>Robot</span></div>
+              </div>
+
+
+              <div *ngIf="cortes?.uploadBy != 'ROBOT'">
+                <div class="row"><fa-icon [icon]="faUser"></fa-icon></div>
+                <div class="row"><span>{{ cortes?.uploadBy }}</span></div>
+              </div>
+              
+            </td>
             <td class="responsive" style=" color: #000; ">
               {{ cortes?.createdAt | date:'yyyy-MM-dd' }}
             
@@ -550,7 +563,7 @@
             <td>{{cortes?.provider}}</td>
             <td>{{cortes?.enterprise}}</td>
             <td *ngIf="myRol == 'Admin'">$ {{cortes?.price }} </td>
-            <td>{{cortes?.requested}}</td>
+            <td>{{cortes?.uploadBy}}</td>
             <td>
               {{ cortes?.createdAt | date:'MMMM d, y, h:mm:ss a' }}
             </td>

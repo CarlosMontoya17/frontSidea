@@ -15,7 +15,8 @@ import * as XLSX from 'xlsx'
 import { faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 import { faTrashArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { faTrashRestore } from '@fortawesome/free-solid-svg-icons';
-
+import { faRobot } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 declare function loader(): any;
 declare function closeAlert(): any;
 
@@ -35,7 +36,7 @@ export class HistorialComponent implements OnInit {
   conteo2: boolean = false;
   conteo3: boolean = false;
   docPath: string = "";
-
+  faRobot = faRobot;
   public imagePath: any;
   hidden: boolean = false;
   hidden2: boolean = true;
@@ -44,6 +45,7 @@ export class HistorialComponent implements OnInit {
   facalend = faCalendarDays;
   restored = faTrashRestore;
   papelera = faTrashArrowUp;
+  faUser = faUser;
   imgURL: any;
   fileTmp: any;
   info: any;
@@ -169,7 +171,7 @@ export class HistorialComponent implements OnInit {
     }
 
     const data = await this.restService.enviarcta(this.ciberseleccionado, this.precioyasesor.superviser, this.info.tipo, this.info.curp, this.info.estado, this.precioyasesor.precio, nombrecompleto, "", this.fileTmp.fileName).toPromise();
-
+  
     this.reloadCurrentRoute();
   }
 
@@ -499,6 +501,7 @@ export class HistorialComponent implements OnInit {
       case "MICHOACAN DE OCAMPO":
         state = "mich";
         break;
+        
       case "TLAXCALA":
         state = "tlax";
         break;
@@ -582,13 +585,15 @@ export class HistorialComponent implements OnInit {
         break;
     }
     if (this.info.estado.includes("ESTADOS")) {
-      documento = "ext";
+      state = "ext";
     }
+  
 
 
 
     const precioyasesor = await this.restService.getprecioyasesor(documento, state, id).toPromise();
     this.precioyasesor = precioyasesor;
+ 
     const data: any = await this.restService.getidsupervisor(this.precioyasesor.superviser).toPromise();
     this.nombreasesor = data?.data.nombre;
 
@@ -622,7 +627,7 @@ export class HistorialComponent implements OnInit {
         const data: any = await this.restService.getcorte(id).toPromise();
 
         this.getcortes = data;
-
+     
         if (data.lenght != 0) {
           closeAlert();
         }
@@ -679,7 +684,6 @@ export class HistorialComponent implements OnInit {
     }
     this.vista = !this.vista;
     this.getcorte();
-    this.gettraerPapelera();
   }
   ClienteVista() {
     if (this.myRol != 'Cliente') {
@@ -692,7 +696,7 @@ export class HistorialComponent implements OnInit {
   changeView2() {
     this.conteo = !this.conteo;
     this.getcorte();
-    this.gettraerPapelera();
+
   }
   //CAMBIAMOS LA VISTA D ELA TABLA SUBIR ARCHIVOS MANUAL
   changeView3() {
@@ -705,6 +709,7 @@ export class HistorialComponent implements OnInit {
   //OCULTAMOS LA VISTA DE LOS BOTONES DE LA VISTA DE SUBIR DOCUMENTOS DE FORMA MANUAL
   changeView5() {
     this.router.navigateByUrl('papelera');
+
   }
   changeView6() {
     this.excel = !this.excel;
