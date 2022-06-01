@@ -294,6 +294,33 @@ export class InicioComponent implements OnInit {
     }
   }
 
+ curpValida(curp:any) {
+    var re = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/,
+        validado = curp.match(re);
+	
+    if (!validado)  //Coincide con el formato general?
+    	return false;
+    
+    //Validar que coincida el dígito verificador
+    function digitoVerificador(curp17:any) {
+        //Fuente https://consultas.curp.gob.mx/CurpSP/
+        var diccionario  = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZ",
+            lngSuma      = 0.0,
+            lngDigito    = 0.0;
+        for(var i=0; i<17; i++)
+            lngSuma = lngSuma + diccionario.indexOf(curp17.charAt(i)) * (18 - i);
+        lngDigito = 10 - lngSuma % 10;
+        if (lngDigito == 10) return 0;
+        return lngDigito;
+    }
+  
+    if (validado[2] != digitoVerificador(validado[1])) 
+    	return false;
+        
+    return true; //Validado
+}
+
+
   switchSelectable() {
 
     switch (this.actoRegistral) {
@@ -316,7 +343,7 @@ export class InicioComponent implements OnInit {
         break;
       }
     }
-
+    /* Acto por curp   */
     if (this.tipodebusqueda == '1') {
 
       if (this.acto == "" || this.acto == undefined) {
@@ -330,38 +357,89 @@ export class InicioComponent implements OnInit {
           }
         );
       }
-      else if (this.curp == "" || this.curp.length < 18) {
+else
+   
+
+        if (this.curp == "" || this.curp.length < 18) {
 
 
-        let digit = this.curp.length;
+          let digit = this.curp.length;
+  
+          Swal.fire(
+            {
+              position: 'center',
+              icon: 'error',
+              title: `Te hacen falta ${Math.abs(18 - Number(digit))} digitos en la CURP`,
+              showConfirmButton: false,
+              timer: 1500
+            }
+          );
+  
+        }
+        else if (this.curp.length > 18) {
+          let digit = this.curp.length;
+          Swal.fire(
+            {
+              position: 'center',
+              icon: 'error',
+              title: `Te sobran ${Math.abs(18 - Number(digit))} digitos en la CURP`,
+              showConfirmButton: false,
+              timer: 1500
+            }
+          );
+        }
+        else 
+         
+       
 
-        Swal.fire(
-          {
-            position: 'center',
-            icon: 'error',
-            title: `Te hacen falta ${Math.abs(18 - Number(digit))} digitos en la CURP`,
-            showConfirmButton: false,
-            timer: 1500
-          }
-        );
+        if(this.curpValida(this.curp)) {
+   // ⬅️ Acá se comprueba
+   let valido = "Válido";
+   //console.log(valido);
+   this.selectable = !this.selectable;
+       
+        }
 
+
+
+      else{
+       
+
+        let valido = "El Formato de Curp No Es El Correcto ";
+        //console.log(valido);
+
+        Swal.fire({
+        
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+          
+            
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+          },
+       
+          title: "<h1 style='color:red'>" + '❗❗❗😡ERROR😡❗❗❗' + "</h1>",
+       
+          
+         
+         
+          html:"<h3 style='color:back'>" + valido + "</h3>",
+         imageUrl: 'https://lh3.googleusercontent.com/uFbO8S-FmRW1th74Ecmz3X-rm4WOK5xlxy8r-17P7go6bpUyLhWkKBjS6wi1qyfoKh6bbIITgOZMGl5-hrJbLcuQ90p3gpdgy3kTPehYiJ6BfLFcyIv__mMq1SPGC7QF31-MKlc',
+          imageWidth: 1980,
+          imageHeight: 400,
+          imageAlt: 'Custom image',
+         
+        })
+       
+    
       }
-      else if (this.curp.length > 18) {
-        let digit = this.curp.length;
-        Swal.fire(
-          {
-            position: 'center',
-            icon: 'error',
-            title: `Te sobran ${Math.abs(18 - Number(digit))} digitos en la CURP`,
-            showConfirmButton: false,
-            timer: 1500
-          }
-        );
-      }
-      else {
-        this.selectable = !this.selectable;
-      }
+
+
     }
+
+      /*Cadena Digital*/
+
     else if (this.tipodebusqueda == '2') {
       try {
         if (this.cadenadigital == undefined || this.cadenadigital.length != 20) {
@@ -424,7 +502,7 @@ export class InicioComponent implements OnInit {
     }
     else if (this.tipodebusqueda == '3') {
       if (this.acto != "MATRIMONIO" && this.acto != "DIVORCIO") {
-        console.log(this.entidad);
+   
         if (this.acto == "" || this.acto == undefined
           || this.entidad == "" || this.entidad == undefined
           || this.nombres == "" || this.nombres == undefined

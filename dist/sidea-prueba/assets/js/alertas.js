@@ -36,7 +36,7 @@ function showDetailsActas(comments) {
         }
     })
 }
-
+ 
 
 
 function ShowImageAd(id, tipo) {
@@ -99,14 +99,21 @@ function edit() {
         ctx.fillStyle = "transparent";
         ctx.fillStyle = 'rgba(30, 144, 255, 0)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-
+       
         //ctx.drawImage(img2,20,380, 331, 100); 
-   
+        //
         //ctx-drawingin imahedfbgfh
         //ctx.fillStyle = 'rgba(30,144,255,100)'
         //ctx-fillStyle = "Transpartent";
         //
         /*
+        function. DrawText(){
+           filter.fillStyle(){
+               ctx.fillRect(){
+
+               }
+           } 
+        }
         function DrawText(){
             ctx.fillStyle = "white";
             ctx.textBaseline = 'middle';
