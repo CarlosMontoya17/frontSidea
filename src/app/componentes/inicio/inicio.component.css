@@ -10,7 +10,7 @@ img {
 button{
   height: 45px;
   line-height: 29px;
-
+  width: 30%;
   background: #A52A2A;
   transition: all .25s;
   border: none;

@@ -270,6 +270,7 @@ export class DocumentosmanualComponent implements OnInit {
         let tokenfinal: string = final;
         const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
 
+
         this.http.put('http://actasalinstante.com:3030/api/actas/changeDate/' + id, { date: this.fecha }, { headers }).subscribe(
           (data: any) => {
             Swal.fire(
@@ -666,7 +667,7 @@ export class DocumentosmanualComponent implements OnInit {
     const data: any = await this.database.getmydata(id).toPromise();
     this.myRol = data.data.rol;
 
-    if(this.myRol != 'Cliente'){
+    if(this.myRol != 'Cliente'  && this.myRol != 'Sucursal' ){
     
 
       this.getAllCibers();

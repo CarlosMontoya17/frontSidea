@@ -47,12 +47,13 @@ MyrolCliente:boolean = false;
 
   constructor(private adminservice: AdminService, private router: Router, private database: DatabaseService, private adminService:AdminService) { }
   ClienteVista() {
-    if (this.myRol != 'Cliente') {
+    if (this.myRol != 'Cliente' && this.myRol != 'Sucursal') {
       this.MyrolCliente = !this.MyrolCliente;
     }
   
     
   }
+
 
   async ngOnInit() {
 

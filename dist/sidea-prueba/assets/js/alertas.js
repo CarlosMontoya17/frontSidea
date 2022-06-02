@@ -37,8 +37,6 @@ function showDetailsActas(comments) {
     })
 }
  
-
-
 function ShowImageAd(id, tipo) {
     Swal.fire({
         imageUrl: 'http://actasalinstante.com:3030/api/ads/getImage/' + id,
@@ -147,9 +145,6 @@ function edit() {
         }
 
     }
-
-
-
 
     function DynamicText(img) {
         document.getElementById('name').addEventListener('keyup', function () {

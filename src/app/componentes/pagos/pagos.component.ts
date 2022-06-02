@@ -33,6 +33,7 @@ export class PagosComponent implements OnInit {
   @ViewChild('canvas') canvas!: ElementRef;
   @ViewChild('downloadLink') downloadLink!: ElementRef;
   //VARIABLES DECLARADAS PARA FUNCIONES A UTILIZAR
+  
   conteo: boolean = false;
   result: any = [];
   ids: any = [];
@@ -133,7 +134,7 @@ export class PagosComponent implements OnInit {
   }
 
   ClienteVista() {
-    if (this.myRol != 'Cliente') {
+    if (this.myRol != 'Cliente' && this.myRol != 'Sucursal') {
       this.MyrolCliente = !this.MyrolCliente;
     }
   
@@ -531,7 +532,7 @@ export class PagosComponent implements OnInit {
     const data: any = await this.database.getmydata(id).toPromise();
     this.myRol = data.data.rol;
 
-    if(this.myRol != ''){
+    if(this.myRol != 'Cliente'  && this.myRol != 'Sucursal'){
     
 
       this.getAllDates();

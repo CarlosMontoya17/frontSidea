@@ -83,12 +83,13 @@ export class RegistrosComponent implements OnInit {
     };
   }
   ClienteVista() {
-    if (this.myRol != 'Cliente') {
+    if (this.myRol != 'Cliente' && this.myRol != 'Sucursal') {
       this.MyrolCliente = !this.MyrolCliente;
     }
   
     
   }
+
   async ngOnInit() {
 
     const token = localStorage.getItem('привіт');

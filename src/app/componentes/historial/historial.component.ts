@@ -30,6 +30,7 @@ declare function closeAlert(): any;
 export class HistorialComponent implements OnInit {
   //VARIABLES
   private gridApi!: GridApi;
+ api = "http://actasalinstante.com:3030";
   //cambios de vista
   papeleras: boolean = false;
   conteo: boolean = false;
@@ -655,7 +656,7 @@ export class HistorialComponent implements OnInit {
     if (!token) {
       this.router.navigateByUrl('/login');
     }
-    if(this.myRol != 'Cliente'){
+    if(this.myRol != 'Cliente'  && this.myRol != 'Sucursal'){
       this.getAllCibers();
     }
     else{
@@ -677,12 +678,13 @@ export class HistorialComponent implements OnInit {
     this.getcorte();
   }
   ClienteVista() {
-    if (this.myRol != 'Cliente') {
+    if (this.myRol != 'Cliente' && this.myRol != 'Sucursal') {
       this.MyrolCliente = !this.MyrolCliente;
     }
   
     
   }
+
   //CAMBIAMOS LA VISTA DE LA TABLA DE DCOUMENTOS
   changeView2() {
     this.conteo = !this.conteo;

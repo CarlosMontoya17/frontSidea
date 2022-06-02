@@ -138,7 +138,7 @@ sendImages(body: FormData): Observable<any> {
   var parteuno = token.slice(1);
   var final = parteuno.slice(0, -1);
   const headers = new HttpHeaders({ 'x-access-token': final! });
-  return this.http.post(`http://actasalinstante.com:3030/api/ads/up/`, body, { headers })
+  return this.http.post(urlApi+`/api/ads/up/`, body, { headers })
 }
 
 

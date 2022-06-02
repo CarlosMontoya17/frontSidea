@@ -137,12 +137,13 @@ export class AdministrarComponent implements OnInit {
 
   }
   ClienteVista() {
-    if (this.myRol != 'Cliente') {
+    if (this.myRol != 'Cliente' && this.myRol != 'Sucursal') {
       this.MyrolCliente = !this.MyrolCliente;
     }
   
     
   }
+
 
   //BOTON PARA AGREGAR UN NUEVO USUARIO
   agregaUsuario() {
@@ -310,7 +311,7 @@ export class AdministrarComponent implements OnInit {
       this.EXTRANJERO= 120;
     }
 
-
+  
   }
   //BORRAMOS EL USUARIO
   async deleteUser(user: any) {
@@ -623,7 +624,7 @@ export class AdministrarComponent implements OnInit {
    
     this.myRol = data.data.rol;
 
-    if(this.myRol != 'Cliente'){
+    if(this.myRol != 'Cliente' && this.myRol != 'Sucursal'){
       this.getAllUsers();
 
   
@@ -640,10 +641,7 @@ export class AdministrarComponent implements OnInit {
   
 
     }
-
-
-
-
+  
 
   }
 
