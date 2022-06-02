@@ -317,7 +317,7 @@ function listadePrecios(id, data) {
 function comprobante2(comprobante) {
   Swal.fire({
     title: 'Comprobante',
-    imageUrl: 'http://actasalinstante.com:3030/comprobantes/'+comprobante+'.jpg',
+    imageUrl: 'https://actasalinstante.com:3031/comprobantes/'+comprobante+'.jpg',
     imageAlt: 'Custom image',
   })
 }

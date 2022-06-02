@@ -10,7 +10,7 @@ export class SocketService {
   private socket: Socket;
 
   constructor() { 
-    this.socket = io('http://actasalinstante.com:3030');
+    this.socket = io('https://actasalinstante.com:3031');
   }
 
   onNewNotify(){

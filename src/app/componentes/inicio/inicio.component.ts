@@ -711,7 +711,7 @@ else
           || this.entidad == "" || this.entidad == undefined
           || this.nombres == "" || this.nombres == undefined
           || this.primerApellido == "" || this.primerApellido == undefined
-          || this.segundoApellido == "" || this.segundoApellido == undefined
+         
           || this.nombresSec == "" || this.nombresSec == undefined
           || this.primerApellidoSec == "" || this.primerApellidoSec == undefined
           || this.segundoApellidoSec == "" || this.segundoApellidoSec == undefined) {

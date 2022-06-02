@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import * as CryptoJS from 'crypto-js';
 import { Token } from '../login/token.model';
-const api = "http://actasalinstante.com:3030";
+const api = "https://actasalinstante.com:3030";
 @Injectable({
   providedIn: 'root',
 })
@@ -16,25 +16,25 @@ export class RestService {
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);
     const headers = new HttpHeaders({ 'x-access-token': final! });
-    return this.http.post(`http://actasalinstante.com:3030/api/actas/load`, body, { headers })
+    return this.http.post(api+`/api/actas/load`, body, { headers })
   }
   getdoc(body: FormData): Observable<any> {
     const token = localStorage.getItem("привіт");
     const headers = new HttpHeaders({ 'x-access-token': token! });
-    return this.http.post(`http://actasalinstante.com:3030/api/actas/load`, body, { headers })
+    return this.http.post(api+`/api/actas/load`, body, { headers })
   }
   getuser(): Observable<any> {
-    return this.http.get('http://actasalinstante.com:3030/api/user/getFull/')
+    return this.http.get(api+'/api/user/getFull/')
   }
   getciber(): Observable<any> {
-    return this.http.get('http://actasalinstante.com:3030/api/clients/getAll');
+    return this.http.get(api+'/api/clients/getAll');
   }
   getprecioyasesor(tipo: any, estado: any, id: any) {
     return this.http.put(api + '/api/clients/getMyData/' + id, { "tipo": tipo, "estado": estado })
   }
 
   getidsupervisor(id: any) {
-    return this.http.get('http://actasalinstante.com:3030/api/user/getOne/' + id);
+    return this.http.get(api+'/api/user/getOne/' + id);
   }
 
   enviarcta(ciberseleccionado: any, superviser: any, tipo: any, curp: any, estado: any, precio: any, nombre: any, requested: any,nombredearchivo:any): Observable<any> {
@@ -44,11 +44,11 @@ export class RestService {
     var final = parteuno.slice(0, -1);
     let tokenfinal: string = final;
     const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
-    return this.http.post('http://actasalinstante.com:3030/api/actas/up', { enterprise: ciberseleccionado, provider: superviser, document: tipo, states: estado, curp: curp, nombreacta: nombre, requested: requested, price: precio, namefile:nombredearchivo }, { headers });
+    return this.http.post(api+'/api/actas/up', { enterprise: ciberseleccionado, provider: superviser, document: tipo, states: estado, curp: curp, nombreacta: nombre, requested: requested, price: precio, namefile:nombredearchivo }, { headers });
   }
   //Corte de historial
   getcorte(id: any): Observable<any> {
-    return this.http.get('http://actasalinstante.com:3030/api/getMyCorteId/' + id)
+    return this.http.get(api+'/api/getMyCorteId/' + id)
   }
 
   getMyDocumentsLoaded(id: any) {
@@ -65,13 +65,13 @@ export class RestService {
     return this.http.delete(api + '/api/actas/deleteActa/' + id);
   }
   deleteuser(id: any): Observable<any> {
-    return this.http.get('http://actasalinstante.com:3030/api/user/delete/' + id)
+    return this.http.get(api+'/api/user/delete/' + id)
   }
   editPrecior(id: any, precios: any): Observable<any> {
-    return this.http.put('http://actasalinstante.com:3030/api/user/editPrice/' + id, { precios: precios })
+    return this.http.put(api+'/api/user/editPrice/' + id, { precios: precios })
   }
   GetActasNumber(id: any): Observable<any> {
-    return this.http.get('http://actasalinstante.com:3030/api/actas/CountForEnterprise/' + id)
+    return this.http.get(api+'/api/actas/CountForEnterprise/' + id)
   }
 
   Getpapelera( ): Observable<any> {
@@ -80,7 +80,7 @@ export class RestService {
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);
     const headers = new HttpHeaders({ 'x-access-token': final! });
-    return this.http.get('http://actasalinstante.com:3030/api/actas/Trash/' , { headers })
+    return this.http.get(api+'/api/actas/Trash/' , { headers })
   }
   
 

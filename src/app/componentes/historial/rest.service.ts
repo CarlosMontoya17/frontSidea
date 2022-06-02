@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import * as CryptoJS from 'crypto-js';
 import { Token } from '../login/token.model';
-const api = "http://actasalinstante.com:3030";
+const api = "https://actasalinstante.com:3030";
 @Injectable({
   providedIn: 'root',
 })

@@ -30,7 +30,7 @@ declare function closeAlert(): any;
 export class HistorialComponent implements OnInit {
   //VARIABLES
   private gridApi!: GridApi;
- api = "http://actasalinstante.com:3030";
+ api = "https://actasalinstante.com:3030";
   //cambios de vista
   papeleras: boolean = false;
   conteo: boolean = false;
@@ -226,7 +226,7 @@ export class HistorialComponent implements OnInit {
         var final = parteuno.slice(0, -1);
         let tokenfinal: string = final;
         const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
-        this.http.delete('http://actasalinstante.com:3030/api/actas/deleteActa/' + id, { headers }).subscribe(
+        this.http.delete('https://actasalinstante.com:3031/api/actas/deleteActa/' + id, { headers }).subscribe(
           (data: any) => {
             Swal.fire(
               {
@@ -276,7 +276,7 @@ export class HistorialComponent implements OnInit {
         let tokenfinal: string = final;
         const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
 
-        this.http.put('http://actasalinstante.com:3030/api/actas/changeDate/' + id, { date: this.fecha }, { headers }).subscribe(
+        this.http.put('https://actasalinstante.com:3031/api/actas/changeDate/' + id, { date: this.fecha }, { headers }).subscribe(
           (data: any) => {
             Swal.fire(
               {
@@ -330,7 +330,7 @@ export class HistorialComponent implements OnInit {
         let tokenfinal: string = final;
         const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
 
-        this.http.put('http://actasalinstante.com:3030/api/actas/moveToTrash/', { id: id, hidden: hiddensa }, { headers }).subscribe(
+        this.http.put('https://actasalinstante.com:3031/api/actas/moveToTrash/', { id: id, hidden: hiddensa }, { headers }).subscribe(
           (data: any) => {
             Swal.fire(
               {
@@ -385,7 +385,7 @@ export class HistorialComponent implements OnInit {
         let tokenfinal: string = final;
         const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
 
-        this.http.put('http://actasalinstante.com:3030/api/actas/moveToTrash/', { id: id, hidden: hiddensa }, { headers }).subscribe(
+        this.http.put('https://actasalinstante.com:3031/api/actas/moveToTrash/', { id: id, hidden: hiddensa }, { headers }).subscribe(
           (data: any) => {
             Swal.fire(
               {

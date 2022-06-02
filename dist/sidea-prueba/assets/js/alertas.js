@@ -39,7 +39,7 @@ function showDetailsActas(comments) {
  
 function ShowImageAd(id, tipo) {
     Swal.fire({
-        imageUrl: 'http://actasalinstante.com:3030/api/ads/getImage/' + id,
+        imageUrl: 'httpss://actasalinstante.com:3030/api/ads/getImage/' + id,
         imageHeight: '400%',
         text: "Vista previa de: " + '\n' + " • " + tipo + " • ",
         confirmButton: true,
@@ -49,7 +49,7 @@ function ShowImageAd(id, tipo) {
         cancelButtonText: 'Cerrar'
     }).then((result) => {
         if (result.isConfirmed) {
-            download("http://actasalinstante.com:3030/api/ads/getImage/" + id, tipo);
+            download("https://actasalinstante.com:3030/api/ads/getImage/" + id, tipo);
             Swal.fire({
                 position: 'center',
                 icon: 'success',
@@ -183,7 +183,7 @@ function edit() {
             DrawOverlay(img);
             DrawText();
             DynamicText(img);
-        }
+        } 
 
         /*
         
@@ -211,6 +211,12 @@ function edit() {
         }
 
         /// default offset is center
+        /*   
+        textbox.show =  'hola mundo';
+        textbox.show = ' helo world';
+        txt.settext = '   ';
+        
+        */
         offsetX = typeof offsetX === 'number' ? offsetX : 0.5;
         offsetY = typeof offsetY === 'number' ? offsetY : 0.5;
 
@@ -266,8 +272,6 @@ function download(url, tipo) {
         document.body.removeChild(link);
     });
 }
-
-
 
 function Notifications(message, status) {
     const Toast = Swal.mixin({

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Token } from '../componentes/login/token.model';
-const urlApi = 'http://actasalinstante.com:3030';
+const urlApi = 'https://actasalinstante.com:3031';
 import * as CryptoJS from 'crypto-js';
 @Injectable({
   providedIn: 'root'

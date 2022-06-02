@@ -134,6 +134,7 @@ MyrolCliente:boolean = false;
       fileName: file?.name
     }
   }
+
   //AÑADIMOS UNA IMAGEN POR MEDIO DE LA API
   addImg() {
     let id:any;
@@ -189,6 +190,7 @@ MyrolCliente:boolean = false;
 
       }
     }
+
     catch (error: any) {
 
       Swal.fire(
@@ -205,6 +207,10 @@ MyrolCliente:boolean = false;
 
 
     // if(this.selectOpt != 0 && this.img1 != 0){
+
+
+
+
     //   this.adminservice.addImg(this.img1, this.selectOpt);
     // }
 

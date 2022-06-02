@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 declare function swalError(mensaje:any): any;
 declare function swalOk(mensaje:any): any;
-const urlApi = 'http://actasalinstante.com:3030';
+const urlApi = 'https://actasalinstante.com:3031';
 
 
 @Injectable({

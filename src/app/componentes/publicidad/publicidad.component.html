@@ -243,7 +243,7 @@
                                         <h4 class="text-center animate__animated animate__bounceIn "> {{tipo }}</h4>
                                         <div class="card ads " *ngFor="let name of getnames">
                                             <img (click)="showImage(name.id, name.tipo)"  (click)="editimage()"
-                                                src="http://actasalinstante.com:3030/api/ads/getImage/{{name.id}}"
+                                                src="https://actasalinstante.com:3030/api/ads/getImage/{{name.id}}"
                                                 title="{{name.tipo}}">
                                         </div>
                                     </div>
@@ -274,7 +274,7 @@
     <label class="controls__label text-center" for="name">Overlay Text</label>
     <div class="card ads " *ngFor="let names of getnames">
         <img (click)="showImages(names.id, names.tipo)"  (click)="editimage()"
-            src="http://actasalinstante.com:3030/api/ads/getImage/{{names.id}}"
+            src="https://actasalinstante.com:3030/api/ads/getImage/{{names.id}}"
             title="{{names.tipo}}">
     </div>
   </div>
@@ -285,7 +285,7 @@
         <canvas  id="canvasID">   
 
             <img (click)="showImages(names.id, names.tipo)"  (click)="editimage()"
-            src="http://actasalinstante.com:3030/api/ads/getImage/{{names.id}}"
+            src="https://actasalinstante.com:3030/api/ads/getImage/{{names.id}}"
             title="{{names.tipo}}">
 
         </canvas>
