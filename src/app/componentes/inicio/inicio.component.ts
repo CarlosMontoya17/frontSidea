@@ -110,7 +110,7 @@ export class InicioComponent implements OnInit {
   constructor(private router: Router, private restservice: RestService, private readJson: ReadService) {
     this.dataset$ = readJson.getObtainsCards;
     this.dataset$.subscribe((data: any) => {
-      this.requests = data;
+     // this.requests = data;
     });
 
     // this.dataset$.subscribe((data:any) => {

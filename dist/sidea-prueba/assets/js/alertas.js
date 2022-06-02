@@ -101,11 +101,11 @@ function edit() {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
        
         //ctx.drawImage(img2,20,380, 331, 100); 
-        //
+        
         //ctx-drawingin imahedfbgfh
         //ctx.fillStyle = 'rgba(30,144,255,100)'
         //ctx-fillStyle = "Transpartent";
-        //
+    
         /*
         function. DrawText(){
            filter.fillStyle(){
@@ -129,8 +129,7 @@ function edit() {
             }
 
         }
-        
-        
+     
         */   
  }
 
@@ -148,6 +147,9 @@ function edit() {
         }
 
     }
+
+
+
 
     function DynamicText(img) {
         document.getElementById('name').addEventListener('keyup', function () {
@@ -189,7 +191,7 @@ function edit() {
         }
 
         /*
-    
+        
         
         */ 
 

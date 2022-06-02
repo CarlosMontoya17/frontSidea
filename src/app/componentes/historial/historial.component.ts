@@ -426,8 +426,6 @@ export class HistorialComponent implements OnInit {
     const body = new FormData();
     let documento: string;
 
-
-
     switch (this.info.tipo) {
 
       case "Asignación de Número de Seguridad Social":
@@ -589,8 +587,6 @@ export class HistorialComponent implements OnInit {
     }
   
 
-
-
     const precioyasesor = await this.restService.getprecioyasesor(documento, state, id).toPromise();
     this.precioyasesor = precioyasesor;
  
@@ -602,8 +598,6 @@ export class HistorialComponent implements OnInit {
   //TRAEMOS TODOS LOS DATOS DE LAS ACTAS DE PAPELERA
   async gettraerPapelera() {
 
-
-
     const data: any = await this.restService.Getpapelera().toPromise();
 
     this.gettraerPapelera2 = data;
@@ -611,9 +605,6 @@ export class HistorialComponent implements OnInit {
     if (data.lenght != 0) {
       closeAlert();
     }
-
-
-
 
   }
   //OPTENEMOS TODO EL CORTE DE LAS ACTAS Y ASESORES
