@@ -625,7 +625,7 @@ export class PagosComponent implements OnInit {
     let tokenfinal: string = final;
     const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
     const data: any = await this.http
-      .get<any[]>('https://actasalinstante.com:3031/api/actas/ClientsActuals/', { headers }).toPromise();
+      .get<any[]>('https://actasalinstante.com:3030/api/actas/ClientsActuals/', { headers }).toPromise();
     this.rowData = data;
     this.precioTotal();
   }

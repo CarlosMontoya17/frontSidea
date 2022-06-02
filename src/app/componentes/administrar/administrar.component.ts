@@ -332,7 +332,7 @@ export class AdministrarComponent implements OnInit {
         var final = parteuno.slice(0, -1);
         let tokenfinal: string = final;
         const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
-        this.httpClient.delete('https://actasalinstante.com:3031/api/user/delete/' + user.id, { headers }).subscribe(
+        this.httpClient.delete('https://actasalinstante.com:3030/api/user/delete/' + user.id, { headers }).subscribe(
           e => {
             Swal.fire(
               'Eliminado',
