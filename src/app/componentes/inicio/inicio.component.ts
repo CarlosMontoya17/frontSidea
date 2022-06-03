@@ -322,7 +322,9 @@ export class InicioComponent implements OnInit {
 
 
   switchSelectable() {
-
+      if(this.curp.length > 0){
+        this.curp = this.curp.toUpperCase();
+      }
     switch (this.actoRegistral) {
       case "1": {
         this.acto = 'NACIMIENTO';
@@ -395,6 +397,7 @@ else
         if(this.curpValida(this.curp)) {
    // ⬅️ Acá se comprueba
    let valido = "Válido";
+
    //console.log(valido);
    this.selectable = !this.selectable;
        
