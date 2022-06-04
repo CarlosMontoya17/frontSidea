@@ -159,10 +159,10 @@ export class PagosComponent implements OnInit {
 
     /* genera el excel y agregra los elementos de la tabla */
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Corte ' + this.CiberSelect);
+    XLSX.utils.book_append_sheet(wb, ws, 'Corte');
 
     /* Exportamos a excel */
-    XLSX.writeFile(wb, "Pagos-" + this.CiberSelect + "-Por: " + arreglo[1] + ".csv");
+    XLSX.writeFile(wb, "Pagos-" + this.CiberSelect + ".csv");
     /*     Swal.fire({
           position: 'center',
           icon: 'success',
