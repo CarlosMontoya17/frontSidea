@@ -656,7 +656,7 @@ export class HistorialComponent implements OnInit {
     if (!token) {
       this.router.navigateByUrl('/login');
     }
-    if(this.myRol != 'Cliente'  && this.myRol != 'Sucursal'){
+    if(this.myRol != 'Cliente'  && this.myRol != 'Sucursal'  && this.myRol!='Empleado'){
       this.getAllCibers();
     }
     else{
@@ -678,7 +678,7 @@ export class HistorialComponent implements OnInit {
     this.getcorte();
   }
   ClienteVista() {
-    if (this.myRol != 'Cliente' && this.myRol != 'Sucursal') {
+    if (this.myRol != 'Cliente' && this.myRol != 'Sucursal' && this.myRol!='Empleado') {
       this.MyrolCliente = !this.MyrolCliente;
     }
   

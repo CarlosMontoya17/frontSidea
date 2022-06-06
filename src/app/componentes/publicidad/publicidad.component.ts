@@ -47,7 +47,7 @@ MyrolCliente:boolean = false;
 
   constructor(private adminservice: AdminService, private router: Router, private database: DatabaseService, private adminService:AdminService) { }
   ClienteVista() {
-    if (this.myRol != 'Cliente' && this.myRol != 'Sucursal') {
+    if (this.myRol != 'Cliente' && this.myRol != 'Sucursal' && this.myRol!='Empleado') {
       this.MyrolCliente = !this.MyrolCliente;
     }
   
@@ -72,7 +72,7 @@ MyrolCliente:boolean = false;
     const data: any = await this.database.getmydata(id).toPromise();
     this.myRol = data.data.rol;
 
-    if(this.myRol != 'Cliente'){
+    if(this.myRol != 'Cliente'  && this.myRol!='Empleado'){
     
 
   

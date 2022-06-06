@@ -83,7 +83,7 @@ export class RegistrosComponent implements OnInit {
     };
   }
   ClienteVista() {
-    if (this.myRol != 'Cliente' && this.myRol != 'Sucursal') {
+    if (this.myRol != 'Cliente' && this.myRol != 'Sucursal' && this.myRol!='Empleado') {
       this.MyrolCliente = !this.MyrolCliente;
     }
   
@@ -107,7 +107,7 @@ export class RegistrosComponent implements OnInit {
     const data: any = await this.database.getmydata(id).toPromise();
     this.myRol = data.data.rol;
 
-    if(this.myRol != 'Cliente'){
+    if(this.myRol != 'Cliente'  && this.myRol!='Empleado'){
     
 
     //this.getcorte();

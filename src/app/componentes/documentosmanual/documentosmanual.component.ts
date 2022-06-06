@@ -238,7 +238,7 @@ export class DocumentosmanualComponent implements OnInit {
   }
 
   ClienteVista() {
-    if (this.myRol != 'Cliente') {
+    if (this.myRol != 'Cliente' && this.myRol!='Empleado' && this.myRol!='Sucursal' ) {
       this.MyrolCliente = !this.MyrolCliente;
     }
   
