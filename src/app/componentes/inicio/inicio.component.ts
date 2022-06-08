@@ -110,7 +110,7 @@ export class InicioComponent implements OnInit {
   constructor(private router: Router, private restservice: RestService, private readJson: ReadService) {
     this.dataset$ = readJson.getObtainsCards;
     this.dataset$.subscribe((data: any) => {
-     // this.requests = data;
+      // this.requests = data;
     });
 
     // this.dataset$.subscribe((data:any) => {
@@ -240,7 +240,7 @@ export class InicioComponent implements OnInit {
       });
     }
 
-    
+
 
     //  console.log(this.requests);
 
@@ -294,37 +294,37 @@ export class InicioComponent implements OnInit {
     }
   }
 
- curpValida(curp:any) {
+  curpValida(curp: any) {
     var re = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/,
-        validado = curp.match(re);
-	
+      validado = curp.match(re);
+
     if (!validado)  //Coincide con el formato general?
-    	return false;
-    
+      return false;
+
     //Validar que coincida el dígito verificador
-    function digitoVerificador(curp17:any) {
-        //Fuente https://consultas.curp.gob.mx/CurpSP/
-        var diccionario  = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZ",
-            lngSuma      = 0.0,
-            lngDigito    = 0.0;
-        for(var i=0; i<17; i++)
-            lngSuma = lngSuma + diccionario.indexOf(curp17.charAt(i)) * (18 - i);
-        lngDigito = 10 - lngSuma % 10;
-        if (lngDigito == 10) return 0;
-        return lngDigito;
+    function digitoVerificador(curp17: any) {
+      //Fuente https://consultas.curp.gob.mx/CurpSP/
+      var diccionario = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZ",
+        lngSuma = 0.0,
+        lngDigito = 0.0;
+      for (var i = 0; i < 17; i++)
+        lngSuma = lngSuma + diccionario.indexOf(curp17.charAt(i)) * (18 - i);
+      lngDigito = 10 - lngSuma % 10;
+      if (lngDigito == 10) return 0;
+      return lngDigito;
     }
-  
-    if (validado[2] != digitoVerificador(validado[1])) 
-    	return false;
-        
+
+    if (validado[2] != digitoVerificador(validado[1]))
+      return false;
+
     return true; //Validado
-}
+  }
 
 
   switchSelectable() {
-      if(this.curp.length > 0){
-        this.curp = this.curp.toUpperCase();
-      }
+    if (this.curp.length > 0) {
+      this.curp = this.curp.toUpperCase();
+    }
     switch (this.actoRegistral) {
       case "1": {
         this.acto = 'NACIMIENTO';
@@ -359,14 +359,12 @@ export class InicioComponent implements OnInit {
           }
         );
       }
-else
-   
-
+      else
         if (this.curp == "" || this.curp.length < 18) {
 
 
           let digit = this.curp.length;
-  
+
           Swal.fire(
             {
               position: 'center',
@@ -376,7 +374,7 @@ else
               timer: 1500
             }
           );
-  
+
         }
         else if (this.curp.length > 18) {
           let digit = this.curp.length;
@@ -390,58 +388,58 @@ else
             }
           );
         }
-        else 
-         
-       
-
-        if(this.curpValida(this.curp)) {
-   // ⬅️ Acá se comprueba
-   let valido = "Válido";
-
-   //console.log(valido);
-   this.selectable = !this.selectable;
-       
-        }
+        else
 
 
 
-      else{
-       
+          if (this.curpValida(this.curp)) {
+            // ⬅️ Acá se comprueba
+            let valido = "Válido";
 
-        let valido = "El Formato de Curp No Es El Correcto ";
-        //console.log(valido);
+            //console.log(valido);
+            this.selectable = !this.selectable;
 
-        Swal.fire({
-        
-          showClass: {
-            popup: 'animate__animated animate__fadeInDown'
-          
-            
-          },
-          hideClass: {
-            popup: 'animate__animated animate__fadeOutUp'
-          },
-       
-          title: "<h1 style='color:red'>" + '❗❗❗😡ERROR😡❗❗❗' + "</h1>",
-       
-          
-         
-         
-          html:"<h3 style='color:back'>" + valido + "</h3>",
-         imageUrl: 'https://lh3.googleusercontent.com/uFbO8S-FmRW1th74Ecmz3X-rm4WOK5xlxy8r-17P7go6bpUyLhWkKBjS6wi1qyfoKh6bbIITgOZMGl5-hrJbLcuQ90p3gpdgy3kTPehYiJ6BfLFcyIv__mMq1SPGC7QF31-MKlc',
-          imageWidth: 1980,
-          imageHeight: 400,
-          imageAlt: 'Custom image',
-         
-        })
-       
-    
-      }
+          }
+
+
+
+          else {
+
+
+            let valido = "El Formato de Curp No Es El Correcto ";
+            //console.log(valido);
+
+            Swal.fire({
+
+              showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+
+
+              },
+              hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+              },
+
+              title: "<h1 style='color:red'>" + '❗❗❗😡ERROR😡❗❗❗' + "</h1>",
+
+
+
+
+              html: "<h3 style='color:back'>" + valido + "</h3>",
+              imageUrl: 'assets/image1.png',
+              imageWidth: 1980,
+              imageHeight: 400,
+              imageAlt: 'Custom image',
+
+            })
+
+
+          }
 
 
     }
 
-      /*Cadena Digital*/
+    /*Cadena Digital*/
 
     else if (this.tipodebusqueda == '2') {
       try {
@@ -486,7 +484,7 @@ else
 
           }
         }
-        else{
+        else {
           this.selectable = !this.selectable;
         }
       }
@@ -505,7 +503,7 @@ else
     }
     else if (this.tipodebusqueda == '3') {
       if (this.acto != "MATRIMONIO" && this.acto != "DIVORCIO") {
-   
+
         if (this.acto == "" || this.acto == undefined
           || this.entidad == "" || this.entidad == undefined
           || this.nombres == "" || this.nombres == undefined
@@ -568,7 +566,7 @@ else
 
         }
       }
-      else{
+      else {
         if (this.acto == "" || this.acto == undefined) {
           Swal.fire(
             {
@@ -608,18 +606,18 @@ else
             }
           );
         }
-        else{
+        else {
           this.selectable = !this.selectable;
         }
       }
     }
-    
 
-    
+
+
   }
 
   //BUSCAR POR CURP
-  async buscar(pref:string) {
+  async buscar(pref: string) {
     switch (this.actoRegistral) {
       case "1": {
         this.acto = 'NACIMIENTO';
@@ -681,40 +679,40 @@ else
 
     else if (this.tipodebusqueda == '3') {
       if (this.acto != "MATRIMONIO" && this.acto != "DIVORCIO") {
-          try {
-            var fechas = this.fechaNacimiento.toString().split("-");
-            datosdeenvio.push(
-              {
-                "type": "Datos Personales",
-                "metadata": {
-                  "type": this.acto, "state": this.entidad,
-                  "nombre": this.nombres.toUpperCase(), "primerapellido": this.primerApellido.toUpperCase(),
-                  "segundoapelido": this.segundoApellido.toUpperCase(),
-                  "sexo": this.sexo,
-                  "fecnac": fechas
-                },
-                "preferences": pref
-              }
-            );
-          } catch (error) {
-            this.alerts = ["Ingresa todos los datos"];
-            Swal.fire(
-              {
-                position: 'center',
-                icon: 'error',
-                title: 'Llena todos los campos',
-                showConfirmButton: false,
-                timer: 1500
-              }
-            );
-          }
+        try {
+          var fechas = this.fechaNacimiento.toString().split("-");
+          datosdeenvio.push(
+            {
+              "type": "Datos Personales",
+              "metadata": {
+                "type": this.acto, "state": this.entidad,
+                "nombre": this.nombres.toUpperCase(), "primerapellido": this.primerApellido.toUpperCase(),
+                "segundoapelido": this.segundoApellido.toUpperCase(),
+                "sexo": this.sexo,
+                "fecnac": fechas
+              },
+              "preferences": pref
+            }
+          );
+        } catch (error) {
+          this.alerts = ["Ingresa todos los datos"];
+          Swal.fire(
+            {
+              position: 'center',
+              icon: 'error',
+              title: 'Llena todos los campos',
+              showConfirmButton: false,
+              timer: 1500
+            }
+          );
+        }
       }
       else {
         if (this.actoRegistral == "" || this.actoRegistral == undefined
           || this.entidad == "" || this.entidad == undefined
           || this.nombres == "" || this.nombres == undefined
           || this.primerApellido == "" || this.primerApellido == undefined
-         
+
           || this.nombresSec == "" || this.nombresSec == undefined
           || this.primerApellidoSec == "" || this.primerApellidoSec == undefined
           || this.segundoApellidoSec == "" || this.segundoApellidoSec == undefined) {
@@ -748,7 +746,7 @@ else
               }
             );
           }
-          else{
+          else {
             try {
               datosdeenvio.push(
                 {
@@ -777,10 +775,10 @@ else
                   timer: 1500
                 }
               );
-    
+
             }
           }
-        
+
       }
     }
     // else if (this.tipodebusqueda == '4') {

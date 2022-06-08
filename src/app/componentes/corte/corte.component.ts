@@ -47,18 +47,7 @@ export class CorteComponent implements OnInit {
   
   //Tabla
   cortes: any;
-  // columnDefs = [
-  //   { field: "id", width: 80, headerName: "Id", filter: true },
-  //   { field: "provider", headerName: "Ciber", filter: true },
-  //   { field: "enterprise", headerName: "Aesor", filter: true },
-  //   { field: "document", headerName: "Documento", filter: true },
-  //   { field: "states", headerName: "Estado", filter: true },
-  //   { field: "curp", headerName: "CURP", filter: true },
-  //   { field: "price", headerName: "Precio", type: 'valueColumn', filter: true, },
-  //   { field: "createdAt", headerName: "Fecha y hora", filter: true },
-  //   { field: "corte", headerName: "Corte", type: 'valueColumn', filter: true, }
-  // ];
-
+  
   rowData:any;
   pinnedBottomRowData!: any[];
   //Tabla
@@ -115,28 +104,18 @@ export class CorteComponent implements OnInit {
   }
 
   async onGridReady(params: GridReadyEvent) {
-    // this.gridApi = params.api;
-    // if (localStorage.getItem('token') != null) {
-    //   if (localStorage.getItem('id') != null) {
-    //     var usuario = CryptoJS.AES.decrypt(localStorage.getItem('id') || '{}', "id");
-    //     let id = usuario.toString(CryptoJS.enc.Utf8);
-    //     // this.getcortes = await this.restService.getcorte(arreglo[1]).toPromise();
-    //     const data: any = await this.restservice.getcorte(id).toPromise();
-    //     this.rowData = data;
-    //     this.precioTotal();
-    //     this.onPinnedRowBottomCount();
-    //   }
-    // } 
+    
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
 
 
   }
-
+  //Datos de la tabla 
   onPinnedRowBottomCount() {
     var rows = this.createData();
     this.gridApi.setPinnedBottomRowData(rows);
   }
+  //Optenemos el precio total
   precioTotal() {
     var addNumber: number = 0;
     var addActas: number = 0;
@@ -147,7 +126,7 @@ export class CorteComponent implements OnInit {
     this.totalPrecio = addNumber;
     this.totalActas = addActas;
   }
-
+  //Sacamos El total de las actas
   createData() {
     var result = [];
     result.push({
@@ -164,7 +143,6 @@ export class CorteComponent implements OnInit {
       if (localStorage.getItem('іди') != null) {
         var usuario = CryptoJS.AES.decrypt(localStorage.getItem('іди') || '{}', "іди");
         let id = usuario.toString(CryptoJS.enc.Utf8);
-        // this.getcortes = await this.restService.getcorte(arreglo[1]).toPromise();
         const data: any = await this.restservice.getcorte(id).toPromise();
         let Arreglo: any = [];
         let index: number = 0;

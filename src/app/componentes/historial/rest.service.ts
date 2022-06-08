@@ -37,6 +37,16 @@ export class RestService {
   getMyActa(id:any): Observable<any> {
     return this.http.get(api+'/api/actas/requests/getMyActa/'+id,{ responseType: 'blob'})
   }
+
+  getMyRFC(id:any): Observable<any> {
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
+    var token: any = i.toString(CryptoJS.enc.Utf8);
+    var parteuno = token.slice(1);
+    var final = parteuno.slice(0, -1);
+    let tokenfinal: string = final;
+    const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
+    return this.http.get(api+'/api/rfc/request/donwload/'+id, { headers, responseType: 'blob'});
+  }
   //Se ttaen a todos los cibers
   getciber(): Observable<any> {
     return this.http.get(api+'/api/clients/getAll');
@@ -109,6 +119,17 @@ export class RestService {
     const headers = new HttpHeaders({ 'x-access-token': final! });
     return this.http.post(api + '/api/actas/requests/createOne/', datos, { headers });
   }
+  
+  Solicitudactasporrfcourp(datos: any) {
+
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
+    var token: any = i.toString(CryptoJS.enc.Utf8);
+    var parteuno = token.slice(1);
+    var final = parteuno.slice(0, -1);
+    const headers = new HttpHeaders({ 'x-access-token': final! });
+    return this.http.post(api + '/api/rfc/request/new/', datos, { headers });
+  }
+
 
   //SE optienen las actas
   obtainActasRequest() {
@@ -118,6 +139,15 @@ export class RestService {
     var final = parteuno.slice(0, -1);
     const headers = new HttpHeaders({ 'x-access-token': final! });
     return this.http.get(api+'/api/actas/requests/obtainAll/', { headers });
+  }
+
+  obtainAllRFCs(){
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
+    var token: any = i.toString(CryptoJS.enc.Utf8);
+    var parteuno = token.slice(1);
+    var final = parteuno.slice(0, -1);
+    const headers = new HttpHeaders({ 'x-access-token': final! });
+    return this.http.get(api+'/api/rfc/request/getMyRequest/', { headers });
   }
 
 } 

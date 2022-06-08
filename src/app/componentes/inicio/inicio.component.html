@@ -4,7 +4,8 @@
 <div class="contenidoprincipal ">
     <app-sidebarpanelhistorial></app-sidebarpanelhistorial>
 
-    <div class="card  animate__animated animate__fadeIn" style="background-color: #212121; color: white; height: 3rem; justify-content: center;">
+    <div class="card  animate__animated animate__fadeIn"
+        style="background-color: #212121; color: white; height: 3rem; justify-content: center;">
         <div class="card-body" style="margin-top: 1rem;">
             <div class="card-title">
                 <div class="row">
@@ -57,735 +58,16 @@
         </div>
     </div>
     <br>
-    <div class="card contenedorEdit animate__animated animate__fadeIn" *ngIf="tipodebusqueda != 'Seleccione el tipo de busqueda'">
-
-        <!-- <div class="card-body" *ngIf="tipodebusqueda==1">
-            <section id="basic-horizontal-layouts">
-                <div class="row match-height">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header ">
-                                <div class="card-block text-center">
-
-                                    <h4 style="background-color:#A52A2A ; color: aliceblue; " class="card-title ">
-                                        Búsqueda de Acta por CURP</h4>
-
-
-                                </div>
-
-                            </div>
-                            <div class="card-content">
-                                <div class="card-body">
-                                    <form class="form form-horizontal">
-                                        <div class="form-body">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <label>Acto registral</label>
-                                                </div>
-                                                <div class="col-md-6 mb-4">
-                                                    <div class="error-input" id="error-acto">Debe
-                                                        ingresar un acto registral.</div>
-                                                    <fieldset class="form-group">
-                                                        <select class="form-select" id="basicSelect" name="tipoActa"
-                                                            [ngModel]="actoRegistral"
-                                                            (ngModelChange)="onChangeTwo($event)">
-                                                            <option selected hidden>Seleccione el
-                                                                acto registral</option>
-                                                            <option value="1">NACIMIENTO</option>
-                                                            <option value="2">DEFUNCION</option>
-                                                            <option value="3">MATRIMONIO</option>
-                                                            <option value="4">DIVORCIO</option>
-
-                                                        </select>
-                                                    </fieldset>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label>CURP</label>
-                                                </div>
-                                                <div class="col-md-8 form-group">
-                                                    <div class="error-input" id="error-curp">Debe
-                                                        ingresar una CURP</div>
-                                                    <input type="text" id="curp" class="form-control" required
-                                                        style="text-transform:uppercase" name="curp"
-                                                        placeholder="Ingresa tu CURP" [ngModel]="curp"
-                                                        (ngModelChange)="onChangeCurp($event)">
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label>Entidad de registro</label>
-                                                </div>
-                                                <div class="col-md-8 form-group">
-                                                    <input class="form-control" name="entidad" required
-                                                        [ngModel]="entidad" readonly>
-                                                </div>
-
-                                                <div class="col-sm-12 d-flex justify-content-end">
-
-
-
-                                                    <button id="conteo2" (click)="buscar()" type="submit">Enviar
-                                                        peticion
-
-                                                        <fa-icon [icon]="Buscar" class="add-user"></fa-icon>
-                                                    </button>
-
-                                                    <button type="reset"
-                                                        class="btn btn-light-secondary me-1 mb-1">Limpiar
-                                                        <fa-icon [icon]="borrar" class="add-user"></fa-icon>
-                                                    </button>
-
-
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div> -->
-
-        <!-- <div class="card-body" *ngIf="tipodebusqueda==2">
-            <section id="basic-horizontal-layouts">
-                <div class="row match-height">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header ">
-                                <div class="card-block text-center">
-
-                                    <h4 style="background-color:#A52A2A ; color: aliceblue; " class="card-title ">
-                                        Búsqueda de Acta por Cadena Digital</h4>
-
-
-                                </div>
-
-                            </div>
-                            <div class="card-content">
-                                <div class="card-body">
-                                    <form class="form form-horizontal">
-                                        <div class="form-body">
-                                            <div class="row">
-
-                                                <div class="col-md-4">
-                                                    <label>Cadena Digital</label>
-                                                </div>
-                                                <div class="col-md-8 form-group">
-
-                                                    <input type="text" id="curp" class="form-control" required
-                                                        style="text-transform:uppercase" name="cadenadigital"
-                                                        placeholder="Ingresa la Cadena Digital"
-                                                        [(ngModel)]="cadenadigital">
-                                                </div>
-
-
-
-                                                <div class="col-sm-12 d-flex justify-content-end">
-
-
-
-                                                    <button id="conteo2" (click)="buscar()" type="submit">Enviar
-                                                        peticion
-
-                                                        <fa-icon [icon]="Buscar" class="add-user"></fa-icon>
-                                                    </button>
-
-                                                    <button type="reset"
-                                                        class="btn btn-light-secondary me-1 mb-1">Limpiar
-                                                        <fa-icon [icon]="borrar" class="add-user"></fa-icon>
-                                                    </button>
-
-
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div> -->
-
-        <!-- <div class="card-body">
-            <div class="row match-height">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 style="background-color:#A52A2A ; color: aliceblue; " class="card-title">
-                                Busqueda de Actas por Datos
-                                Personales</h4>
-                        </div>
-                        <div class="card-content">
-                            <div class="card-body">
-                                <form class="form">
-                                    <div class="row">
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <label for="first-name-column">Acto
-                                                    registral*:</label>
-                                                <div class="error-input" id="error-acto">
-                                                    Debe ingresar un
-                                                    acto registral.</div>
-                                                <fieldset class="form-group">
-                                                    <select class="form-select" id="basicSelectDatos"
-                                                        name="tipoActaDatos" [ngModel]="actoRegistral"
-                                                        (ngModelChange)="onChangeTwo($event)">
-                                                        <option selected hidden>
-                                                            Seleccione el acto registral
-                                                        </option>
-                                                        <option value="1">NACIMIENTO</option>
-                                                        <option value="2">DEFUNCION</option>
-                                                        <option value="3">MATRIMONIO</option>
-                                                        <option value="4">DIVORCIO</option>
-
-                                                    </select>
-                                                </fieldset>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6 col-12">
-                                            <div class="error-input" id="error-estado">
-                                                Debe ingresar un
-                                                estado</div>
-                                            <div class="form-group">
-                                                <label for="last-name-column">Entidad de
-                                                    Registro*:</label>
-                                                <fieldset class="form-group">
-                                                    <select class="form-select" id="estados" name="estados"
-                                                        [ngModel]="entidad" (ngModelChange)="onChangeCurp($event)">
-                                                        <option selected hidden>
-                                                            {{entidad}}</option>
-                                                        <option value="-----------AS-----">
-                                                            AGUASCALIENTES</option>
-                                                        <option value="-----------BC-----">BAJA
-                                                            CALIFORNIA</option>
-                                                        <option value="-----------CB-----">BAJA
-                                                            CALIFORNIA SUR</option>
-                                                        <option value="-----------CC-----">CAMPECHE
-                                                        </option>
-                                                        <option value="-----------CS-----">CHIAPAS
-                                                        </option>
-                                                        <option value="-----------CH-----">CHIHUAHUA
-                                                        </option>
-                                                        <option value="-----------DF-----">DISTRITO
-                                                            FEDERAL</option>
-                                                        <option value="-----------CL-----">COAHUILA
-                                                            DE ZARAGOZA</option>
-                                                        <option value="-----------CM-----">COLIMA
-                                                        </option>
-                                                        <option value="-----------DG-----">DURANGO
-                                                        </option>
-                                                        <option value="-----------GT-----">
-                                                            GUANAJUATO</option>
-                                                        <option value="-----------GR-----">GUERRERO
-                                                        </option>
-                                                        <option value="-----------HG-----">HIDALGO
-                                                        </option>
-                                                        <option value="-----------JC-----">JALISCO
-                                                        </option>
-                                                        <option value="-----------MC-----">ESTADO DE
-                                                            MEXICO</option>
-                                                        <option value="-----------MN-----">MICHOACAN
-                                                        </option>
-                                                        <option value="-----------MR-----">MORELOS
-                                                        </option>
-                                                        <option value="-----------NT-----">NAYARIT
-                                                        </option>
-                                                        <option value="-----------NL-----">NUEVO
-                                                            LEON</option>
-                                                        <option value="-----------OC-----">OAXACA
-                                                        </option>
-                                                        <option value="-----------PL-----">PUEBLA
-                                                        </option>
-                                                        <option value="-----------QO-----">QUERETARO
-                                                        </option>
-                                                        <option value="-----------QR-----">QUINTANA
-                                                            ROO</option>
-                                                        <option value="-----------SP-----">SAN LUIS
-                                                            POTOSI</option>
-                                                        <option value="-----------SL-----">SINALOA
-                                                        </option>
-                                                        <option value="-----------SR-----">SONORA
-                                                        </option>
-                                                        <option value="-----------TC-----">TABASCO
-                                                        </option>
-                                                        <option value="-----------TS-----">
-                                                            TAMAULIPAS</option>
-                                                        <option value="-----------TL-----">TLAXCALA
-                                                        </option>
-                                                        <option value="-----------VZ-----">VERACRUZ
-                                                        </option>
-                                                        <option value="-----------YN-----">YUCATAN
-                                                        </option>
-                                                        <option value="-----------ZS-----">ZACATECAS
-                                                        </option>
-                                                        <option value="-----------XX-----">NACIDOS EN EL EXTRANJERO
-                                                        </option>
-                                                    </select>
-                                                </fieldset>
-                                            </div>
-                                        </div>
-                                        <p></p>
-                                        <div id="nacimiento" class="row" *ngIf="actoRegistral==1 || actoRegistral==2">
-                                            <h5>
-                                                <p>Datos de la Persona
-                                                    <code></code><code><hr></code>
-                                                </p>
-                                            </h5>
-                                            <div class="error-input" id="error-nombrePersonal">
-                                                Debe ingresar este campo</div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group">
-                                                    <label for="city-column">Nombre(s)*:</label>
-                                                    <input [(ngModel)]="nombres" name="nombres" type="text"
-                                                        id="nombrePersonal" style="text-transform:uppercase"
-                                                        class="form-control" placeholder="Ingresa los nombres">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="error-input" id="error-apellidoPersonal">
-                                                    Debe ingresar este campo</div>
-                                                <div class="form-group">
-                                                    <label for="country-floating">Primer
-                                                        Apellido*:</label>
-                                                    <input [(ngModel)]="primerApellido" type="text" id="apellidoP"
-                                                        style="text-transform:uppercase" class="form-control"
-                                                        name="primerApellido" placeholder="Ingresa el primer apellido">
-                                                </div>
-                                            </div>
-                                            <p></p>
-                                            <div class="error-input" id="error-sexo">
-                                                Debe ingresar este campo</div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="col-12">
-                                                    <label for="email-id-column">Sexo*:</label>
-                                                    <div class="form-check">
-                                                        <input [(ngModel)]="sexo" class="form-check-input" value="Mujer"
-                                                            type="radio" name="sexo" id="flexRadioDefault1"
-                                                            value="Mujer">
-                                                        <label class="form-check-label" for="flexRadioDefault1">
-                                                            Mujer
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input [(ngModel)]="sexo" class="form-check-input"
-                                                            value="Hombre" type="radio" name="sexo" value="Hombre"
-                                                            id="flexRadioDefault2">
-                                                        <label class="form-check-label" for="flexRadioDefault2">
-                                                            Hombre
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <p></p>
-                                                <div class="error-input" id="error-segundoPersonal">
-                                                    Debe ingresar este campo</div>
-                                                <div class="form-group">
-                                                    <label for="company-column">Segundo
-                                                        Apellido</label>
-                                                    <input [(ngModel)]="segundoApellido" type="text" id="apellidoM"
-                                                        style="text-transform:uppercase" class="form-control"
-                                                        name="segundoApellido"
-                                                        placeholder="Ingresa el segundo apellido">
-                                                </div>
-                                            </div>
-                                            <p></p>
-                                            <div class="error-input" id="error-fecha">
-                                                Debe ingresar este campo</div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group">
-                                                    <label for="company-column">Fecha de
-                                                        nacimiento</label>
-
-
-                                                    <input [(ngModel)]="fechaNacimiento" type="date"
-                                                        class="form-control" name="fechaNacimiento"
-                                                        id="fechadeNacimiento" placeholder="dd/mm/yyyy" min="1997/01/01"
-                                                        max="2030/12/31">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group">
-                                                </div>
-                                            </div>
-
-                                            <div id="conteo2" class="col-12 d-flex justify-content-end">
-                                                <button (click)="buscar()" type="submit">Buscar
-                                                    <fa-icon [icon]="Buscar" class="add-user"></fa-icon>
-
-                                                </button>
-
-                                                <button type="reset" class="btn btn-light-secondary me-1 mb-1">Limpiar
-                                                    <fa-icon [icon]="borrar" class="add-user"></fa-icon>
-                                                </button>
-
-                                            </div>
-                                            <div class="card-body col-sm-12 d-flex justify-content-end">
-
-                                            </div>
-                                        </div>
-                                        <div class="card-content" id="matrimonio" class="row"
-                                            *ngIf="actoRegistral==3 || actoRegistral==4">
-                                            <div class="card-body">
-                                                <form class="form">
-                                                    <div class="row">
-                                                        <p></p>
-                                                        <h5>
-                                                            <p>Datos de la primera persona
-                                                                <code></code><code><hr></code>
-                                                            </p>
-                                                        </h5>
-                                                        <div class="error-input" id="error-primeraPersonaNombres">
-                                                            Debe ingresar este campo</div>
-                                                        <div class="col-md-6 col-12">
-                                                            <div class="form-group">
-                                                                <label for="city-column">Nombre(s)*:</label>
-                                                                <input type="text" id="nombrePersonalMatrimonio"
-                                                                    style="text-transform:uppercase"
-                                                                    class="form-control"
-                                                                    placeholder="Ingresa los nombres"
-                                                                    name="nombrePersonalMatrimonio">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6 col-12">
-                                                            <div class="error-input" id="error-primeraPersonaApellidoP">
-                                                                Debe ingresar este campo</div>
-                                                            <div class="form-group">
-                                                                <label for="country-floating">Primer
-                                                                    Apellido*:</label>
-                                                                <input type="text" id="apellidoPMatrimonio"
-                                                                    style="text-transform:uppercase"
-                                                                    class="form-control" name="apellidoPMatrimonio"
-                                                                    placeholder="Ingresa el primer apellido">
-                                                            </div>
-                                                        </div>
-                                                        <p></p>
-                                                        <div class="error-input" id="error-primeraPersonaApellidoM">
-                                                            Debe ingresar este campo</div>
-                                                        <div class="col-md-6 col-12">
-                                                            <div class="form-group">
-                                                                <label for="company-column">Segundo
-                                                                    Apellido</label>
-                                                                <input type="text" id="apellidoMatrimonio"
-                                                                    style="text-transform:uppercase"
-                                                                    class="form-control" name="apellidoMatrimonio"
-                                                                    placeholder="Ingresa el segundo apellido">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6 col-12">
-                                                            <div class="form-group">
-                                                            </div>
-                                                        </div>
-                                                        <p></p>
-                                                        <h5>
-                                                            <p>Datos de la segunda persona
-                                                                <code></code><code><hr></code>
-                                                            </p>
-                                                        </h5>
-                                                        <div class="error-input" id="error-nombreSegundaPersona">
-                                                            Debe ingresar este campo</div>
-                                                        <div class="col-md-6 col-12">
-                                                            <div class="form-group">
-                                                                <label for="city-column">Nombre(s)*:</label>
-                                                                <input type="text" id="nombrePersonalMatrimonio2"
-                                                                    style="text-transform:uppercase"
-                                                                    class="form-control"
-                                                                    placeholder="Ingresa los nombres"
-                                                                    name="nombrePersonalMatrimonio">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6 col-12">
-                                                            <div class="error-input" id="error-apellidoSegundaPersona">
-                                                                Debe ingresar este campo</div>
-                                                            <div class="form-group">
-                                                                <label for="country-floating">Primer
-                                                                    Apellido*:</label>
-                                                                <input type="text" id="apellidoPMatrimonio2"
-                                                                    style="text-transform:uppercase"
-                                                                    class="form-control" name="apellidoPMatrimonio"
-                                                                    placeholder="Ingresa el primer apellido">
-                                                            </div>
-                                                        </div>
-                                                        <p></p>
-                                                        <div class="error-input" id="error-apellidoMSegundaPersona">
-                                                            Debe ingresar este campo</div>
-                                                        <div class="col-md-6 col-12">
-                                                            <div class="form-group">
-                                                                <label for="company-column">Segundo
-                                                                    Apellido</label>
-                                                                <input type="text" id="apellidoMatrimonio2"
-                                                                    style="text-transform:uppercase"
-                                                                    class="form-control" name="apellidoMatrimonio"
-                                                                    placeholder="Ingresa el segundo apellido">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6 col-12">
-                                                            <div class="form-group">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-12 d-flex justify-content-end">
-                                                            <button type="submit"
-                                                                class="btn btn-primary me-1 mb-1">Buscar</button>
-                                                            <button type="reset"
-                                                                class="btn btn-primary me-1 mb-1">Limpiar</button>
-                                                        </div>
-                                                        <div class="card-body col-sm-12 d-flex justify-content-end">
-
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
-        <!-- <div class="card-body" *ngIf="tipodebusqueda==4">
-            <section id="basic-horizontal-layouts">
-                <div class="row match-height">
-                    <div class="col-12">
-                        <div class="card text-center">
-                            <div class="card-header ">
-                                <div class="card-block text-center">
-
-                                    <h4 style="background-color:#A52A2A ; color: aliceblue; " class="card-title ">
-                                        Búsqueda de Acta por Datos del Registro Civil
-                                    </h4>
-
-                                </div>
-
-                            </div>
-                            <div class="card-content">
-                                <div class="card-body text-center">
-                                    <form class="form form-horizontal">
-                                        <div class="form-body">
-                                            <div class="row">
-
-                                                <div class="col">
-
-                                                    <div class="col">
-                                                        <label>Acto registral</label>
-                                                    </div>
-                                                    <div class="col">
-
-                                                        <fieldset class="form-group">
-                                                            <select class="form-select" id="basicSelect" name="tipoActa"
-                                                                [ngModel]="actoRegistral"
-                                                                (ngModelChange)="onChangeTwo($event)">
-                                                                <option selected hidden>Seleccione el
-                                                                    acto registral</option>
-                                                                <option value="1">NACIMIENTO</option>
-                                                                <option value="2">DEFUNCION</option>
-                                                                <option value="3">MATRIMONIO</option>
-                                                                <option value="4">DIVORCIO</option>
-                                                            </select>
-                                                        </fieldset>
-                                                    </div>
-
-
-                                                </div>
-
-                                                <p></p>
-                                                <div class="col">
-
-                                                    <div class="col">
-                                                        <label>Entidad de registro</label>
-                                                    </div>
-
-                                                    <div class="col">
-
-                                                        <fieldset class="form-group">
-                                                            <select class="form-select" id="basicSelect" name="tipoActa"
-                                                                [(ngModel)]="estadoxRc" name="estadoxRc"
-                                                                (click)='obtainMunicipios()'>
-
-                                                                <option value="1 - AGUASCALIENTES">
-                                                                    1 - AGUASCALIENTES</option>
-                                                                <option value="2 - BAJA CALIFORNIA">2 - BAJA
-                                                                    CALIFORNIA</option>
-                                                                <option value="3 - BAJA CALIFORNIA SUR">3 - BAJA
-                                                                    CALIFORNIA SUR</option>
-                                                                <option value="4 - CAMPECHE">4 - CAMPECHE
-                                                                </option>
-                                                                <option value="5 - CHIAPAS">5 - CHIAPAS
-                                                                </option>
-                                                                <option value="6 - CHIHUAHUA">6 - CHIHUAHUA
-                                                                </option>
-                                                                <option value="7 - DISTRITO">7 - DISTRITO
-                                                                    FEDERAL</option>
-                                                                <option value="8 - COAHUILA">8. - COAHUILA
-                                                                    DE ZARAGOZA</option>
-                                                                <option value="9 - COLIMA">9 - COLIMA
-                                                                </option>
-                                                                <option value="10 - DURANGO">10 - DURANGO
-                                                                </option>
-                                                                <option value="11 - GUANAJUATO">
-                                                                    11 - GUANAJUATO</option>
-                                                                <option value="12 - GUERRERO">12 - GUERRERO
-                                                                </option>
-                                                                <option value="13 - HIDALGO">13 - HIDALGO
-                                                                </option>
-                                                                <option value="14 - JALISCO">14 - JALISCO
-                                                                </option>
-                                                                <option value="15 - ESTADO DE MEXICO">15 - ESTADO DE
-                                                                    MEXICO</option>
-                                                                <option value="16 - MICHOACAN">16 - MICHOACAN
-                                                                </option>
-                                                                <option value="17 - MORELOS">17 - MORELOS
-                                                                </option>
-                                                                <option value="18 - NAYARIT">18 - NAYARIT
-                                                                </option>
-                                                                <option value="19 - NUEVO LEON">19 - NUEVO
-                                                                    LEON</option>
-                                                                <option value="20 - OAXACA">20 - OAXACA
-                                                                </option>
-                                                                <option value="21 - PUEBLA">21 - PUEBLA
-                                                                </option>
-                                                                <option value="22 - QUERETARO">22 - QUERETARO
-                                                                </option>
-                                                                <option value="23 - QUINTANA">23 - QUINTANA
-                                                                    ROO</option>
-                                                                <option value="24 - SAN LUIS POTOSI">24 - SAN LUIS
-                                                                    POTOSI</option>
-                                                                <option value="25 - SINALOA">25 - SINALOA
-                                                                </option>
-                                                                <option value="26 - SONORA">26 - SONORA
-                                                                </option>
-                                                                <option value="27 - TABASCO">27 - TABASCO
-                                                                </option>
-                                                                <option value="28 - TAMAULIPAS">
-                                                                    28 - TAMAULIPAS</option>
-                                                                <option value="29 - TLAXCALA">29 - TLAXCALA
-                                                                </option>
-                                                                <option value="30 - VERACRUZ">30 - VERACRUZ
-                                                                </option>
-                                                                <option value="31 - YUCATAN">31 - YUCATAN
-                                                                </option>
-                                                                <option value="32 - ZACATECAS">32 - ZACATECAS
-                                                                </option>
-                                                                <option value="39 - NACIDOS EN EL EXTRANJERO">39 -
-                                                                    NACIDOS EN EL EXTRANJERO</option>
-                                                            </select>
-                                                        </fieldset>
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="col">
-
-                                                    <div class="col">
-                                                        <label>Municipio de registro</label>
-                                                    </div>
-
-                                                    <div class="col">
-
-                                                        <fieldset class="form-group">
-                                                            <select class="form-select" id="basicSelect"
-                                                                [(ngModel)]="municipioSelect" name="municipioSelect"
-                                                                (click)="getOfic()">
-
-                                                                <option selected hidden>Seleccione la
-                                                                    Entidad</option>
-                                                                <option *ngFor="let municipio of municipios">
-                                                                    {{ municipio.id }} - {{ municipio.nombre
-                                                                    }}
-                                                                </option>
-
-                                                            </select>
-                                                        </fieldset>
-                                                    </div>
-
-                                                </div>
-
-
-                                                <div class="row justify-content-end">
-                                                    <div class="col">
-
-                                                        <div class="col">
-                                                            <label>Oficialia de registro</label>
-                                                        </div>
-
-                                                        <div class="col">
-
-                                                            <fieldset class="form-group">
-                                                                <select class="form-select" id="basicSelect"
-                                                                    [(ngModel)]="oficialiaSelect" name="oficialiaSelect"
-                                                                    (click)="resetOficialia()">
-
-                                                                    <option selected hidden>Primero
-                                                                        seleccione el municipio</option>
-                                                                    <option *ngFor="let Oficialia of oficialias">
-                                                                        {{ Oficialia.id }} - {{ Oficialia.nombre }}
-                                                                    </option>
-
-                                                                </select>
-                                                            </fieldset>
-                                                        </div>
-
-
-                                                    </div>
-                                                    <div class="row justify-content-end">
-
-                                                        <div class="col">
-                                                            <label>Año de registro</label>
-                                                        </div>
-                                                        <input [(ngModel)]="yearActa" name="yearActa" type="number"
-                                                            min="1900" max="2099" step="1" />
-
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="col">
-                                                            <div class="error-input" id="error-curp">Ingresa
-                                                                numero de Acta</div>
-                                                            <input type="text" class="form-control" required
-                                                                name="Nacta" placeholder="Ingresa tu Numero de Acta"
-                                                                [(ngModel)]="numActa" name="numActa"
-                                                                (ngModelChange)="onChangeCurp($event)">
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="col-sm-12 d-flex justify-content-end">
-                                                    <button id="conteo2" (click)="buscar()" type="submit">Enviar
-                                                        peticion
-                                                        <fa-icon [icon]="Buscar" class="add-user"></fa-icon>
-                                                    </button>
-                                                    <button type="reset"
-                                                        class="btn btn-light-secondary me-1 mb-1">Limpiar
-                                                        <fa-icon [icon]="borrar" class="add-user"></fa-icon>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div> -->
-
-
-        <div class="card-header text-center  animate__animated animate__fadeIn" style="background-color: #A52A2A; color: white;">
+    <div class="card contenedorEdit animate__animated animate__fadeIn"
+        *ngIf="tipodebusqueda != 'Seleccione el tipo de busqueda'">
+
+        <div class="card-header text-center  animate__animated animate__fadeIn"
+            style="background-color: #A52A2A; color: white;">
             <h5 class="card-title  animate__animated animate__fadeIn" *ngIf="tipodebusqueda==1">CURP</h5>
             <h5 class="card-title  animate__animated animate__fadeIn" *ngIf="tipodebusqueda==2">CADENA DIGITAL</h5>
             <h5 class="card-title  animate__animated animate__fadeIn" *ngIf="tipodebusqueda==3">DATOS PERSONALES</h5>
-            <h5 class="card-title  animate__animated animate__fadeIn" *ngIf="tipodebusqueda==4">DATOS DE REGISTRO CIVIL</h5>
+            <h5 class="card-title  animate__animated animate__fadeIn" *ngIf="tipodebusqueda==4">DATOS DE REGISTRO CIVIL
+            </h5>
         </div>
 
         <div class="card-body" *ngIf="tipodebusqueda==1">
@@ -810,19 +92,18 @@
                 </div>
                 <div class="col">
                     <label for="first-name-column">CURP*:</label>
-                    <input  maxlength="18" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                    onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || 
+                    <input maxlength="18"
+                        oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                        onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || 
                     (event.charCode >= 65 && event.charCode <= 90) || 
-                    (event.charCode >= 97 && event.charCode <= 122))" 
-                    type="text" id="curp" class="form-control"  
-                    style="text-transform:uppercase"
-                        name="curp" placeholder="Ingresa tu CURP" [(ngModel)]="curp"
+                    (event.charCode >= 97 && event.charCode <= 122))" type="text" id="curp" class="form-control"
+                        style="text-transform:uppercase" name="curp" placeholder="Ingresa tu CURP" [(ngModel)]="curp"
                         (ngModelChange)="onChangeCurp($event)" required>
                 </div>
 
                 <div class="col">
                     <label for="first-name-column">Entidad de Registro:</label>
-                    <input class="form-control" name="entidad"  [(ngModel)]="entidad" readonly required>
+                    <input class="form-control" name="entidad" [(ngModel)]="entidad" readonly required>
                 </div>
             </div>
             <br>
@@ -833,7 +114,7 @@
                     </button>
                 </div>
                 <div class="col">
-                    <button (click)="clearCURP()" type="reset" class="btn btn-light-secondary me-1 mb-1" >Limpiar
+                    <button (click)="clearCURP()" type="reset" class="btn btn-light-secondary me-1 mb-1">Limpiar
                         <fa-icon [icon]="borrar" class="add-user"></fa-icon>
                     </button>
                 </div>
@@ -854,20 +135,21 @@
                     <label for="first-name-column">Cadena Digital*:</label>
                 </div>
                 <div class="col">
-                    <input    onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) )"  type="text" id="cadenadigital" class="form-control" required style="text-transform:uppercase"
+                    <input onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) )" type="text"
+                        id="cadenadigital" class="form-control" required style="text-transform:uppercase"
                         name="cadenadigital" placeholder="Ingresa la Cadena Digital" [(ngModel)]="cadenadigital">
-                        
+
                 </div>
             </div>
             <br>
             <div class="row">
                 <div class="col">
-                    <button id="conteo2" (click)="switchSelectable()"  type="submit">Enviar peticion
+                    <button id="conteo2" (click)="switchSelectable()" type="submit">Enviar peticion
                         <fa-icon [icon]="Buscar" class="add-user"></fa-icon>
                     </button>
                 </div>
                 <div class="col">
-                    <button id="conteo2" (click)="ClearCADENADIGITAL()"  type="reset">Limpiar
+                    <button id="conteo2" (click)="ClearCADENADIGITAL()" type="reset">Limpiar
                         <fa-icon [icon]="borrar" class="add-user"></fa-icon>
                     </button>
                 </div>
@@ -883,10 +165,10 @@
 
             <div class="row">
                 <div class="col">
-                    <label  for="first-name-column">Acto registral*:</label>
+                    <label for="first-name-column">Acto registral*:</label>
 
-                    <select  style="background-color:#57585a  ; color: white;" class="form-select" id="tipoActaDatos" name="tipoActaDatos" [(ngModel)]="actoRegistral"
-                        (ngModelChange)="onChangeTwo($event)">
+                    <select style="background-color:#57585a  ; color: white;" class="form-select" id="tipoActaDatos"
+                        name="tipoActaDatos" [(ngModel)]="actoRegistral" (ngModelChange)="onChangeTwo($event)">
                         <option selected>
                             Seleccione el acto registral
                         </option>
@@ -899,7 +181,7 @@
                 </div>
                 <div class="col">
                     <label for="first-name-column">Entidad de registro*:</label>
-                    <select  class="form-select" id="estados" name="estados" [(ngModel)]="entidad"
+                    <select class="form-select" id="estados" name="estados" [(ngModel)]="entidad"
                         (ngModelChange)="onChangeCurp($event)">
                         <option selected hidden>
                             {{entidad}}</option>
@@ -982,21 +264,27 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="city-column">Nombre(s)*:</label>
-                        <input onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122  || event.charCode >= 32 && event.charCode <= 32 ))"  [(ngModel)]="nombres" name="nombres" type="text" id="nombrePersonal"
+                        <input
+                            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122  || event.charCode >= 32 && event.charCode <= 32 ))"
+                            [(ngModel)]="nombres" name="nombres" type="text" id="nombrePersonal"
                             style="text-transform:uppercase" class="form-control" placeholder="Ingresa los nombres">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="city-column">Primer Apellido*:</label>
-                        <input onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))"  [(ngModel)]="primerApellido" type="text" id="apellidoP" style="text-transform:uppercase"
+                        <input
+                            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))"
+                            [(ngModel)]="primerApellido" type="text" id="apellidoP" style="text-transform:uppercase"
                             class="form-control" name="primerApellido" placeholder="Ingresa el primer apellido">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="city-column">Segundo Apellido*:</label>
-                        <input onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))"  [(ngModel)]="segundoApellido" type="text" id="apellidoM" style="text-transform:uppercase"
+                        <input
+                            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))"
+                            [(ngModel)]="segundoApellido" type="text" id="apellidoM" style="text-transform:uppercase"
                             class="form-control" name="segundoApellido" placeholder="Ingresa el segundo apellido">
                     </div>
                 </div>
@@ -1008,24 +296,28 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="city-column">Nombre(s)*:</label>
-                        <input onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122  || event.charCode >= 32 && event.charCode <= 32 ))"  [(ngModel)]="nombresSec" name="nombresSec" type="text" id="nombrePersonal"
+                        <input
+                            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122  || event.charCode >= 32 && event.charCode <= 32 ))"
+                            [(ngModel)]="nombresSec" name="nombresSec" type="text" id="nombrePersonal"
                             style="text-transform:uppercase" class="form-control" placeholder="Ingresa los nombres">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="city-column">Primer Apellido*:</label>
-                        <input onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" [(ngModel)]="primerApellidoSec" type="text" id="apellidoP"
-                            style="text-transform:uppercase" class="form-control" name="primerApellidoSec"
-                            placeholder="Ingresa el primer apellido">
+                        <input
+                            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))"
+                            [(ngModel)]="primerApellidoSec" type="text" id="apellidoP" style="text-transform:uppercase"
+                            class="form-control" name="primerApellidoSec" placeholder="Ingresa el primer apellido">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="city-column">Segundo Apellido*:</label>
-                        <input onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))"  [(ngModel)]="segundoApellidoSec" type="text" id="apellidoM"
-                            style="text-transform:uppercase" class="form-control" name="segundoApellidoSec"
-                            placeholder="Ingresa el segundo apellido">
+                        <input
+                            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))"
+                            [(ngModel)]="segundoApellidoSec" type="text" id="apellidoM" style="text-transform:uppercase"
+                            class="form-control" name="segundoApellidoSec" placeholder="Ingresa el segundo apellido">
                     </div>
                 </div>
             </div>
@@ -1062,20 +354,24 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="company-column">Fecha de nacimiento</label>
-                        <input placeholder="DD/MM/YYYY" (keyup)="autoCompleteDate()" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode >= 47 && event.charCode <= 47))"  maxlength="10"  [(ngModel)]="fechaNacimiento" type="text" class="form-control" name="fechaNacimiento">
+                        <input placeholder="DD/MM/YYYY" (keyup)="autoCompleteDate()"
+                            onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode >= 47 && event.charCode <= 47))"
+                            maxlength="10" [(ngModel)]="fechaNacimiento" type="text" class="form-control"
+                            name="fechaNacimiento">
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col">
-                    <button (click)="switchSelectable()"  type="submit">Buscar
+                    <button (click)="switchSelectable()" type="submit">Buscar
                         <fa-icon [icon]="Buscar" class="add-user"></fa-icon>
                     </button>
                 </div>
 
                 <div class="col">
-                    <button (click)="clearActoRegistral()" type="reset" class="btn btn-light-secondary me-1 mb-1">Limpiar
+                    <button (click)="clearActoRegistral()" type="reset"
+                        class="btn btn-light-secondary me-1 mb-1">Limpiar
                         <fa-icon [icon]="borrar" class="add-user"></fa-icon>
                     </button>
                 </div>
@@ -1234,7 +530,8 @@
                     </button>
                 </div>
                 <div class="col">
-                    <button (click)="clearDatosdelregistrocivil()" type="reset" class="btn btn-light-secondary me-1 mb-1">Limpiar
+                    <button (click)="clearDatosdelregistrocivil()" type="reset"
+                        class="btn btn-light-secondary me-1 mb-1">Limpiar
                         <fa-icon [icon]="borrar" class="add-user"></fa-icon>
                     </button>
                 </div>
@@ -1246,126 +543,130 @@
 
 
 
-       
-        <div class="container" *ngIf="requestsView == true">
 
-            <div class="row">
-                <h4 class="text-center animate__animated animate__bounceIn">SOLICITUDES</h4>
-                <br>
-            </div>
+    <div class="container" *ngIf="requestsView == true">
 
-            <div class="row">
+        <div class="row">
+            <h4 class="text-center animate__animated animate__bounceIn">SOLICITUDES</h4>
+            <br>
+        </div>
 
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row text-center">
-                            <h5> FILTROS </h5>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col">
-                                <h6 class="text-center"> BUSCAR POR DATOS PROPORCIONADOS </h6>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon3">
-                                        <fa-icon [icon]="Buscar"></fa-icon>
-                                    </span>
+        <div class="row">
 
-                                    <input  [(ngModel)]="valorabuscar" name="valorabuscar" type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-                                </div>
-                            </div>
-                            <div class="col text-center">
-                                <div class="dropdown">
-                                    <h6 class="text-center"> SELECCIONAR CORTE </h6>
-                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                      Seleccionar Corte
-                                    </a>
-                                  
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                      <li><a class="dropdown-item">Actual</a></li>
-                                    </ul>
-                                  </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row text-center">
+                        <h5> FILTROS </h5>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <h6 class="text-center"> BUSCAR POR DATOS PROPORCIONADOS </h6>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon3">
+                                    <fa-icon [icon]="Buscar"></fa-icon>
+                                </span>
+
+                                <input [(ngModel)]="valorabuscar" name="valorabuscar" type="text" class="form-control"
+                                    id="basic-url" aria-describedby="basic-addon3">
                             </div>
                         </div>
+                        <div class="col text-center">
+                            <div class="dropdown">
+                                <h6 class="text-center"> SELECCIONAR CORTE </h6>
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                    id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Seleccionar Corte
+                                </a>
 
-                        
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item">Actual</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                
+
+                </div>
             </div>
 
-            <div class="row" style="margin-top: 1rem;">
 
-                
-                <div class="card animate__animated animate__fadeIn" style="width: 18rem; margin-right: 1rem; margin-bottom: 1rem;" *ngFor="let req of requests | pipeacta: valorabuscar" >
-                    <span class="position-absolute top-45 start-90 translate-middle badge rounded-pill bg-primary">
-                        {{ req.nm }}
-                      </span>
-                    <img style="width: fit-content;" src="assets/documents/nacimiento.png" *ngIf='req.metadata.includes("NACIMIENTO")' class="card-img-top" alt="...">
-                    <img style="width: fit-content;" src="assets/documents/defuncion.png"  *ngIf='req.metadata.includes("DEFUNCION")' class="card-img-top" alt="...">
-                    <img style="width: fit-content;" src="assets/documents/divorcio.png" *ngIf='req.metadata.includes("DIVORCIO")' class="card-img-top" alt="...">
-                    <img style="width: fit-content;" src="assets/documents/matrimonio.png" *ngIf='req.metadata.includes("MATRIMONIO")' class="card-img-top" alt="...">
-                    <img style="width: fit-content;" src="assets/documents/desconocido.png" *ngIf='req.metadata.includes("CADENA")' class="card-img-top" alt="...">
-                    <!-- <img style="width: fit-content;" src="assets/documents/cotizadas.jpg"  class="card-img-top" alt="...">
-                    <img style="width: fit-content;" src="assets/documents/rfc.png" class="card-img-top" alt="...">
-                    <img style="width: fit-content;" src="assets/documents/nss.png" class="card-img-top" alt="...">
-                    <img style="width: fit-content;" src="assets/documents/vigencia.png" class="card-img-top" alt="..."> -->
-                    <div class="card-body text-center">
-                        <h5 class="card-title" *ngIf='req.metadata.includes("NACIMIENTO")'>ACTA DE NACIMIENTO</h5>
-                        <h5 class="card-title" *ngIf='req.metadata.includes("DEFUNCION")'>ACTA DE DEFUNCIÓN</h5>
-                        <h5 class="card-title" *ngIf='req.metadata.includes("MATRIMONIO")'>ACTA DE MATRIMONIO</h5>
-                        <h5 class="card-title" *ngIf='req.metadata.includes("DIVORCIO")'>ACTA DE DIVORCIO</h5>
-                        <h5 class="card-title" *ngIf='req.metadata.includes("CADENA")'>DESCONOCIDO</h5>
+        </div>
 
-                        <p class="card-text">{{ req.type }} - {{ req.createdAt | date:'dd/MM/yyyy' }} </p>
-                        <p class="card-text" id="pharaph" class="tableScroll">{{ req.metadata }}</p>
-                        
-                        
-                        
-                    
+        <div class="row" style="margin-top: 1rem;">
 
-                    </div>
-                    <div class="card-footer text-center">
-                        <a class="btn btn-success" (click)="downloadActa(req.id, req.url)" *ngIf="req.url != null && req.comments == 'Enviado'">
-                            <fa-icon [icon]="faFileArrowDown"></fa-icon>
-        
-                            &nbsp;Descargar
-                        </a>
 
-                        <a class="btn btn-danger" (click)="showDetails(req.comments)" *ngIf="req.comments != 'Enviado' && req.comments != null && req.comments != '.'">
-                            <fa-icon [icon]="faCircleXmark"></fa-icon>
-        
-                            &nbsp;Detalles
-                        </a>
+            <div class="card animate__animated animate__fadeIn"
+                style="width: 18rem; margin-right: 1rem; margin-bottom: 1rem;"
+                *ngFor="let req of requests | pipeacta: valorabuscar">
+                <span class="position-absolute top-45 start-90 translate-middle badge rounded-pill bg-primary">
+                    {{ req.nm }}
+                </span>
+                <img style="width: fit-content;" src="assets/documents/nacimiento.png"
+                    *ngIf='req.metadata.includes("NACIMIENTO")' class="card-img-top" alt="...">
+                <img style="width: fit-content;" src="assets/documents/defuncion.png"
+                    *ngIf='req.metadata.includes("DEFUNCION")' class="card-img-top" alt="...">
+                <img style="width: fit-content;" src="assets/documents/divorcio.png"
+                    *ngIf='req.metadata.includes("DIVORCIO")' class="card-img-top" alt="...">
+                <img style="width: fit-content;" src="assets/documents/matrimonio.png"
+                    *ngIf='req.metadata.includes("MATRIMONIO")' class="card-img-top" alt="...">
+                <img style="width: fit-content;" src="assets/documents/desconocido.png"
+                    *ngIf='req.metadata.includes("CADENA")' class="card-img-top" alt="...">
 
-                        <a class="btn btn-warning" *ngIf="req.comments == null && req.url == null || req.comments == 'Enviado' && req.url == null ">
-                            <fa-icon [icon]="faRotate"></fa-icon>
-        
-                            &nbsp;En proceso
-                        </a>
-                    </div>
+                <div class="card-body text-center">
+                    <h5 class="card-title" *ngIf='req.metadata.includes("NACIMIENTO")'>ACTA DE NACIMIENTO</h5>
+                    <h5 class="card-title" *ngIf='req.metadata.includes("DEFUNCION")'>ACTA DE DEFUNCIÓN</h5>
+                    <h5 class="card-title" *ngIf='req.metadata.includes("MATRIMONIO")'>ACTA DE MATRIMONIO</h5>
+                    <h5 class="card-title" *ngIf='req.metadata.includes("DIVORCIO")'>ACTA DE DIVORCIO</h5>
+                    <h5 class="card-title" *ngIf='req.metadata.includes("CADENA")'>DESCONOCIDO</h5>
+
+                    <p class="card-text">{{ req.type }} - {{ req.createdAt | date:'dd/MM/yyyy' }} </p>
+                    <p class="card-text">Hora: {{ req.createdAt | date: 'h:mm a' }} </p>
+                    <p class="card-text" id="pharaph" class="tableScroll">{{ req.metadata }}</p>
                 </div>
-                
+                <div class="card-footer text-center">
+                    <a class="btn btn-success" (click)="downloadActa(req.id, req.url)"
+                        *ngIf="req.url != null && req.comments == 'Enviado'">
+                        <fa-icon [icon]="faFileArrowDown"></fa-icon>
+
+                        &nbsp;Descargar
+                    </a>
+
+                    <a class="btn btn-danger" (click)="showDetails(req.comments)"
+                        *ngIf="req.comments != 'Enviado' && req.comments != null && req.comments != '.'">
+                        <fa-icon [icon]="faCircleXmark"></fa-icon>
+
+                        &nbsp;Detalles
+                    </a>
+
+                    <a class="btn btn-warning"
+                        *ngIf="req.comments == null && req.url == null || req.comments == 'Enviado' && req.url == null ">
+                        <fa-icon [icon]="faRotate"></fa-icon>
+
+                        &nbsp;En proceso
+                    </a>
+                </div>
             </div>
 
         </div>
 
-        
-        
+    </div>
 
 </div>
 
-
-<div *ngIf="selectable == true" class="animate__animated animate__fadeIn position-absolute top-50 start-50 translate-middle" style="width: 100%;height: 100%;  z-index: 5000;  background-color: #2121217a;">
+<div *ngIf="selectable == true"
+    class="animate__animated animate__fadeIn position-absolute top-50 start-50 translate-middle"
+    style="width: 100%;height: 100%;  z-index: 5000;  background-color: #2121217a;">
     <div class="card" style="width: 50rem; margin: auto; margin-top: 15%;">
         <div class="card-header text-center">
             <h5> SELECCIONA LA FORMA DEL ACTA </h5>
         </div>
         <div class="card-body text-center">
-    
+
             <div class="row">
-    
-                <div class="card selectionable" style="width: 30%; margin-left: 1rem;  margin-right: 1rem; " (click)="buscar('Simple')">
+
+                <div class="card selectionable" style="width: 30%; margin-left: 1rem;  margin-right: 1rem; "
+                    (click)="buscar('Simple')">
                     <img class="imagesSelectable" src="assets/options/1.png" title="Normal">
                     <div class="card-footer">
                         <span> Simple </span>
@@ -1384,20 +685,20 @@
                     <div class="card-footer">
                         <span> Con Reverso y Folio </span>
                     </div>
-                </div>     
+                </div>
             </div>
         </div>
-    
+
         <div class="buttonsGroup">
-            <div class="row text-center" >
+            <div class="row text-center">
                 <div class="col">
                     <button type="button" (click)="switchSelectable()" class="btn btn-danger">Cancelar</button>
                 </div>
             </div>
-            
-            
+
+
         </div>
-    
+
     </div>
 
 </div>

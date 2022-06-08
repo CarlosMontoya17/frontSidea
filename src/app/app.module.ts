@@ -29,6 +29,7 @@ import { DocumentosmanualComponent } from './componentes/documentosmanual/docume
 import { PapeleraComponent } from './componentes/papelera/papelera.component';
 import { PipeactaPipe } from './servicios/database/PipeActa/pipeacta.pipe';
 import { PreferencesComponent } from './componentes/inicio/new/preferences/preferences.component';
+import { RfcComponent } from './componentes/rfc/rfc.component';
 
 
 
@@ -54,7 +55,8 @@ import { PreferencesComponent } from './componentes/inicio/new/preferences/prefe
     DocumentosmanualComponent,
     PapeleraComponent,
     PipeactaPipe,
-    PreferencesComponent
+    PreferencesComponent,
+    RfcComponent
   ],
   imports: [
     BrowserModule,

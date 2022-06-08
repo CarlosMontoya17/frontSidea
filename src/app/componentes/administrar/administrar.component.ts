@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+
 import { Router } from '@angular/router';
-import { AdminService } from 'src/app/servicios/admin.service';
+
 import { LoginService } from "../../servicios/login.service";
 import Swal from 'sweetalert2';
 import { RestService } from '../historial/rest.service';
@@ -16,6 +16,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import { PerfileditService } from './editarprecios/perfiledit.service';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
+import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 
 import * as CryptoJS from 'crypto-js';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -25,6 +26,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./administrar.component.css']
 })
 export class AdministrarComponent implements OnInit {
+  //varaibles para el cambio de rol y de vista
   dataselect: string = "";
   porEstados: boolean = true;
   result: any;
@@ -37,9 +39,9 @@ export class AdministrarComponent implements OnInit {
   newResponsable: any;
   newidSuper: any;
   alert: any = [];
-  MyrolCliente:boolean = false;
+  MyrolCliente: boolean = false;
   usernameLocal: string = "";
-//Lista de precios de actas
+  //Lista de precios de actas
   nac: number = 0;
   mat: number = 150;
   def: number = 160;
@@ -55,11 +57,11 @@ export class AdministrarComponent implements OnInit {
   ecu: number = 0;
   reset: number = 0;
   arfc: number = 0;
-  dnac: number =  0;
+  dnac: number = 0;
   myRol: any;
 
   vista: boolean = false;
-//Lista de precios por estado
+  //Lista de precios por estado
   BAJACALIFORNIA: number = 140;
   YUCATAN: number = 135;
   BAJACALIFORNIASUR: number = 130;
@@ -93,13 +95,17 @@ export class AdministrarComponent implements OnInit {
   MEXICO: number = 48;
   QUINTANAROO: number = 50;
   EXTRANJERO: number = 120;
+  //Variable de precios por estado
   precios: any = [];
-////////////////////////////
+  ////////////////////////////
   tipodebusqueda: any = 'Seleccione el tipo de busqueda';
+  tipodeservicio: any = 'Seleccione el servicio';
   preview: any = 0;
   usuarios: any;
   public page: number = 1;
+  //Pipe buscador
   searchUser: string = "";
+  //Variables para iconos
   faTrash = faTrash;
   faUserPlus = faUserPlus;
   faUser = faUser;
@@ -109,7 +115,8 @@ export class AdministrarComponent implements OnInit {
   fa3 = fa3;
   faD = faGripLines;
   faPencil = faPencil;
-
+  faservicios = faCircleCheck;
+  //variables para agregar usuarios
   usuario: string = "";
   contrasena: string = "";
   rol: string = "Supervisor";
@@ -131,23 +138,27 @@ export class AdministrarComponent implements OnInit {
     private database: DatabaseService,
     private perfil: PerfileditService,
     private httpClient: HttpClient) { }
-    //CAMBIAMOS LA VISTA DE LA TABLA DE USUARIOS
+  //CAMBIAMOS LA VISTA DE LA TABLA DE USUARIOS
   changeView() {
     this.vista = !this.vista;
 
   }
+  //Bloqueamos la vista a los usuarios con el rol de: Cliente, Sucrsal y Empleado.
   ClienteVista() {
-    if (this.myRol != 'Cliente' && this.myRol != 'Sucursal' && this.myRol!='Empleado' ) {
+    if (this.myRol != 'Cliente' && this.myRol != 'Sucursal' && this.myRol != 'Empleado') {
       this.MyrolCliente = !this.MyrolCliente;
     }
-  
-    
+
+
   }
 
-
+  cancelar(){
+    this.reloadCurrentRoute();
+  }
   //BOTON PARA AGREGAR UN NUEVO USUARIO
   agregaUsuario() {
     this.agregarusuario = !this.agregarusuario;
+  
   }
   //RESETEAMOS LA PAGINA 
   resetPagination() {
@@ -166,12 +177,12 @@ export class AdministrarComponent implements OnInit {
       this.rfc = 100;
       this.inh = 130;
       ///Nuevos Servicios
-      this. ret = 100;
+      this.ret = 100;
       this.sus = 100;
       this.ecu = 200;
       this.reset = 650;
       this.arfc = 1700;
-      this.dnac =  1700;
+      this.dnac = 1700;
       //Estados
       this.BAJACALIFORNIA = 130;
       this.YUCATAN = 125;
@@ -218,12 +229,12 @@ export class AdministrarComponent implements OnInit {
       this.rfc = 120;
       this.inh = 130;
 
-      this. ret = 100;
+      this.ret = 100;
       this.sus = 100;
       this.ecu = 200;
       this.reset = 650;
       this.arfc = 1700;
-      this.dnac =  1700;
+      this.dnac = 1700;
       //Estados
       this.BAJACALIFORNIA = 140;
       this.YUCATAN = 135;
@@ -257,7 +268,7 @@ export class AdministrarComponent implements OnInit {
       this.NUEVOLEON = 70;
       this.MEXICO = 70;
       this.QUINTANAROO = 70;
-      this.EXTRANJERO= 120;
+      this.EXTRANJERO = 120;
     }
     else if (this.usernameLocal == "Publico Eli") {
       this.nac = 0;
@@ -269,12 +280,12 @@ export class AdministrarComponent implements OnInit {
       this.nss = 50;
       this.rfc = 100;
       this.inh = 130;
-      this. ret = 100;
+      this.ret = 100;
       this.sus = 100;
       this.ecu = 200;
       this.reset = 650;
       this.arfc = 1700;
-      this.dnac =  1700;
+      this.dnac = 1700;
       //Estados
       this.BAJACALIFORNIA = 140;
       this.YUCATAN = 135;
@@ -308,10 +319,9 @@ export class AdministrarComponent implements OnInit {
       this.NUEVOLEON = 50;
       this.MEXICO = 48;
       this.QUINTANAROO = 50;
-      this.EXTRANJERO= 120;
+      this.EXTRANJERO = 120;
     }
 
-  
   }
   //BORRAMOS EL USUARIO
   async deleteUser(user: any) {
@@ -411,7 +421,7 @@ export class AdministrarComponent implements OnInit {
           "nl": this.NUEVOLEON,
           "mex": this.MEXICO,
           "qroo": this.QUINTANAROO,
-          "ext":this.EXTRANJERO,
+          "ext": this.EXTRANJERO,
 
         }
         this.precios = {
@@ -425,12 +435,12 @@ export class AdministrarComponent implements OnInit {
           "rfc": this.rfc,
           "inh": this.inh,
 
-         "ret": this. ret,
-         "sus": this.sus ,
-         "ecu": this.ecu ,
-         "reset": this.reset,
-         "arfc":  this.arfc,
-         "dnac":  this.dnac,
+          "ret": this.ret,
+          "sus": this.sus,
+          "ecu": this.ecu,
+          "reset": this.reset,
+          "arfc": this.arfc,
+          "dnac": this.dnac,
         }
       }
       else {
@@ -444,12 +454,12 @@ export class AdministrarComponent implements OnInit {
           "nss": this.nss,
           "rfc": this.rfc,
           "inh": this.inh,
-          "ret": this. ret,
-         "sus": this.sus ,
-         "ecu": this.ecu ,
-         "reset": this.reset,
-         "arfc":  this.arfc,
-         "dnac":  this.dnac,
+          "ret": this.ret,
+          "sus": this.sus,
+          "ecu": this.ecu,
+          "reset": this.reset,
+          "arfc": this.arfc,
+          "dnac": this.dnac,
         }
       }
       let idSuper;
@@ -462,7 +472,7 @@ export class AdministrarComponent implements OnInit {
       }
 
       const data = await this.loginservice.adduser(this.newUsername, this.newPassword, this.newRol, this.tipoNegocio, idSuper, this.precios, estatus, this.Negocio);
-      
+
       if (data) {
 
         Swal.fire({
@@ -501,21 +511,21 @@ export class AdministrarComponent implements OnInit {
     }
     else if (this.currentStep == 1) {
       if (!this.porEstados) {
-        if (this.nac != 0 && 
-          this.mat != 0 && this.def != 0 
-          && this.div != 0 && 
+        if (this.nac != 0 &&
+          this.mat != 0 && this.def != 0
+          && this.div != 0 &&
           this.cot != 0 &&
-           this.der != 0 && 
-           this.nss != 0 && 
-           this.rfc != 0 && 
-           this.inh != 0 
-           && this.ret != 0
-           && this.ecu != 0
-           && this.reset != 0
-           && this.arfc != 0
-           && this.dnac != 0
-     
-           ) {
+          this.der != 0 &&
+          this.nss != 0 &&
+          this.rfc != 0 &&
+          this.inh != 0
+          && this.ret != 0
+          && this.ecu != 0
+          && this.reset != 0
+          && this.arfc != 0
+          && this.dnac != 0
+
+        ) {
           this.alert = [];
           this.currentStep++;
         }
@@ -524,8 +534,8 @@ export class AdministrarComponent implements OnInit {
         }
       }
       else {
-        if (this.mat != 0 && this.def != 0 && this.div != 0 && this.cot != 0 && this.der != 0 && this.nss != 0 && this.rfc != 0 && this.inh != 0 
-         && this.ret != 0
+        if (this.mat != 0 && this.def != 0 && this.div != 0 && this.cot != 0 && this.der != 0 && this.nss != 0 && this.rfc != 0 && this.inh != 0
+          && this.ret != 0
           && this.ecu != 0
           && this.reset != 0
           && this.arfc != 0
@@ -568,21 +578,21 @@ export class AdministrarComponent implements OnInit {
   }
   //OPTENEMOS TODOS LOS CIBER
   async getAllProviders() {
-  
+
     if (this.newRol == "Supervisor") {
       this.clearresponsable()
     }
     if (this.newRol == "Cliente") {
       this.newResponsable = this.myData;
-     
+
     }
     if (this.newRol != "") {
       const providers = await this.database.getAllProviders(this.newRol).toPromise();
-   
+
       if (providers) {
         this.providers = providers;
       }
-    
+
     }
   }
 
@@ -604,7 +614,8 @@ export class AdministrarComponent implements OnInit {
     const mydata: any = await this.restservice.getidsupervisor(id).toPromise();
     this.myData = mydata?.data;
   }
-
+  //Encriptación de Id, Usuario y Contraseñia, ademas de bloquear vistas
+  //a los niveles inferiores como: Cliente, Sucursal y Empleado.
   async ngOnInit() {
 
     const token = localStorage.getItem('привіт');
@@ -615,42 +626,55 @@ export class AdministrarComponent implements OnInit {
     const i = localStorage.getItem('іди');
     const is = CryptoJS.AES.decrypt(i || '{}', "іди");
     const id = is.toString(CryptoJS.enc.Utf8);
-  
+
     const array = UserName.split('"');
     this.usernameLocal = array[1];
-    
+
     const data: any = await this.database.getmydata(id).toPromise();
     this.myData = data.data;
-   
+
     this.myRol = data.data.rol;
 
-    if(this.myRol != 'Cliente' && this.myRol != 'Sucursal' && this.myRol != 'Empleado'){
+    if (this.myRol != 'Cliente' && this.myRol != 'Sucursal' && this.myRol != 'Empleado') {
       this.getAllUsers();
 
-  
+
       if (!token) {
         this.router.navigateByUrl('/login');
       }
- 
+
       this.setPriceUsername();
-  
+
     }
-    else{
+    else {
 
       this.router.navigateByUrl('/inicio');
-  
+
 
     }
-  
 
+
+  }
+  servicios(){
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Datos enviados ',
+      showConfirmButton: false,
+      timer: 1500
+    })
+    //this.reloadCurrentRoute();
+  
   }
 
 
+
+  //Cambiamos el tipo de busqueda
   onChange(event: any) {
     this.tipodebusqueda = event;
   }
-   //DESINCRIPTAMOS EL TOKEN PARA OBTENER LOS DATOS Y EL ROL
-   async descry() {
+  //DESINCRIPTAMOS EL TOKEN PARA OBTENER LOS DATOS Y EL ROL
+  async descry() {
 
     var idlocal = localStorage.getItem("іди");
     var i = CryptoJS.AES.decrypt(idlocal || '{}', "іди");

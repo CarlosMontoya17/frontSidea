@@ -13,6 +13,7 @@ import { CorteComponent } from './componentes/corte/corte.component';
 import { DocumentosmanualComponent } from './componentes/documentosmanual/documentosmanual.component';
 import { PapeleraComponent } from './componentes/papelera/papelera.component';
 import { PreferencesComponent } from './componentes/inicio/new/preferences/preferences.component';
+import { RfcComponent } from './componentes/rfc/rfc.component';
 const routes: Routes = [
   {
   path: '',
@@ -74,6 +75,13 @@ const routes: Routes = [
   path: 'preferences',
   component: PreferencesComponent
 }
+,
+
+{
+  path: 'rfc',
+  component: RfcComponent
+}
+
 
 
 

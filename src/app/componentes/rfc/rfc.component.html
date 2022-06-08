@@ -1,0 +1,268 @@
+<div class="navprincipal ">
+    <app-sidebar></app-sidebar>
+</div>
+<div class="contenidoprincipal ">
+    <app-sidebarpanelhistorial></app-sidebarpanelhistorial>
+
+    <div class="card  animate__animated animate__fadeIn"
+        style="background-color: #212121; color: white; height: 3rem; justify-content: center;">
+        <div class="card-body" style="margin-top: 1rem;">
+            <div class="card-title">
+                <div class="row">
+                    <div class="col">
+                        <h3>
+                            <fa-icon [icon]="faFaceGrin"></fa-icon> Bienvenido(a), {{ usuario }}
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="card  animate__animated animate__fadeIn">
+
+        <div class="card-header text-center">
+            <h4 class="card-title">RFC</h4>
+        </div>
+
+        <div class="card-body text-center">
+
+
+            <div class="row">
+                <div class="col">
+                    <h5 class="card-title">SOLICITAR RFC</h5>
+                    <p class="card-text">BUSQUEDA POR</p>
+                    <select class="form-select" id="basicSelect" [ngModel]="tipodebusqueda"
+                        (ngModelChange)="onChange($event)">
+                        <option selected hidden>Seleccione el tipo de busqueda</option>
+                        <option value="1">CURP</option>
+                        <option value="2">RFC</option>
+                        <!-- <option value="3">Datos personales</option>
+                        <option value="4">Datos del Registro Civil</option> -->
+                    </select>
+                </div>
+                <div class="col" style=" border-left: 2px solid rgb(58, 58, 58);">
+                    <h5 class="card-title">ARCHIVOS</h5>
+                    <p class="card-text">DETALLES DE SOLICITUDES</p>
+                    <button (click)="view()" class="btn" type="submit"
+                        style="background-color: white; color: black !important;">
+                        <fa-icon [icon]="faBook"></fa-icon>
+                        &nbsp;
+                        Ver Solicitudes
+                    </button>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    <br>
+    <div class="card contenedorEdit animate__animated animate__fadeIn"
+        *ngIf="tipodebusqueda != 'Seleccione el tipo de busqueda'">
+
+        <div class="card-header text-center  animate__animated animate__fadeIn"
+            style="background-color: #3b764d; color: white;">
+            <h5 class="card-title  animate__animated animate__fadeIn" *ngIf="tipodebusqueda==1">CURP</h5>
+            <h5 class="card-title  animate__animated animate__fadeIn" *ngIf="tipodebusqueda==2">RFC</h5>
+            <!-- <h5 class="card-title  animate__animated animate__fadeIn" *ngIf="tipodebusqueda==3">DATOS PERSONALES</h5>
+            <h5 class="card-title  animate__animated animate__fadeIn" *ngIf="tipodebusqueda==4">DATOS DE REGISTRO CIVIL -->
+           
+        </div>
+
+        <div class="card-body" *ngIf="tipodebusqueda==1">
+            <div class="alert alert-danger text-center" *ngIf="alerts.length > 0" role="alert">
+                <fa-icon [icon]="faCircleExclamation"></fa-icon>
+                {{alerts[0]}}
+                <fa-icon [icon]="faCircleExclamation"></fa-icon>
+            </div>
+
+            <div class="row">
+              
+                <div class="col">
+                    <label for="first-name-column">CURP*:</label>
+                    <input maxlength="18"
+                        oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                        onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || 
+                    (event.charCode >= 65 && event.charCode <= 90) || 
+                    (event.charCode >= 97 && event.charCode <= 122))" type="text" id="curp" class="form-control"
+                        style="text-transform:uppercase" name="curp" placeholder="Ingresa tu CURP" [(ngModel)]="curp"
+                        (ngModelChange)="onChangeCurp($event)" required>
+                </div>
+
+                <div class="col">
+                    <label for="first-name-column">Entidad de Registro:</label>
+                    <input class="form-control" name="entidad" [(ngModel)]="entidad" readonly required>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <button id="conteo2" (click)="switchSelectable()" type="submit">Enviar peticion
+                        <fa-icon [icon]="Buscar" class="add-user"></fa-icon>
+                    </button>
+                </div>
+                <div class="col">
+                    <button (click)="clearCURP()" type="reset" class="btn btn-light-secondary me-1 mb-1">Limpiar
+                        <fa-icon [icon]="borrar" class="add-user"></fa-icon>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+        <div class="card-body" *ngIf="tipodebusqueda==2">
+            <div class="alert alert-danger text-center" *ngIf="alerts.length > 0" role="alert">
+                <fa-icon [icon]="faCircleExclamation"></fa-icon>
+                {{alerts[0]}}
+                <fa-icon [icon]="faCircleExclamation"></fa-icon>
+            </div>
+
+            <div class="row">
+              
+                <div class="col">
+                    <label for="first-name-column">RFC*:</label>
+                    <input maxlength="13"
+                        oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                        onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || 
+                    (event.charCode >= 65 && event.charCode <= 90) || 
+                    (event.charCode >= 97 && event.charCode <= 122))" type="text" id="rfc" class="form-control"
+                        style="text-transform:uppercase" name="rfc" placeholder="Ingresa tu RFC" [(ngModel)]="rfc"
+                        (ngModelChange)="onChangeCurp($event)" required>
+                </div>
+
+               
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <button id="conteo2" (click)="switchSelectable()" type="submit">Enviar peticion
+                        <fa-icon [icon]="Buscar" class="add-user"></fa-icon>
+                    </button>
+                </div>
+                <div class="col">
+                    <button (click)="clearCURP()" type="reset" class="btn btn-light-secondary me-1 mb-1">Limpiar
+                        <fa-icon [icon]="borrar" class="add-user"></fa-icon>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+       
+
+    </div>
+
+
+
+
+
+    <div class="container" *ngIf="requestsView == true">
+
+        <div class="row">
+            <h4 class="text-center animate__animated animate__bounceIn">SOLICITUDES</h4>
+            <br>
+        </div>
+
+        <div class="row">
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="row text-center">
+                        <h5> FILTROS </h5>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <h6 class="text-center"> BUSCAR POR DATOS PROPORCIONADOS </h6>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon3">
+                                    <fa-icon [icon]="Buscar"></fa-icon>
+                                </span>
+
+                                <input [(ngModel)]="valorabuscar" name="valorabuscar" type="text" class="form-control"
+                                    id="basic-url" aria-describedby="basic-addon3">
+                            </div>
+                        </div>
+                        <div class="col text-center">
+                            <div class="dropdown">
+                                <h6 class="text-center"> SELECCIONAR CORTE </h6>
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                    id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Seleccionar Corte
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item">Actual</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="row" style="margin-top: 1rem;">
+
+
+            <div class="card animate__animated animate__fadeIn"
+                style="width: 18rem; margin-right: 1rem; margin-bottom: 1rem;"
+                *ngFor="let req of requests | pipeacta: valorabuscar">
+                <span class="position-absolute top-45 start-90 translate-middle badge rounded-pill bg-primary">
+                    {{ req.nm }}
+                </span>
+                <img style="width: fit-content;" src="assets/documents/nacimiento.png"
+                    class="card-img-top" alt="...">
+               
+                <div class="card-body text-center">
+                    <h5 class="card-title">REGISTRO FEDERAL DE CONTRIBUYENTES</h5>
+
+                    <p class="card-text">{{ req.createdAt | date:'dd/MM/yyyy' }} </p>
+                    <p class="card-text">Hora: {{ req.createdAt | date: 'h:mm a' }} </p>
+                    <p class="card-text" id="pharaph" class="tableScroll">
+                        
+                        {{ req.type }}
+                        <br>
+                        {{ req.metadata }}
+                    </p>
+                </div>
+                <div class="card-footer text-center">
+                    <a class="btn btn-success" (click)="downloadActa(req.id, req.url)"
+                        *ngIf="req.url != null && req.comments == 'Descargado'">
+                        <fa-icon [icon]="faFileArrowDown"></fa-icon>
+
+                        &nbsp;Descargar
+                    </a>
+
+                    <a class="btn btn-danger" (click)="showDetails(req.comments)"
+                        *ngIf="req.comments != 'Descargado' && req.comments != null">
+                        <fa-icon [icon]="faCircleXmark"></fa-icon>
+
+                        &nbsp;Detalles
+                    </a>
+
+                    <a class="btn btn-warning"
+                        *ngIf="req.comments == null && req.url == null || req.comments == 'Descargado' && req.url == null ">
+                        <fa-icon [icon]="faRotate"></fa-icon>
+
+                        &nbsp;En proceso
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
