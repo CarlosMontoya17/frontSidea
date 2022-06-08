@@ -686,7 +686,7 @@
               name="buscarCiber" (keyup)="resetPagination()">
           </div>
 
-          <table class="table table-dark table-hover table-striped letras ">
+          <table class="table table-dark table-hover table-striped letras text-center">
             <thead>
               <tr>
                 <th scope="col" style="width: 5em; text-align: center;">Id</th>
@@ -695,7 +695,7 @@
                 <th scope="col" style="width: 5em; text-align: center;">Rol</th>
                 <th scope="col" style="width: 2em; text-align: center;">Precios</th>
                 <th scope="col" style="width: 2em; text-align: center;">Otros</th>
-                <th scope="col" style="width: 2em; text-align: center;">Administrar servicios</th>
+                <th *ngIf="myRol == 'Admin'" scope="col" style="width: 2em; text-align: center;">Administrar servicios</th>
               </tr>
             </thead>
             <tbody>
@@ -718,15 +718,13 @@
                   </span>
 
                 </td>
-                <td>
-                  <span class="badge" style="background-color: rgb(175, 16, 16); cursor: pointer;  margin: 0.5rem;"
+                <td *ngIf="myRol == 'Admin'" >
+                  <span   class="badge" style="background-color: rgb(175, 16, 16); cursor: pointer;  margin: 0.5rem;"
                    >
                     <fa-icon [icon]="faservicios"></fa-icon>
-                    <span  data-bs-toggle="modal" data-bs-target="#exampleModal" class="oculto"> Servicios</span>
+                    <span   data-bs-toggle="modal" data-bs-target="#exampleModal" class="oculto"> Servicios</span>
                   </span>
-
                 </td>
-
               </tr>
             </tbody>
           </table>
@@ -735,7 +733,7 @@
       </div>
     </div>
   </div>
-  <!-- Modal -->
+  <!-- Modal -->  
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -744,12 +742,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <select class="form-select" aria-label="Default select example" [(ngModel)]="tipodeservicio"  >
+        <select class="form-select" aria-label="Default select example" [(ngModel)]="tipodeservicio" >
           <option selected hidden>Seleccione el Servicios</option>
-          <option value="1">All</option>
-          <option value="2">Actas</option>
-          <option value="3">RFC</option>
-          <option value="4">None</option>
+          <option value="all">Todos</option>
+          <option value="actas">Actas</option>
+          <option value="rfc">RFC</option>
+          <option value="none">Ninguno</option>
         </select>
       </div>
       <div class="modal-footer">

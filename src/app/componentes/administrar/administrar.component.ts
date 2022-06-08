@@ -584,6 +584,15 @@ export class AdministrarComponent implements OnInit {
     }
     if (this.newRol == "Cliente") {
       this.newResponsable = this.myData;
+ 
+
+    }
+    if (this.newRol == "Sucursal") {
+      this.newResponsable = this.myData;
+
+    }
+    if (this.newRol == "Empleado") {
+      this.newResponsable = this.myData;
 
     }
     if (this.newRol != "") {

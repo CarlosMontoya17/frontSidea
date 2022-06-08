@@ -39,8 +39,9 @@ export class SidebarComponent implements OnInit {
     this.descry();
 
       this.socketClient.onNewNotify().subscribe( (data:any) => {
-
+        
         if( this.userid ==  data.data.id_req ){
+         
           this.notify(data.data.message, data.data.status);
           this.obtainARequests();
           this.read.ObtainCards = this.requests;
@@ -120,6 +121,15 @@ logout(){
       title: message
     }).then((result) => {
           if(result.isConfirmed){
+            
+            if(result.isConfirmed){
+              this.read.setViewCards(true);
+              this.router.navigateByUrl("/rfc");
+              if(this.router.url == "/rfc"){
+                this.reloadCurrentRoute();
+              } 
+            }
+
             this.read.setViewCards(true);
             this.router.navigateByUrl("/inicio");
             if(this.router.url == "/inicio"){
