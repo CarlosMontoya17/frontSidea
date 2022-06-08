@@ -90,7 +90,6 @@ export class SidebarComponent implements OnInit {
       });
     }
 
-
   }
 
 
@@ -129,7 +128,6 @@ logout(){
                 this.reloadCurrentRoute();
               } 
             }
-
             this.read.setViewCards(true);
             this.router.navigateByUrl("/inicio");
             if(this.router.url == "/inicio"){

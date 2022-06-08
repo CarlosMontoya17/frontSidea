@@ -271,14 +271,19 @@ export class RfcComponent implements OnInit {
       // });
 
       await this.restservice.getMyRFC(id).subscribe(data => {
+      
           const a = document.createElement('a');
           const objectUrl = URL.createObjectURL(data);
+          
           a.href = objectUrl;
           a.download = url;
           a.click();
           URL.revokeObjectURL(objectUrl);
       });
+   
     }
+
+   
   }
 
   curpValida(curp: any) {
@@ -473,14 +478,14 @@ export class RfcComponent implements OnInit {
         if (this.RFCvalido(this.rfc)) {
           // ⬅️ Acá se comprueba
           let valido = "Válido";
-          console.log(valido);
+   
           this.buscar();
 
         }
 
         else {
           let invalido = "Invalido";
-          console.log(invalido);
+     
           let valido = "El Formato de RFC No Es El Correcto ";
           //console.log(valido);
 

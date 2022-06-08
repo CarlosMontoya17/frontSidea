@@ -11,7 +11,7 @@ button{
   height: 45px;
   line-height: 29px;
   width: 30%;
-  background: #A52A2A;
+  background: #3b764d;
   transition: all .25s;
   border: none;
   border: solid 3px #303030;
@@ -190,3 +190,5 @@ button:hover{
 .swal-height {
 	height: 80vh;
   }
+
+  
