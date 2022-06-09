@@ -691,7 +691,13 @@ export class AdministrarComponent implements OnInit {
   }
   servicios(){
     if(this.tipodeservicio == "Seleccione el servicio"){
-      customAlerts("error", "Seleccione el nuevo servicio");
+      Swal.fire({
+        position: 'center',
+        icon: "error",
+        title: "Seleccione el nuevo servicio",
+        showConfirmButton: false,
+        timer: 1500
+      });
     }
     else{
       let newService="";
@@ -717,7 +723,15 @@ export class AdministrarComponent implements OnInit {
 
       this.restservice.updateServicio(this.userToUpdateServices[0], this.tipodeservicio).subscribe(
         (data:any) => {
-          customAlerts("success", `Se actualizó el servicio para ${this.userToUpdateServices[1]} a ${newService}`);
+
+          Swal.fire({
+            position: 'center',
+            icon: "success",
+            title: `Se actualizó el servicio para ${this.userToUpdateServices[1]} a ${newService}`,
+            showConfirmButton: false,
+            timer: 1500
+          });
+
           this.reloadCurrentRoute();
         }
 
