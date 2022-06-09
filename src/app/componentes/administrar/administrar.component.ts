@@ -583,7 +583,7 @@ export class AdministrarComponent implements OnInit {
     const users = await this.database.getAllUsers(id).toPromise();
     if (users) {
       this.usuarios = users;
-      console.log(users);
+
     }
   }
   //OPTENEMOS TODOS LOS CIBER
@@ -637,7 +637,6 @@ export class AdministrarComponent implements OnInit {
     this.userToUpdateServices = [id, name, servicios];
     this.showEditServicesModal = true;
 
-    console.log(this.userToUpdateServices)
 
 
   }
