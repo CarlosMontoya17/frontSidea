@@ -203,107 +203,113 @@
 
 
 
-    <div class="container" *ngIf="requestsView == true">
-
-        <div class="row">
-            <h4 class="text-center animate__animated animate__bounceIn">SOLICITUDES</h4>
-            <br>
-        </div>
-
-        <div class="row">
-
-            <div class="card">
-                <div class="card-body">
-                    <div class="row text-center">
-                        <h5> FILTROS </h5>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col">
-                            <h6 class="text-center"> BUSCAR POR DATOS PROPORCIONADOS </h6>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon3">
-                                    <fa-icon [icon]="Buscar"></fa-icon>
-                                </span>
-
-                                <input [(ngModel)]="valorabuscar" name="valorabuscar" type="text" class="form-control"
-                                    id="basic-url" aria-describedby="basic-addon3">
-                            </div>
-                        </div>
-                        <div class="col text-center">
-                            <div class="dropdown">
-                                <h6 class="text-center"> SELECCIONAR CORTE </h6>
-                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                    id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Seleccionar Corte
-                                </a>
-
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <li><a class="dropdown-item">Actual</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-
-
-        </div>
-
-        <div class="row" style="margin-top: 1rem;">
-
-
-            <div class="card animate__animated animate__fadeIn"
-                style="width: 18rem; margin-right: 1rem; margin-bottom: 1rem;"
-                *ngFor="let req of requests | pipeacta: valorabuscar">
-                <span class="position-absolute top-45 start-90 translate-middle badge rounded-pill bg-primary">
-                    {{ req.nm }}
-                </span>
-                <img style="width: fit-content;" src="assets/documents/rfc.png"
-                    class="card-img-top" alt="...">
-
-                <div class="card-body text-center">
-                    <h5 class="card-title">REGISTRO FEDERAL DE CONTRIBUYENTES</h5>
-
-                    <p class="card-text">{{ req.createdAt | date:'dd/MM/yyyy' }} </p>
-                    <p class="card-text">Hora: {{ req.createdAt | date: 'h:mm a' }} </p>
-                    <p class="card-text" id="pharaph" class="tableScroll">
-
-                        {{ req.type }}
-                        <br>
-                        {{ req.metadata }}
-                    </p>
-                </div>
-                <div class="card-footer text-center">
-                    <a class="btn btn-success" (click)="downloadActa(req.id, req.url)"
-                        *ngIf="req.url != null && req.comments == 'Descargado'">
-                        <fa-icon [icon]="faFileArrowDown"></fa-icon>
-
-                        &nbsp;Descargar
-                    </a>
-
-                    <a class="btn btn-danger" (click)="showDetails(req.comments)"
-                        *ngIf="req.comments != 'Descargado' && req.comments != null">
-                        <fa-icon [icon]="faCircleXmark"></fa-icon>
-
-                        &nbsp;Detalles
-                    </a>
-
-                    <a class="btn btn-warning"
-                        *ngIf="req.comments == null && req.url == null || req.comments == 'Descargado' && req.url == null ">
-                        <fa-icon [icon]="faRotate"></fa-icon>
-
-                        &nbsp;En proceso
-                    </a>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
+    
 
 </div>
 
 
+<div class="container" *ngIf="requestsView == true">
+
+    <div class="row">
+        <h4 class="text-center animate__animated animate__bounceIn">SOLICITUDES</h4>
+        <br>
+    </div>
+
+    <div class="row">
+
+        <div class="card">
+            <div class="card-body">
+                <div class="row text-center">
+                    <h5> FILTROS </h5>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col">
+                        <h6 class="text-center"> BUSCAR POR DATOS PROPORCIONADOS </h6>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon3">
+                                <fa-icon [icon]="Buscar"></fa-icon>
+                            </span>
+
+                            <input [(ngModel)]="valorabuscar" name="valorabuscar" type="text" class="form-control"
+                                id="basic-url" aria-describedby="basic-addon3">
+                        </div>
+                    </div>
+                    <div class="col text-center">
+                        <div class="dropdown">
+                            <h6 class="text-center"> SELECCIONAR CORTE </h6>
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                Seleccionar Corte
+                            </a>
+
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item">Actual</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <div class="row" style="margin-top: 1rem;">
+
+
+        <div class="card animate__animated animate__fadeIn"
+            style="width: 18rem; margin-right: 1rem; margin-bottom: 1rem;"
+            *ngFor="let req of requests | pipeacta: valorabuscar">
+            <span class="position-absolute top-45 start-90 translate-middle badge rounded-pill bg-primary">
+                {{ req.nm }}
+            </span>
+            <img style="width: fit-content;" src="assets/documents/rfc.png"
+                class="card-img-top" alt="...">
+
+            <div class="card-body text-center">
+                <h5 class="card-title">REGISTRO FEDERAL DE CONTRIBUYENTES</h5>
+
+                <p class="card-text">{{ req.createdAt | date:'dd/MM/yyyy' }} </p>
+                <p class="card-text">Hora: {{ req.createdAt | date: 'h:mm a' }} </p>
+                <p class="card-text" id="pharaph" class="tableScroll">
+
+                    {{ req.type }}
+                    <br>
+                    {{ req.metadata }}
+                </p>
+            </div>
+            <div class="card-footer text-center">
+                <a class="btn btn-success" (click)="downloadActa(req.id, req.url)"
+                    *ngIf="req.url != null && req.comments == 'Descargado'">
+                    <fa-icon [icon]="faFileArrowDown"></fa-icon>
+
+                    &nbsp;Descargar
+                </a>
+
+                <a class="btn btn-danger" (click)="showDetails(req.comments)"
+                    *ngIf="req.comments != 'Descargado' && req.comments != null">
+                    <fa-icon [icon]="faCircleXmark"></fa-icon>
+
+                    &nbsp;Detalles
+                </a>
+
+                <a class="btn btn-warning"
+                    *ngIf="req.comments == null && req.url == null || req.comments == 'Descargado' && req.url == null ">
+                    <fa-icon [icon]="faRotate"></fa-icon>
+
+                    &nbsp;En proceso
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    
+</div>

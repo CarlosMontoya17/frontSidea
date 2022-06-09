@@ -292,7 +292,6 @@ export class RfcComponent implements OnInit {
 
     if (!validado)  //Coincide con el formato general?
       return false;
-
     //Validar que coincida el dígito verificador
     function digitoVerificador(curp17: any) {
       //Fuente https://consultas.curp.gob.mx/CurpSP/
@@ -308,22 +307,18 @@ export class RfcComponent implements OnInit {
 
     if (validado[2] != digitoVerificador(validado[1]))
       return false;
-
     return true; //Validado
   }
 
   RFCvalido(rfc: any, aceptarGenerico = true) {
     const re = /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/;
     var validado = rfc.match(re);
-
     if (!validado)  //Coincide con el formato general del regex?
       return false;
-
     //Separar el dígito verificador del resto del RFC
     const digitoVerificador = validado.pop(),
       rfcSinDigito = validado.slice(1).join(''),
       len = rfcSinDigito.length,
-
       //Obtener el digito esperado
       diccionario = "0123456789ABCDEFGHIJKLMN&OPQRSTUVWXYZ Ñ",
       indice = len + 1;
