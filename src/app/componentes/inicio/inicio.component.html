@@ -3,7 +3,6 @@
 </div>
 <div class="contenidoprincipal ">
     <app-sidebarpanelhistorial></app-sidebarpanelhistorial>
-
     <div class="card  animate__animated animate__fadeIn"
         style="background-color: #212121; color: white; height: 3rem; justify-content: center;">
         <div class="card-body" style="margin-top: 1rem;">
@@ -19,15 +18,12 @@
         </div>
     </div>
     <br>
-    <div  class="card  animate__animated animate__fadeIn">
-
-        <div   style="background-color: #3b764d; color: white;"  class="card-header text-center">
-            <h4    class="card-title">ACTAS</h4>
+    <div class="card  animate__animated animate__fadeIn">
+        <div style="background-color: #3b764d; color: white;   border-radius:10px; border: 1px black solid; overflow: hidden "
+            class="card-header text-center">
+            <h4 class="card-title">ACTAS</h4>
         </div>
-
         <div class="card-body text-center">
-
-
             <div class="row">
                 <div class="col">
                     <h5 class="card-title">SOLICITAR ACTA</h5>
@@ -51,10 +47,7 @@
                         Ver Solicitudes
                     </button>
                 </div>
-
             </div>
-
-
         </div>
     </div>
     <br>
@@ -64,7 +57,6 @@
         <div class="card-header text-center  animate__animated animate__fadeIn"
             style="background-color: #3b764d; color: white;">
             <!-- <img src="assets/2e828e0f0c8f37c96c0885aa9d285a27.png" alt="Snow" style="width:2%;"> -->
-
             <h5 class="card-title  animate__animated animate__fadeIn" *ngIf="tipodebusqueda==1">CURP</h5>
             <h5 class="card-title  animate__animated animate__fadeIn" *ngIf="tipodebusqueda==2">CADENA DIGITAL</h5>
             <h5 class="card-title  animate__animated animate__fadeIn" *ngIf="tipodebusqueda==3">DATOS PERSONALES</h5>
@@ -120,11 +112,8 @@
                         <fa-icon [icon]="borrar" class="add-user"></fa-icon>
                     </button>
                 </div>
-
             </div>
-
         </div>
-
         <div class="card-body" *ngIf="tipodebusqueda==2">
             <div class="alert alert-danger text-center" *ngIf="alerts.length > 0" role="alert">
                 <fa-icon [icon]="faCircleExclamation"></fa-icon>
@@ -323,12 +312,7 @@
                     </div>
                 </div>
             </div>
-
-
-
             <br>
-
-
             <div class="row" *ngIf='actoRegistral !=  "3" && actoRegistral != "4"'>
                 <div class="col">
                     <label for="email-id-column">
@@ -351,7 +335,6 @@
                             </label>
                         </div>
                     </div>
-
                 </div>
                 <div class="col">
                     <div class="form-group">
@@ -363,24 +346,19 @@
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col">
                     <button (click)="switchSelectable()" type="submit">Buscar
                         <fa-icon [icon]="Buscar" class="add-user"></fa-icon>
                     </button>
                 </div>
-
                 <div class="col">
                     <button (click)="clearActoRegistral()" type="reset"
                         class="btn btn-light-secondary me-1 mb-1">Limpiar
                         <fa-icon [icon]="borrar" class="add-user"></fa-icon>
                     </button>
                 </div>
-
             </div>
-
-
         </div>
 
         <div class="card-body" *ngIf="tipodebusqueda == 4">
@@ -539,20 +517,12 @@
                 </div>
             </div>
         </div>
-
     </div>
-
-
-
-
-
     <div class="container" *ngIf="requestsView == true">
-
         <div class="row">
             <h4 class="text-center animate__animated animate__bounceIn">SOLICITUDES</h4>
             <br>
         </div>
-
         <div class="row">
 
             <div class="card">
@@ -580,18 +550,14 @@
                                     id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                     Seleccionar Corte
                                 </a>
-
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <li><a class="dropdown-item">Actual</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
-
 
         </div>
 

@@ -1,4 +1,4 @@
-<div  *ngIf="myRol != ClienteVista()" >
+<div *ngIf="myRol != ClienteVista()">
   <div class="container  animate__animated animate__fadeIn" style="margin-top: 1em;">
     <div class="card">
       <div class="card-body text-center">
@@ -8,15 +8,10 @@
             <div class="Welcome" id="firstHeader">&bull;HIS</div>
             <div class="to" id="firstHeader">TO</div>
             <div class="the" id="firstHeader">RIAL&bull;</div>
-           
           </b>
         </h6>
       </div>
-  
-  
-  
-  
-      <div class="container"  style="margin-bottom: 0.5em;">
+      <div class="container" style="margin-bottom: 0.5em;">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2">
           <div class="col">
             <div>
@@ -28,13 +23,11 @@
           </div>
           <div class="col text-center">
             <div>
-            <span>
-              Selecciona la fecha de corte: 
-            </span>
+              <span>
+                Selecciona la fecha de corte:
+              </span>
             </div>
-  
             <div class="btn-group">
-              
               <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 {{ fechaSeleccionada || "Actual" }}
@@ -52,27 +45,15 @@
           </div>
         </div>
       </div>
-  
-  
     </div>
     <div class="row">
-  
-  
-  
-  
-  
-  
       <ag-grid-angular style="width: 100%; height: 500px;" class="ag-theme-alpine" #agGrid [pagination]="true"
         [rowData]="rowData" rowSelection="multiple" [defaultColDef]="defaultColDef"
         [defaultColGroupDef]="defaultColGroupDef" [animateRows]="true" [columnHoverHighlight]="true"
         [localeText]="localeText" [pinnedBottomRowData]="pinnedBottomRowData"
-        [overlayLoadingTemplate]="overlayLoadingTemplate" [sortingOrder]="sortingOrder" (gridReady)="onGridReady($event)"
-        (filterChanged)="onFilterChanged($event)" [columnDefs]="columnDefs">
+        [overlayLoadingTemplate]="overlayLoadingTemplate" [sortingOrder]="sortingOrder"
+        (gridReady)="onGridReady($event)" (filterChanged)="onFilterChanged($event)" [columnDefs]="columnDefs">
       </ag-grid-angular>
-  
     </div>
-  
   </div>
 </div>
-
-

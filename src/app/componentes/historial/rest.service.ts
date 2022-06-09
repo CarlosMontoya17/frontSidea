@@ -38,6 +38,19 @@ export class RestService {
     return this.http.get(api+'/api/actas/requests/getMyActa/'+id,{ responseType: 'blob'})
   }
 
+
+  updateServicio(id:any, newService:any){
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
+    var token: any = i.toString(CryptoJS.enc.Utf8);
+    var parteuno = token.slice(1);
+    var final = parteuno.slice(0, -1);
+    let tokenfinal: string = final;
+    const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
+
+    return this.http.put(api+'/api/update/services/'+id,{ "servicios": newService } ,{ headers });
+  }
+
+
   getMyRFC(id:any): Observable<any> {
     var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
     var token: any = i.toString(CryptoJS.enc.Utf8);

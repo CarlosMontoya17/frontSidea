@@ -42,14 +42,14 @@ export class RegistrosComponent implements OnInit {
   totalPrecioAPagar: number = 0;
   totalUtilidad: number = 0;
   usernameLocal: string = "";
-  MyrolCliente:boolean = false;
+  MyrolCliente: boolean = false;
   //Datos para Tabla
-  fechas:any;
-  fechaSeleccionada:any;
-  usuariosEnFecha:any;
-  data:any;
+  fechas: any;
+  fechaSeleccionada: any;
+  usuariosEnFecha: any;
+  data: any;
 
-  constructor(private restservice: RestService, private database: DatabaseService, private adminService:AdminService, private router: Router) {
+  constructor(private restservice: RestService, private database: DatabaseService, private adminService: AdminService, private router: Router) {
     let AG_GRID_LOCALE_EN = getArray();
     this.localeText = AG_GRID_LOCALE_EN;
     this.columnDefs = [
@@ -83,13 +83,13 @@ export class RegistrosComponent implements OnInit {
     };
   }
   ClienteVista() {
-    if (this.myRol != 'Cliente' && this.myRol != 'Sucursal' && this.myRol!='Empleado') {
+    if (this.myRol != 'Cliente' && this.myRol != 'Sucursal' && this.myRol != 'Empleado') {
       this.MyrolCliente = !this.MyrolCliente;
     }
-  
-    
-  }
 
+
+  }
+  //Inicializamos el componente
   async ngOnInit() {
 
     const token = localStorage.getItem('привіт');
@@ -100,38 +100,29 @@ export class RegistrosComponent implements OnInit {
     const i = localStorage.getItem('іди');
     const is = CryptoJS.AES.decrypt(i || '{}', "іди");
     const id = is.toString(CryptoJS.enc.Utf8);
-  
+
     const array = UserName.split('"');
     this.usernameLocal = array[1];
-    
+
     const data: any = await this.database.getmydata(id).toPromise();
     this.myRol = data.data.rol;
 
-    if(this.myRol != 'Cliente'  && this.myRol!='Empleado'){
-    
+    if (this.myRol != 'Cliente' && this.myRol != 'Empleado') {
 
-    //this.getcorte();
-    this.getDates();
-    this.setDate(null);
-  
-  
+
+      //this.getcorte();
+      this.getDates();
+      this.setDate(null);
+
+
       if (!token) {
         this.router.navigateByUrl('/login');
       }
- 
-     
-  
-    }
-    else{
 
+    }
+    else {
       this.router.navigateByUrl('/inicio');
-  
-
     }
-
-
-
-    
   }
   onFilterChanged(params: GridOptions): void {
     this.filtrados = params.api?.getModel();
@@ -146,10 +137,9 @@ export class RegistrosComponent implements OnInit {
     var rows = this.createData();
     this.gridApi.setPinnedBottomRowData(rows);
   }
-  
+  //Creamos datos para saber el total del corte.
   createData() {
     var result = [];
-
     this.totalDocumentos = 0;
     this.totalPrecioVendido = 0;
     this.totalPrecioAPagar = 0;
@@ -177,18 +167,15 @@ export class RegistrosComponent implements OnInit {
         }
       }
     }
-
-
     result.push({
       document: `Documentos: ${this.totalDocumentos}`,
       curp: 'Totales:',
       price: this.totalPrecioVendido,
       buy: this.totalPrecioAPagar,
     });
-
     return result;
   }
-
+  //Exportamos el excel 
   onBtnExport() {
     var usuario = CryptoJS.AES.decrypt(localStorage.getItem('Імякористувача') || '{}', "Імякористувача");
     let userName = usuario.toString(CryptoJS.enc.Utf8);
@@ -203,7 +190,7 @@ export class RegistrosComponent implements OnInit {
       timer: 1500
     })
   }
-
+  //Optenemos el precio
   totalUtility(params: ValueGetterParams) {
     var preciovendido = params.getValue('price')
     var precioxpagar = params.getValue('buy')
@@ -229,28 +216,21 @@ export class RegistrosComponent implements OnInit {
   //   //this.rowData = data;
   //   this.onPinnedRowBottomCount();
   // }
-
-  async getDates(){
+  //Optenemos todas las fechass
+  async getDates() {
     this.fechas = await this.database.getAllDates().toPromise();
   }
-
-  setDate(fecha:any){
+  //Mostramos todas las fechas
+  setDate(fecha: any) {
     this.fechaSeleccionada = fecha;
-
     this.getCorte();
   }
-
-
+  //Otenemos el corte
   async getCorte() {
     this.rowData = await this.adminService.getHistorialAt(this.fechaSeleccionada).toPromise();
     this.onPinnedRowBottomCount();
-
-
     await this.adminService.getHistorialAt(this.fechaSeleccionada).subscribe(data => {
-
-    },(err:any) => {
-
+    }, (err: any) => {
     });
   }
-
 }

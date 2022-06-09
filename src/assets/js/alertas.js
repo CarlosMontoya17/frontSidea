@@ -66,6 +66,18 @@ function ShowImageAd(id, tipo) {
     edit();
 }
 
+
+
+function customAlerts(status, msg){   
+    Swal.fire({
+        position: 'center',
+        icon: status,
+        title: msg,
+        showConfirmButton: false,
+        timer: 1500
+      });
+}
+
 function edit() {
     var text_title = "Scrivi qualcosa";
     var imageLoader = document.getElementById('imageLoader');

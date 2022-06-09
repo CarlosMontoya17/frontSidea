@@ -19,10 +19,50 @@
         </div>
     </div>
     <br>
+
+
+
     <div class="card  animate__animated animate__fadeIn">
 
-        <div   style="background-color: #476ea7; color: white;" class="card-header text-center">
+        <div    style="background-color: #476ea7; color: white; border-radius:10px; border: 1px black solid; overflow: hidden " class="card-header text-center">
             <h4 class="card-title">RFC</h4>
+            
+           
+<!--
+                <div class="bubbles">
+                  <span style="--i:27;"></span>
+                  <span style="--i:44;"></span>
+                  <span style="--i:25;"></span>
+                  <span style="--i:40;"></span>
+                  <span style="--i:3;"></span>
+                  <span style="--i:25;"></span>
+                  <span style="--i:12;"></span>
+                  <span style="--i:38;"></span>
+                  <span style="--i:19;"></span>
+                  <span style="--i:27;"></span>
+                  <span style="--i:12;"></span>
+                  <span style="--i:34;"></span>
+                  <span style="--i:47;"></span>
+                  <span style="--i:23;"></span>
+                  <span style="--i:15;"></span>
+                  <span style="--i:10;"></span>
+                  <span style="--i:28;"></span>
+                  <span style="--i:39;"></span>
+                  <span style="--i:27;"></span>
+                  <span style="--i:23;"></span>
+                  <span style="--i:25;"></span>
+                  <span style="--i:12;"></span>
+                  <span style="--i:18;"></span>
+                  <span style="--i:29;"></span>
+                  <span style="--i:15;"></span>
+                  <span style="--i:30;"></span>
+                  <span style="--i:12;"></span>
+                  <span style="--i:22;"></span>
+                  <span style="--i:14;"></span>
+                  <span style="--i:40;"></span>
+                  <span style="--i:27;"></span>
+                </div>
+               -->
         </div>
 
         <div class="card-body text-center">
@@ -63,12 +103,12 @@
 
         <div class="card-header text-center  animate__animated animate__fadeIn"
             style="background-color: #476ea7; color: white;">
-          
+
             <h5 class="card-title  animate__animated animate__fadeIn" *ngIf="tipodebusqueda==1">CURP</h5>
             <h5 class="card-title  animate__animated animate__fadeIn" *ngIf="tipodebusqueda==2">RFC</h5>
             <!-- <h5 class="card-title  animate__animated animate__fadeIn" *ngIf="tipodebusqueda==3">DATOS PERSONALES</h5>
             <h5 class="card-title  animate__animated animate__fadeIn" *ngIf="tipodebusqueda==4">DATOS DE REGISTRO CIVIL -->
-           
+
         </div>
 
         <div class="card-body" *ngIf="tipodebusqueda==1">
@@ -79,13 +119,13 @@
             </div>
 
             <div class="row">
-              
+
                 <div class="col">
                     <label for="first-name-column">CURP*:</label>
                     <input maxlength="18"
                         oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                        onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || 
-                    (event.charCode >= 65 && event.charCode <= 90) || 
+                        onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) ||
+                    (event.charCode >= 65 && event.charCode <= 90) ||
                     (event.charCode >= 97 && event.charCode <= 122))" type="text" id="curp" class="form-control"
                         style="text-transform:uppercase" name="curp" placeholder="Ingresa tu CURP" [(ngModel)]="curp"
                         (ngModelChange)="onChangeCurp($event)" required>
@@ -124,19 +164,19 @@
             </div>
 
             <div class="row">
-              
+
                 <div class="col">
                     <label for="first-name-column">RFC*:</label>
                     <input maxlength="13"
                         oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                        onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || 
-                    (event.charCode >= 65 && event.charCode <= 90) || 
+                        onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) ||
+                    (event.charCode >= 65 && event.charCode <= 90) ||
                     (event.charCode >= 97 && event.charCode <= 122))" type="text" id="rfc" class="form-control"
                         style="text-transform:uppercase" name="rfc" placeholder="Ingresa tu RFC" [(ngModel)]="rfc"
                         (ngModelChange)="onChangeCurp($event)" required>
                 </div>
 
-               
+
             </div>
             <br>
             <div class="row">
@@ -155,7 +195,7 @@
 
         </div>
 
-       
+
 
     </div>
 
@@ -223,14 +263,14 @@
                 </span>
                 <img style="width: fit-content;" src="assets/documents/rfc.png"
                     class="card-img-top" alt="...">
-               
+
                 <div class="card-body text-center">
                     <h5 class="card-title">REGISTRO FEDERAL DE CONTRIBUYENTES</h5>
 
                     <p class="card-text">{{ req.createdAt | date:'dd/MM/yyyy' }} </p>
                     <p class="card-text">Hora: {{ req.createdAt | date: 'h:mm a' }} </p>
                     <p class="card-text" id="pharaph" class="tableScroll">
-                        
+
                         {{ req.type }}
                         <br>
                         {{ req.metadata }}

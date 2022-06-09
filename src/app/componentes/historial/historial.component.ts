@@ -36,22 +36,27 @@ export class HistorialComponent implements OnInit {
   conteo: boolean = false;
   conteo2: boolean = false;
   conteo3: boolean = false;
-  docPath: string = "";
-  faRobot = faRobot;
-  public imagePath: any;
   hidden: boolean = false;
   hidden2: boolean = true;
   excel: boolean = false;
+
+  docPath: string = "";
+  faRobot = faRobot;
+  public imagePath: any;
+  //Variables de iconos
   faTrashCan = faTrashCan;
   facalend = faCalendarDays;
   restored = faTrashRestore;
   papelera = faTrashArrowUp;
   faUser = faUser;
+  //Imagen URL
   imgURL: any;
+  //Variables generales
   fileTmp: any;
   info: any;
   preview: any = 0;
   vista: boolean = false;
+  //Select de boostrap
   tipodebusqueda: any = 'Seleccione el tipo de busqueda';
   getciber: any;
   getcortes: any;
@@ -93,16 +98,18 @@ export class HistorialComponent implements OnInit {
   responsableSearch: string = "";
   newResponsable: any;
   fecha: any;
-
+//variables del API
   gettraerPapelera2: any;
   public rowData!: any[];
   public pinnedBottomRowData!: any[];
   //CONSTRUCTOR
   constructor(private restService: RestService, private router: Router, private database: DatabaseService, private http: HttpClient) { }
-
+//vista excel
   descargarexcelvista() {
     this.excel = !this.excel;
   }
+
+  //EXPORTAMOS EL EXCEL
   exportexcel(): void {
 
     var usuario = CryptoJS.AES.decrypt(localStorage.getItem('Імякористувача') || '{}', "Імякористувача");
@@ -417,6 +424,7 @@ export class HistorialComponent implements OnInit {
       }
     })
   }
+  //Seleccionamos el tipo de acta
   setTipoDeActa(tipo: any) {
     this.tipo = tipo;
   }
@@ -467,7 +475,6 @@ export class HistorialComponent implements OnInit {
     }
 
     let state;
-
 
     switch (this.info.estado) {
       case "CHIAPAS":
@@ -587,7 +594,7 @@ export class HistorialComponent implements OnInit {
       state = "ext";
     }
   
-
+    //rutas api para enviar
     const precioyasesor = await this.restService.getprecioyasesor(documento, state, id).toPromise();
     this.precioyasesor = precioyasesor;
  
@@ -638,7 +645,7 @@ export class HistorialComponent implements OnInit {
     var i = CryptoJS.AES.decrypt(idlocal || '{}', "іди");
     var id: any = i.toString(CryptoJS.enc.Utf8);
     this.result.push(id);
-
+    //getmydata
     const data: any = await this.database.getmydata(id).toPromise();
     this.myRol = data.data.rol;
   }

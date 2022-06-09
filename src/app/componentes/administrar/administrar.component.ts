@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Router } from '@angular/router';
-
 import { LoginService } from "../../servicios/login.service";
 import Swal from 'sweetalert2';
 import { RestService } from '../historial/rest.service';
@@ -17,9 +15,13 @@ import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import { PerfileditService } from './editarprecios/perfiledit.service';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
-
 import * as CryptoJS from 'crypto-js';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+declare function customAlerts(status:any, msg:any):any;
+
+
+
 @Component({
   selector: 'app-administrar',
   templateUrl: './administrar.component.html',
@@ -127,6 +129,9 @@ export class AdministrarComponent implements OnInit {
   tipoNegocio: string = "";
   Status: string = "";
 
+  userToUpdateServices:any = [];
+  showEditServicesModal:boolean = false;
+  editServices:boolean = false;
   agregarusuario: boolean = false;
 
   buscarCiber: string = "";
@@ -566,6 +571,10 @@ export class AdministrarComponent implements OnInit {
   restart(m: number) {
     this.currentStep = m;
   }
+
+  editServicios(){
+    this.editServices = !this.editServices;
+  }
   //OPTENEMOS  TODO LOS USUARIOS
   async getAllUsers() {
     var idlocal = localStorage.getItem("іди");
@@ -574,6 +583,7 @@ export class AdministrarComponent implements OnInit {
     const users = await this.database.getAllUsers(id).toPromise();
     if (users) {
       this.usuarios = users;
+      console.log(users);
     }
   }
   //OPTENEMOS TODOS LOS CIBER
@@ -605,6 +615,10 @@ export class AdministrarComponent implements OnInit {
     }
   }
 
+  closeServiceModal(){
+    this.showEditServicesModal = false;
+  }
+
   //SELECCIONAMOS EL CIBER
   selectProvider(provider: string) {
     if (this.responsableSearch != "") {
@@ -616,6 +630,16 @@ export class AdministrarComponent implements OnInit {
     if (this.dataselect != "") {
       this.newResponsable = provider;
     }
+  }
+
+  showModal(id:any, name:any, servicios:any){
+
+    this.userToUpdateServices = [id, name, servicios];
+    this.showEditServicesModal = true;
+
+    console.log(this.userToUpdateServices)
+
+
   }
 
   //OBTENEMOS LOS DATOS DEL SUPERVISORR
@@ -644,6 +668,7 @@ export class AdministrarComponent implements OnInit {
 
     this.myRol = data.data.rol;
 
+
     if (this.myRol != 'Cliente' && this.myRol != 'Sucursal' && this.myRol != 'Empleado') {
       this.getAllUsers();
 
@@ -665,13 +690,45 @@ export class AdministrarComponent implements OnInit {
 
   }
   servicios(){
-    Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'Datos enviados ',
-      showConfirmButton: false,
-      timer: 1500
-    })
+    if(this.tipodeservicio == "Seleccione el servicio"){
+      customAlerts("error", "Seleccione el nuevo servicio");
+    }
+    else{
+      let newService="";
+
+      switch (this.tipodeservicio) {
+        case "all":
+          newService="Todos";
+        break;
+        case "actas":
+          newService="Sólo Actas";
+          break;
+        case "rfc":
+          newService="Sólo RFC";
+        break;
+        case "none":
+          newService="Ninguno";
+        break;
+        default:
+          newService="";
+          break;
+      }
+
+
+      this.restservice.updateServicio(this.userToUpdateServices[0], this.tipodeservicio).subscribe(
+        (data:any) => {
+          customAlerts("success", `Se actualizó el servicio para ${this.userToUpdateServices[1]} a ${newService}`);
+          this.reloadCurrentRoute();
+        }
+
+      );
+
+
+    }
+
+
+
+
     //this.reloadCurrentRoute();
   
   }

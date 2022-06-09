@@ -102,7 +102,7 @@ export class CorteComponent implements OnInit {
       timer: 1500
     })
   }
-
+  //Datagrid tbale
   async onGridReady(params: GridReadyEvent) {
     
     this.gridApi = params.api;

@@ -33,7 +33,7 @@ export class PagosComponent implements OnInit {
   @ViewChild('canvas') canvas!: ElementRef;
   @ViewChild('downloadLink') downloadLink!: ElementRef;
   //VARIABLES DECLARADAS PARA FUNCIONES A UTILIZAR
-  
+
   conteo: boolean = false;
   result: any = [];
   ids: any = [];
@@ -52,7 +52,7 @@ export class PagosComponent implements OnInit {
   //Tabla
   cortes: any;
   NumerodeActas: any;
-  MyrolCliente:boolean = false;
+  MyrolCliente: boolean = false;
   porEnviar: boolean = false;
 
   fechasParaBuscarClientes: any;
@@ -86,14 +86,12 @@ export class PagosComponent implements OnInit {
   conteo_der: number = 0;
   conteo_inh: number = 0;
   conteo_total: number = 0;
-
   valordelobservable: any;
   //TABLE
   corteSeleccionado: string = "Seleccionar corte";
-
+  //Variable de Rol
   myRol: any;
-
-
+  //Variable fechaDeUsuarioSeleccionada
   fechaDeUsuarioSeleccionada: any;
   usuariosEnFecha: any;
   corteDelUsuario: any;
@@ -101,9 +99,8 @@ export class PagosComponent implements OnInit {
   itemPerPage: number = 10;
   items: any;
   indexOfItems: any;
-
-
   data$!: Observable<String>;
+
   constructor(private router: Router,
     private restservice: RestService,
     private http: HttpClient,
@@ -115,36 +112,24 @@ export class PagosComponent implements OnInit {
     let userName = usuario.toString(CryptoJS.enc.Utf8);
     let arreglo = userName.split('"');
   }
-
-
   async getAllDates() {
     this.fechasParaBuscarClientes = await this.database.getAllDates().toPromise();
   }
-
   //DESINCRIPTAMOS EL TOKEN PARA OBTENER LOS DATOS Y EL ROL
   async descry() {
-
     var idlocal = localStorage.getItem("іди");
     var i = CryptoJS.AES.decrypt(idlocal || '{}', "іди");
     var id: any = i.toString(CryptoJS.enc.Utf8);
     this.result.push(id);
-
     const data: any = await this.database.getmydata(id).toPromise();
     this.myRol = data.data.rol;
   }
 
   ClienteVista() {
-    if (this.myRol != 'Cliente' && this.myRol != 'Sucursal' && this.myRol!='Empleado') {
+    if (this.myRol != 'Sucursal' && this.myRol != 'Empleado') {
       this.MyrolCliente = !this.MyrolCliente;
     }
-  
-    
   }
-
-
-
-
-
 
   exportexcel(): void {
     var usuario = CryptoJS.AES.decrypt(localStorage.getItem('Імякористувача') || '{}', "Імякористувача");
@@ -171,37 +156,15 @@ export class PagosComponent implements OnInit {
           timer: 1500
         }) */
   }
-
   alert2() {
-    // Swal.fire({
-    //   position: 'center',
-    //   icon: 'warning',
-    //   title: 'Enviar corte',//'Corte de ' + this.CiberSelect + ' descargado',
-    //   text: '¿Deseas enviar el corte?',
-    //   showCancelButton: true,
-    //   confirmButtonColor: '#3085d6',
-    //   cancelButtonColor: '#d33',
-    //   confirmButtonText: 'Si, enviar el corte',
-    // }).then((result) => {
-    //   if (result.isConfirmed) {
-    //     Swal.fire(
-    //       'Corte enviado!'
-    //     )
-
-    //   }
-    // })
+   
     loader();
     this.exportexcel();
     closeAlert();
     this.getCorte(this.ciberidselect, this.CiberSelect);
   }
-
   changeView() {
-
     this.conteo = !this.conteo;
-
-
-
   }
   reloadCurrentRoute() {
     const currentUrl = this.router.url;
@@ -245,7 +208,7 @@ export class PagosComponent implements OnInit {
             this.paginacion = false;
           });
         }
-        else{
+        else {
           loader();
           this.paginacion = false;
           await html2canvas(this.screen.nativeElement).then(canvas => {
@@ -255,7 +218,7 @@ export class PagosComponent implements OnInit {
             this.downloadLink.nativeElement.click();
             closeAlert();
             this.getCorte(this.ciberidselect, this.CiberSelect)
-            
+
           });
         }
 
@@ -263,11 +226,7 @@ export class PagosComponent implements OnInit {
       })
 
     }
-
-
   }
-
-
   async paginacionCorte() {
     this.paginacion = true;
     let backup = this.corteDelUsuario;
@@ -313,10 +272,6 @@ export class PagosComponent implements OnInit {
     this.indexOfItems = [];
 
   }
-
-
-
-
 
   alert() {
     // Swal.fire({
@@ -464,7 +419,7 @@ export class PagosComponent implements OnInit {
       this.setCorte(0);
       loadedData();
     }, (err: any) => {
-      
+
     });
 
   }
@@ -515,8 +470,6 @@ export class PagosComponent implements OnInit {
   }
 
   async ngOnInit() {
-
-
     const token = localStorage.getItem('привіт');
     const usuario = localStorage.getItem('Імякористувача');
 
@@ -525,42 +478,27 @@ export class PagosComponent implements OnInit {
     const i = localStorage.getItem('іди');
     const is = CryptoJS.AES.decrypt(i || '{}', "іди");
     const id = is.toString(CryptoJS.enc.Utf8);
-  
+
     const array = UserName.split('"');
     this.usernameLocal = array[1];
-    
+
     const data: any = await this.database.getmydata(id).toPromise();
     this.myRol = data.data.rol;
 
-    if(this.myRol != 'Cliente'  && this.myRol != 'Sucursal'  && this.myRol!='Empleado'){
-    
+    if (this.myRol != 'Sucursal' && this.myRol != 'Empleado') {
+
 
       this.getAllDates();
       this.getClientsByDateSelected(null);
-  
+
       if (!token) {
         this.router.navigateByUrl('/login');
       }
- 
-     
-  
     }
-    else{
-
+    else {
       this.router.navigateByUrl('/inicio');
-  
-
     }
-
-
-
-
-
-    
-
   }
-
-
 
   async getClientsByDateSelected(date: any) {
     this.usuariosEnFecha = [];
@@ -629,7 +567,7 @@ export class PagosComponent implements OnInit {
     this.rowData = data;
     this.precioTotal();
   }
-  
+
   getTodos() {
 
     this.data$.pipe(distinctUntilChanged()).subscribe(async (Data: any) => {
