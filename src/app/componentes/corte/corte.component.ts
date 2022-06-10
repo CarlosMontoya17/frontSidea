@@ -59,6 +59,7 @@ export class CorteComponent implements OnInit {
         { field: "document", headerName: "Documento", filter: true },
         { field: "states", headerName: "Estado", filter: true },
         { field: "curp", headerName: "CURP", filter: true },
+        { field: "uploadBy", headerName: "Cargado por", filter: true },
         { field: "price", headerName: "Precio", type: 'valueColumn', filter: true, },
         { field: "createdAt", headerName: "Fecha y hora", filter: true },
         { field: "corte", headerName: "Corte", type: 'valueColumn', filter: true, }

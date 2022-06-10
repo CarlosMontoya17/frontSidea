@@ -18,6 +18,7 @@ import * as CryptoJS from 'crypto-js';
 
 //Servicios
 import { ReadService } from './models/read.service';
+import { DatabaseService } from '../database/database.service';
 
 declare function showDetailsActas(comments: any): any;
 declare function loader(): any;
@@ -30,7 +31,7 @@ export class InicioComponent implements OnInit {
   Buscar = faMagnifyingGlass;
   borrar = faEraser;
   faBook = faBook;
-
+  userToUpdateServices:any = [];
   requestsView: boolean = false;
   faRotate = faRotate;
   faCircleCheck = faCircleCheck;
@@ -47,16 +48,16 @@ export class InicioComponent implements OnInit {
   nose: any;
   result: any = [];
   usuario: any = 'Usuario';
-
+  myRol: any;
   pdfSrc: any;
   fecha_actual: any = new Date();
   fecha: any;
   cadenadigital: any;
   valorabuscar: string = "";
-
+  usernameLocal: string = "";
   alerts: any = [];
   faCircleExclamation = faCircleExclamation;
-
+  id:any;
   //  //
 
   data: any;
@@ -101,13 +102,16 @@ export class InicioComponent implements OnInit {
   numActa: any;
 
 
-  requests: any = [];
+  showEditServicesModal:boolean = false;
+  editServices:boolean = false;
 
+  requests: any = [];
+  tipodeservicio: any = 'Seleccione el servicio';
   selectable: Boolean = false;
 
   dataset$: Observable<any>;
 
-  constructor(private router: Router, private restservice: RestService, private readJson: ReadService) {
+  constructor(private router: Router, private restservice: RestService, private readJson: ReadService,private database: DatabaseService) {
     this.dataset$ = readJson.getObtainsCards;
     this.dataset$.subscribe((data: any) => {
       // this.requests = data;
@@ -122,7 +126,107 @@ export class InicioComponent implements OnInit {
     // })
   }
 
+  showModal(id:any, name:any, servicios:any){
 
+    this.userToUpdateServices = [id, name, servicios];
+    this.showEditServicesModal = true;
+
+
+
+  }
+
+
+  rol(){
+    const token = localStorage.getItem('привіт');
+    const usuario = localStorage.getItem('Імякористувача');
+
+    const un = CryptoJS.AES.decrypt(usuario || '{}', "Імякористувача");
+    const UserName = un.toString(CryptoJS.enc.Utf8);
+    const i = localStorage.getItem('іди');
+    const is = CryptoJS.AES.decrypt(i || '{}', "іди");
+    const id = is.toString(CryptoJS.enc.Utf8);
+
+    const array = UserName.split('"');
+    this.usernameLocal = array[1];
+
+  }
+
+
+   //DESINCRIPTAMOS EL TOKEN PARA OBTENER LOS DATOS Y EL ROL
+   async descry() {
+
+
+
+
+    var idlocal = localStorage.getItem("іди");
+    var i = CryptoJS.AES.decrypt(idlocal || '{}', "іди");
+    var id: any = i.toString(CryptoJS.enc.Utf8);
+    this.id = id;
+    this.result.push(id);
+    //getmydata
+    const data: any = await this.database.getmydata(id).toPromise();
+    this.myRol = data.data.rol;
+  }
+
+
+
+  servicios(){
+    if(this.tipodeservicio == "Seleccione el servicio"){
+      Swal.fire({
+        position: 'center',
+        icon: "error",
+        title: "Seleccione el nuevo servicio",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
+    else{
+      let newService="";
+
+      switch (this.tipodeservicio) {
+        case "all":
+          newService="Todos";
+        break;
+        case "actas":
+          newService="Sólo Actas";
+          break;
+        case "rfc":
+          newService="Sólo RFC";
+        break;
+        case "none":
+          newService="Ninguno";
+        break;
+        default:
+          newService="";
+          break;
+      }
+
+
+      this.restservice.updateServicio(this.userToUpdateServices[0], this.tipodeservicio).subscribe(
+        (data:any) => {
+
+          Swal.fire({
+            position: 'center',
+            icon: "success",
+            title: `Se actualizó el servicio para ${this.userToUpdateServices[1]} a ${newService}`,
+            showConfirmButton: false,
+            timer: 1500
+          });
+
+          this.reloadCurrentRoute();
+        }
+
+      );
+
+
+    }
+
+
+
+
+    //this.reloadCurrentRoute();
+  
+  }
 
 
   autoCompleteDate() {
@@ -1087,6 +1191,7 @@ export class InicioComponent implements OnInit {
       this.router.navigateByUrl('/login');
     }
 
+    this.descry();
     this.requestsView = this.readJson.getViewCards();
     if (this.requestsView == true) {
       this.obtainARequests();

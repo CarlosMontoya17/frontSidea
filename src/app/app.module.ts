@@ -30,6 +30,7 @@ import { PapeleraComponent } from './componentes/papelera/papelera.component';
 import { PipeactaPipe } from './servicios/database/PipeActa/pipeacta.pipe';
 import { PreferencesComponent } from './componentes/inicio/new/preferences/preferences.component';
 import { RfcComponent } from './componentes/rfc/rfc.component';
+import { DdMmYYYYDatePipe } from './dd-mm-yyyy-date.pipe';
 
 
 
@@ -56,7 +57,8 @@ import { RfcComponent } from './componentes/rfc/rfc.component';
     PapeleraComponent,
     PipeactaPipe,
     PreferencesComponent,
-    RfcComponent
+    RfcComponent,
+    DdMmYYYYDatePipe
   ],
   imports: [
     BrowserModule,

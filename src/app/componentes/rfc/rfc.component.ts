@@ -180,18 +180,18 @@ export class RfcComponent implements OnInit {
     }
 
     this.requests = [];
-    const data:any = await this.restservice.obtainAllRFCs().toPromise();
-    
+    const data: any = await this.restservice.obtainAllRFCs().toPromise();
+
     for (let i = 0; i < data.length; i++) {
-        this.requests.push({
-          "nm": i+1,
-          "id": data[i].id,
-          "type": data[i].search,
-          "metadata": data[i].data,
-          "createdAt": data[i].createdAt,
-          "comments": data[i].comments,
-          "url": data[i].namefile
-        });      
+      this.requests.push({
+        "nm": i + 1,
+        "id": data[i].id,
+        "type": data[i].search,
+        "metadata": data[i].data,
+        "createdAt": data[i].createdAt,
+        "comments": data[i].comments,
+        "url": data[i].namefile
+      });
     }
     // this.requests = [];
     //  const data: any = await this.restservice.obtainActasRequest().toPromise();
@@ -271,19 +271,19 @@ export class RfcComponent implements OnInit {
       // });
 
       await this.restservice.getMyRFC(id).subscribe(data => {
-      
-          const a = document.createElement('a');
-          const objectUrl = URL.createObjectURL(data);
-          
-          a.href = objectUrl;
-          a.download = url;
-          a.click();
-          URL.revokeObjectURL(objectUrl);
+
+        const a = document.createElement('a');
+        const objectUrl = URL.createObjectURL(data);
+
+        a.href = objectUrl;
+        a.download = url;
+        a.click();
+        URL.revokeObjectURL(objectUrl);
       });
-   
+
     }
 
-   
+
   }
 
   curpValida(curp: any) {
@@ -473,14 +473,14 @@ export class RfcComponent implements OnInit {
         if (this.RFCvalido(this.rfc)) {
           // ⬅️ Acá se comprueba
           let valido = "Válido";
-   
+
           this.buscar();
 
         }
 
         else {
           let invalido = "Invalido";
-     
+
           let valido = "El Formato de RFC No Es El Correcto ";
           //console.log(valido);
 

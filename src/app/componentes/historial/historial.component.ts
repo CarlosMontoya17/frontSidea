@@ -626,7 +626,7 @@ export class HistorialComponent implements OnInit {
         const data: any = await this.restService.getcorte(id).toPromise();
 
         this.getcortes = data;
-     
+     console.log(this.getcortes);
         if (data.lenght != 0) {
           closeAlert();
         }

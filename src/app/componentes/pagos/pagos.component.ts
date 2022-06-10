@@ -15,7 +15,8 @@ import * as XLSX from 'xlsx'
 import Swal from 'sweetalert2';
 import { AdminService } from 'src/app/servicios/admin.service';
 declare function onclick(): any;
-
+import { faRobot } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 declare function loader(): any;
 declare function closeAlert(): any;
 declare function loadedData(): any;
@@ -29,11 +30,12 @@ declare function loadedData(): any;
 
 export class PagosComponent implements OnInit {
 
+  date = new Date();
   @ViewChild('screen') screen!: ElementRef;
   @ViewChild('canvas') canvas!: ElementRef;
   @ViewChild('downloadLink') downloadLink!: ElementRef;
   //VARIABLES DECLARADAS PARA FUNCIONES A UTILIZAR
-
+  excel: boolean = false;
   conteo: boolean = false;
   result: any = [];
   ids: any = [];
@@ -49,12 +51,13 @@ export class PagosComponent implements OnInit {
   filter1: boolean = true;
   filter2: boolean = false;
   fechas: any;
+  faUser = faUser;
   //Tabla
   cortes: any;
   NumerodeActas: any;
   MyrolCliente: boolean = false;
   porEnviar: boolean = false;
-
+  faRobot = faRobot;
   fechasParaBuscarClientes: any;
   usernameLocal: string = "";
   public rowData!: any[];
@@ -125,11 +128,47 @@ export class PagosComponent implements OnInit {
     this.myRol = data.data.rol;
   }
 
+  descargarexcelvista() {
+    this.excel = !this.excel;
+  }
+
+
   ClienteVista() {
     if (this.myRol != 'Sucursal' && this.myRol != 'Empleado') {
       this.MyrolCliente = !this.MyrolCliente;
     }
   }
+ExportExcel2(): void {
+  
+  var usuario = CryptoJS.AES.decrypt(localStorage.getItem('Імякористувача') || '{}', "Імякористувача");
+  let userName = usuario.toString(CryptoJS.enc.Utf8);
+  let arreglo = userName.split('"');
+
+
+  /*PASAMOS EL ID DE L TABLA PARA PPSTERIORMENTE MANDARLO A LA BASE DE DATOS*/
+  let element = document.getElementById('excel-table');
+  const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+
+  /* generate workbook and add the worksheet */
+  const wb: XLSX.WorkBook = XLSX.utils.book_new();
+
+  XLSX.utils.book_append_sheet(wb, ws, 'Corte');
+
+  /* save to file */
+  XLSX.writeFile(wb, "Pagos-" + arreglo[1] + ".xlsx");
+  Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: 'Corte de ' + arreglo[1] + ' descargado',
+    showConfirmButton: true,
+    
+    //timer: 1500
+  })
+  
+ this.reloadCurrentRoute();
+}
+
+
 
   exportexcel(): void {
     var usuario = CryptoJS.AES.decrypt(localStorage.getItem('Імякористувача') || '{}', "Імякористувача");
@@ -147,7 +186,7 @@ export class PagosComponent implements OnInit {
     XLSX.utils.book_append_sheet(wb, ws, 'Corte');
 
     /* Exportamos a excel */
-    XLSX.writeFile(wb, "Pagos-" + this.CiberSelect + ".csv");
+    XLSX.writeFile(wb, "Pagos-" + this.CiberSelect + ".xlsx");
     /*     Swal.fire({
           position: 'center',
           icon: 'success',
@@ -156,11 +195,18 @@ export class PagosComponent implements OnInit {
           timer: 1500
         }) */
   }
-  alert2() {
+
+Downloadexcel(){
+  this.ExportExcel2();
+  loader();
    
-    loader();
-    this.exportexcel();
-    closeAlert();
+  closeAlert();
+  this.getCorte(this.ciberidselect, this.CiberSelect);
+}
+
+  alert2() {
+    this.ExportExcel2();
+   
     this.getCorte(this.ciberidselect, this.CiberSelect);
   }
   changeView() {
@@ -412,8 +458,19 @@ export class PagosComponent implements OnInit {
 
 
 
-    this.adminService.getCorteByUserForDate(id, date).subscribe(data => {
+    this.adminService.getCorteByUserForDate(id, date).subscribe((data:any) => {
       this.corteDelUsuario = data;
+      // console.log(data);
+       for (let i = 0; i < data.length; i++) {
+        // let event = new Date(data[i].createdAt);
+        // let date = event.toLocaleString('es', {dateStyle: 'short'});
+        data[i].createdAt.split('T')[0];
+
+
+
+       }
+
+
 
       this.precioTotal();
       this.setCorte(0);

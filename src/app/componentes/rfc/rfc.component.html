@@ -3,7 +3,6 @@
 </div>
 <div class="contenidoprincipal ">
     <app-sidebarpanelhistorial></app-sidebarpanelhistorial>
-
     <div class="card  animate__animated animate__fadeIn"
         style="background-color: #212121; color: white; height: 3rem; justify-content: center;">
         <div class="card-body" style="margin-top: 1rem;">
@@ -19,16 +18,26 @@
         </div>
     </div>
     <br>
-
-
-
     <div class="card  animate__animated animate__fadeIn">
-
-        <div    style="background-color: #476ea7; color: white; border-radius:10px; border: 1px black solid; overflow: hidden " class="card-header text-center">
+        <div style="background-color: #476ea7; color: white; border-radius:10px; border: 1px black solid; overflow: hidden "
+            class="card-header text-center">
             <h4 class="card-title">RFC</h4>
-            
-           
-<!--
+        
+<div class="area" >
+    <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+    </ul>
+</div >
+            <!--
                 <div class="bubbles">
                   <span style="--i:27;"></span>
                   <span style="--i:44;"></span>
@@ -64,10 +73,7 @@
                 </div>
                -->
         </div>
-
         <div class="card-body text-center">
-
-
             <div class="row">
                 <div class="col">
                     <h5 class="card-title">SOLICITAR RFC</h5>
@@ -91,16 +97,12 @@
                         Ver Solicitudes
                     </button>
                 </div>
-
             </div>
-
-
         </div>
     </div>
     <br>
     <div class="card contenedorEdit animate__animated animate__fadeIn"
         *ngIf="tipodebusqueda != 'Seleccione el tipo de busqueda'">
-
         <div class="card-header text-center  animate__animated animate__fadeIn"
             style="background-color: #476ea7; color: white;">
 
@@ -110,7 +112,6 @@
             <h5 class="card-title  animate__animated animate__fadeIn" *ngIf="tipodebusqueda==4">DATOS DE REGISTRO CIVIL -->
 
         </div>
-
         <div class="card-body" *ngIf="tipodebusqueda==1">
             <div class="alert alert-danger text-center" *ngIf="alerts.length > 0" role="alert">
                 <fa-icon [icon]="faCircleExclamation"></fa-icon>
@@ -152,10 +153,6 @@
             </div>
 
         </div>
-
-
-
-
         <div class="card-body" *ngIf="tipodebusqueda==2">
             <div class="alert alert-danger text-center" *ngIf="alerts.length > 0" role="alert">
                 <fa-icon [icon]="faCircleExclamation"></fa-icon>
@@ -194,17 +191,7 @@
             </div>
 
         </div>
-
-
-
     </div>
-
-
-
-
-
-    
-
 </div>
 
 
@@ -238,8 +225,8 @@
                     <div class="col text-center">
                         <div class="dropdown">
                             <h6 class="text-center"> SELECCIONAR CORTE </h6>
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                data-bs-toggle="dropdown" aria-expanded="false">
                                 Seleccionar Corte
                             </a>
 
@@ -249,27 +236,17 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
-
-
     </div>
-
-
-
     <div class="row" style="margin-top: 1rem;">
-
-
         <div class="card animate__animated animate__fadeIn"
             style="width: 18rem; margin-right: 1rem; margin-bottom: 1rem;"
             *ngFor="let req of requests | pipeacta: valorabuscar">
             <span class="position-absolute top-45 start-90 translate-middle badge rounded-pill bg-primary">
                 {{ req.nm }}
             </span>
-            <img style="width: fit-content;" src="assets/documents/rfc.png"
-                class="card-img-top" alt="...">
+            <img style="width: fit-content;" src="assets/documents/rfc.png" class="card-img-top" alt="...">
 
             <div class="card-body text-center">
                 <h5 class="card-title">REGISTRO FEDERAL DE CONTRIBUYENTES</h5>
@@ -287,29 +264,19 @@
                 <a class="btn btn-success" (click)="downloadActa(req.id, req.url)"
                     *ngIf="req.url != null && req.comments == 'Descargado'">
                     <fa-icon [icon]="faFileArrowDown"></fa-icon>
-
                     &nbsp;Descargar
                 </a>
-
                 <a class="btn btn-danger" (click)="showDetails(req.comments)"
                     *ngIf="req.comments != 'Descargado' && req.comments != null">
                     <fa-icon [icon]="faCircleXmark"></fa-icon>
-
                     &nbsp;Detalles
                 </a>
-
                 <a class="btn btn-warning"
                     *ngIf="req.comments == null && req.url == null || req.comments == 'Descargado' && req.url == null ">
                     <fa-icon [icon]="faRotate"></fa-icon>
-
                     &nbsp;En proceso
                 </a>
             </div>
         </div>
-
     </div>
-
-
-
-    
 </div>

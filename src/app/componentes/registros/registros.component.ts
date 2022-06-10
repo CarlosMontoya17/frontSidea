@@ -57,6 +57,9 @@ export class RegistrosComponent implements OnInit {
       { field: "provider", headerName: "Asesor", filter: 'agSetColumnFilter' },
       { field: "enterprise", headerName: "Ciber", filter: 'agSetColumnFilter' },
       { field: "document", headerName: "Documento", filter: 'agSetColumnFilter' },
+
+      // { field: "provider", headerName: "Cargado por", type: 'valueColumn', filter: 'agSetColumnFilter' },
+
       { field: "states", headerName: "Estado", filter: 'agSetColumnFilter' },
       { field: "curp", headerName: "CURP", filter: 'agSetColumnFilter' },
       { field: "price", headerName: "Precio vendido", type: 'valueColumn', filter: 'agSetColumnFilter' },
@@ -225,12 +228,16 @@ export class RegistrosComponent implements OnInit {
     this.fechaSeleccionada = fecha;
     this.getCorte();
   }
+
+  
   //Otenemos el corte
   async getCorte() {
     this.rowData = await this.adminService.getHistorialAt(this.fechaSeleccionada).toPromise();
+    console.log(this.rowData)
     this.onPinnedRowBottomCount();
     await this.adminService.getHistorialAt(this.fechaSeleccionada).subscribe(data => {
     }, (err: any) => {
     });
   }
+  
 }
