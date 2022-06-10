@@ -12,7 +12,7 @@ import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { faFileArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { faRotate } from '@fortawesome/free-solid-svg-icons';
-
+import { faPeopleArrowsLeftRight } from '@fortawesome/free-solid-svg-icons';
 import { map, Observable, switchMap } from 'rxjs';
 import * as CryptoJS from 'crypto-js';
 
@@ -28,6 +28,7 @@ declare function loader(): any;
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent implements OnInit {
+  faPeopleArrowsLeftRight = faPeopleArrowsLeftRight;
   Buscar = faMagnifyingGlass;
   borrar = faEraser;
   faBook = faBook;
@@ -154,8 +155,6 @@ export class InicioComponent implements OnInit {
 
    //DESINCRIPTAMOS EL TOKEN PARA OBTENER LOS DATOS Y EL ROL
    async descry() {
-
-
 
 
     var idlocal = localStorage.getItem("іди");

@@ -197,17 +197,17 @@
                                                 <th scope="col" style="border-radius: 0.5rem 0 0 0.5rem;">#</th>
                                                 <th scope="col">Documento</th>
                                                 <th scope="col">Fecha</th>
-                                               
+
                                                 <th scope="col">Hora de descarga</th>
                                                 <th scope="col">Estado</th>
                                                 <th scope="col">Nombre (Acta)</th>
                                                 <th scope="col">CURP</th>
-                                                
+
                                                 <th scope="col" style=" border-radius: 0 0.5rem 0.5rem 0;">
                                                     Precio</th>
-                                                    <th *ngIf="excel" scope="col">Ciber</th>
-                                                    <th *ngIf="excel" scope="col">Asesor</th>
-                                                    <th *ngIf="excel" scope="col">Cargado por</th>
+                                                <th *ngIf="excel" scope="col">Ciber</th>
+                                                <th *ngIf="excel" scope="col">Asesor</th>
+                                                <th *ngIf="excel" scope="col">Cargado por</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -234,25 +234,15 @@
                                                 <td style=" font-size:1.0em; width: 4rem !important;"
                                                     style="font-weight: bolder;">$ {{ acta.price }} </td>
 
-                                                    
-                                                <td *ngIf="excel" class="responsive text-center" style=" color: #000; ">
-
-                                                    <div *ngIf="acta?.uploadBy == 'ROBOT' ">
-                                                        <div class="row">
-                                                            <fa-icon [icon]="faRobot"></fa-icon>
-                                                        </div>
-                                                        <div class="row"><span>Robot</span></div>
-                                                    </div>
-                                                    <div *ngIf="acta?.uploadBy != 'ROBOT'">
-                                                        <div class="row">
-                                                            <fa-icon [icon]="faUser"></fa-icon>
-                                                        </div>
-                                                        <div class="row"><span>{{ acta?.uploadBy }}</span></div>
-                                                    </div>
-
-                                                </td>
+                                                <td style=" font-size:1.0em; width: 4rem !important;"
+                                                    style="font-weight: bolder;" *ngIf="excel">{{ acta.ciber.nombre }} </td>
+                                                <td style=" font-size:1.0em; width: 4rem !important;"
+                                                    style="font-weight: bolder;" *ngIf="excel">{{ acta.superviser.nombre }} </td>
+                                                <td style=" font-size:1.0em; width: 4rem !important;"
+                                                    style="font-weight: bolder;" *ngIf="excel">{{ acta.uploadBy.nombre }} </td>
                                             </tr>
                                             <tr style="cursor: pointer;">
+                                                <td> </td>
                                                 <td> </td>
                                                 <td> </td>
                                                 <td> </td>

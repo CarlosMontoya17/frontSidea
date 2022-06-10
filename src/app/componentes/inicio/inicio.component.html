@@ -11,7 +11,7 @@
                     <div class="col">
                         <h3>
                             <fa-icon [icon]="faFaceGrin"></fa-icon> Bienvenido(a), {{ usuario }}
-                            
+
                         </h3>
                     </div>
                 </div>
@@ -23,20 +23,20 @@
         <div style="background-color: #3b764d; color: white;   border-radius:10px; border: 1px black solid; overflow: hidden "
             class="card-header text-center">
             <h4 class="card-title">ACTAS</h4>
-            
-                <ul class="circles">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                </ul>
-         
+
+            <ul class="circles">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+
             <!-- <img src="assets/2e828e0f0c8f37c96c0885aa9d285a27.png" alt="Snow" style="width:50%; height:500px;"> -->
         </div>
         <div class="card-body text-center">
@@ -50,9 +50,9 @@
                         <option value="1">CURP</option>
 
 
-                        <option value="2"  *ngIf="id == '1500'">Cadena digital</option>
-                        <option value="3"  *ngIf="id == '1500'" >Datos personales</option>
-                        <option value="4"  *ngIf="id == '1500'" >Datos del Registro Civil</option>
+                        <option value="2" *ngIf="id == '1500'">Cadena digital</option>
+                        <option value="3" *ngIf="id == '1500'">Datos personales</option>
+                        <option value="4" *ngIf="id == '1500'">Datos del Registro Civil</option>
                     </select>
                 </div>
                 <div class="col" style=" border-left: 2px solid rgb(58, 58, 58);">
@@ -120,7 +120,7 @@
             </div>
             <br>
 
-             
+
             <div class="row">
                 <div class="col">
                     <button id="conteo2" (click)="switchSelectable()" type="submit">Enviar peticion
@@ -613,26 +613,46 @@
                     <p class="card-text" id="pharaph" class="tableScroll">{{ req.metadata }}</p>
                 </div>
                 <div class="card-footer text-center">
-                    <a class="btn btn-success" (click)="downloadActa(req.id, req.url)"
-                        *ngIf="req.url != null && req.comments == 'Enviado'">
-                        <fa-icon [icon]="faFileArrowDown"></fa-icon>
 
-                        &nbsp;Descargar
-                    </a>
+                    <div class="col">
+                        <div class="row">
+                            <a class="btn btn-success" (click)="downloadActa(req.id, req.url)"
+                                *ngIf="req.url != null && req.comments == 'Enviado'">
+                                <fa-icon [icon]="faFileArrowDown"></fa-icon>
 
-                    <a class="btn btn-danger" (click)="showDetails(req.comments)"
-                        *ngIf="req.comments != 'Enviado' && req.comments != null && req.comments != '.'">
-                        <fa-icon [icon]="faCircleXmark"></fa-icon>
+                                &nbsp;Descargar
+                            </a>
 
-                        &nbsp;Detalles
-                    </a>
+                            <a class="btn btn-danger" (click)="showDetails(req.comments)"
+                                *ngIf="req.comments != 'Enviado' && req.comments != null && req.comments != '.'">
+                                <fa-icon [icon]="faCircleXmark"></fa-icon>
 
-                    <a class="btn btn-warning"
-                        *ngIf="req.comments == null && req.url == null || req.comments == 'Enviado' && req.url == null ">
-                        <fa-icon [icon]="faRotate"></fa-icon>
+                                &nbsp;Detalles
+                            </a>
 
-                        &nbsp;En proceso
-                    </a>
+                            <a class="btn btn-warning"
+                                *ngIf="req.comments == null && req.url == null || req.comments == 'Enviado' && req.url == null ">
+                                <fa-icon [icon]="faRotate"></fa-icon>
+
+                                &nbsp;En proceso
+                            </a>
+                        </div>
+                        <!-- <div class="row" style="margin-top: 1em;">
+                            <a class="btn btn-primary">
+                                <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>
+
+                                &nbsp;Re-Asignar Acta
+                            </a>
+
+                        </div> -->
+
+
+
+                    </div>
+
+
+
+
                 </div>
             </div>
 
@@ -641,6 +661,34 @@
     </div>
 
 </div>
+
+
+
+<!-- <div class="animate__animated animate__fadeIn position-absolute top-50 start-50 translate-middle" 
+style="width: 100%;height: 100%;  z-index: 5000;  background-color: #2121217a;">
+    <div class="card" style="width: 50%; margin: auto; margin-top: 15%;">
+        <div class="card-header text-center" style="background-color: #478edf;">
+            <span style="color: white;">
+                <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>
+                &nbsp;Re-Asignar Acta
+            </span>
+    
+        </div>
+        <div class="card-body">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Nuevo Ciber">
+            </div>
+    
+            <li class="list-group-item active" aria-current="true">Resultados:</li>
+            <li class="list-group-item">A second item</li>
+    
+    
+        </div>
+    
+    </div>
+</div> -->
+
+
 
 <div *ngIf="selectable == true"
     class="animate__animated animate__fadeIn position-absolute top-50 start-50 translate-middle"
