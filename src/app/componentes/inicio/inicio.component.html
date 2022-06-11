@@ -637,20 +637,25 @@
                                 &nbsp;En proceso
                             </a>
                         </div>
-                        <div *ngIf="req.idtranspose == null" (click)="obtainAllUsers(req.id)" class="row" style="margin-top: 1em;">
-                            <a class="btn btn-primary">
-                                <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>
-                                &nbsp;Re-Asignar Acta
-                            </a>
+                        <div *ngIf="myRol == 'Supervisor' || myRol == 'Admin'">
+                            <div *ngIf="req.idtranspose == null" (click)="obtainAllUsers(req.id)" class="row" style="margin-top: 1em;">
+                                <a class="btn btn-primary">
+                                    <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>
+                                    &nbsp;Re-Asignar Acta
+                                </a>
+                            </div>
+    
+    
+                            <div *ngIf="req.idtranspose != null" (click)="obtainAllUsers(req.id)" class="row" style="margin-top: 1em;">
+                                <a class="btn btn-secondary">
+                                    <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>
+                                    &nbsp;Acta Asignada
+                                </a>
+                            </div>
                         </div>
 
 
-                        <div *ngIf="req.idtranspose != null" (click)="obtainAllUsers(req.id)" class="row" style="margin-top: 1em;">
-                            <a class="btn btn-secondary">
-                                <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>
-                                &nbsp;Acta Asignada
-                            </a>
-                        </div>
+                        
 
                     </div>
 
