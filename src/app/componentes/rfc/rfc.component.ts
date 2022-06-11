@@ -12,6 +12,8 @@ import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { faFileArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { faRotate } from '@fortawesome/free-solid-svg-icons';
+import { faCertificate } from '@fortawesome/free-solid-svg-icons';
+import { faCheckToSlot } from '@fortawesome/free-solid-svg-icons';
 import { faPeopleArrowsLeftRight } from '@fortawesome/free-solid-svg-icons';
 
 import { map, Observable, switchMap } from 'rxjs';
@@ -30,6 +32,8 @@ declare function loader(): any;
   styleUrls: ['./rfc.component.css']
 })
 export class RfcComponent implements OnInit {
+  faCheckToSlot = faCheckToSlot;
+  faCertificate = faCertificate;
   faPeopleArrowsLeftRight = faPeopleArrowsLeftRight;
   Buscar = faMagnifyingGlass;
   borrar = faEraser;
@@ -254,7 +258,8 @@ export class RfcComponent implements OnInit {
         "createdAt": data[i].createdAt,
         "comments": data[i].comments,
         "url": data[i].namefile,
-        "idtranspose": data[i].idtranspose
+        "idtranspose": data[i].idtranspose,
+        "downloaded": data[i].downloaded
       });
     }
     // this.requests = [];
@@ -350,6 +355,15 @@ export class RfcComponent implements OnInit {
       //   a.click();
       //   URL.revokeObjectURL(objectUrl);
       // });
+      // let peticiones:any = [];
+      // peticiones = this.requests;
+
+      // console.log(peticiones.filter((item:any)=>{
+
+      //    return item['id'].includes(id);
+
+  
+      // }));
 
       await this.restservice.getMyRFC(id).subscribe(data => {
 

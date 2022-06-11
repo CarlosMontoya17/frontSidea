@@ -587,6 +587,18 @@
             <div class="card animate__animated animate__fadeIn"
                 style="width: 18rem; margin-right: 1rem; margin-bottom: 1rem;"
                 *ngFor="let req of requests | pipeacta: valorabuscar">
+
+<div *ngIf="req.downloaded != true && req.url != null && req.comments == 'Enviado'" style="position: absolute; z-index: 2; margin-left: 50%;">
+    <div style=" margin-left: 100%; width: 3rem; height: 3rem; position: relative; text-align: center;">
+        <label style=" font-family: inherit; color: white; z-index: 1; display: flex; align-self: center; position: absolute; margin-top: 35%; margin-left: 20%;">Nuevo</label>
+        <fa-icon class="fa-4x" [icon]="faCertificate" style="color: #0E6FFD !important; display: flex; align-self: center;"></fa-icon>
+    </div>
+</div>
+                
+                
+
+
+
                 <span class="position-absolute top-45 start-90 translate-middle badge rounded-pill bg-primary">
                     {{ req.nm }}
                 </span>
@@ -619,11 +631,17 @@
                     <div class="col">
                         <div class="row">
                             <a class="btn btn-success" (click)="downloadActa(req.id, req.url)"
-                                *ngIf="req.url != null && req.comments == 'Enviado'">
+                                *ngIf="req.url != null && req.comments == 'Enviado' && req.downloaded != true">
                                 <fa-icon [icon]="faFileArrowDown"></fa-icon>
 
                                 &nbsp;Descargar
                             </a>
+
+                            <a class="btn btn-secondary" (click)="downloadActa(req.id, req.url)"
+                            *ngIf="req.url != null && req.comments == 'Enviado' && req.downloaded == true">
+                            <fa-icon [icon]="faCheckToSlot"></fa-icon>
+                            &nbsp;Descargado
+                        </a>
 
                             <a class="btn btn-danger" (click)="showDetails(req.comments)"
                                 *ngIf="req.comments != 'Enviado' && req.comments != null && req.comments != '.'">
@@ -722,6 +740,8 @@
 
     </div>
 </div>
+
+
 
 
 

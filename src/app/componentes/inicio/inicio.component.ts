@@ -13,6 +13,8 @@ import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { faFileArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { faRotate } from '@fortawesome/free-solid-svg-icons';
 import { faPeopleArrowsLeftRight } from '@fortawesome/free-solid-svg-icons';
+import { faCertificate } from '@fortawesome/free-solid-svg-icons';
+import { faCheckToSlot } from '@fortawesome/free-solid-svg-icons';
 import { map, Observable, switchMap } from 'rxjs';
 import * as CryptoJS from 'crypto-js';
 
@@ -28,7 +30,9 @@ declare function loader(): any;
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent implements OnInit {
+  faCheckToSlot = faCheckToSlot;
   faPeopleArrowsLeftRight = faPeopleArrowsLeftRight;
+  faCertificate = faCertificate;
   Buscar = faMagnifyingGlass;
   borrar = faEraser;
   faBook = faBook;
@@ -346,7 +350,8 @@ export class InicioComponent implements OnInit {
         "send": data[i].send,
         "comments": data[i].comments,
         "url": data[i].url,
-        "idtranspose": data[i].idtranspose
+        "idtranspose": data[i].idtranspose,
+        "downloaded": data[i].downloaded
       });
     }
 
@@ -400,6 +405,8 @@ export class InicioComponent implements OnInit {
         a.download = url;
         a.click();
         URL.revokeObjectURL(objectUrl);
+        // this.reloadCurrentRoute();
+        // this.readJson.setViewCards(true);
       });
     }
   }
