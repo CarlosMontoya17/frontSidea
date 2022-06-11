@@ -253,7 +253,8 @@ export class RfcComponent implements OnInit {
         "metadata": data[i].data,
         "createdAt": data[i].createdAt,
         "comments": data[i].comments,
-        "url": data[i].namefile
+        "url": data[i].namefile,
+        "idtranspose": data[i].idtranspose
       });
     }
     // this.requests = [];
