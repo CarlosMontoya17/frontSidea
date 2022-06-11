@@ -609,8 +609,10 @@
                     <h5 class="card-title" *ngIf='req.metadata.includes("CADENA")'>DESCONOCIDO</h5>
 
                     <p class="card-text">{{ req.type }} - {{ req.createdAt | date:'dd/MM/yyyy' }} </p>
+                    
                     <p class="card-text">Hora: {{ req.createdAt | date: 'h:mm a' }} </p>
                     <p class="card-text" id="pharaph" class="tableScroll">{{ req.metadata }}</p>
+                    <p class="card-text" style="font-size: 0.8rem;" *ngIf="myRol == 'Supervisor' || myRol == 'Admin'">{{ req.url }} </p>
                 </div>
                 <div class="card-footer text-center">
 
@@ -637,7 +639,9 @@
                                 &nbsp;En proceso
                             </a>
                         </div>
-                        <div *ngIf="myRol == 'Supervisor' || myRol == 'Admin'">
+
+
+                        <div *ngIf="myRol == 'Supervisor' || myRol == 'Admin' && req.url != null && req.comments == 'Enviado'">
                             <div *ngIf="req.idtranspose == null" (click)="obtainAllUsers(req.id)" class="row" style="margin-top: 1em;">
                                 <a class="btn btn-primary">
                                     <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>
