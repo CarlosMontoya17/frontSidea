@@ -12,12 +12,14 @@ import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { faFileArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { faRotate } from '@fortawesome/free-solid-svg-icons';
+import { faPeopleArrowsLeftRight } from '@fortawesome/free-solid-svg-icons';
 
 import { map, Observable, switchMap } from 'rxjs';
 import * as CryptoJS from 'crypto-js';
 
 //Servicios
 import { ReadService } from './models/read.service';
+import { DatabaseService } from '../database/database.service';
 
 declare function showDetailsActas(comments: any): any;
 declare function loader(): any;
@@ -28,6 +30,7 @@ declare function loader(): any;
   styleUrls: ['./rfc.component.css']
 })
 export class RfcComponent implements OnInit {
+  faPeopleArrowsLeftRight = faPeopleArrowsLeftRight;
   Buscar = faMagnifyingGlass;
   borrar = faEraser;
   faBook = faBook;
@@ -91,7 +94,16 @@ export class RfcComponent implements OnInit {
   requests: any = [];
   selectable: Boolean = false;
   dataset$: Observable<any>;
-  constructor(private router: Router, private restservice: RestService, private readJson: ReadService) {
+  id:any;
+  myRol:any;
+  newTranspose:any;
+  allUsers:any;
+  switchTranspose:boolean = false;
+  valorabuscartranspose:string = "";
+  constructor(private router: Router, 
+    private restservice: RestService, 
+    private readJson: ReadService,
+    private database:DatabaseService) {
     this.dataset$ = readJson.getObtainsCards;
     this.dataset$.subscribe((data: any) => {
       // this.requests = data;
@@ -111,6 +123,57 @@ export class RfcComponent implements OnInit {
     if (this.fechaNacimiento.length == 2 || this.fechaNacimiento.length == 5) {
       this.fechaNacimiento = this.fechaNacimiento + "/";
     }
+
+  }
+
+  obtainAllUsers(id:any) {
+    //getuser
+    this.switchTranspose = !this.switchTranspose;
+
+
+    if (this.switchTranspose == true) {
+      this.newTranspose = id;
+
+
+      this.restservice.getuser().subscribe((data: any) =>  {
+        this.allUsers = data;
+
+      });
+    }
+    else{
+      this.allUsers = [];
+    }
+
+  }
+
+
+  reAsignarActas(idProvider:any){
+    this.switchTranspose = false;
+    this.restservice.reAsignarActa(this.newTranspose, idProvider, "rfc").subscribe((data:any) => {
+      Swal.fire(
+        {
+          position: 'center',
+          icon: 'success',
+          title: 'Re-Asignado',
+          showConfirmButton: false,
+          timer: 1500
+        }
+      );
+
+      this.reloadCurrentRoute();
+    }, (error:any) => {
+      Swal.fire(
+        {
+          position: 'center',
+          icon: 'error',
+          title: 'Contacte al equipo de soporte',
+          showConfirmButton: false,
+          timer: 1500
+        }
+      );
+      this.reloadCurrentRoute();
+    });
+
 
   }
 
@@ -258,6 +321,23 @@ export class RfcComponent implements OnInit {
     this.requestsView = !this.requestsView;
     this.obtainARequests();
   }
+
+
+ //DESINCRIPTAMOS EL TOKEN PARA OBTENER LOS DATOS Y EL ROL
+ async descry() {
+
+
+  var idlocal = localStorage.getItem("іди");
+  var i = CryptoJS.AES.decrypt(idlocal || '{}', "іди");
+  var id: any = i.toString(CryptoJS.enc.Utf8);
+  this.id = id;
+  this.result.push(id);
+  //getmydata
+  const data: any = await this.database.getmydata(id).toPromise();
+  this.myRol = data.data.rol;
+}
+
+
 
   async downloadActa(id: any, url: any) {
     if (url != null) {
@@ -830,6 +910,7 @@ export class RfcComponent implements OnInit {
     let userName = usuario.toString(CryptoJS.enc.Utf8);
     let arreglo = userName?.split('"');
     this.usuario = arreglo[1];
+    this.descry();
 
   }
 
