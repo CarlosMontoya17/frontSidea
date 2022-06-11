@@ -32,7 +32,7 @@ export class InicioComponent implements OnInit {
   Buscar = faMagnifyingGlass;
   borrar = faEraser;
   faBook = faBook;
-  userToUpdateServices:any = [];
+  userToUpdateServices: any = [];
   requestsView: boolean = false;
   faRotate = faRotate;
   faCircleCheck = faCircleCheck;
@@ -58,7 +58,7 @@ export class InicioComponent implements OnInit {
   usernameLocal: string = "";
   alerts: any = [];
   faCircleExclamation = faCircleExclamation;
-  id:any;
+  id: any;
   //  //
 
   data: any;
@@ -103,8 +103,8 @@ export class InicioComponent implements OnInit {
   numActa: any;
 
 
-  showEditServicesModal:boolean = false;
-  editServices:boolean = false;
+  showEditServicesModal: boolean = false;
+  editServices: boolean = false;
 
   requests: any = [];
   tipodeservicio: any = 'Seleccione el servicio';
@@ -112,7 +112,13 @@ export class InicioComponent implements OnInit {
 
   dataset$: Observable<any>;
 
-  constructor(private router: Router, private restservice: RestService, private readJson: ReadService,private database: DatabaseService) {
+  //
+  allUsers: any;
+  switchTranspose: boolean = false;
+  valorabuscartranspose:string = "";
+  newTranspose:any = [];
+
+  constructor(private router: Router, private restservice: RestService, private readJson: ReadService, private database: DatabaseService) {
     this.dataset$ = readJson.getObtainsCards;
     this.dataset$.subscribe((data: any) => {
       // this.requests = data;
@@ -127,7 +133,7 @@ export class InicioComponent implements OnInit {
     // })
   }
 
-  showModal(id:any, name:any, servicios:any){
+  showModal(id: any, name: any, servicios: any) {
 
     this.userToUpdateServices = [id, name, servicios];
     this.showEditServicesModal = true;
@@ -137,7 +143,7 @@ export class InicioComponent implements OnInit {
   }
 
 
-  rol(){
+  rol() {
     const token = localStorage.getItem('привіт');
     const usuario = localStorage.getItem('Імякористувача');
 
@@ -153,8 +159,8 @@ export class InicioComponent implements OnInit {
   }
 
 
-   //DESINCRIPTAMOS EL TOKEN PARA OBTENER LOS DATOS Y EL ROL
-   async descry() {
+  //DESINCRIPTAMOS EL TOKEN PARA OBTENER LOS DATOS Y EL ROL
+  async descry() {
 
 
     var idlocal = localStorage.getItem("іди");
@@ -169,8 +175,8 @@ export class InicioComponent implements OnInit {
 
 
 
-  servicios(){
-    if(this.tipodeservicio == "Seleccione el servicio"){
+  servicios() {
+    if (this.tipodeservicio == "Seleccione el servicio") {
       Swal.fire({
         position: 'center',
         icon: "error",
@@ -179,30 +185,30 @@ export class InicioComponent implements OnInit {
         timer: 1500
       });
     }
-    else{
-      let newService="";
+    else {
+      let newService = "";
 
       switch (this.tipodeservicio) {
         case "all":
-          newService="Todos";
-        break;
+          newService = "Todos";
+          break;
         case "actas":
-          newService="Sólo Actas";
+          newService = "Sólo Actas";
           break;
         case "rfc":
-          newService="Sólo RFC";
-        break;
+          newService = "Sólo RFC";
+          break;
         case "none":
-          newService="Ninguno";
-        break;
+          newService = "Ninguno";
+          break;
         default:
-          newService="";
+          newService = "";
           break;
       }
 
 
       this.restservice.updateServicio(this.userToUpdateServices[0], this.tipodeservicio).subscribe(
-        (data:any) => {
+        (data: any) => {
 
           Swal.fire({
             position: 'center',
@@ -224,7 +230,7 @@ export class InicioComponent implements OnInit {
 
 
     //this.reloadCurrentRoute();
-  
+
   }
 
 
@@ -339,7 +345,8 @@ export class InicioComponent implements OnInit {
         "createdAt": data[i].createdAt,
         "send": data[i].send,
         "comments": data[i].comments,
-        "url": data[i].url
+        "url": data[i].url,
+        "idtranspose": data[i].idtranspose
       });
     }
 
@@ -588,7 +595,7 @@ export class InicioComponent implements OnInit {
           }
         }
         else {
-         
+
           this.selectable = !this.selectable;
         }
       }
@@ -916,6 +923,58 @@ export class InicioComponent implements OnInit {
       });
     }
 
+
+
+  }
+
+
+  obtainAllUsers(id:any) {
+    //getuser
+    this.switchTranspose = !this.switchTranspose;
+
+
+    if (this.switchTranspose == true) {
+      this.newTranspose = id;
+
+
+      this.restservice.getuser().subscribe((data: any) =>  {
+        this.allUsers = data;
+
+      });
+    }
+    else{
+      this.allUsers = [];
+    }
+
+  }
+
+
+  reAsignarActas(idProvider:any){
+    this.switchTranspose = false;
+    this.restservice.reAsignarActa(this.newTranspose, idProvider, "actas").subscribe((data:any) => {
+      Swal.fire(
+        {
+          position: 'center',
+          icon: 'success',
+          title: 'Re-Asignado',
+          showConfirmButton: false,
+          timer: 1500
+        }
+      );
+
+      this.reloadCurrentRoute();
+    }, (error:any) => {
+      Swal.fire(
+        {
+          position: 'center',
+          icon: 'error',
+          title: 'Contacte al equipo de soporte',
+          showConfirmButton: false,
+          timer: 1500
+        }
+      );
+      this.reloadCurrentRoute();
+    });
 
 
   }

@@ -637,16 +637,20 @@
                                 &nbsp;En proceso
                             </a>
                         </div>
-                        <!-- <div class="row" style="margin-top: 1em;">
+                        <div *ngIf="req.idtranspose == null" (click)="obtainAllUsers(req.id)" class="row" style="margin-top: 1em;">
                             <a class="btn btn-primary">
                                 <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>
-
                                 &nbsp;Re-Asignar Acta
                             </a>
+                        </div>
 
-                        </div> -->
 
-
+                        <div *ngIf="req.idtranspose != null" (click)="obtainAllUsers(req.id)" class="row" style="margin-top: 1em;">
+                            <a class="btn btn-secondary">
+                                <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>
+                                &nbsp;Acta Asignada
+                            </a>
+                        </div>
 
                     </div>
 
@@ -662,31 +666,53 @@
 
 </div>
 
+<!-- *ngIf="switchTranspose" -->
+
+<div *ngIf="switchTranspose"
+    class="animate__animated animate__fadeIn"
+    style="width: 100%; height: 100%;  z-index: 5000;  background-color: #2121217a; position: fixed; top: 0px;">
+    <div class="card"
+        style="width: 50%; margin: auto; margin-top: 15%; position: sticky !important; top: 10px !important;">
+        <div class="card-header" style="background-color: #478edf;">
+
+            <div class="row">
+                <div class="col">
+                    <div style="color: white; margin-left: 10rem; text-align: center;">
+                        Re-Asignar Acta
+                    </div>
 
 
-<!-- <div class="animate__animated animate__fadeIn position-absolute top-50 start-50 translate-middle" 
-style="width: 100%;height: 100%;  z-index: 5000;  background-color: #2121217a;">
-    <div class="card" style="width: 50%; margin: auto; margin-top: 15%;">
-        <div class="card-header text-center" style="background-color: #478edf;">
-            <span style="color: white;">
-                <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>
-                &nbsp;Re-Asignar Acta
-            </span>
-    
+                </div>
+
+                <div class="col-2" style="text-align: right;">
+                    <a (click)="obtainAllUsers(0)" class="btn btn-danger">
+                        Cerrar
+                    </a>
+                </div>
+            </div>
+
+            
+            
+
+            
+
         </div>
         <div class="card-body">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Nuevo Ciber">
+                <input type="text" class="form-control" [(ngModel)]="valorabuscartranspose" name="valorabuscartranspose"
+                    placeholder="Nuevo Ciber">
             </div>
-    
-            <li class="list-group-item active" aria-current="true">Resultados:</li>
-            <li class="list-group-item">A second item</li>
-    
-    
+
+            <div *ngIf="valorabuscartranspose.length > 0 " style=" overflow: hidden; overflow-y: scroll; height: 30rem;">
+                <li class="list-group-item active" aria-current="true">Resultados:</li>
+                <li *ngFor="let user of allUsers | buscarciber: valorabuscartranspose" class="list-group-item"
+                    style="cursor: pointer;" (click)="reAsignarActas(user.id)">{{ user.nombre }} - {{ user.rol }}</li>
+            </div>
+
         </div>
-    
+
     </div>
-</div> -->
+</div>
 
 
 

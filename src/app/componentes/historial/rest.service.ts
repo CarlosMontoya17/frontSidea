@@ -38,6 +38,16 @@ export class RestService {
     return this.http.get(api+'/api/actas/requests/getMyActa/'+id,{ responseType: 'blob'})
   }
 
+  reAsignarActa(id:any, provider:any, service:any){
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
+    var token: any = i.toString(CryptoJS.enc.Utf8);
+    var parteuno = token.slice(1);
+    var final = parteuno.slice(0, -1);
+    let tokenfinal: string = final;
+    const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
+    return this.http.put(api+"/api/actas/transpose/"+id, { newciber: provider, service: service }, { headers });
+  }
+
 
   updateServicio(id:any, newService:any){
     var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
@@ -124,7 +134,6 @@ export class RestService {
   }
   //Se envian las actas
   SolicitudactasporCurp(datos: any) {
-
     var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
     var token: any = i.toString(CryptoJS.enc.Utf8);
     var parteuno = token.slice(1);
