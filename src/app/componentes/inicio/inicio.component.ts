@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { RestService } from '../historial/rest.service';
+//import { RestService } from '../historial/rest.service';
+import { ActasService } from 'src/app/servicios/Actas/actas.service';
 import { faEraser } from '@fortawesome/free-solid-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
@@ -121,12 +122,20 @@ export class InicioComponent implements OnInit {
   switchTranspose: boolean = false;
   valorabuscartranspose:string = "";
   newTranspose:any = [];
-
-  constructor(private router: Router, private restservice: RestService, private readJson: ReadService, private database: DatabaseService) {
+  count = 0;
+  interval: any;
+  constructor(private router: Router, private actasservice: ActasService, private readJson: ReadService, private database: DatabaseService) {
+    
+    
     this.dataset$ = readJson.getObtainsCards;
     this.dataset$.subscribe((data: any) => {
       // this.requests = data;
     });
+    console.log('constructor: logging starting...');
+    setInterval(() => {
+    console.log(this.count++);
+    }, 1000);
+    
 
     // this.dataset$.subscribe((data:any) => {
     //   this.ProcessData(data);
@@ -135,6 +144,15 @@ export class InicioComponent implements OnInit {
     //   // console.log( data );
     //   // this.requests[0] = data[0];
     // })
+  
+  
+  
+  }
+
+  
+  ngOnDestroy() {
+    console.log('ngOnDestroy: cleaning up...');
+    clearInterval(this.interval);
   }
 
   showModal(id: any, name: any, servicios: any) {
@@ -211,7 +229,7 @@ export class InicioComponent implements OnInit {
       }
 
 
-      this.restservice.updateServicio(this.userToUpdateServices[0], this.tipodeservicio).subscribe(
+      this.actasservice.updateServicio(this.userToUpdateServices[0], this.tipodeservicio).subscribe(
         (data: any) => {
 
           Swal.fire({
@@ -314,7 +332,7 @@ export class InicioComponent implements OnInit {
     }
 
     this.requests = [];
-    const data: any = await this.restservice.obtainActasRequest().toPromise();
+    const data: any = await this.actasservice.obtainActasRequest().toPromise();
     for (let i = 0; i < data.length; i++) {
       let metadata = "";
       switch (data[i].type) {
@@ -398,14 +416,14 @@ export class InicioComponent implements OnInit {
 
   async downloadActa(id: any, url: any) {
     if (url != null) {
-      await this.restservice.getMyActa(id).subscribe(data => {
+      await this.actasservice.getMyActa(id).subscribe(data => {
         const a = document.createElement('a')
         const objectUrl = URL.createObjectURL(data)
         a.href = objectUrl
         a.download = url;
         a.click();
         URL.revokeObjectURL(objectUrl);
-        // this.reloadCurrentRoute();
+         this.reloadCurrentRoute();
         // this.readJson.setViewCards(true);
       });
     }
@@ -652,6 +670,7 @@ export class InicioComponent implements OnInit {
           );
 
         }
+       
         else if (this.fechaNacimiento.length > 10) {
           let digit = this.fechaNacimiento.length;
           Swal.fire(
@@ -917,7 +936,7 @@ export class InicioComponent implements OnInit {
 
 
     if (datosdeenvio.length != 0) {
-      this.restservice.SolicitudactasporCurp(datosdeenvio[0]).subscribe((data: any) => {
+      this.actasservice.SolicitudactasporCurp(datosdeenvio[0]).subscribe((data: any) => {
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -944,7 +963,7 @@ export class InicioComponent implements OnInit {
       this.newTranspose = id;
 
 
-      this.restservice.getuser().subscribe((data: any) =>  {
+      this.actasservice.getuser().subscribe((data: any) =>  {
         this.allUsers = data;
 
       });
@@ -958,7 +977,7 @@ export class InicioComponent implements OnInit {
 
   reAsignarActas(idProvider:any){
     this.switchTranspose = false;
-    this.restservice.reAsignarActa(this.newTranspose, idProvider, "actas").subscribe((data:any) => {
+    this.actasservice.reAsignarActa(this.newTranspose, idProvider, "actas").subscribe((data:any) => {
       Swal.fire(
         {
           position: 'center',

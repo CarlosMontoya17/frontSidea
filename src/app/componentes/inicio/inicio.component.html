@@ -13,11 +13,17 @@
                             <fa-icon [icon]="faFaceGrin"></fa-icon> Bienvenido(a), {{ usuario }}
 
                         </h3>
+
                     </div>
+                    
+                   
                 </div>
             </div>
         </div>
     </div>
+   
+     
+    
     <br>
     <div class="card  animate__animated animate__fadeIn">
         <div style="background-color: #3b764d; color: white;   border-radius:10px; border: 1px black solid; overflow: hidden "
@@ -588,7 +594,7 @@
                 style="width: 18rem; margin-right: 1rem; margin-bottom: 1rem;"
                 *ngFor="let req of requests | pipeacta: valorabuscar">
 
-<div *ngIf="req.downloaded != true && req.url != null && req.comments == 'Enviado'" style="position: absolute; z-index: 2; margin-left: 50%;">
+<div *ngIf="req.downloaded != true && req.url != null && req.comments == 'Enviado'" style="position: absolute; z-index: 2; margin-left: 50%;"  >
     <div style=" margin-left: 100%; width: 3rem; height: 3rem; position: relative; text-align: center;">
         <label style=" font-family: inherit; color: white; z-index: 1; display: flex; align-self: center; position: absolute; margin-top: 35%; margin-left: 20%;">Nuevo</label>
         <fa-icon class="fa-4x" [icon]="faCertificate" style="color: #0E6FFD !important; display: flex; align-self: center;"></fa-icon>
@@ -613,7 +619,7 @@
                 <img style="width: fit-content;" src="assets/documents/desconocido.png"
                     *ngIf='req.metadata.includes("CADENA")' class="card-img-top" alt="...">
 
-                <div class="card-body text-center">
+                <div class="card-body text-center"  >
                     <h5 class="card-title" *ngIf='req.metadata.includes("NACIMIENTO")'>ACTA DE NACIMIENTO</h5>
                     <h5 class="card-title" *ngIf='req.metadata.includes("DEFUNCION")'>ACTA DE DEFUNCIÓN</h5>
                     <h5 class="card-title" *ngIf='req.metadata.includes("MATRIMONIO")'>ACTA DE MATRIMONIO</h5>
@@ -631,7 +637,7 @@
                     <div class="col">
                         <div class="row">
                             <a class="btn btn-success" (click)="downloadActa(req.id, req.url)"
-                                *ngIf="req.url != null && req.comments == 'Enviado' && req.downloaded != true">
+                                *ngIf="req.url != null && req.comments == 'Enviado' && req.downloaded != true ">
                                 <fa-icon [icon]="faFileArrowDown"></fa-icon>
 
                                 &nbsp;Descargar

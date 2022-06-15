@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { RestService } from '../historial/rest.service';
+import { RfcService } from 'src/app/servicios/RFC/rfc.service';
 import { faEraser } from '@fortawesome/free-solid-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
@@ -15,7 +15,6 @@ import { faRotate } from '@fortawesome/free-solid-svg-icons';
 import { faCertificate } from '@fortawesome/free-solid-svg-icons';
 import { faCheckToSlot } from '@fortawesome/free-solid-svg-icons';
 import { faPeopleArrowsLeftRight } from '@fortawesome/free-solid-svg-icons';
-
 import { map, Observable, switchMap } from 'rxjs';
 import * as CryptoJS from 'crypto-js';
 
@@ -104,14 +103,21 @@ export class RfcComponent implements OnInit {
   allUsers:any;
   switchTranspose:boolean = false;
   valorabuscartranspose:string = "";
+  count = 0;
+  interval: any;
   constructor(private router: Router, 
-    private restservice: RestService, 
+    private rfcservice: RfcService, 
     private readJson: ReadService,
     private database:DatabaseService) {
     this.dataset$ = readJson.getObtainsCards;
     this.dataset$.subscribe((data: any) => {
       // this.requests = data;
     });
+    console.log('constructor: logging starting...');
+    setInterval(() => {
+     // console.log(this.count++);
+    }, 1000);
+  
 
     // this.dataset$.subscribe((data:any) => {
     //   this.ProcessData(data);
@@ -121,6 +127,11 @@ export class RfcComponent implements OnInit {
     //   // this.requests[0] = data[0];
     // })
 
+  }
+
+  ngOnDestroy() {
+    console.log('ngOnDestroy: cleaning up...');
+    clearInterval(this.interval);
   }
 
   autoCompleteDate() {
@@ -139,7 +150,7 @@ export class RfcComponent implements OnInit {
       this.newTranspose = id;
 
 
-      this.restservice.getuser().subscribe((data: any) =>  {
+      this.rfcservice.getuser().subscribe((data: any) =>  {
         this.allUsers = data;
 
       });
@@ -153,7 +164,7 @@ export class RfcComponent implements OnInit {
 
   reAsignarActas(idProvider:any){
     this.switchTranspose = false;
-    this.restservice.reAsignarActa(this.newTranspose, idProvider, "rfc").subscribe((data:any) => {
+    this.rfcservice.reAsignarActa(this.newTranspose, idProvider, "rfc").subscribe((data:any) => {
       Swal.fire(
         {
           position: 'center',
@@ -247,7 +258,7 @@ export class RfcComponent implements OnInit {
     }
 
     this.requests = [];
-    const data: any = await this.restservice.obtainAllRFCs().toPromise();
+    const data: any = await this.rfcservice.obtainAllRFCs().toPromise();
 
     for (let i = 0; i < data.length; i++) {
       this.requests.push({
@@ -343,8 +354,6 @@ export class RfcComponent implements OnInit {
   this.myRol = data.data.rol;
 }
 
-
-
   async downloadActa(id: any, url: any) {
     if (url != null) {
       // await this.restservice.getMyActa(id).subscribe(data => {
@@ -365,7 +374,7 @@ export class RfcComponent implements OnInit {
   
       // }));
 
-      await this.restservice.getMyRFC(id).subscribe(data => {
+      await this.rfcservice.getMyRFC(id).subscribe(data => {
 
         const a = document.createElement('a');
         const objectUrl = URL.createObjectURL(data);
@@ -374,6 +383,7 @@ export class RfcComponent implements OnInit {
         a.download = url;
         a.click();
         URL.revokeObjectURL(objectUrl);
+        this.reloadCurrentRoute();
       });
 
     }
@@ -405,41 +415,41 @@ export class RfcComponent implements OnInit {
     return true; //Validado
   }
 
-  RFCvalido(rfc: any, aceptarGenerico = true) {
-    const re = /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/;
-    var validado = rfc.match(re);
-    if (!validado)  //Coincide con el formato general del regex?
-      return false;
-    //Separar el dígito verificador del resto del RFC
-    const digitoVerificador = validado.pop(),
-      rfcSinDigito = validado.slice(1).join(''),
-      len = rfcSinDigito.length,
-      //Obtener el digito esperado
-      diccionario = "0123456789ABCDEFGHIJKLMN&OPQRSTUVWXYZ Ñ",
-      indice = len + 1;
-    var suma,
-      digitoEsperado;
+  // RFCvalido(rfc: any, aceptarGenerico = true) {
+  //   const re = /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/;
+  //   var validado = rfc.match(re);
+  //   if (!validado)  //Coincide con el formato general del regex?
+  //     return false;
+  //   //Separar el dígito verificador del resto del RFC
+  //   const digitoVerificador = validado.pop(),
+  //     rfcSinDigito = validado.slice(1).join(''),
+  //     len = rfcSinDigito.length,
+  //     //Obtener el digito esperado
+  //     diccionario = "0123456789ABCDEFGHIJKLMN&OPQRSTUVWXYZ Ñ",
+  //     indice = len + 1;
+  //   var suma,
+  //     digitoEsperado;
 
-    if (len == 12) suma = 0
-    else suma = 481; //Ajuste para persona moral
+  //   if (len == 12) suma = 0
+  //   else suma = 481; //Ajuste para persona moral
 
-    for (var i = 0; i < len; i++)
-      suma += diccionario.indexOf(rfcSinDigito.charAt(i)) * (indice - i);
-    digitoEsperado = 11 - suma % 11;
-    if (digitoEsperado == 11) digitoEsperado = 0;
-    else if (digitoEsperado == 10) digitoEsperado = "A";
+  //   for (var i = 0; i < len; i++)
+  //     suma += diccionario.indexOf(rfcSinDigito.charAt(i)) * (indice - i);
+  //   digitoEsperado = 11 - suma % 11;
+  //   if (digitoEsperado == 11) digitoEsperado = 0;
+  //   else if (digitoEsperado == 10) digitoEsperado = "A";
 
-    //El dígito verificador coincide con el esperado?
-    // o es un RFC Genérico (ventas a público general)?
-    if ((digitoVerificador != digitoEsperado)
-      && (!aceptarGenerico || rfcSinDigito + digitoVerificador != "XAXX010101000"))
-      return false;
-    else if (!aceptarGenerico && rfcSinDigito + digitoVerificador == "XEXX010101000")
-      return false;
-    return rfcSinDigito + digitoVerificador;
+  //   //El dígito verificador coincide con el esperado?
+  //   // o es un RFC Genérico (ventas a público general)?
+  //   if ((digitoVerificador != digitoEsperado)
+  //     && (!aceptarGenerico || rfcSinDigito + digitoVerificador != "XAXX010101000"))
+  //     return false;
+  //   else if (!aceptarGenerico && rfcSinDigito + digitoVerificador == "XEXX010101000")
+  //     return false;
+  //   return rfcSinDigito + digitoVerificador;
 
 
-  }
+  // }
 
   switchSelectable() {
     if (this.curp.length > 0) {
@@ -564,42 +574,9 @@ export class RfcComponent implements OnInit {
           }
         );
       }
-      else
-        if (this.RFCvalido(this.rfc)) {
-          // ⬅️ Acá se comprueba
-          let valido = "Válido";
+   
 
-          this.buscar();
-
-        }
-
-        else {
-          let invalido = "Invalido";
-
-          let valido = "El Formato de RFC No Es El Correcto ";
-          //console.log(valido);
-
-          Swal.fire({
-
-            showClass: {
-              popup: 'animate__animated animate__fadeInDown'
-
-
-            },
-            hideClass: {
-              popup: 'animate__animated animate__fadeOutUp'
-            },
-
-            title: "<h1 style='color:red'>" + '❗❗❗😡ERROR😡❗❗❗' + "</h1>",
-
-            html: "<h3 style='color:back'>" + valido + "</h3>",
-            imageUrl: 'assets/como-se-forma-rfc.jpg',
-            imageWidth: 1980,
-            imageHeight: 400,
-            imageAlt: 'Custom image',
-
-          })
-        }
+       
     }
 
   }
@@ -633,7 +610,7 @@ export class RfcComponent implements OnInit {
     }
 
     if (datosdeenvio.length != 0) {
-      this.restservice.Solicitudactasporrfcourp(datosdeenvio[0]).subscribe((data: any) => {
+      this.rfcservice.Solicitudactasporrfcourp(datosdeenvio[0]).subscribe((data: any) => {
         Swal.fire({
           position: 'center',
           icon: 'success',
