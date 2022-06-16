@@ -528,13 +528,6 @@ export class InicioComponent implements OnInit {
 
 
           if (this.curpValida(this.curp)) {
-
-            if(this.entidad == "Tamaulipas"){
-              console.log(this.entidad)
-            }
-            else{
-              console.log(this.entidad)
-            }
             // ⬅️ Acá se comprueba
             let valido = "Válido";
 
@@ -1018,7 +1011,7 @@ export class InicioComponent implements OnInit {
   }
 
   onChangeCurp(curp: any) {
-    if (curp.length == 18 ) {
+    if (curp.length == 18) {
       this.curp = curp;
       var res = curp.charAt(11) + curp.charAt(12)
       switch (res.toUpperCase()) {
@@ -1219,7 +1212,6 @@ export class InicioComponent implements OnInit {
           this.entidad = 'Entidad no disponible';
           this.bdEstado = 'n27';
           this.nose = "28";
-
           break;
         }
         case 'TL': {

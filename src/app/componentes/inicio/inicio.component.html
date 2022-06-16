@@ -665,7 +665,7 @@
                         </div>
 
 
-                        <div *ngIf="myRol == 'Supervisor' || myRol == 'Admin' && req.url != null && req.comments == 'Enviado'">
+                        <div *ngIf="myRol == 'Supervisor' || id == '1500' || id == '1585'  || myRol == 'Admin' && req.url != null && req.comments == 'Enviado'">
                             <div *ngIf="req.idtranspose == null" (click)="obtainAllUsers(req.id)" class="row" style="margin-top: 1em;">
                                 <a class="btn btn-primary">
                                     <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>

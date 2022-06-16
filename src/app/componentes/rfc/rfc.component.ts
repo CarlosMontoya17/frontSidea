@@ -442,7 +442,7 @@ export class RfcComponent implements OnInit {
     //El dígito verificador coincide con el esperado?
     // o es un RFC Genérico (ventas a público general)?
     if ((digitoVerificador != digitoEsperado)
-      && (!aceptarGenerico || rfcSinDigito + digitoVerificador != "XAXX010101000"))
+      && (!aceptarGenerico || rfcSinDigito + digitoVerificador != "XAXX0101010000"))
       return false;
     else if (!aceptarGenerico && rfcSinDigito + digitoVerificador == "XEXX010101000")
       return false;
@@ -516,6 +516,7 @@ export class RfcComponent implements OnInit {
           this.buscar();
 
         }
+     
         else {
 
           let valido = "El Formato de Curp No Es El Correcto ";
