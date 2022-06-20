@@ -936,16 +936,18 @@ export class InicioComponent implements OnInit {
 
 
     if (datosdeenvio.length != 0) {
+      this.reloadCurrentRoute();
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Datos enviados ',
+        showConfirmButton: false,
+        timer: 1500
+      })
+   
+      this.readJson.setViewCards(false);
       this.actasservice.SolicitudactasporCurp(datosdeenvio[0]).subscribe((data: any) => {
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Datos enviados ',
-          showConfirmButton: false,
-          timer: 1500
-        })
-        this.reloadCurrentRoute();
-        this.readJson.setViewCards(false);
+      
       });
     }
 
@@ -1223,7 +1225,7 @@ export class InicioComponent implements OnInit {
         }
         case 'VZ': {
           this.entidadValue = 30;
-          this.entidad = 'VERACRUZ';
+          this.entidad = 'Entidad no disponibles';
           this.bdEstado = 'n29';
           this.nose = "30";
           break;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
@@ -10,7 +10,7 @@ import * as CryptoJS from 'crypto-js';
 import { DatabaseService } from 'src/app/servicios/database/database.service';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { GridApi, GridReadyEvent, RowSpanParams, ValueGetterFunc, ValueGetterParams } from 'ag-grid-community';
+import { GridApi, GridOptions, ValueGetterParams } from 'ag-grid-enterprise';
 import * as XLSX from 'xlsx'
 import { faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 import { faTrashArrowUp } from '@fortawesome/free-solid-svg-icons';
@@ -19,6 +19,10 @@ import { faRobot } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 declare function loader(): any;
 declare function closeAlert(): any;
+declare function getArray(): any;
+import { AgGridAngular } from 'ag-grid-angular';
+import { AdminService } from 'src/app/servicios/admin.service';
+
 
 @Component({
   selector: 'app-historial',
@@ -31,7 +35,9 @@ export class HistorialComponent implements OnInit {
   //VARIABLES
   private gridApi!: GridApi;
  api = "https://actasalinstante.com:3030";
+ sortingOrder: any;
   //cambios de vista
+  rowData: any = [];
   papeleras: boolean = false;
   conteo: boolean = false;
   conteo2: boolean = false;
@@ -100,10 +106,180 @@ export class HistorialComponent implements OnInit {
   fecha: any;
 //variables del API
   gettraerPapelera2: any;
-  public rowData!: any[];
+
   public pinnedBottomRowData!: any[];
+  @ViewChild("agGrid", { static: false }) agGrid: AgGridAngular | undefined;
+  localeText: any;
+  gridApis: any;
+  gridColumnApi: any;
+  columnDefs: any;
+  defaultColDef: any;
+  defaultColGroupDef: any;
+  columnTypes: any;
+  params: any;
+  overlayLoadingTemplate: any;
+  totalDocumentos: number = 0;
+  totalPrecioVendido: number = 0;
+  totalPrecioAPagar: number = 0;
+  totalUtilidad: number = 0;
+  usernameLocal: string = "";
+  filtrados: any;
+  //Datos para Tabla
+  fechas: any;
+  fechaSeleccionada: any;
+  usuariosEnFecha: any;
+  data: any;
   //CONSTRUCTOR
-  constructor(private restService: RestService, private router: Router, private database: DatabaseService, private http: HttpClient) { }
+  constructor(private restService: RestService, private router: Router, private database: DatabaseService, private http: HttpClient,private adminService: AdminService) {
+    let AG_GRID_LOCALE_EN = getArray();
+    this.localeText = AG_GRID_LOCALE_EN;
+    this.columnDefs = [
+      { field: "id", width: 80, headerName: "Id", filter: 'agSetColumnFilter' },
+      { field: "document", headerName: "Documento", filter: 'agSetColumnFilter' },
+      { field: "curp", headerName: "CURP", filter: 'agSetColumnFilter' },
+      { field: "states", headerName: "Estado", filter: 'agSetColumnFilter' },
+      { field: "provider", headerName: "Asesor", filter: 'agSetColumnFilter' },
+      { field: "enterprise", headerName: "Ciber", filter: 'agSetColumnFilter' },
+    
+
+      // { field: "provider", headerName: "Cargado por", type: 'valueColumn', filter: 'agSetColumnFilter' },
+
+  
+  
+      { field: "price", headerName: "Precio vendido", type: 'valueColumn', filter: 'agSetColumnFilter' },
+      { field: "buy", headerName: "Precio a pagar", type: 'valueColumn', filter: 'agSetColumnFilter' },
+     // { headerName: "Utilidad", field: "utilidad", valueGetter: this.totalUtility, type: 'valueColumn', filter: 'agSetColumnFilter' },
+      { field: "pay2", headerName: "Pagar a", type: 'valueColumn', filter: 'agSetColumnFilter' },
+      { field: "createdAt", headerName: "Fecha y hora", filter: 'agSetColumnFilter' },
+      { field: "corte", headerName: "Fecha de corte", type: 'valueColumn', filter: 'agSetColumnFilter' },
+    ];
+    this.defaultColDef = {
+      width: 200,
+      filter: 'agTextColumnFilter',
+      floatingFilter: true,
+      resizable: true,
+      editable: true,
+    };
+    this.overlayLoadingTemplate = '<span class="ag-overlay-loading-center">Por favor espere, estamos cargando los datos</span>';
+    this.columnTypes = {
+      numberColumn: {
+        width: 130,
+        filter: 'agNumberColumnFilter',
+      },
+      nonEditableColumn: { editable: false },
+    };
+
+
+   }
+   onFilterChanged(params: GridOptions): void {
+    this.filtrados = params.api?.getModel();
+    this.onPinnedRowBottomCount();
+  }
+
+  onGridReady(params: any) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+  }
+  onPinnedRowBottomCount() {
+    var rows = this.createData();
+    this.gridApi.setPinnedBottomRowData(rows);
+  }
+  //Creamos datos para saber el total del corte.
+  createData() {
+    var result = [];
+    this.totalDocumentos = 0;
+    this.totalPrecioVendido = 0;
+    this.totalPrecioAPagar = 0;
+    if (this.filtrados?.rowsToDisplay == undefined) {
+      for (let i = 0; i < this.rowData.length; i++) {
+        this.totalDocumentos += 1;
+        this.totalPrecioVendido += this.rowData[i].price;
+        if (this.rowData[i].buy != null) {
+          this.totalPrecioAPagar += this.rowData[i].buy;
+        }
+        else {
+          this.totalPrecioAPagar += 0;
+        }
+      }
+    }
+    else {
+      for (let i = 0; i < this.filtrados?.rowsToDisplay.length; i++) {
+        this.totalDocumentos += 1;
+        this.totalPrecioVendido += this.filtrados.rowsToDisplay[i].data.price;
+        if (this.filtrados.rowsToDisplay[i].data.buy != null) {
+          this.totalPrecioAPagar += this.filtrados.rowsToDisplay[i].data.buy;
+        }
+        else {
+          this.totalPrecioAPagar += 0;
+        }
+      }
+    }
+    result.push({
+      document: `Documentos: ${this.totalDocumentos}`,
+      curp: 'Totales:',
+      price: this.totalPrecioVendido,
+      buy: this.totalPrecioAPagar,
+    });
+    return result;
+  }
+  async getDates() {
+    this.fechas = await this.database.getAllDates().toPromise();
+  }
+    //Mostramos todas las fechas
+    setDate(fecha: any) {
+      this.fechaSeleccionada = fecha;
+      this.getCorte();
+    }
+    
+  //Otenemos el corte
+  async getCorte() {
+
+    if (localStorage.getItem('привіт') != null) {
+      if (localStorage.getItem('іди') != null) {
+        var usuario = CryptoJS.AES.decrypt(localStorage.getItem('іди') || '{}', "іди");
+        let id = usuario.toString(CryptoJS.enc.Utf8);
+
+        this.rowData = await this.restService.getcorte(id).toPromise();
+        console.log(this.rowData)
+        this.onPinnedRowBottomCount();
+        await this.restService.getcorte(id).subscribe(data => {
+        }, (err: any) => {
+        });
+
+
+      }
+    }
+   
+  }
+  //Exportamos el excel 
+  onBtnExport() {
+    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('Імякористувача') || '{}', "Імякористувача");
+    let userName = usuario.toString(CryptoJS.enc.Utf8);
+    let arreglo = userName.split('"');
+
+    this.gridApi.exportDataAsCsv({ fileName: 'Corte-' + arreglo[1] + '.csv' });
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Corte de ' + arreglo[1] + ' descargado',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
+  //Optenemos el precio
+  totalUtility(params: ValueGetterParams) {
+    var preciovendido = params.getValue('price')
+    var precioxpagar = params.getValue('buy')
+    let utility;
+    if (preciovendido != null && precioxpagar != null) {
+      utility = preciovendido - precioxpagar;
+    }
+    else {
+      utility = [];
+    }
+    return utility;
+  }
+
 //vista excel
   descargarexcelvista() {
     this.excel = !this.excel;
@@ -207,13 +383,13 @@ export class HistorialComponent implements OnInit {
 
   }
   //EXPPRTAMOS A EXCEL LA TABLA
-  onBtnExport() {
-    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('Імякористувача') || '{}', "Імякористувача");
-    let userName = usuario.toString(CryptoJS.enc.Utf8);
-    let arreglo = userName.split('"');
+  // onBtnExport() {
+  //   var usuario = CryptoJS.AES.decrypt(localStorage.getItem('Імякористувача') || '{}', "Імякористувача");
+  //   let userName = usuario.toString(CryptoJS.enc.Utf8);
+  //   let arreglo = userName.split('"');
 
-    this.gridApi.exportDataAsCsv({ fileName: 'Corte-' + arreglo[1] + '.csv' });
-  }
+  //   this.gridApi.exportDataAsCsv({ fileName: 'Corte-' + arreglo[1] + '.csv' });
+  // }
   //BORRAMOS UNA ACTA CON SU ID Y NOMBRE DE USUARIO
   deleteItemActa(id: any, document: any, enterprise: any) {
     Swal.fire({
@@ -626,7 +802,7 @@ export class HistorialComponent implements OnInit {
         const data: any = await this.restService.getcorte(id).toPromise();
 
         this.getcortes = data;
-     console.log(this.getcortes);
+    // console.log(this.getcortes);
         if (data.lenght != 0) {
           closeAlert();
         }
@@ -665,6 +841,8 @@ export class HistorialComponent implements OnInit {
     }
     if(this.myRol != 'Cliente'  && this.myRol != 'Sucursal'  && this.myRol!='Empleado'){
       this.getAllCibers();
+      this.getDates();
+      this.setDate(null);
     }
     else{
       this.router.navigateByUrl('/inicio');
