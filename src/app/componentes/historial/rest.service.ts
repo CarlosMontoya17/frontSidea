@@ -35,7 +35,6 @@ export class RestService {
     return this.http.get(api+'/api/user/getFull/')
   }
   
-  
   //SE optienen las actas
   obtainActasRequest() {
     var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");

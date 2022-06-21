@@ -22,6 +22,7 @@ declare function closeAlert(): any;
 declare function getArray(): any;
 import { AgGridAngular } from 'ag-grid-angular';
 import { AdminService } from 'src/app/servicios/admin.service';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -129,29 +130,33 @@ export class HistorialComponent implements OnInit {
   fechaSeleccionada: any;
   usuariosEnFecha: any;
   data: any;
+  faDownload = faDownload;
   //CONSTRUCTOR
   constructor(private restService: RestService, private router: Router, private database: DatabaseService, private http: HttpClient,private adminService: AdminService) {
     let AG_GRID_LOCALE_EN = getArray();
     this.localeText = AG_GRID_LOCALE_EN;
     this.columnDefs = [
+      { field: "i", width: 80, headerName: "Id", filter: 'agSetColumnFilter' },
       { field: "id", width: 80, headerName: "Id", filter: 'agSetColumnFilter' },
       { field: "document", headerName: "Documento", filter: 'agSetColumnFilter' },
       { field: "curp", headerName: "CURP", filter: 'agSetColumnFilter' },
       { field: "states", headerName: "Estado", filter: 'agSetColumnFilter' },
+      { field: "nombreacta", headerName: "Nombre", filter: 'agSetColumnFilter' },
       { field: "provider", headerName: "Asesor", filter: 'agSetColumnFilter' },
       { field: "enterprise", headerName: "Ciber", filter: 'agSetColumnFilter' },
+      { field: "uploadBy", headerName: "Cragado Por", filter: 'agSetColumnFilter' },
     
 
       // { field: "provider", headerName: "Cargado por", type: 'valueColumn', filter: 'agSetColumnFilter' },
 
   
   
-      { field: "price", headerName: "Precio vendido", type: 'valueColumn', filter: 'agSetColumnFilter' },
-      { field: "buy", headerName: "Precio a pagar", type: 'valueColumn', filter: 'agSetColumnFilter' },
-     // { headerName: "Utilidad", field: "utilidad", valueGetter: this.totalUtility, type: 'valueColumn', filter: 'agSetColumnFilter' },
-      { field: "pay2", headerName: "Pagar a", type: 'valueColumn', filter: 'agSetColumnFilter' },
-      { field: "createdAt", headerName: "Fecha y hora", filter: 'agSetColumnFilter' },
-      { field: "corte", headerName: "Fecha de corte", type: 'valueColumn', filter: 'agSetColumnFilter' },
+    //   { field: "price", headerName: "Precio vendido", type: 'valueColumn', filter: 'agSetColumnFilter' },
+    //   { field: "buy", headerName: "Precio a pagar", type: 'valueColumn', filter: 'agSetColumnFilter' },
+    //  // { headerName: "Utilidad", field: "utilidad", valueGetter: this.totalUtility, type: 'valueColumn', filter: 'agSetColumnFilter' },
+    //   { field: "pay2", headerName: "Pagar a", type: 'valueColumn', filter: 'agSetColumnFilter' },
+     { field: "createdAt", headerName: "Fecha y hora", filter: 'agSetColumnFilter' },
+    //   { field: "corte", headerName: "Fecha de corte", type: 'valueColumn', filter: 'agSetColumnFilter' },
     ];
     this.defaultColDef = {
       width: 200,
@@ -240,7 +245,7 @@ export class HistorialComponent implements OnInit {
         let id = usuario.toString(CryptoJS.enc.Utf8);
 
         this.rowData = await this.restService.getcorte(id).toPromise();
-        console.log(this.rowData)
+        //console.log(this.rowData)
         this.onPinnedRowBottomCount();
         await this.restService.getcorte(id).subscribe(data => {
         }, (err: any) => {
