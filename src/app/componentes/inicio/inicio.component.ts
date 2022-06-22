@@ -979,7 +979,7 @@ export class InicioComponent implements OnInit {
 
   reAsignarActas(idProvider:any){
     this.switchTranspose = false;
-    this.actasservice.reAsignarActa(this.newTranspose, idProvider, "actas").subscribe((data:any) => {
+    this.actasservice.reAsignarActa(this.newTranspose, idProvider, "acta").subscribe((data:any) => {
       Swal.fire(
         {
           position: 'center',

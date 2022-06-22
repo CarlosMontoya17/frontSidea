@@ -46,7 +46,7 @@ export class RfcService {
     var final = parteuno.slice(0, -1);
     let tokenfinal: string = final;
     const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
-    return this.http.put(api+"/api/actas/transpose/"+id, { newciber: provider, service: service }, { headers });
+    return this.http.put(api+"/api/actas/reg/transpose/"+id, { newciber: provider, service: service }, { headers });
   }
 
     //SE trae a todos los usuarios
