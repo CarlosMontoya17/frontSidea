@@ -37,14 +37,14 @@ export class RestService {
     return this.http.get(api+'/api/user/getOne/' + id);
   }
 
-  enviarcta(ciberseleccionado: any, superviser: any, tipo: any, curp: any, estado: any, precio: any, nombre: any, requested: any,nombredearchivo:any): Observable<any> {
+  enviarcta(ciberseleccionado: any,  tipo: any, curp: any, estado: any, nombre: any, nombredearchivo:any): Observable<any> {
     var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
     var token: any = i.toString(CryptoJS.enc.Utf8);
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);
     let tokenfinal: string = final;
     const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
-    return this.http.post(api+'/api/actas/up', { enterprise: ciberseleccionado, provider: superviser, document: tipo, states: estado, curp: curp, nombreacta: nombre, requested: requested, price: precio, namefile:nombredearchivo }, { headers });
+    return this.http.post(api+'/api/actas/reg/new/', { level0: ciberseleccionado, document: tipo, state: estado, dataset: curp, nameinside: nombre,  namefile:nombredearchivo }, { headers });
   }
   //Corte de historial
   getcorte(id: any): Observable<any> {

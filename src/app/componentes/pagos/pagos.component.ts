@@ -660,7 +660,7 @@ Downloadexcel(){
         var usuario = CryptoJS.AES.decrypt(localStorage.getItem('Імякористувача') || '{}', "Імякористувача");
         let userName = usuario.toString(CryptoJS.enc.Utf8);
         let arreglo = userName.split('"');
-        this.rowData = await this.restservice.getcorte(arreglo[1]).toPromise();
+        this.rowData = await this.restservice.getcorte().toPromise();
       }
     }
   }

@@ -329,7 +329,7 @@ async getcorte() {
       var usuario = CryptoJS.AES.decrypt(localStorage.getItem('іди') || '{}', "іди");
       let id = usuario.toString(CryptoJS.enc.Utf8);
 
-      const data: any = await this.restService.getcorte(id).toPromise();
+      const data: any = await this.restService.getcorte().toPromise();
 
       this.getcortes = data;
 

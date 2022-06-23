@@ -144,7 +144,7 @@ export class CorteComponent implements OnInit {
       if (localStorage.getItem('іди') != null) {
         var usuario = CryptoJS.AES.decrypt(localStorage.getItem('іди') || '{}', "іди");
         let id = usuario.toString(CryptoJS.enc.Utf8);
-        const data: any = await this.restservice.getcorte(id).toPromise();
+        const data: any = await this.restservice.getcorte().toPromise();
         let Arreglo: any = [];
         let index: number = 0;
         for (let i = 0; i < data.length; i++) {

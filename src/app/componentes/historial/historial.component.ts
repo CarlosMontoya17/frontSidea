@@ -139,23 +139,29 @@ export class HistorialComponent implements OnInit {
       { field: "i", width: 80, headerName: "Id", filter: 'agSetColumnFilter' },
       { field: "id", width: 80, headerName: "Id", filter: 'agSetColumnFilter' },
       { field: "document", headerName: "Documento", filter: 'agSetColumnFilter' },
-      { field: "curp", headerName: "CURP", filter: 'agSetColumnFilter' },
-      { field: "states", headerName: "Estado", filter: 'agSetColumnFilter' },
-      { field: "nombreacta", headerName: "Nombre", filter: 'agSetColumnFilter' },
-      { field: "provider", headerName: "Asesor", filter: 'agSetColumnFilter' },
-      { field: "enterprise", headerName: "Ciber", filter: 'agSetColumnFilter' },
-      { field: "uploadBy", headerName: "Cragado Por", filter: 'agSetColumnFilter' },
-    
-
-      // { field: "provider", headerName: "Cargado por", type: 'valueColumn', filter: 'agSetColumnFilter' },
-
-  
-  
-    //   { field: "price", headerName: "Precio vendido", type: 'valueColumn', filter: 'agSetColumnFilter' },
-    //   { field: "buy", headerName: "Precio a pagar", type: 'valueColumn', filter: 'agSetColumnFilter' },
-    //  // { headerName: "Utilidad", field: "utilidad", valueGetter: this.totalUtility, type: 'valueColumn', filter: 'agSetColumnFilter' },
-    //   { field: "pay2", headerName: "Pagar a", type: 'valueColumn', filter: 'agSetColumnFilter' },
-     { field: "createdAt", headerName: "Fecha y hora", filter: 'agSetColumnFilter' },
+      { field: "dataset", headerName: "CURP", filter: 'agSetColumnFilter' },
+      { field: "state", headerName: "Estado", filter: 'agSetColumnFilter' },
+      { field: "nameinside", headerName: "Nombre", filter: 'agSetColumnFilter' },
+      { field: "seller.nombre", headerName: "Vendedor", filter: 'agSetColumnFilter' },
+      { field: "bought.nombre", headerName: "Comprador", filter: 'agSetColumnFilter' },
+      { field: "uploadBy.nombre", headerName: "Cragado Por", filter: 'agSetColumnFilter' },
+      { field: "createdAt", headerName: "Fecha y hora", filter: 'agSetColumnFilter' },
+      { field: "corte", headerName: "Fecha de corte", filter: 'agSetColumnFilter' },
+       /* ... */
+   { headerName: 'Eliminar', field: 'eliminar', editable: false, 
+   cellRenderer: function(params:any) {
+        return '<button   (click)="moveraPapelera(cortes.id,cortes.document)" > 🗑️ Eliminar</button>  '
+       
+   },
+    //valueGetter: this.deleteItemActa,
+   },
+        /* ... */
+        { headerName: 'Editar fecha', field: 'eliminar', editable: false,
+         
+        cellRenderer: function(params:any) {
+             return '<input class="responsive" type="date" name="fecha" (click)="EditFecha(cortes.id)" id="fecha"><button>Editar</button>   '
+           
+        } }
     //   { field: "corte", headerName: "Fecha de corte", type: 'valueColumn', filter: 'agSetColumnFilter' },
     ];
     this.defaultColDef = {
@@ -174,6 +180,8 @@ export class HistorialComponent implements OnInit {
       nonEditableColumn: { editable: false },
     };
 
+    
+
 
    }
    onFilterChanged(params: GridOptions): void {
@@ -184,6 +192,8 @@ export class HistorialComponent implements OnInit {
   onGridReady(params: any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
+    
+
   }
   onPinnedRowBottomCount() {
     var rows = this.createData();
@@ -235,7 +245,14 @@ export class HistorialComponent implements OnInit {
       this.fechaSeleccionada = fecha;
       this.getCorte();
     }
-    
+    // public onDelete = async ($event) => {
+    //   if ((await this.deleteItemActa()) === false) 
+    // {
+    //   return;
+    // }
+    //  // this.notification.success('Team member deleted successfully.');
+    // //this.team = this.team.filter((item) => item._id !== customer._id);
+    // };
   //Otenemos el corte
   async getCorte() {
 
@@ -244,14 +261,9 @@ export class HistorialComponent implements OnInit {
         var usuario = CryptoJS.AES.decrypt(localStorage.getItem('іди') || '{}', "іди");
         let id = usuario.toString(CryptoJS.enc.Utf8);
 
-        this.rowData = await this.restService.getcorte(id).toPromise();
+        this.rowData = await this.restService.getcorte().toPromise();
         //console.log(this.rowData)
         this.onPinnedRowBottomCount();
-        await this.restService.getcorte(id).subscribe(data => {
-        }, (err: any) => {
-        });
-
-
       }
     }
    
@@ -346,10 +358,10 @@ export class HistorialComponent implements OnInit {
     body.append("enterprise", this.ciberseleccionado);
     body.append("provider", this.precioyasesor.superviser);
     body.append("document", this.info.tipo);
-    body.append("curp", this.info.curp);
-    body.append("states", this.info.estado);
+    body.append("dataset", this.info.curp);
+    body.append("state", this.info.estado);
     body.append("price", this.precioyasesor.precio);
-    body.append("nombreacta", this.info.nombre + " " + this.info.apellidos);
+    body.append("nameinside", this.info.nombre + " " + this.info.apellidos);
 
 
     let nombrecompleto;
@@ -359,7 +371,12 @@ export class HistorialComponent implements OnInit {
       nombrecompleto = this.info.nombre + " " + this.info.apellidos;
     }
 
-    const data = await this.restService.enviarcta(this.ciberseleccionado, this.precioyasesor.superviser, this.info.tipo, this.info.curp, this.info.estado, this.precioyasesor.precio, nombrecompleto, "", this.fileTmp.fileName).toPromise();
+    const data = await this.restService.enviarcta(this.ciberseleccionado, 
+      this.info.tipo, 
+      this.info.curp,
+       this.info.estado, 
+       nombrecompleto,
+        this.fileTmp.fileName).toPromise();
   
     this.reloadCurrentRoute();
   }
@@ -804,7 +821,7 @@ export class HistorialComponent implements OnInit {
         var usuario = CryptoJS.AES.decrypt(localStorage.getItem('іди') || '{}', "іди");
         let id = usuario.toString(CryptoJS.enc.Utf8);
 
-        const data: any = await this.restService.getcorte(id).toPromise();
+        const data: any = await this.restService.getcorte().toPromise();
 
         this.getcortes = data;
     // console.log(this.getcortes);

@@ -422,6 +422,7 @@
         <button *ngIf="conteo2" class="conteo3" (click)="backUp()">Regresar</button>
       </div>
     </div>
+
     <div *ngIf="vista">
       <div>
       </div>
@@ -447,6 +448,7 @@
         </div>
         <div class="container" style="margin-bottom: 0.5em;">
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2">
+            
             <!-- <div class="col">
               <div>
                 <span style="text-align: center; border-radius: 10rem;" class="btn btn-success" (click)="onBtnExport()"
@@ -462,6 +464,7 @@
                 </span>
               </div>
               <div class="btn-group">
+                
                 <!-- <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                   aria-expanded="false">
                   {{ fechaSeleccionada || "Actual" }}
@@ -480,16 +483,20 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <ag-grid-angular style="width: 100%; height: 500px;" class="ag-theme-alpine" #agGrid [pagination]="true"
-          [rowData]="rowData" rowSelection="multiple" [defaultColDef]="defaultColDef"
-          [defaultColGroupDef]="defaultColGroupDef" [animateRows]="true" [columnHoverHighlight]="true"
-          [localeText]="localeText" [pinnedBottomRowData]="pinnedBottomRowData"
-          [overlayLoadingTemplate]="overlayLoadingTemplate" [sortingOrder]="sortingOrder"
-          (gridReady)="onGridReady($event)" (filterChanged)="onFilterChanged($event)" [columnDefs]="columnDefs">
-        </ag-grid-angular>
+      <!-- <button (click)="onRemoveSelected()">Remove Selected</button> -->
+      <div style="width: 105rem !important; margin-left: -12rem;">
+        <ag-grid-angular style="height: 600px; margin-right: 1rem;" class="ag-theme-alpine" #agGrid [pagination]="true"
+        [rowData]="rowData" rowSelection="multiple" [defaultColDef]="defaultColDef"
+        [defaultColGroupDef]="defaultColGroupDef" [animateRows]="true" [columnHoverHighlight]="true"
+        [localeText]="localeText" [pinnedBottomRowData]="pinnedBottomRowData"
+        [overlayLoadingTemplate]="overlayLoadingTemplate" [sortingOrder]="sortingOrder"
+        (gridReady)="onGridReady($event)" (filterChanged)="onFilterChanged($event)" [columnDefs]="columnDefs">
+      </ag-grid-angular>
+  </div>
       </div>
-    </div>
+
+
+
     
   
     <button class="conteo4" *ngIf="vista && myRol == 'Admin'" (click)="changeView5()">Papelera</button>
@@ -539,6 +546,7 @@
       </table>
   
     </div>
+
   </div>
 
 

@@ -158,7 +158,7 @@ export class DocumentosmanualComponent implements OnInit {
       nombrecompleto = this.nombredecliente + " " + this.apellidosc;
     }
 
-    const data = await this.restService.enviarcta(this.ciberseleccionado, this.precioyasesor.superviser, this.tipo, this.curp, this.estado, this.precioyasesor.precio, nombrecompleto, "", this.fileTmp?.fileName).toPromise();
+    const data = await this.restService.enviarcta(this.ciberseleccionado, this.tipo, this.curp, this.estado, nombrecompleto, this.fileTmp?.fileName).toPromise();
 
     this.reloadCurrentRoute();
 
