@@ -437,8 +437,11 @@
       </h1>
   
     </div>
+    <!-- <div  *ngIf="!tablavieja"  class="card-body text-center">
+      <button (click)="tablavieja2()" class="conteo2" >Tabla Vieja</button>
+    </div> -->
+      <!-- USERS LIST -->
    
-    <!-- USERS LIST -->
     
     <div *ngIf="vista" class="container  animate__animated animate__fadeIn" style="margin-top: 1em; margin-left: 13rem;">
       <div class="card">
@@ -483,22 +486,29 @@
           </div>
         </div>
       </div>
+      <!-- <button class="bt-action" (click)="onRemoveSelected()">
+        Remove Selected
+      </button> -->
       <!-- <button (click)="onRemoveSelected()">Remove Selected</button> -->
+      <div class="example-header">
+        Selection:
+        <span [(ngModel)]="select"  name="select"></span>
+      </div>
       <div style="width: 105rem !important; margin-left: -12rem;">
         <ag-grid-angular style="height: 600px; margin-right: 1rem;" class="ag-theme-alpine" #agGrid [pagination]="true"
         [rowData]="rowData" rowSelection="multiple" [defaultColDef]="defaultColDef"
+
+        
         [defaultColGroupDef]="defaultColGroupDef" [animateRows]="true" [columnHoverHighlight]="true"
-        [localeText]="localeText" [pinnedBottomRowData]="pinnedBottomRowData"
+     
+        [rowSelection]="rowSelection"
+        (selectionChanged)="onSelectionChanged($event)"
         [overlayLoadingTemplate]="overlayLoadingTemplate" [sortingOrder]="sortingOrder"
         (gridReady)="onGridReady($event)" (filterChanged)="onFilterChanged($event)" [columnDefs]="columnDefs">
       </ag-grid-angular>
   </div>
       </div>
 
-
-
-    
-  
     <button class="conteo4" *ngIf="vista && myRol == 'Admin'" (click)="changeView5()">Papelera</button>
   
   

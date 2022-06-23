@@ -116,7 +116,7 @@ export class InicioComponent implements OnInit {
   selectable: Boolean = false;
 
   dataset$: Observable<any>;
-
+  error: boolean = false;
   //
   allUsers: any;
   switchTranspose: boolean = false;
@@ -133,7 +133,7 @@ export class InicioComponent implements OnInit {
     });
     console.log('constructor: logging starting...');
     setInterval(() => {
-    console.log(this.count++);
+ 
     }, 1000);
     
 
@@ -969,7 +969,13 @@ export class InicioComponent implements OnInit {
         this.allUsers = data;
 
       });
+      
     }
+
+    
+
+
+
     else{
       this.allUsers = [];
     }

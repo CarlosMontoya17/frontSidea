@@ -46,7 +46,7 @@ export class HistorialComponent implements OnInit {
   hidden: boolean = false;
   hidden2: boolean = true;
   excel: boolean = false;
-
+  select:any;
   docPath: string = "";
   faRobot = faRobot;
   public imagePath: any;
@@ -63,6 +63,7 @@ export class HistorialComponent implements OnInit {
   info: any;
   preview: any = 0;
   vista: boolean = false;
+  tablavieja: boolean = false;
   //Select de boostrap
   tipodebusqueda: any = 'Seleccione el tipo de busqueda';
   getciber: any;
@@ -110,6 +111,7 @@ export class HistorialComponent implements OnInit {
 
   public pinnedBottomRowData!: any[];
   @ViewChild("agGrid", { static: false }) agGrid: AgGridAngular | undefined;
+  selectedRows:any;
   localeText: any;
   gridApis: any;
   gridColumnApi: any;
@@ -131,25 +133,29 @@ export class HistorialComponent implements OnInit {
   usuariosEnFecha: any;
   data: any;
   faDownload = faDownload;
+  public rowSelection = 'single';
   //CONSTRUCTOR
   constructor(private restService: RestService, private router: Router, private database: DatabaseService, private http: HttpClient,private adminService: AdminService) {
     let AG_GRID_LOCALE_EN = getArray();
     this.localeText = AG_GRID_LOCALE_EN;
     this.columnDefs = [
-      { field: "i", width: 80, headerName: "Id", filter: 'agSetColumnFilter' },
-      { field: "id", width: 80, headerName: "Id", filter: 'agSetColumnFilter' },
-      { field: "document", headerName: "Documento", filter: 'agSetColumnFilter' },
-      { field: "dataset", headerName: "CURP", filter: 'agSetColumnFilter' },
-      { field: "state", headerName: "Estado", filter: 'agSetColumnFilter' },
-      { field: "nameinside", headerName: "Nombre", filter: 'agSetColumnFilter' },
-      { field: "seller.nombre", headerName: "Vendedor", filter: 'agSetColumnFilter' },
-      { field: "bought.nombre", headerName: "Comprador", filter: 'agSetColumnFilter' },
-      { field: "uploadBy.nombre", headerName: "Cragado Por", filter: 'agSetColumnFilter' },
-      { field: "createdAt", headerName: "Fecha y hora", filter: 'agSetColumnFilter' },
-      { field: "corte", headerName: "Fecha de corte", filter: 'agSetColumnFilter' },
-       /* ... */
-   { headerName: 'Eliminar', field: 'eliminar', editable: false, 
+      
+      // { field: "i", width: 80, headerName: "Id", filter: 'agSetColumnFilter' },
+      { field: "id", width: 80, headerName: "Id", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
+      { field: "document",width: 160, headerName: "Documento", filter: 'agSetColumnFilter'  ,cellStyle: {fontSize: '12px'}},
+      { field: "dataset", headerName: "CURP", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
+      { field: "state",width: 120, headerName: "Estado", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
+      { field: "nameinside", headerName: "Nombre", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
+      { field: "seller.nombre", headerName: "Vendedor", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
+      { field: "bought.nombre", headerName: "Comprador", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
+      { field: "uploadBy.nombre",width: 150, headerName: "Cragado Por", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
+      { field: "createdAt", headerName: "Fecha y hora", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
+      { field: "corte", headerName: "Fecha de corte", filter: 'agSetColumnFilter'  ,cellStyle: {fontSize: '12px'}},
+            
+      /* ... */
+   { headerName: 'Eliminar',width: 150, field: 'eliminar', editable: false, 
    cellRenderer: function(params:any) {
+    
         return '<button   (click)="moveraPapelera(cortes.id,cortes.document)" > 🗑️ Eliminar</button>  '
        
    },
@@ -170,12 +176,17 @@ export class HistorialComponent implements OnInit {
       floatingFilter: true,
       resizable: true,
       editable: true,
+      
     };
+    
     this.overlayLoadingTemplate = '<span class="ag-overlay-loading-center">Por favor espere, estamos cargando los datos</span>';
     this.columnTypes = {
       numberColumn: {
         width: 130,
         filter: 'agNumberColumnFilter',
+      },
+      cellRendererParams: {
+        checkbox: true,
       },
       nonEditableColumn: { editable: false },
     };
@@ -184,6 +195,12 @@ export class HistorialComponent implements OnInit {
 
 
    }
+   onSelectionChanged($event:any) {
+    const selectedRows = this.gridApi.getSelectedRows();
+    this.select = JSON.stringify( selectedRows);
+      console.log(this.gridApi.getSelectedRows());
+  }
+   
    onFilterChanged(params: GridOptions): void {
     this.filtrados = params.api?.getModel();
     this.onPinnedRowBottomCount();
@@ -245,14 +262,10 @@ export class HistorialComponent implements OnInit {
       this.fechaSeleccionada = fecha;
       this.getCorte();
     }
-    // public onDelete = async ($event) => {
-    //   if ((await this.deleteItemActa()) === false) 
-    // {
-    //   return;
-    // }
-    //  // this.notification.success('Team member deleted successfully.');
-    // //this.team = this.team.filter((item) => item._id !== customer._id);
-    // };
+    onRemoveSelected() {
+      var selectedRowData = this.gridApi.getSelectedRows();
+      this.gridApi.applyTransaction({ remove: selectedRowData });
+    }
   //Otenemos el corte
   async getCorte() {
 
@@ -884,6 +897,20 @@ export class HistorialComponent implements OnInit {
     this.vista = !this.vista;
     this.getcorte();
   }
+
+  tablavieja2() {
+    if (this.tablavieja === false) {
+      loader();
+    }
+    this.tablavieja = !this.tablavieja;
+    this.getcorte();
+  }
+
+
+
+
+
+
   ClienteVista() {
     if (this.myRol != 'Cliente' && this.myRol != 'Sucursal' && this.myRol!='Empleado') {
       this.MyrolCliente = !this.MyrolCliente;

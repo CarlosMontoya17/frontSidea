@@ -567,6 +567,7 @@ Downloadexcel(){
     }
     this.adminService.getMyClientForDate(date).subscribe(data => {
       closeAlert();
+      
       this.usuariosEnFecha = data;
 
 

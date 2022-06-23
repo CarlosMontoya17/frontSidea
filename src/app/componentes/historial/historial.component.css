@@ -5943,3 +5943,7 @@ input[type="date"]:hover::-webkit-calendar-picker-indicator:hover { opacity:0.15
       width: 100px;
     }
   }
+
+  div.ag-theme-alpine div.ag-row {
+    font-size: 12px !important;
+}

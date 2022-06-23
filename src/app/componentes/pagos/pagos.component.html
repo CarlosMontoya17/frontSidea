@@ -225,17 +225,17 @@
                                                 <td style=" font-size:1.0em; width: 8rem !important;">{{
                                                     acta.createdAt.split('T')
                                                     | date: 'h:mm a' }} </td>
-                                                <td style=" font-size:1.0em; width: 10rem !important;">{{ acta.states }}
+                                                <td style=" font-size:1.0em; width: 10rem !important;">{{ acta.state }}
                                                 </td>
                                                 <td style=" font-size:1.0em; width: 20rem !important;"> {{
-                                                    acta.nombreacta }}</td>
-                                                <td style=" font-size:1.0em; width: 10rem !important;"> {{ acta.curp }}
+                                                    acta.nameinside }}</td>
+                                                <td style=" font-size:1.0em; width: 10rem !important;"> {{ acta.dataset }}
                                                 </td>
                                                 <td style=" font-size:1.0em; width: 4rem !important;"
                                                     style="font-weight: bolder;">$ {{ acta.price }} </td>
 
                                                 <td style=" font-size:1.0em; width: 4rem !important;"
-                                                    style="font-weight: bolder;" *ngIf="excel">{{ acta.ciber.nombre }} </td>
+                                                    style="font-weight: bolder;" *ngIf="excel">{{ acta.client.nombre }} </td>
                                                 <td style=" font-size:1.0em; width: 4rem !important;"
                                                     style="font-weight: bolder;" *ngIf="excel">{{ acta.superviser.nombre }} </td>
                                                 <td style=" font-size:1.0em; width: 4rem !important;"
@@ -284,14 +284,14 @@
                                                     {{acta.createdAt.split('T')[0]}}</td>
                                                 <td
                                                     style=" font-size:1.0em; width: 13rem !important; height: 5rem !important;">
-                                                    {{ acta.uploadby }}</td>
+                                                    {{ acta.uploadby.nombre }}</td>
                                                 <td style=" font-size:1.0em; width: 8rem !important;">{{ acta.createdAt
                                                     | date: 'h:mm a' }} </td>
-                                                <td style=" font-size:1.0em; width: 10rem !important;">{{ acta.states }}
+                                                <td style=" font-size:1.0em; width: 10rem !important;">{{ acta.state }}
                                                 </td>
                                                 <td style=" font-size:1.0em; width: 20rem !important;"> {{
-                                                    acta.nombreacta }}</td>
-                                                <td style=" font-size:1.0em; width: 10rem !important;"> {{ acta.curp }}
+                                                    acta.nameinside }}</td>
+                                                <td style=" font-size:1.0em; width: 10rem !important;"> {{ acta.dataset }}
                                                 </td>
                                                 <td style=" font-size:1.0em; width: 4rem !important;"
                                                     style="font-weight: bolder;">$ {{ acta.price }} </td>
@@ -460,14 +460,14 @@
                                         <td style=" font-size:1.0em; width: 8rem !important;">
                                             {{acta.createdAt.split('T')[0]}}</td>
                                         <td style=" font-size:1.0em; width: 13rem !important; height: 5rem !important;">
-                                            {{ acta.uploadby }}</td>
+                                            {{ acta.uploadby.nombre }}</td>
                                         <td style=" font-size:1.0em; width: 8rem !important;">{{ acta.createdAt
                                             | date: 'h:mm a' }} </td>
-                                        <td style=" font-size:1.0em; width: 10rem !important;">{{ acta.states }}
+                                        <td style=" font-size:1.0em; width: 10rem !important;">{{ acta.state }}
                                         </td>
                                         <td style=" font-size:1.0em; width: 20rem !important;"> {{
-                                            acta.nombreacta }}</td>
-                                        <td style=" font-size:1.0em; width: 10rem !important;"> {{ acta.curp }}
+                                            acta.nameinside }}</td>
+                                        <td style=" font-size:1.0em; width: 10rem !important;"> {{ acta.dataset }}
                                         </td>
                                         <td style=" font-size:1.0em; width: 4rem !important;"
                                             style="font-weight: bolder;">$ {{ acta.price }} </td>
