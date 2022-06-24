@@ -460,15 +460,7 @@ Downloadexcel(){
 
     this.adminService.getCorteByUserForDate(id, date).subscribe((data:any) => {
       this.corteDelUsuario = data;
-      // console.log(data);
-       for (let i = 0; i < data.length; i++) {
-        // let event = new Date(data[i].createdAt);
-        // let date = event.toLocaleString('es', {dateStyle: 'short'});
-        data[i].createdAt.split('T')[0];
-
-
-
-       }
+    
 
 
 
