@@ -5143,6 +5143,7 @@ margin: 1%;
 border: 2px dashed #3498db !important;
 border-radius: 5px;
 }
+/* Es este */
 button{
   height: 45px;
   line-height: 9px;
@@ -5266,6 +5267,29 @@ height: 5vh;
 overflow: hidden;
 box-sizing: border-box;
 margin: 15px;
+display: inline-block;
+font-family: "Montserrat", Helvetica, sans-serif;
+font-size: 18px;
+color: #000000 !important;
+margin: 10px auto !important;
+display: block;
+
+/* Button is responsive to font size.*/  
+
+/* box-shadow: 0 0 0 2px white, 0 0 0 4px blue; */
+}
+
+.conteo9 {
+  background: #ffff51;
+box-shadow: 0 0 0 2px white, 0 0 0 4px rgb(0, 0, 0);
+-webkit-animation: bounceright 0.3s alternate ease infinite;
+animation: bounceright 0.3s alternate ease infinite;
+text-align: center;
+text-rendering: auto;
+
+overflow: hidden;
+box-sizing: border-box;
+margin: 0.9rem;
 display: inline-block;
 font-family: "Montserrat", Helvetica, sans-serif;
 font-size: 18px;
@@ -5946,4 +5970,18 @@ input[type="date"]:hover::-webkit-calendar-picker-indicator:hover { opacity:0.15
 
   div.ag-theme-alpine div.ag-row {
     font-size: 12px !important;
+}
+/* Panel */
+
+
+button {
+  display: inline-block;
+  border: 0;
+  margin: 1.5rem;
+  padding: 0;
+  background-color: #adb5bd;
+  color: #0056b3;
+ 
+color: #efb810 !important;
+
 }

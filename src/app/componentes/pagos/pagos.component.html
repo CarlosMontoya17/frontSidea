@@ -198,7 +198,7 @@
                                                 <th scope="col">Documento</th>
                                                 <th scope="col">Fecha</th>
 
-                                                <th scope="col">Hora de descarga</th>
+                                                <!-- <th scope="col">Hora de descarga</th> -->
                                                 <th scope="col">Estado</th>
                                                 <th scope="col">Nombre (Acta)</th>
                                                 <th scope="col">CURP</th>
@@ -222,9 +222,6 @@
                                                     {{acta.createdAt}} </td>
 
 
-                                                <td style=" font-size:1.0em; width: 8rem !important;">{{
-                                                    acta.createdAt.split('T')
-                                                    | date: 'h:mm a' }} </td>
                                                 <td style=" font-size:1.0em; width: 10rem !important;">{{ acta.state }}
                                                 </td>
                                                 <td style=" font-size:1.0em; width: 20rem !important;"> {{
