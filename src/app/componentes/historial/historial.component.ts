@@ -151,23 +151,7 @@ export class HistorialComponent implements OnInit {
       { field: "uploadBy.nombre",width: 150, headerName: "Cragado Por", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
       { field: "createdAt", headerName: "Fecha y hora", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
       { field: "corte", headerName: "Fecha de corte", filter: 'agSetColumnFilter'  ,cellStyle: {fontSize: '12px'}},
-            
-      /* ... */
-   { headerName: 'Eliminar',width: 150, field: 'eliminar', editable: false, 
-   cellRenderer: function(params:any) {
-    
-        return '<button   (click)="moveraPapelera(cortes.id,cortes.document)" > 🗑️ Eliminar</button>  '
-       
-   },
-    //valueGetter: this.deleteItemActa,
-   },
-        /* ... */
-        { headerName: 'Editar fecha', field: 'eliminar', editable: false,
-         
-        cellRenderer: function(params:any) {
-             return '<input class="responsive" type="date" name="fecha" (click)="EditFecha(cortes.id)" id="fecha"><button>Editar</button>   '
-           
-        } }
+      
     //   { field: "corte", headerName: "Fecha de corte", type: 'valueColumn', filter: 'agSetColumnFilter' },
     ];
     this.defaultColDef = {
@@ -195,10 +179,18 @@ export class HistorialComponent implements OnInit {
 
 
    }
+  EditarActaSeleccionada(){
+    this.EditFecha(this.select.id);
+    this.fecha = this.select.createdAt;
+   }
+
+   eliminarActaSeleccionada(){
+    this.deleteItemActa(this.select.id, this.select.document, this.select.client);
+   }
+
+
    onSelectionChanged($event:any) {
-    const selectedRows = this.gridApi.getSelectedRows();
-    this.select = JSON.stringify( selectedRows);
-      console.log(this.gridApi.getSelectedRows());
+    this.select = this.gridApi.getSelectedRows();
   }
    
    onFilterChanged(params: GridOptions): void {

@@ -447,7 +447,7 @@
       <div class="card">
         <div class="card-body text-center">
           <!-- <h5 >&bull;HISTORIAL&bull;</h5> -->
-         
+         <h5> Controles </h5>
         </div>
         <div class="container" style="margin-bottom: 0.5em;">
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2">
@@ -484,15 +484,62 @@
               </div>
             </div>
           </div>
+
+          <div class="row">
+
+            <div class="col-sm">
+              <div class="col" id="conteo2">
+                <label >Eliminar</label>
+                <fa-icon [icon]="papelera" class="add-user center" style="font-size: 2rem;"
+                (click)="eliminarActaSeleccionada()"></fa-icon>
+               
+              </div>  
+            </div>
+           
+         
+
+
+          
+         
+            <div class="col-sm">
+            <div class="col" id="conteo2">
+              <label >Cambiar fecha</label>
+
+        
+              <input class="responsive" [(ngModel)]="fecha"   type="date" name="fecha" id="fecha">
+              <span *ngFor="let selecting of select">
+            
+                {{ selecting.createdAt| date:'MMMM d, y'  }}
+                
+              </span>
+    
+              <fa-icon [icon]="facalend" style="font-size: 1.9rem;" class="add-user" (click)="EditarActaSeleccionada()">
+              </fa-icon>
+              <!-- <button> Cambiar fecha </button> -->
+            </div>
+          </div>
+
+          </div>
+      
         </div>
       </div>
+      
       <!-- <button class="bt-action" (click)="onRemoveSelected()">
         Remove Selected
       </button> -->
       <!-- <button (click)="onRemoveSelected()">Remove Selected</button> -->
-      <div class="example-header">
-        Selection:
-        <span [(ngModel)]="select"  name="select"></span>
+      <div>
+        <span>Seleccionado:</span>
+        <span *ngFor="let selecting of select">
+          {{ selecting.id }}
+          {{ "/" }}
+          {{ selecting.document }}
+          {{ "/" }}
+          {{ selecting.dataset }}
+          {{ "/" }}
+          {{ selecting.createdAt| date:'MMMM d, y'  }}
+          
+        </span>
       </div>
       <div style="width: 105rem !important; margin-left: -12rem;">
         <ag-grid-angular style="height: 600px; margin-right: 1rem;" class="ag-theme-alpine" #agGrid [pagination]="true"

@@ -266,13 +266,12 @@
                     </div>
                     <div class="row">
                         <div
-                            *ngIf="myRol == 'Supervisor' || myRol == 'Admin' && req.url != null && req.comments == 'Descargado'">
-                            <div *ngIf="req.idtranspose == null" (click)="obtainAllUsers(req.id)" class="row"
-                                style="margin-top: 1em;">
-                                <a class="btn btn-primary">
-                                    <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>
-                                    &nbsp;Re-Asignar Acta
-                                </a>
+                        *ngIf="myRol == 'Supervisor'  && req.url != null && req.comments == 'Descargado' || id == '1500'  && req.url != null && req.comments == 'Descargado' || id == '1585'  && req.url != null && req.comments == 'Enviado'  || myRol == 'Admin' && req.url != null && req.comments == 'Descargado'">
+                        <div *ngIf="req.idtranspose == null" (click)="obtainAllUsers(req.id)" class="row" style="margin-top: 1em;">
+                            <a class="btn btn-primary">
+                                <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>
+                                &nbsp;Re-Asignar Acta
+                            </a>
                             </div>
 
 
