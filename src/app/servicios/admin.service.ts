@@ -128,7 +128,7 @@ export class AdminService {
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);
     const headers = new HttpHeaders({ 'x-access-token': final! });
-    return this.http.get(urlApi+'/api/historial/getRegistersAt/'+date,{headers});
+    return this.http.get(urlApi+'/api/actas/reg/History/'+date,{headers});
   }
 //PUBLICIDAD
 

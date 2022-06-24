@@ -10,7 +10,7 @@ import { DatabaseService } from 'src/app/servicios/database/database.service';
 import { AdminService } from 'src/app/servicios/admin.service';
 import Swal from 'sweetalert2';
 declare function getArray(): any;
-
+declare function loader(): any;
 
 @Component({
   selector: 'app-registros',
@@ -48,24 +48,25 @@ export class RegistrosComponent implements OnInit {
   fechaSeleccionada: any;
   usuariosEnFecha: any;
   data: any;
+  vista: boolean = false;
 
   constructor(private restservice: RestService, private database: DatabaseService, private adminService: AdminService, private router: Router) {
     let AG_GRID_LOCALE_EN = getArray();
     this.localeText = AG_GRID_LOCALE_EN;
     this.columnDefs = [
       { field: "id", width: 80, headerName: "Id", filter: 'agSetColumnFilter' },
-      { field: "provider", headerName: "Asesor", filter: 'agSetColumnFilter' },
-      { field: "enterprise", headerName: "Ciber", filter: 'agSetColumnFilter' },
+      { field: "superviser.nombre", headerName: "Asesor", filter: 'agSetColumnFilter' },
+      { field: "client.nombre", headerName: "Ciber", filter: 'agSetColumnFilter' },
       { field: "document", headerName: "Documento", filter: 'agSetColumnFilter' },
 
       // { field: "provider", headerName: "Cargado por", type: 'valueColumn', filter: 'agSetColumnFilter' },
 
-      { field: "states", headerName: "Estado", filter: 'agSetColumnFilter' },
-      { field: "curp", headerName: "CURP", filter: 'agSetColumnFilter' },
-      { field: "price", headerName: "Precio vendido", type: 'valueColumn', filter: 'agSetColumnFilter' },
-      { field: "buy", headerName: "Precio a pagar", type: 'valueColumn', filter: 'agSetColumnFilter' },
+      { field: "state", headerName: "Estado", filter: 'agSetColumnFilter' },
+      { field: "dataset", headerName: "CURP", filter: 'agSetColumnFilter' },
+      { field: "buy", headerName: "Precio vendido", type: 'valueColumn', filter: 'agSetColumnFilter' },
+      { field: "pay", headerName: "Precio a pagar", type: 'valueColumn', filter: 'agSetColumnFilter' },
       { headerName: "Utilidad", field: "utilidad", valueGetter: this.totalUtility, type: 'valueColumn', filter: 'agSetColumnFilter' },
-      { field: "pay2", headerName: "Pagar a", type: 'valueColumn', filter: 'agSetColumnFilter' },
+      { field: "seller.nombre", headerName: "Pagar a", type: 'valueColumn', filter: 'agSetColumnFilter' },
       { field: "createdAt", headerName: "Fecha y hora", filter: 'agSetColumnFilter' },
       { field: "corte", headerName: "Fecha de corte", type: 'valueColumn', filter: 'agSetColumnFilter' },
     ];
@@ -111,7 +112,7 @@ export class RegistrosComponent implements OnInit {
     this.myRol = data.data.rol;
 
     if (this.myRol != 'Cliente' && this.myRol != 'Empleado') {
-
+      
 
       //this.getcorte();
       this.getDates();
@@ -173,8 +174,8 @@ export class RegistrosComponent implements OnInit {
     result.push({
       document: `Documentos: ${this.totalDocumentos}`,
       curp: 'Totales:',
-      price: this.totalPrecioVendido,
-      buy: this.totalPrecioAPagar,
+      buy: this.totalPrecioVendido,
+      pay: this.totalPrecioAPagar,
     });
     return result;
   }
@@ -195,8 +196,8 @@ export class RegistrosComponent implements OnInit {
   }
   //Optenemos el precio
   totalUtility(params: ValueGetterParams) {
-    var preciovendido = params.getValue('price')
-    var precioxpagar = params.getValue('buy')
+    var preciovendido = params.getValue('buy')
+    var precioxpagar = params.getValue('pay')
     let utility;
     if (preciovendido != null && precioxpagar != null) {
       utility = preciovendido - precioxpagar;
@@ -226,6 +227,9 @@ export class RegistrosComponent implements OnInit {
   //Mostramos todas las fechas
   setDate(fecha: any) {
     this.fechaSeleccionada = fecha;
+    if (this.vista === false) {
+      loader();
+    }
     this.getCorte();
   }
 
