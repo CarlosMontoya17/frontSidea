@@ -64,6 +64,7 @@ export class InicioComponent implements OnInit {
   alerts: any = [];
   faCircleExclamation = faCircleExclamation;
   id: any;
+
   //  //
 
   data: any;

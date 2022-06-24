@@ -23,7 +23,8 @@ declare function getArray(): any;
 import { AgGridAngular } from 'ag-grid-angular';
 import { AdminService } from 'src/app/servicios/admin.service';
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
-
+import { ActasService } from 'src/app/servicios/Actas/actas.service';
+import { faPeopleArrowsLeftRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-historial',
@@ -48,6 +49,10 @@ export class HistorialComponent implements OnInit {
   excel: boolean = false;
   select:any;
   docPath: string = "";
+  faPeopleArrowsLeftRight = faPeopleArrowsLeftRight;
+  id: any;
+  req: any;
+  valorabuscartranspose:string = "";
   faRobot = faRobot;
   public imagePath: any;
   //Variables de iconos
@@ -56,6 +61,7 @@ export class HistorialComponent implements OnInit {
   restored = faTrashRestore;
   papelera = faTrashArrowUp;
   faUser = faUser;
+  allUsers: any;
   //Imagen URL
   imgURL: any;
   //Variables generales
@@ -108,7 +114,7 @@ export class HistorialComponent implements OnInit {
   fecha: any;
 //variables del API
   gettraerPapelera2: any;
-
+  newTranspose:any = [];
   public pinnedBottomRowData!: any[];
   @ViewChild("agGrid", { static: false }) agGrid: AgGridAngular | undefined;
   selectedRows:any;
@@ -133,9 +139,10 @@ export class HistorialComponent implements OnInit {
   usuariosEnFecha: any;
   data: any;
   faDownload = faDownload;
+  switchTranspose: boolean = false;
   public rowSelection = 'single';
   //CONSTRUCTOR
-  constructor(private restService: RestService, private router: Router, private database: DatabaseService, private http: HttpClient,private adminService: AdminService) {
+  constructor(private restService: RestService,private actasservice: ActasService, private router: Router, private database: DatabaseService, private http: HttpClient,private adminService: AdminService) {
     let AG_GRID_LOCALE_EN = getArray();
     this.localeText = AG_GRID_LOCALE_EN;
     this.columnDefs = [
@@ -162,7 +169,7 @@ export class HistorialComponent implements OnInit {
       editable: true,
       
     };
-    
+    document
     this.overlayLoadingTemplate = '<span class="ag-overlay-loading-center">Por favor espere, estamos cargando los datos</span>';
     this.columnTypes = {
       numberColumn: {
@@ -179,18 +186,79 @@ export class HistorialComponent implements OnInit {
 
 
    }
+
+   obtainAllUsers(id:any) {
+    //getuser
+    this.switchTranspose = !this.switchTranspose;
+
+
+    if (this.switchTranspose == true) {
+      this.newTranspose = id;
+
+
+      this.actasservice.getuser().subscribe((data: any) =>  {
+        this.allUsers = data;
+
+      });
+      
+    }
+
+    
+
+
+
+    else{
+      this.allUsers = [];
+    }
+
+  }
+
+
+  reAsignarActas(idProvider:any){
+    this.switchTranspose = false;
+    this.actasservice.reAsignarActa(this.newTranspose, idProvider, "acta").subscribe((data:any) => {
+      Swal.fire(
+        {
+          position: 'center',
+          icon: 'success',
+          title: 'Re-Asignado',
+          showConfirmButton: false,
+          timer: 1500
+        }
+      );
+
+      this.reloadCurrentRoute();
+    }, (error:any) => {
+      Swal.fire(
+        {
+          position: 'center',
+          icon: 'error',
+          title: 'Contacte al equipo de soporte',
+          showConfirmButton: false,
+          timer: 1500
+        }
+      );
+      this.reloadCurrentRoute();
+    });
+
+
+  }
+
+
   EditarActaSeleccionada(){
     this.EditFecha(this.select.id);
     this.fecha = this.select.createdAt;
    }
 
    eliminarActaSeleccionada(){
-    this.deleteItemActa(this.select.id, this.select.document, this.select.client);
+    this.deleteItemActa(this.select[0].id, this.select[0].document, this.select[0].bought?.nombre);
+    console.log(this.select.id);
    }
-
+    
 
    onSelectionChanged($event:any) {
     this.select = this.gridApi.getSelectedRows();
+    console.log(this.select)
   }
    
    onFilterChanged(params: GridOptions): void {
@@ -418,10 +486,10 @@ export class HistorialComponent implements OnInit {
   //   this.gridApi.exportDataAsCsv({ fileName: 'Corte-' + arreglo[1] + '.csv' });
   // }
   //BORRAMOS UNA ACTA CON SU ID Y NOMBRE DE USUARIO
-  deleteItemActa(id: any, document: any, enterprise: any) {
+  deleteItemActa(id: any, document: any, bought: any) {
     Swal.fire({
       title: '¿Estás seguro?',
-      text: "Se eliminará '" + document + "', del negocio '" + enterprise + "'",
+      text: "Se eliminará '" + document + "', del negocio '" + bought + "'",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -436,7 +504,7 @@ export class HistorialComponent implements OnInit {
         var final = parteuno.slice(0, -1);
         let tokenfinal: string = final;
         const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
-        this.http.delete('https://actasalinstante.com:3030/api/actas/deleteActa/' + id, { headers }).subscribe(
+        this.http.delete('https://actasalinstante.com:3030/api/actas/reg/Trash/delete/' + id, { headers }).subscribe(
           (data: any) => {
             Swal.fire(
               {

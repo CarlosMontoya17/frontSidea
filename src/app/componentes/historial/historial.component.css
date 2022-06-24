@@ -5980,8 +5980,9 @@ button {
   margin: 1.5rem;
   padding: 0;
   background-color: #adb5bd;
-  color: #0056b3;
+  color: #000;
  
-color: #efb810 !important;
+color: #000 !important;
 
 }
+
