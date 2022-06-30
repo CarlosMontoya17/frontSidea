@@ -1,345 +1,231 @@
 <!-- SIDEBAR EN LA CLASE SIDERBARCOMPONENTE -->
-<div  *ngIf="myRol != ClienteVista()" >
 
-  <div class="navprincipal">
-    <app-sidebar></app-sidebar>
+
+
+
+<div class="navprincipal">
+  <app-sidebar></app-sidebar>
+</div>
+
+
+
+
+<div class="contenidoprincipal  animate__animated animate__fadeIn">
+  <app-sidebarpanelhistorial></app-sidebarpanelhistorial>
+  <nav aria-label="breadcrumb" style="background-color: rgb(231, 234, 237); padding-top: 0.2rem; border-radius: 5px;">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item" *ngIf="vista"><a style="cursor: pointer;" (click)="changeView()">Subir Documento</a>
+      </li>
+      <li class="breadcrumb-item" *ngIf="!vista"><a style="color: #efb810;">Subir Documento</a></li>
+      <li class="breadcrumb-item" *ngIf="!vista"><a style="cursor: pointer;" (click)="changeView()">Historial de
+          Registros</a></li>
+      <li class="breadcrumb-item" *ngIf="vista"><a style="color: #efb810;">Historial de Registros</a></li>
+    </ol>
+  </nav>
+
+
+  <div id="historial" class=" animate__animated animate__fadeIn align-items-center" *ngIf="preview==0 && !vista">
+    <div class="row text-center">
+      <h1>
+        <b>
+          <div class="animate__animated animate__fadeInDown">&bull; DOCUMENTOS &bull;</div>
+        </b>
+      </h1>
+
+    </div>
+    <div class="row" style="margin-top: 2rem;">
+      <div class="form-group areaFile">
+        <input #file type="file" name="pdfs" id="pdfs" required="required" accept="application/pdf"
+          (change)="getFile($event)" (change)="preview56(file.files)">
+        <div class="dummy">
+          <span class="success" style="font-weight: bold;">{{ fileTmp?.fileName }}</span>
+          <span (change)="getFile($event)" *ngIf="fileTmp==null || fileTmp.fileName == undefined" style="font-style: italic;">Arrastra tu Documento o da
+            click aqui para importarlo</span>
+        </div>
+      </div>
+    </div>
+    <div class="row align-items-center text-center" style="margin-top: 2rem;">
+      <div class="col file-area">        
+
+        <button  *ngIf="fileTmp == null || fileTmp.fileName == undefined" class="disabledMyStyle btn btn-success animate__animated animate__fadeIn myButtonStyle"
+         style="padding: 1rem; width: 10rem;" disabled>ENVIAR</button>
+
+          <button  *ngIf="fileTmp != null && fileTmp.fileName != undefined" [ngModel]="tipodebusqueda" (ngModelChange)="onChange($event)" class="btn btn-success animate__animated animate__fadeIn myButtonStyle"
+          (click)="sendFile()" style="padding: 1rem; width: 10rem;">ENVIAR</button>
+
+      </div>
+      <div class="col file-area">
+
+          <button type="button" class="btn btn-success myButtonStyle" (click)="Volver()" style="padding: 1rem; width: 10rem;">CARGA
+            MANUAL</button>
+
+
+      </div>
+    </div>
   </div>
-  <div class="contenidoprincipal  animate__animated animate__fadeIn">
-    <app-sidebarpanelhistorial></app-sidebarpanelhistorial>
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item" *ngIf="vista"><a style="cursor: pointer;" (click)="changeView()">Subir Documento</a>
-        </li>
-        <li class="breadcrumb-item" *ngIf="!vista"><a style="color: #efb810;">Subir Documento</a></li>
-        <li class="breadcrumb-item" *ngIf="!vista"><a style="cursor: pointer;" (click)="changeView()">Historial de
-            Registros</a></li>
-        <li class="breadcrumb-item" *ngIf="vista"><a style="color: #efb810;">Historial de Registros</a></li>
-      </ol>
-    </nav>
-  
-    <h1 *ngIf="!vista" class="firstH1">
-      <b>
-        <div class="Welcome" id="firstHeader">&bull;Docum</div>
-        <div class="to" id="firstHeader">en</div>
-        <div class="the" id="firstHeader">tos&bull;</div>
-      </b>
-    </h1>
-  
-    <div id="historial" class="file-area  animate__animated animate__fadeIn">
-      <!-- SOLTAR PDF -->
-      <div class="file-dummy" *ngIf="preview==0 && !vista">
-        <div class="btn btn-default">
-          <input #file type="file" accept="application/pdf" flow-btn style="position: absolute;"
-            (change)="getFile($event)" (change)="preview56(file.files)">
-          <!-- PREVIEW PDF -->
-  
- 
-  
-          <span (change)="getFile($event)" style="color: #186c9c;" *ngIf="fileTmp==null">Arrastra tu Documento o da click
-            aqui para importarlo </span>
-          <span style="color: #333333;">{{ fileTmp?.fileName }}</span>
-          <!-- OPTIENE EL NOMBRE DEL PDF -->
-  
-        </div>
+
+  <!-- STYLE DE DROP -->
+
+  <!-- STYLE DE DROP -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <style>
+    @-webkit-keyframes bounceright {
+      from {
+        -webkit-transform: translateX(0);
+      }
+
+      to {
+        -webkit-transform: translateX(3px);
+      }
+    }
+
+    @-webkit-keyframes wiggle {
+      from {
+        -webkit-transform: rotate(0deg);
+      }
+
+      to {
+        -webkit-transform: rotate(30deg);
+      }
+    }
+
+    @keyframes bounceright {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(3px);
+      }
+    }
+
+    @keyframes wiggle {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(30deg);
+      }
+    }
+
+    .file-area {
+      width: 100%;
+      position: relative;
+      font-size: 18px;
+      -webkit-animation: bounceright 0.3s alternate ease infinite;
+      animation: bounceright 0.3s alternate ease infinite;
+    }
+
+    .file-area input[type=file] {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 1;
+      cursor: pointer;
+
+
+    }
+
+    .file-area .file-dummy {
+      width: 100%;
+      padding: 50px 30px;
+      border: 2.8px dashed #7a7b7d;
+      background-color: #fff;
+      text-align: center;
+      transition: background 0.3s ease-in-out;
+
+    }
+
+    .file-area .file-dummy .success {
+      border-color: #77dd77;
+    }
+
+    .file-area:hover .file-dummy {
+      border: 3px dashed #77dd77;
+    }
+
+    .file-area input[type=file]:valid+.file-dummy {
+      border-color: #fdfd96;
+    }
+
+    .file-area input[type=file]:valid+.file-dummy .success {
+      border-color: #77dd77;
+    }
+
+    .file-area input[type=file]:valid+.file-dummy .default {
+      border-color: #77dd77;
+    }
+  </style>
+
+  <div *ngIf="preview!=0 && !vista" class="animate__animated animate__bounceIn" id="container">
+    
+    <div class="card">
+      <div class="card card-header" style="background-color: #272727; color: #fff;">
+        <h5>CIBERS</h5>
       </div>
-    </div>
-  
-    <div *ngIf="!vista && preview == 0">
-      <!-- BUTTON DE ENVIAR PDF-->
-      <button [ngModel]="tipodebusqueda" (ngModelChange)="onChange($event)" class="conteo2"
-        (click)="sendFile()">Enviar</button>
-      <button type="button" class="conteo2" (click)="Volver()">Manual</button>
-      <!-- FIN DEL BUTTON DE ENVIAR PDF-->
-    </div>
-    <div *ngIf="conteo " id="container">
-  
-      <div class="col">
-  
-        <h1>&bull;Cargar documentos de forma manual&bull;</h1>
-  
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-          <!-- Tipo de documento -->
-          <div class="col">
-            <div class="card h-100">
-              <div class="card-body">
-                <div class="form-outline">
-                  <h5 style="color: #efb810" class="card-title">Tipo de documento</h5>
-                  <input type="text" [(ngModel)]="tipo" name="tipo">
-                  <div class="dropdown">
-                    <button class="conteo5" type="button" id="conteo2" data-bs-toggle="dropdown" aria-expanded="false">
-                      {{tipo || "Selecciona un tipo de documento"}}
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                      <li><a class="dropdown-item" (click)="setTipoDeActa('Acta de Nacimiento')">Acta de Nacimiento</a>
-                      </li>
-                      <li><a class="dropdown-item" (click)="setTipoDeActa('Acta de Defunción')">Acta de Defunción</a></li>
-                      <li><a class="dropdown-item" (click)="setTipoDeActa('Acta de Matrimonio')">Acta de Matrimonio</a>
-                      </li>
-                      <li><a class="dropdown-item" (click)="setTipoDeActa('Acta de Divorcio')">Acta de Divorcio</a></li>
-                      <li><a class="dropdown-item"
-                          (click)="setTipoDeActa('Constancia de Vigencia de Derechos')">Constancia
-                          de Vigencia de Derechos</a></li>
-                      <li><a class="dropdown-item"
-                          (click)="setTipoDeActa('Constancia de Semanas Cotizadas en el IMSS')">Constancia de Semanas
-                          Cotizadas en el IMSS</a></li>
-                      <li><a class="dropdown-item" (click)="setTipoDeActa('Registro Federal de Contribuyentes')">Registro
-                          Federal de Contribuyentes</a></li>
-                      <li><a class="dropdown-item" (click)="setTipoDeActa('CONSTANCIA DE NO INHABILITACIÓN')">CONSTANCIA
-                          DE
-                          NO INHABILITACIÓN</a></li>
-                      <li><a class="dropdown-item"
-                          (click)="setTipoDeActa('Asignación de Número de Seguridad Social')">Asignación de Número de
-                          Seguridad Social</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Tipo de CURP -->
-          <div class="col">
-            <div class="card h-100">
-              <div class="card-body">
-                <div class="form-outline">
-                  <h5 style="color: #efb810" class="card-title">Curp</h5>
-                  <!-- <li class="list-group-item">{{ info?.curp }}</li> -->
-  
-                  <input type="text" [(ngModel)]="curp">
-                  <!-- <label class="form-label" for="form1">Search</label> -->
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Tipo de ESTADO -->
-          <div class="col">
-            <div class="card h-100">
-              <div class="card-body">
-                <div class="form-outline">
-                  <h5 style="color: #efb810" class="card-title">Estado</h5>
-                  <!-- <li class="list-group-item">{{ info?.estado }}</li> -->
-                  <input type="text" [(ngModel)]="estado">
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Tipo de NOMBBRE -->
-          <div class="col">
-            <div class="card h-100">
-  
-              <div class="card-body">
-                <div class="form-outline">
-                  <h5 style="color: #efb810" class="card-title">Nombre</h5>
-                  <!-- <li class="list-group-item">{{ info?.nombre }}</li> -->
-                  <input type="text" [(ngModel)]="nombredecliente">
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Tipo de APELIIDOS -->
-          <div class="col">
-            <div class="card h-100">
-              <div class="card-body">
-                <div class="form-outline">
-                  <h5 style="color: #efb810" class="card-title">Apellidos</h5>
-                  <!-- <li class="list-group-item">{{ info?.apellidos }}</li> -->
-                  <input type="text" [(ngModel)]="apellidosc">
-                </div>
-              </div>
-            </div>
-          </div>
-  
-          <div class="col">
-            <div class="card h-100">
-              <div class="card-body">
-                <div class="form-outline">
-                  <h5 style="color: #efb810" class="card-title">Asesor</h5>
-                  <li class="list-group-item">{{nombreasesor}}</li>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- PRECIO -->
-          <div class="col" *ngIf="myRol == 'Admin'">
-            <div class="card h-100">
-              <div class="card-body">
-                <div class="form-outline">
-                  <h5 style="color: #efb810" class="card-title">Precio</h5>
-                  <!-- <li class="list-group-item">{{precioyasesor?.precio}}</li> -->
-                  <input type="text">{{precioyasesor?.precio}}
-                </div>
-              </div>
-            </div>
-          </div>
-  
-  
-  
-          <div class="card-body">
-            <div class="form-outline">
-              <div class="input-group mb-3">
-                <!-- FORMA MANUAL FORMULARIO -->
-  
-                <input [(ngModel)]="valorabuscar" type="text" class="txtbuscar" placeholder="Busca tu Ciber" />
-              </div>
-              <table class="table" *ngIf="valorabuscar.length>0 && nombreasesor==''">
-                <tbody>
-                  <tr *ngFor="let cibers of getciber | buscarciber: valorabuscar ">
-                    <td (click)="clickciber(cibers.id, cibers.nombre)" style="cursor: pointer; " (click)="changeView4()">
-                      {{cibers?.nombre}} </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <!-- LISTBOX AESORES -->
+
+      <div class="card card-footer">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" [(ngModel)]="valorabuscarActa" name="valorabuscarActa" placeholder="Busca el ciber a asignar" aria-label="Recipient's username" aria-describedby="basic-addon2">
+          <span class="input-group-text" id="basic-addon2">BUSCAR</span>
         </div>
-        <!-- BOTON DE ENVIAR DEL FORMULAERIO DE ASESORES Y DATOS DEL DOCUMENTO -->
-        <button *ngIf="conteo3" class="conteo2" (click)="enviaracta()">Enviar</button>
-        <button *ngIf="conteo3" class="conteo3" (click)="backUp()">Regresar</button>
+
+
+        <ul class="list-group" *ngIf="valorabuscarActa.length > 0" style="max-height: 20rem; overflow-y: scroll;">
+          <li class="list-group-item active" aria-current="true">Resultados</li>
+          <li *ngFor="let user of allUsers | buscarciber: valorabuscarActa" class="list-group-item itemHoverMyStyle"
+          style="cursor: pointer;" (click)="clickciber(user.id, user.nombre)">{{ user.nombre }} - {{ user.rol }}</li>
+        </ul>
       </div>
+
+
+
+
     </div>
-    <!-- STYLE DE DROP -->
-    <!-- STYLE DE DROP -->
-    <style>
-      @-webkit-keyframes bounceright {
-        from {
-          -webkit-transform: translateX(0);
-        }
+    
+    <div class="card">
+      <div class="card card-header text-center" style="background-color: #272727; color: #fff;">
+        <h5>RESUMEN</h5>
+      </div>
   
-        to {
-          -webkit-transform: translateX(3px);
-        }
-      }
-  
-      @-webkit-keyframes wiggle {
-        from {
-          -webkit-transform: rotate(0deg);
-        }
-  
-        to {
-          -webkit-transform: rotate(30deg);
-        }
-      }
-  
-      @keyframes bounceright {
-        from {
-          transform: translateX(0);
-        }
-  
-        to {
-          transform: translateX(3px);
-        }
-      }
-  
-      @keyframes wiggle {
-        from {
-          transform: rotate(0deg);
-        }
-  
-        to {
-          transform: rotate(30deg);
-        }
-      }
-  
-      .file-area {
-        width: 100%;
-        position: relative;
-        font-size: 18px;
-        -webkit-animation: bounceright 0.3s alternate ease infinite;
-        animation: bounceright 0.3s alternate ease infinite;
-      }
-  
-      .file-area input[type=file] {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        opacity: 1;
-        cursor: pointer;
-  
-  
-      }
-  
-      .file-area .file-dummy {
-        width: 100%;
-        padding: 50px 30px;
-        border: 2.8px dashed #7a7b7d;
-        background-color: #fff;
-        text-align: center;
-        transition: background 0.3s ease-in-out;
-  
-      }
-  
-      .file-area .file-dummy .success {
-        border-color: #77dd77;
-      }
-  
-      .file-area:hover .file-dummy {
-        border: 3px dashed #77dd77;
-      }
-  
-      .file-area input[type=file]:valid+.file-dummy {
-        border-color: #fdfd96;
-      }
-  
-      .file-area input[type=file]:valid+.file-dummy .success {
-        border-color: #77dd77;
-      }
-  
-      .file-area input[type=file]:valid+.file-dummy .default {
-        border-color: #77dd77;
-      }
-    </style>
-    <!-- FIN DE SOLTAR PDF -->
-  
-    <!-- Parte de la tabla de historial -->
-    <div *ngIf="preview!=0 && !vista" class="animate__animated animate__bounceIn" id="container">
-  
-      <div class="col">
-        <div class="col">
-          <div class="card h-100">
-            <div class="card-body">
-              <div class="form-outline">
-  
-                <div class="input-group mb-3" *ngIf="nombreasesor==''">
-                  <!-- FORMA MANUAL FORMULARIO -->
-                  <button class="conteo3" (click)="Volver2()">Regresar</button>
-                  <!-- BSUCAR EN EL Historial -->
-                  <input [(ngModel)]="valorabuscar" type="text" class="txtbuscar" placeholder="Busca tu Ciber" />
-                </div>
-                <table class="table " *ngIf="valorabuscar.length>0 && nombreasesor==''">
-                  <tbody>
-                    <tr *ngFor="let cibers of getciber | buscarciber: valorabuscar ">
-                      <td (click)="clickciber(cibers.id, cibers.nombre)" style="cursor: pointer;" (click)="changeView3()">
-                        {{cibers?.nombre}} </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-        <h1>&bull;RESUMEN&bull;</h1>
-        <div class="row row-cols-1 row-cols-md-3 g-4 ">
-          <!-- Tipo de documento -->
+      <div class="card card-body">
+        <div class="row">
           <div class="col">
             <div class="card h-100">
               <div class="card-body">
                 <div class="form-outline">
-                  <h5 style="color: #efb810" class="card-title">Tipo de documento</h5>
+                  <h5 style="color: #efb810; font-size: medium;" class="card-title">Tipo de documento</h5>
                   <li class="list-group-item">{{ info?.tipo }}</li>
                 </div>
               </div>
             </div>
           </div>
-          <!-- Tipo de CURP -->
           <div class="col">
             <div class="card h-100">
               <div class="card-body">
                 <div class="form-outline">
-                  <h5 style="color: #efb810" class="card-title">Curp</h5>
+                  <h5 style="color: #efb810; font-size: medium;" class="card-title">Curp</h5>
                   <li class="list-group-item">{{ info?.curp }}</li>
                   <!-- <label class="form-label" for="form1">Search para buscar curp por nombre </label> -->
                 </div>
@@ -351,20 +237,23 @@
             <div class="card h-100">
               <div class="card-body">
                 <div class="form-outline">
-                  <h5 style="color: #efb810" class="card-title">Estado</h5>
+                  <h5 style="color: #efb810; font-size: medium;" class="card-title">Estado</h5>
                   <li class="list-group-item">{{ info?.estado }}</li>
   
                 </div>
               </div>
             </div>
           </div>
-          <!-- Tipo de NOMBBRE -->
+        </div>
+  
+  
+        <div class="row">
           <div class="col">
             <div class="card h-100">
   
               <div class="card-body">
                 <div class="form-outline">
-                  <h5 style="color: #efb810" class="card-title">Nombre</h5>
+                  <h5 style="color: #efb810; font-size: medium;" class="card-title">Nombre</h5>
                   <li class="list-group-item">{{ info?.nombre }}</li>
   
                 </div>
@@ -376,7 +265,7 @@
             <div class="card h-100">
               <div class="card-body">
                 <div class="form-outline">
-                  <h5 style="color: #efb810" class="card-title">Apellidos</h5>
+                  <h5 style="color: #efb810; font-size: medium;" class="card-title">Apellidos</h5>
                   <li class="list-group-item">{{ info?.apellidos }}</li>
                 </div>
               </div>
@@ -387,301 +276,197 @@
             <div class="card h-100">
               <div class="card-body">
                 <div class="form-outline">
-                  <h5 style="color: #efb810" class="card-title">Asesor</h5>
+                  <h5 style="color: #efb810; font-size: medium;" class="card-title">Asesor</h5>
                   <li class="list-group-item">{{nombreasesor}}</li>
                 </div>
               </div>
             </div>
           </div>
-          <!-- PONER NOMBRE DEL ARCHIVO PARA ENVIARLO A LA BASE DE DATOS -->
           <div class="col">
             <div class="card h-100">
               <div class="card-body">
                 <div class="form-outline">
-                  <h5 style="color: #efb810" class="card-title">Nombre de archivo</h5>
+                  <h5 style="color: #efb810; font-size: medium;" class="card-title">Nombre de archivo</h5>
                   <li class="list-group-item">{{fileTmp.fileName}}</li>
                 </div>
               </div>
             </div>
           </div>
-          <!-- PRECIO -->
-          <div class="col" *ngIf="myRol == 'Admin'">
-            <div class="card h-100">
-              <div class="card-body">
-                <div class="form-outline">
-                  <h5 style="color: #efb810" class="card-title">Precio</h5>
-                  <li class="list-group-item">{{precioyasesor?.precio}}</li>
-                </div>
-              </div>
-            </div>
+        </div>
+      </div>
+  
+      <div class="card-footer">
+        <div class="row text-center">
+          <div class="col">
+            <button class="btn btn-success myButtonStyle" style="padding: 1rem; width: 10rem;" *ngIf="nombreasesor.length > 0" (click)="enviaracta()">Enviar</button>
           </div>
-          <!-- LISTBOX AESORES -->
+          <div class="col">
+            <button class="btn btn-success myButtonStyle" style="padding: 1rem; width: 10rem;" (click)="Volver2()">Regresar</button>
+          </div>
         </div>
-        <!-- BOTON DE ENVIAR DEL FORMULAERIO DE ASESORES Y DATOS DEL DOCUMENTO -->
-        <button *ngIf="conteo2" class="conteo2" (click)="enviaracta()">Enviar</button>
-        <button *ngIf="conteo2" class="conteo3" (click)="backUp()">Regresar</button>
       </div>
     </div>
+  
 
-    <div *ngIf="vista">
-      <div>
+
+
+
+  </div>
+
+
+
+  <!-- USERS LIST -->
+
+
+  <div *ngIf="vista" class="animate__animated animate__fadeIn" style="margin-top: 1em;">
+
+
+
+
+    <div class="card" style="height: 10rem;">
+      <div class="card-header text-center" style="background-color: #272727; color: #fff;">
+        <h5> CONTROLES </h5>
       </div>
-  
-      <h1 class="firstH1">
-        <b>
-          <div class="Welcome" id="firstHeader">&bull;Reg</div>
-          <div class="to" id="firstHeader">is</div>
-          <div class="the" id="firstHeader">tros&bull;</div>
-  
-        </b>
-      </h1>
-  
-    </div>
-    <!-- <div  *ngIf="!tablavieja"  class="card-body text-center">
-      <button (click)="tablavieja2()" class="conteo2" >Tabla Vieja</button>
-    </div> -->
-      <!-- USERS LIST -->
-   
-    
-    <div *ngIf="vista" class="container  animate__animated animate__fadeIn" style="margin-top: 1em; margin-left: 13rem;">
-      <div class="card">
-        <div class="card-body text-center">
-          <!-- <h5 >&bull;HISTORIAL&bull;</h5> -->
-         <h5> Controles </h5>
-        </div>
-        <div class="container" style="margin-bottom: 0.5em;">
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2">
-            
-            <!-- <div class="col">
-              <div>
-                <span style="text-align: center; border-radius: 10rem;" class="btn btn-success" (click)="onBtnExport()"
-                  title="Descargar CSV">
-                 <fa-icon [icon]="faDownload" class="add-user" width="10"></fa-icon> 
-                </span>
-              </div>
-            </div> -->
-            <div class="col text-center">
-              <div>
-                <span>
-                  <!-- Selecciona la fecha de corte: -->
-                </span>
-              </div>
-              <div class="btn-group">
-                
-                <!-- <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  {{ fechaSeleccionada || "Actual" }}
-                </button> -->
-                <ul class="dropdown-menu">
-                  <!-- <li><a class="dropdown-item"></a></li> -->
+      <div class="card-body" style="background-color: #e7e7e7;">
+
+        <div class="row">
+          <div class="col col-sm-2" style="border-right: 1px solid black;">
+              <span style="vertical-align: middle;">Fecha de corte: </span>
+              <div class="dropdown align-middle" style="margin-top: 0.5em;">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                  {{ dateSelect || "Actual" }}
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
                   <li>
-                    <hr class="dropdown-divider">
+                    <a *ngFor="let date of dates" class="dropdown-item" style="cursor: pointer;"
+                      (click)="SelectDate(date.corte)">
+                      {{ date.corte || "Actual" }}
+                    </a>
                   </li>
-                  <!-- <li *ngFor="let fecha of fechas" style="cursor: pointer;" (click)="setDate(fecha.corte)">
-                    <a class="dropdown-item">{{ fecha.corte || "Actual"}}</a>
-                  </li> -->
                 </ul>
               </div>
-            </div>
           </div>
-          
-          <div class="container-fluid">
-            <div class="container">
-              <div class="row">
-                <div class="control-panel">
-                 
-                  <div>
-                    <span>Seleccionado:</span>
-                    <span *ngFor="let selecting of select">
-                      {{ selecting.id }}
-                      {{ "/" }}
-                      {{ selecting.document }}
-                      {{ "/" }}
-                      {{ selecting.dataset }}
-                      {{ "/" }}
-                      {{ selecting.createdAt| date:'MMMM d, y'  }}
-                      
-                    </span>
+          <div class="col">
+            <div class="row" *ngIf="select != undefined" style="border-bottom: 2px solid black;">
+              <span>
+              <label for="selection"
+              style="font-style: oblique; color: rgb(138, 138, 138);">Selección:&nbsp;</label>
+                  <label *ngFor="let selecting of select; let i = index" for="selection" style="font-weight: 700;">
+                      {{selecting.id}}<label *ngIf="select.length > 1 && i < select.length-1">,&nbsp;</label> 
+                  </label>
+                </span>
+            </div>
+            <div class="row" *ngIf="select != undefined" style="margin-top: 0.5rem;">
+              <div class="col text-center">
+                <button type="button" class="btn btn-primary" (click)="AlertReasign()">
+                  <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>&nbsp;Re-asignar
+                </button>
+              </div>
+              <div class="col text-center">
+                <button type="button" class="btn btn-primary">
+                  <fa-icon [icon]="faCalendarPlus"></fa-icon>&nbsp;Modificar Fecha
+                </button>
+
+                <div class="alert alert-primary" *ngIf="editDate && select != undefined" role="alert" style="z-index: 2;">
+                  <div class="input-group mb-3" style="margin-top: 1rem; ">
+                    <input type="date" class="form-control" placeholder="Recipient's username"
+                      aria-label="Recipient's username" aria-describedby="basic-addon2" [(ngModel)]="newDateToChange" name="newDateToChange">
+                    <button class="input-group-text btn btn-primary" type="button" id="basic-addon2" (click)="ChangeNewDate()" *ngIf="newDateToChange != undefined">
+                      <fa-icon [icon]="faCircleCheck"></fa-icon>
+                    </button>
+                    <button class="input-group-text btn btn-primary" type="button" id="basic-addon2" (click)="ClearNewDate()">
+                      <fa-icon [icon]="faEraser"></fa-icon>
+                    </button>
                   </div>
-                    <button  (click)="eliminarActaSeleccionada()" ><span > 🗑️ Borrar</span></button>
-                    
-                  
                 </div>
+
+              </div>
+
+              <div class="col text-center">
+                <button type="button" class="btn btn-primary" (click)="DeleteRegister()">
+                  <fa-icon [icon]="faTrashCan"></fa-icon>&nbsp;Eliminar
+                </button>
               </div>
             </div>
-
-            <div class="container">
-              <button  (click)="obtainAllUsers(select.id)"><span >  &nbsp;Re-Asignar ActA</span></button>
-              <div class="row">
-               <div class="card-body text-center"  >
-                
-                  
-                           
-                           
-                   
-
-
-                 
-                    <div *ngIf="switchTranspose"
-                    class="animate__animated animate__fadeIn"
-                    style="width: 100%; height: 100%;  z-index: 5000;  background-color: #2121217a; position: fixed; top: 0px;">
-                    <div class="card"
-                        style="width: 30%; margin: auto; margin-top: 15%; position: sticky !important; top: 10px !important;">
-                        <div class="card-header" style="background-color: #478edf;">
-                
-                            <div class="row">
-                                <div class="col">
-                                    <div style="color: white; margin-left: 10rem; text-align: center;">
-                                        Re-Asignar Acta
-                                    </div>
-                
-                
-                                </div>
-                
-                                <div class="col-2" style="text-align: right;">
-                                    <a (click)="obtainAllUsers(0)" class="btn btn-danger">
-                                        Cerrar
-                                    </a>
-                                    
-                                </div>
-                            </div>
-                
-                            
-                            
-                
-                            
-                
-                        </div>
-                        <div class="card-body">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" [(ngModel)]="valorabuscartranspose" name="valorabuscartranspose"
-                                    placeholder="Nuevo Ciber">
-                            </div>
-                
-                            <div *ngIf="valorabuscartranspose.length > 0 " style=" overflow: hidden; overflow-y: scroll; height: 30rem;">
-                                <li class="list-group-item active" aria-current="true">Resultados:</li>
-                                <li *ngFor="let user of allUsers | buscarciber: valorabuscartranspose" class="list-group-item"
-                                    style="cursor: pointer;" (click)="reAsignarActas(user.id)">{{ user.nombre }} - {{ user.rol }}</li>
-                            </div>
-                
-                        </div>
-                
-                    </div>
-                </div>
-                
-
-
-
-
-                  <div>
-                   
-                 
-                  </div>
-                   
-                    
-                  
-                </div>
-              </div>
+            <div class="row text-center" *ngIf="select == undefined">
+              <label style="font-size: 1.5rem;font-weight: 700;">SELECCIONA UN REGISTRO PARA PODER EDITARLO</label>
             </div>
-
-
-
-
-
           </div>
-          <div class="row">
-        
-            <!-- <div class="col-sm">
-              <div class="col" id="conteo2">
-               
-                <fa-icon [icon]="papelera" class="add-user center" style="font-size: 2rem;"
-                (click)="eliminarActaSeleccionada()"></fa-icon>
-               
-              </div>  
-            </div>
-            -->
-         
 
 
-          
-
-          </div>
-      
         </div>
+
+
       </div>
-      
-      <!-- <button class="bt-action" (click)="onRemoveSelected()">
-        Remove Selected
-      </button> -->
-      <!-- <button (click)="onRemoveSelected()">Remove Selected</button> -->
-
-      <div style="width: 105rem !important; margin-left: -12rem;">
-        <ag-grid-angular style="height: 600px; margin-right: 1rem;" class="ag-theme-alpine" #agGrid [pagination]="true"
-        [rowData]="rowData" rowSelection="multiple" [defaultColDef]="defaultColDef"
-
-        
-        [defaultColGroupDef]="defaultColGroupDef" [animateRows]="true" [columnHoverHighlight]="true"
-     
-        [rowSelection]="rowSelection"
-        (selectionChanged)="onSelectionChanged($event)"
-        [overlayLoadingTemplate]="overlayLoadingTemplate" [sortingOrder]="sortingOrder"
-        (gridReady)="onGridReady($event)" (filterChanged)="onFilterChanged($event)" [columnDefs]="columnDefs">
-      </ag-grid-angular>
-  </div>
-      </div>
-
-    <button class="conteo4" *ngIf="vista && myRol == 'Admin'" (click)="changeView5()">Papelera</button>
-  
-  
-    <!-- FIN DE LA TABLA DE CONTENIDO -->
-    <!-- TABLA PARA DESCARGAR EXCEL OCULTA, CUANDO SE PRESIONA EL BOTON DE DESCARGAR SE MUESTRA -->
-    <div *ngIf="excel" class="card mx-auto" style="width: 100%;">
-  
-      <table id="excel-table" class="table table-dark table-hover table-striped" style="visibility: hidden;">
-  
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Id</th>
-            <th scope="col">Tipo de documento</th>
-            <th scope="col">Curp</th>
-            <th scope="col">Estado</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Asesor</th>
-            <th scope="col">Ciber</th>
-            <th scope="col" *ngIf="myRol == 'Admin'">Precio del acta al negocio</th>
-            <th scope="col">Se solicito</th>
-            <th scope="col">Fecha</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style="cursor: pointer;" *ngFor="let cortes of getcortes ">
-            <td>{{cortes?.i}}</td>
-            <td>{{cortes?.id}}</td>
-            <td>{{cortes?.document}}</td>
-            <td>{{cortes?.curp}}</td>
-            <td>{{cortes?.states}}</td>
-            <td>{{cortes?.nombreacta}}</td>
-            <td>{{cortes?.provider}}</td>
-            <td>{{cortes?.enterprise}}</td>
-            <td *ngIf="myRol == 'Admin'">$ {{cortes?.price }} </td>
-            <td>{{cortes?.uploadBy}}</td>
-            <td>
-              {{ cortes?.createdAt | date:'MMMM d, y, h:mm:ss a' }}
-            </td>
-  
-  
-          </tr>
-        </tbody>
-  
-      </table>
-  
     </div>
 
+
+
+
+
+
+
+
+    <ag-grid-angular style="height: 30rem;" class="ag-theme-alpine" #agGrid [pagination]="true" [rowData]="rowData"
+      rowSelection="multiple" [defaultColDef]="defaultColDef" [defaultColGroupDef]="defaultColGroupDef"
+      [animateRows]="true" [columnHoverHighlight]="true" [rowSelection]="rowSelection"
+      (selectionChanged)="onSelectionChanged($event)" [overlayLoadingTemplate]="overlayLoadingTemplate"
+      [sortingOrder]="sortingOrder" (gridReady)="onGridReady($event)" (filterChanged)="onFilterChanged($event)"
+      [columnDefs]="columnDefs">
+    </ag-grid-angular>
+
   </div>
 
+  <button class="conteo4" *ngIf="vista && myRol == 'Admin'" (click)="changeView5()">Papelera</button>
+
+</div>
 
 
 
 
+<div *ngIf="showAlertReasign" class="animate__animated animate__fadeIn"
+    style="width: 100%; height: 100%;  z-index: 5000;  background-color: #2121217a; position: fixed; top: 0px;">
+    <div class="card"
+        style="width: 50%; margin: auto; margin-top: 15%; position: sticky !important; top: 10px !important;">
+        <div class="card-header" style="background-color: #478edf;">
+
+            <div class="row">
+                <div class="col">
+                    <div style="color: white; margin-left: 10rem; text-align: center;">
+                        Re-Asignar Acta
+                    </div>
+
+
+                </div>
+
+                <div class="col-2" style="text-align: right;">
+                    <a class="btn btn-danger" (click)="AlertReasign()">
+                        Cerrar
+                    </a>
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+        <div class="card-body">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" [(ngModel)]="valorabuscartranspose" name="valorabuscartranspose"
+                    placeholder="Nuevo Ciber">
+            </div>
+
+            <div *ngIf="valorabuscartranspose.length > 0 "
+                style=" overflow: hidden; overflow-y: scroll; max-height: 30rem;">
+                <li class="list-group-item active" aria-current="true">Resultados:</li>
+                <li *ngFor="let user of allUsers | buscarciber: valorabuscartranspose" class="list-group-item"
+                    style="cursor: pointer;" (click)="TransposeRegister(user.id)" >{{ user.nombre }} - {{ user.rol }}</li>
+            </div>
+
+        </div>
+
+    </div>
 </div>

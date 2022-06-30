@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { LocalstorageService } from 'src/app/servicios/localstorage/localstorage.service';
 import * as CryptoJS from 'crypto-js';
 import { Token } from '../login/token.model';
 const api = "https://actasalinstante.com:3030";
@@ -8,7 +9,7 @@ const api = "https://actasalinstante.com:3030";
   providedIn: 'root',
 })
 export class RestService {
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private localStorage:LocalstorageService) {
   }
 
 
@@ -136,9 +137,34 @@ export class RestService {
     return this.http.get(api+'/api/actas/Trash/', { headers })
   }
 
+
+
+
+
+  getAllClients(): Observable<any> {
+    return this.http.get(api+'/api/user/getFull/')
+  }
  
 
+  TransposeRegister(id:any, ciber:any){
+    let token = this.localStorage.TokenDesencrypt();
+    const headers = new HttpHeaders({ 'x-access-token': token! });
+    return this.http.put(api+"/api/actas/reg/transposeSelf/"+id, { newciber: ciber }, { headers });
+  }
 
   
+  ChangeDate(id:any, newdate:any){
+    let token = this.localStorage.TokenDesencrypt();
+    const headers = new HttpHeaders({ 'x-access-token': token! });
+    return this.http.put(api+"/api/actas/reg/ChangeDate/"+id, { date: newdate }, { headers });
+  }
+
+
+  DeleteRegister(id:any){
+    let token = this.localStorage.TokenDesencrypt();
+    const headers = new HttpHeaders({ 'x-access-token': token! });
+    return this.http.delete(api+"/api/actas/reg/Trash/delete/"+id, { headers });
+
+  }
 
 } 

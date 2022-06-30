@@ -17,14 +17,21 @@ import { faTrashArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { faTrashRestore } from '@fortawesome/free-solid-svg-icons';
 import { faRobot } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
-declare function loader(): any;
-declare function closeAlert(): any;
-declare function getArray(): any;
 import { AgGridAngular } from 'ag-grid-angular';
 import { AdminService } from 'src/app/servicios/admin.service';
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import { ActasService } from 'src/app/servicios/Actas/actas.service';
+
+//Icons Revised
+import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import { faEraser } from '@fortawesome/free-solid-svg-icons';
 import { faPeopleArrowsLeftRight } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarPlus } from '@fortawesome/free-solid-svg-icons';
+declare function loader(): any;
+declare function closeAlert(): any;
+declare function getArray(): any;
+declare function customAlerts(status:any, msg:any): any;
+declare function loaderMsg(msg:any):any;
 
 @Component({
   selector: 'app-historial',
@@ -34,6 +41,28 @@ import { faPeopleArrowsLeftRight } from '@fortawesome/free-solid-svg-icons';
 })
 
 export class HistorialComponent implements OnInit {
+  //AgGrid
+  select:any = [];
+  //Icons
+  faCircleCheck = faCircleCheck;
+  faEraser = faEraser;
+  faCalendarPlus = faCalendarPlus;
+  //Controls
+
+  //Change Date
+  editDate:boolean = false;
+  newDateToChange:any;
+  //Dates
+  dates:any;
+  dateSelect:any = null;
+
+  //Re-Asignar Acta
+  showAlertReasign:boolean = false;
+  CibersToReasign:any;
+  allUsers: any;
+  valorabuscarActa:string = "";
+
+
   //VARIABLES
   private gridApi!: GridApi;
  api = "https://actasalinstante.com:3030";
@@ -47,7 +76,7 @@ export class HistorialComponent implements OnInit {
   hidden: boolean = false;
   hidden2: boolean = true;
   excel: boolean = false;
-  select:any;
+ 
   docPath: string = "";
   faPeopleArrowsLeftRight = faPeopleArrowsLeftRight;
   id: any;
@@ -61,7 +90,7 @@ export class HistorialComponent implements OnInit {
   restored = faTrashRestore;
   papelera = faTrashArrowUp;
   faUser = faUser;
-  allUsers: any;
+
   //Imagen URL
   imgURL: any;
   //Variables generales
@@ -139,8 +168,8 @@ export class HistorialComponent implements OnInit {
   usuariosEnFecha: any;
   data: any;
   faDownload = faDownload;
-  switchTranspose: boolean = false;
-  public rowSelection = 'single';
+
+  public rowSelection = 'multiple';
   //CONSTRUCTOR
   constructor(private restService: RestService,private actasservice: ActasService, private router: Router, private database: DatabaseService, private http: HttpClient,private adminService: AdminService) {
     let AG_GRID_LOCALE_EN = getArray();
@@ -148,16 +177,16 @@ export class HistorialComponent implements OnInit {
     this.columnDefs = [
       
       // { field: "i", width: 80, headerName: "Id", filter: 'agSetColumnFilter' },
-      { field: "id", width: 80, headerName: "Id", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
-      { field: "document",width: 160, headerName: "Documento", filter: 'agSetColumnFilter'  ,cellStyle: {fontSize: '12px'}},
-      { field: "dataset", headerName: "CURP", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
-      { field: "state",width: 120, headerName: "Estado", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
-      { field: "nameinside", headerName: "Nombre", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
-      { field: "seller.nombre", headerName: "Vendedor", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
-      { field: "bought.nombre", headerName: "Comprador", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
-      { field: "uploadBy.nombre",width: 150, headerName: "Cragado Por", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
-      { field: "createdAt", headerName: "Fecha y hora", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
-      { field: "corte", headerName: "Fecha de corte", filter: 'agSetColumnFilter'  ,cellStyle: {fontSize: '12px'}},
+      { field: "id", editable: true, width: 80, headerName: "Id", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
+      { field: "document", editable: true,width: 160, headerName: "Documento", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'}},
+      { field: "dataset", editable: true,headerName: "CURP", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
+      { field: "state", editable: true,width: 120, headerName: "Estado", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
+      { field: "nameinside", editable: true,headerName: "Nombre", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
+      { field: "seller.nombre", editable: true,headerName: "Vendedor", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
+      { field: "bought.nombre", editable: true,headerName: "Comprador", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
+      { field: "uploadBy.nombre", editable: true,width: 150, headerName: "Cragado Por", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
+      { field: "createdAt", editable: true,headerName: "Fecha y hora", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
+      { field: "corte", editable: true,headerName: "Fecha de corte", filter: 'agSetColumnFilter'  ,cellStyle: {fontSize: '12px'}},
       
     //   { field: "corte", headerName: "Fecha de corte", type: 'valueColumn', filter: 'agSetColumnFilter' },
     ];
@@ -166,7 +195,10 @@ export class HistorialComponent implements OnInit {
       filter: 'agTextColumnFilter',
       floatingFilter: true,
       resizable: true,
-      editable: true,
+      editable: false,
+      cellRendererParams: {
+        checkbox: true,
+      },
       
     };
     document
@@ -179,7 +211,7 @@ export class HistorialComponent implements OnInit {
       cellRendererParams: {
         checkbox: true,
       },
-      nonEditableColumn: { editable: false },
+      nonEditableColumn: { editable: true },
     };
 
     
@@ -187,72 +219,13 @@ export class HistorialComponent implements OnInit {
 
    }
 
-   obtainAllUsers(id:any) {
-    //getuser
-    this.switchTranspose = !this.switchTranspose;
-
-
-    if (this.switchTranspose == true) {
-      this.newTranspose = id;
-
-
-      this.actasservice.getuser().subscribe((data: any) =>  {
-        this.allUsers = data;
-
-      });
-      
-    }
-
-    
 
 
 
-    else{
-      this.allUsers = [];
-    }
-
-  }
-
-
-  reAsignarActas(idProvider:any){
-    this.switchTranspose = false;
-    this.actasservice.reAsignarActa(this.newTranspose, idProvider, "acta").subscribe((data:any) => {
-      Swal.fire(
-        {
-          position: 'center',
-          icon: 'success',
-          title: 'Re-Asignado',
-          showConfirmButton: false,
-          timer: 1500
-        }
-      );
-
-      this.reloadCurrentRoute();
-    }, (error:any) => {
-      Swal.fire(
-        {
-          position: 'center',
-          icon: 'error',
-          title: 'Contacte al equipo de soporte',
-          showConfirmButton: false,
-          timer: 1500
-        }
-      );
-      this.reloadCurrentRoute();
-    });
-
-
-  }
 
 
   EditarActaSeleccionada(){
-    this.EditFecha(this.select.id);
     this.fecha = this.select.createdAt;
-   }
-
-   eliminarActaSeleccionada(){
-    this.deleteItemActa(this.select[0].id, this.select[0].document, this.select[0].bought?.nombre);
-    console.log(this.select.id);
    }
     
 
@@ -314,33 +287,16 @@ export class HistorialComponent implements OnInit {
     });
     return result;
   }
-  async getDates() {
-    this.fechas = await this.database.getAllDates().toPromise();
-  }
+
     //Mostramos todas las fechas
     setDate(fecha: any) {
       this.fechaSeleccionada = fecha;
-      this.getCorte();
     }
     onRemoveSelected() {
       var selectedRowData = this.gridApi.getSelectedRows();
       this.gridApi.applyTransaction({ remove: selectedRowData });
     }
-  //Otenemos el corte
-  async getCorte() {
 
-    if (localStorage.getItem('привіт') != null) {
-      if (localStorage.getItem('іди') != null) {
-        var usuario = CryptoJS.AES.decrypt(localStorage.getItem('іди') || '{}', "іди");
-        let id = usuario.toString(CryptoJS.enc.Utf8);
-
-        this.rowData = await this.restService.getcorte().toPromise();
-        //console.log(this.rowData)
-        this.onPinnedRowBottomCount();
-      }
-    }
-   
-  }
   //Exportamos el excel 
   onBtnExport() {
     var usuario = CryptoJS.AES.decrypt(localStorage.getItem('Імякористувача') || '{}', "Імякористувача");
@@ -355,19 +311,6 @@ export class HistorialComponent implements OnInit {
       showConfirmButton: false,
       timer: 1500
     })
-  }
-  //Optenemos el precio
-  totalUtility(params: ValueGetterParams) {
-    var preciovendido = params.getValue('price')
-    var precioxpagar = params.getValue('buy')
-    let utility;
-    if (preciovendido != null && precioxpagar != null) {
-      utility = preciovendido - precioxpagar;
-    }
-    else {
-      utility = [];
-    }
-    return utility;
   }
 
 //vista excel
@@ -486,106 +429,9 @@ export class HistorialComponent implements OnInit {
   //   this.gridApi.exportDataAsCsv({ fileName: 'Corte-' + arreglo[1] + '.csv' });
   // }
   //BORRAMOS UNA ACTA CON SU ID Y NOMBRE DE USUARIO
-  deleteItemActa(id: any, document: any, bought: any) {
-    Swal.fire({
-      title: '¿Estás seguro?',
-      text: "Se eliminará '" + document + "', del negocio '" + bought + "'",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, eliminar',
-      cancelButtonText: 'No, cancelar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
-        var token: any = i.toString(CryptoJS.enc.Utf8);
-        var parteuno = token.slice(1);
-        var final = parteuno.slice(0, -1);
-        let tokenfinal: string = final;
-        const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
-        this.http.delete('https://actasalinstante.com:3030/api/actas/reg/Trash/delete/' + id, { headers }).subscribe(
-          (data: any) => {
-            Swal.fire(
-              {
-                position: 'center',
-                icon: 'success',
-                title: 'Acta eliminada',
-                showConfirmButton: false,
-                timer: 1500
-              }
-            );
-            this.reloadCurrentRouteLastDelete();
-          },
-          (err: any) => {
-            Swal.fire(
-              {
-                position: 'center',
-                icon: 'error',
-                title: 'Contacta al equipo de soporte',
-                showConfirmButton: false,
-                timer: 1500
-              }
-            );
-          }
-        );
-
-      }
-    })
-  }
 
   //EDITAMOS LA FECHA DE LOS REGISTROS DE LA TABLA
-  EditFecha(id: any) {
-    Swal.fire({
-      title: '¿Estás seguro?',
-      text: "Se cambiara a la fecha de: '" + this.fecha,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, cambiar',
-      cancelButtonText: 'No, cancelar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
-        var token: any = i.toString(CryptoJS.enc.Utf8);
-        var parteuno = token.slice(1);
-        var final = parteuno.slice(0, -1);
-        let tokenfinal: string = final;
-        const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
 
-        this.http.put('https://actasalinstante.com:3030/api/actas/changeDate/' + id, { date: this.fecha }, { headers }).subscribe(
-          (data: any) => {
-            Swal.fire(
-              {
-                position: 'center',
-                icon: 'success',
-                title: 'Se cambio la fecha: ' + this.fecha,
-                showConfirmButton: false,
-                timer: 1500
-              }
-            );
-            this.reloadCurrentRoute();
-
-          },
-
-          (err: any) => {
-
-            Swal.fire(
-              {
-                position: 'center',
-                icon: 'error',
-                title: 'Contacta al equipo de soporte',
-                showConfirmButton: false,
-                timer: 1500
-              }
-            );
-          }
-        );
-
-      }
-    })
-  }
   //RESTAURAMOS LAS ACTAS ELIMINADADAS DE LA PAPELERA
   restaurarPapelera(id: any, document: any) {
 
@@ -886,25 +732,7 @@ export class HistorialComponent implements OnInit {
     }
 
   }
-  //OPTENEMOS TODO EL CORTE DE LAS ACTAS Y ASESORES
-  async getcorte() {
 
-    if (localStorage.getItem('привіт') != null) {
-      if (localStorage.getItem('іди') != null) {
-        var usuario = CryptoJS.AES.decrypt(localStorage.getItem('іди') || '{}', "іди");
-        let id = usuario.toString(CryptoJS.enc.Utf8);
-
-        const data: any = await this.restService.getcorte().toPromise();
-
-        this.getcortes = data;
-    // console.log(this.getcortes);
-        if (data.lenght != 0) {
-          closeAlert();
-        }
-
-      }
-    }
-  }
   //CAMBIAMOS LA VISTA HACIA OTRA TABLA
   onChange(event: any) {
     this.tipodebusqueda = event;
@@ -921,28 +749,7 @@ export class HistorialComponent implements OnInit {
     this.myRol = data.data.rol;
   }
 
-  //PROTEGEMOS LAS VISTAS PARA NO SER HACKEADAS
-  async ngOnInit() {
-    const token = localStorage.getItem('привіт');
-    var idlocal = localStorage.getItem("іди");
-    var i = CryptoJS.AES.decrypt(idlocal || '{}', "іди");
-    var id: any = i.toString(CryptoJS.enc.Utf8);
-    this.result.push(id);
-    const data: any = await this.database.getmydata(id).toPromise();
-    this.myRol = data.data.rol;
 
-    if (!token) {
-      this.router.navigateByUrl('/login');
-    }
-    if(this.myRol != 'Cliente'  && this.myRol != 'Sucursal'  && this.myRol!='Empleado'){
-      this.getAllCibers();
-      this.getDates();
-      this.setDate(null);
-    }
-    else{
-      this.router.navigateByUrl('/inicio');
-    }
-  }
   //OBTENEMOS TODOS LOS CIBER PARA EL BUSCADOR
   async getAllCibers() {
     let arreglo: any = await this.restService.getuser().toPromise();
@@ -952,22 +759,13 @@ export class HistorialComponent implements OnInit {
   /*   CAMBIO DE VISTA DE LA TABLA CORTE  */
   changeView() {
     if (this.vista === false) {
-      loader();
+      this.giveMeDates();
+      this.getHistorial();
+      this.select = undefined;
     }
     this.vista = !this.vista;
-    this.getcorte();
+
   }
-
-  tablavieja2() {
-    if (this.tablavieja === false) {
-      loader();
-    }
-    this.tablavieja = !this.tablavieja;
-    this.getcorte();
-  }
-
-
-
 
 
 
@@ -982,7 +780,7 @@ export class HistorialComponent implements OnInit {
   //CAMBIAMOS LA VISTA DE LA TABLA DE DCOUMENTOS
   changeView2() {
     this.conteo = !this.conteo;
-    this.getcorte();
+    // this.getcorte();
 
   }
   //CAMBIAMOS LA VISTA D ELA TABLA SUBIR ARCHIVOS MANUAL
@@ -1084,6 +882,7 @@ export class HistorialComponent implements OnInit {
       fileRaw: file,
       fileName: file?.name
     }
+    console.log(this.fileTmp);
   }
   //ENVIAMOS TODOS LOS DATOS SLICITADOS DEL DOCUMENTO PDF
   sendFile(): void {
@@ -1091,16 +890,7 @@ export class HistorialComponent implements OnInit {
       loader();
       let ext = this.fileTmp.fileName.split(".");
       if (ext[1] != "pdf") {
-        Swal.fire(
-          {
-            position: 'center',
-            icon: 'error',
-            title: 'Solo PDF',
-            showConfirmButton: false,
-            timer: 1500
-
-          }
-        )
+        customAlerts("error", "Sólo PDF");
       }
       else {
         const body = new FormData();
@@ -1109,30 +899,209 @@ export class HistorialComponent implements OnInit {
           .subscribe(res => {
             this.info = res;
             this.preview = 1;
+            this.ObtainAllCibers();
             closeAlert();
           }), (error: any) => {
-            Swal.fire({
-              position: 'center',
-              icon: 'error',
-              title: 'Error interno',
-              showConfirmButton: false,
-              timer: 1500
-            });
+            customAlerts("error", "Error interno");
           }
       }
     }
     catch (error: any) {
-
-      Swal.fire(
-        {
-          position: 'center',
-          icon: 'error',
-          title: 'Subir un archivo',
-          showConfirmButton: false,
-          timer: 1500
-        }
-      );
+      customAlerts("error", "Subir un archivo");
     }
   }
+
+
+
+
+  EditDateBoolean(){
+    this.editDate = !this.editDate;
+  }
+
+  giveMeDates(){
+    this.database.getAllDates().subscribe((data:any) => {
+        this.dates = data;
+    }, (err:any) => {
+      customAlerts("info", "Sin fechas de corte");
+    });
+  }
+
+  SelectDate(date:any){
+    this.dateSelect = date;
+    this.getHistorial();
+    this.select = undefined;
+  }
+
+  //Otenemos el Historial
+  async getHistorial() {
+    loader();
+      await this.database.HistorialDeRegistros(this.dateSelect).subscribe((data:any) => {
+        this.rowData = data;
+        this.onPinnedRowBottomCount();
+        closeAlert();
+      });
+  }
+
+
+
+  //Controls Functions
+
+  //Change Date
+  ChangeNewDate(){
+
+    let legend = "";
+    if(this.select.length > 1){
+      legend = ` ¿Estás seguro  de modificar la fecha a ${this.select.length.toString()} registros a ${this.newDateToChange}?`;
+    }
+    else{
+      legend = `¿Estás seguro modificar la fecha para ${this.select[0].id} a ${this.newDateToChange}?`;
+    }
+
+    Swal.fire({
+      title: legend,
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: "Sí, proceder",
+      denyButtonText: "No, cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+  
+        for (let i = 0; i < this.select.length; i++) {
+          loader();
+          this.restService.ChangeDate(this.select[i].id, this.newDateToChange).subscribe((data:any) => {
+            closeAlert();
+          }, (err:any) => {
+            customAlerts("error", "Error en el servidor");
+          });
+        }
+        customAlerts("success", "¡Actualizado!");
+        this.clearVariablesFromRegisters();
+        this.getHistorial();
+        
+      }
+    });
+  }
+
+  ClearNewDate(){
+    this.newDateToChange = undefined;
+  }
+
+
+  clearVariablesFromRegisters(){
+    this.rowData = [];
+    this.newDateToChange = undefined;
+    this.select = undefined;
+    this.editDate = false;
+    this.valorabuscartranspose = "";
+  }
+
+
+  // Re-asignar 
+  AlertReasign(){
+    this.showAlertReasign = !this.showAlertReasign;
+  }
+  
+  ObtainAllCibers(){
+    this.restService.getAllClients().subscribe((data:any) => {
+      this.allUsers = data;
+    });
+  }
+  
+
+
+  TransposeRegister(id:any){
+    this.showAlertReasign = false;
+    let legend = "";
+    if(this.select.length > 1){
+      legend = ` ¿Estás seguro de traspasar ${this.select.length.toString()} registros?`;
+    }
+    else{
+      legend = `¿Estás seguro de traspasar el registro ${this.select[0].id}?`;
+    }
+
+    Swal.fire({
+      title: legend,
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: "Sí, proceder",
+      denyButtonText: "No, cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {     
+        for (let i = 0; i < this.select.length; i++) {
+          loaderMsg(`Traspasando registro ${this.select[0].id}`);
+          this.restService.TransposeRegister(this.select[i].id, id).subscribe((data:any) => {
+            closeAlert();
+          }, (err:any) => {
+            customAlerts("error", "Error en el servidor");
+          });
+        }
+        customAlerts("success", "¡Actualizado!");
+        this.clearVariablesFromRegisters();
+        this.getHistorial();
+      }
+    });
+
+
+  }
+
+
+  DeleteRegister(){
+    let legend = "";
+    if(this.select.length > 1){
+      legend = ` ¿Estás seguro de eliminar ${this.select.length.toString()} registros?`;
+    }
+    else{
+      legend = `¿Estás seguro de eliminar el registro ${this.select[0].id}?`;
+    }
+    Swal.fire({
+      title: legend,
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: "Sí, proceder",
+      denyButtonText: "No, cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {     
+        for (let i = 0; i < this.select.length; i++) {
+          loaderMsg(`Elimando registro ${this.select[0].id}`);
+          this.restService.DeleteRegister(this.select[i].id).subscribe((data:any) => {
+            closeAlert();
+          }, (err:any) => {
+            customAlerts("error", "Error en el servidor");
+          });
+        }
+        customAlerts("success", "¡Actualizado!");
+        this.clearVariablesFromRegisters();
+        this.getHistorial();
+      }
+    });
+  }
+
+
+
+
+    //PROTEGEMOS LAS VISTAS PARA NO SER HACKEADAS
+  async ngOnInit() {
+
+  
+      const token = localStorage.getItem('привіт');
+
+      var idlocal = localStorage.getItem("іди");
+      var i = CryptoJS.AES.decrypt(idlocal || '{}', "іди");
+      var id: any = i.toString(CryptoJS.enc.Utf8);
+
+      this.result.push(id);
+      const data: any = await this.database.getmydata(id).toPromise();
+      this.myRol = data.data.rol;
+  
+      if (!token && this.myRol == 'Cliente'  && this.myRol == 'Sucursal'  && this.myRol=='Empleado') {
+        this.router.navigateByUrl('/login');
+      }
+        this.setDate(null);
+        this.ObtainAllCibers();
+    }
+
+
+
+
 
 }

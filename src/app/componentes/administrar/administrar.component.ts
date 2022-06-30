@@ -275,7 +275,7 @@ export class AdministrarComponent implements OnInit {
       this.QUINTANAROO = 70;
       this.EXTRANJERO = 120;
     }
-    else if (this.usernameLocal == "Publico Eli") {
+    else if (this.usernameLocal == "Publico Elia") {
       this.nac = 0;
       this.mat = 150;
       this.def = 160;
@@ -290,7 +290,7 @@ export class AdministrarComponent implements OnInit {
       this.ecu = 200;
       this.reset = 650;
       this.arfc = 1700;
-      this.dnac = 1700;
+      this.dnac = 1800;
       //Estados
       this.BAJACALIFORNIA = 140;
       this.YUCATAN = 135;

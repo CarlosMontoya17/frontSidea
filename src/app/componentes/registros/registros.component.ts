@@ -11,7 +11,7 @@ import { AdminService } from 'src/app/servicios/admin.service';
 import Swal from 'sweetalert2';
 declare function getArray(): any;
 declare function loader(): any;
-
+declare function closeAlert(): any;
 @Component({
   selector: 'app-registros',
   templateUrl: './registros.component.html',
@@ -223,13 +223,21 @@ export class RegistrosComponent implements OnInit {
   //Optenemos todas las fechass
   async getDates() {
     this.fechas = await this.database.getAllDates().toPromise();
+    if (this.fechas.lenght != 0) {
+      closeAlert();
+    }
   }
   //Mostramos todas las fechas
   setDate(fecha: any) {
     this.fechaSeleccionada = fecha;
     if (this.vista === false) {
       loader();
+
+      
+
     }
+   
+
     this.getCorte();
   }
 
@@ -242,6 +250,8 @@ export class RegistrosComponent implements OnInit {
     await this.adminService.getHistorialAt(this.fechaSeleccionada).subscribe(data => {
     }, (err: any) => {
     });
+
+    closeAlert();
   }
   
 }

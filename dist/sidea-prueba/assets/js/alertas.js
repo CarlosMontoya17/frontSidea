@@ -18,11 +18,49 @@ function loader() {
 
 }
 
+function loaderMsg(msg) {
+    let timerInterval
+    Swal.fire({
+        title: 'Cargando',
+        text: msg,
+        timeProgressBar: true,
+        didOpen: () => {
+            Swal.showLoading()
+        },
+        willClose: () => {
+            clearInterval(timerInterval)
+        }
+    }).then((result) => {
+
+    })
+
+}
+
 
 function closeAlert() {
     Swal.close();
 
 }
+
+
+function QuestionAlert(msg, confirmMsg, denyMsg){
+    Swal.fire({
+        title: msg,
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: confirmMsg,
+        denyButtonText: denyMsg,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          return true
+        } else if (result.isDenied) {
+          return false;
+        }
+      });
+}
+
+
+
 
 function showDetailsActas(comments) {
     Swal.fire({
@@ -108,39 +146,7 @@ function edit() {
         ctx.drawImage(img, 0, 0);
         ctx.fillStyle = "transparent";
         ctx.fillStyle = 'rgba(30, 144, 255, 0)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-       
-        //ctx.drawImage(img2,20,380, 331, 100); 
-        
-        //ctx-drawingin imahedfbgfh
-        //ctx.fillStyle = 'rgba(30,144,255,100)'
-        //ctx-fillStyle = "Transpartent";
-    
-        /*
-        function. DrawText(){
-           filter.fillStyle(){
-               ctx.fillRect(){
-
-               }
-           } 
-        }
-        function DrawText(){
-            ctx.fillStyle = "white";
-            ctx.textBaseline = 'middle';
-            if(text_tittle != "Scrivi qualcosa"){
-                ctx.strokeText('',50,50);
-
-            }else
-            {
-                ctx.strokeText(Title_title,50,50);
-                ctx.fillStyle = "white";
-                ctx.textBaseline = "middle";
-
-            }
-
-        }
-     
-        */   
+        ctx.fillRect(0, 0, canvas.width, canvas.height); 
  }
 
 
