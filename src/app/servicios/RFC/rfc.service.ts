@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { LocalstorageService } from 'src/app/servicios/localstorage/localstorage.service';
 import * as CryptoJS from 'crypto-js';
 import { Token } from '../../componentes/login/token.model';
 const api = "https://actasalinstante.com:3030";
@@ -9,7 +10,7 @@ const api = "https://actasalinstante.com:3030";
 })
 export class RfcService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private localStorage:LocalstorageService) { }
 
 
   obtainAllRFCs(){
@@ -54,6 +55,16 @@ export class RfcService {
       return this.http.get(api+'/api/user/getFull/')
     }
 
+    getDates(){
+      var token = this.localStorage.TokenDesencrypt();
+      const headers = new HttpHeaders({ 'x-access-token': token! });
+      return this.http.get(api+'/api/rfc/requests/myDates/', { headers });
+    }
 
-
+    getMyRequets(date:any){
+      var token = this.localStorage.TokenDesencrypt();
+      const headers = new HttpHeaders({ 'x-access-token': token! });
+      return this.http.get(api+'/api/rfc/requests/myRequests/' + date, { headers });
+    }
+  
 }

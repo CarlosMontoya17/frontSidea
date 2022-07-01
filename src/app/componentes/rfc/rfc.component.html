@@ -56,7 +56,7 @@
                 <div class="col" style=" border-left: 2px solid rgb(58, 58, 58);">
                     <h5 class="card-title">ARCHIVOS</h5>
                     <p class="card-text">DETALLES DE SOLICITUDES</p>
-                    <button (click)="view()" class="btn" type="submit"
+                    <button (click)="view()" class="btn BtnRectangule" type="submit"
                         style="background-color: white; color: black !important;">
                         <fa-icon [icon]="faBook"></fa-icon>
                         &nbsp;
@@ -106,12 +106,12 @@
             <br>
             <div class="row">
                 <div class="col">
-                    <button id="conteo2" (click)="switchSelectable()" type="submit">Enviar peticion
+                    <button class="BtnRectangule" id="conteo2" (click)="switchSelectable()" type="submit">Enviar peticion
                         <fa-icon [icon]="Buscar" class="add-user"></fa-icon>
                     </button>
                 </div>
                 <div class="col">
-                    <button (click)="clearCURP()" type="reset" class="btn btn-light-secondary me-1 mb-1">Limpiar
+                    <button (click)="clearCURP()" type="reset" class="btn btn-light-secondary me-1 mb-1 BtnRectangule">Limpiar
                         <fa-icon [icon]="borrar" class="add-user"></fa-icon>
                     </button>
                 </div>
@@ -144,12 +144,12 @@
             <br>
             <div class="row">
                 <div class="col">
-                    <button id="conteo2" (click)="switchSelectable()" type="submit">Enviar peticion
+                    <button class="BtnRectangule" id="conteo2" (click)="switchSelectable()" type="submit">Enviar peticion
                         <fa-icon [icon]="Buscar" class="add-user"></fa-icon>
                     </button>
                 </div>
                 <div class="col">
-                    <button (click)="clearCURP()" type="reset" class="btn btn-light-secondary me-1 mb-1">Limpiar
+                    <button (click)="clearCURP()" type="reset" class="btn btn-light-secondary me-1 mb-1 BtnRectangule">Limpiar
                         <fa-icon [icon]="borrar" class="add-user"></fa-icon>
                     </button>
                 </div>
@@ -191,13 +191,17 @@
                     <div class="col text-center">
                         <div class="dropdown">
                             <h6 class="text-center"> SELECCIONAR CORTE </h6>
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Seleccionar Corte
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ dateSelect || "Actual" }}
                             </a>
-
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a class="dropdown-item">Actual</a></li>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                                <li>
+                                    <a (click)="selectDate(date.corte)" *ngFor="let date of dates"
+                                        class="dropdown-item" style="cursor: pointer;">
+                                        {{ date.corte || "Actual" }}
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -205,7 +209,104 @@
             </div>
         </div>
     </div>
+
+
     <div class="row" style="margin-top: 1rem;">
+        <div *ngFor="let req of requests | pipeacta: valorabuscar"
+            style="max-width: 20rem;max-height: 31rem; margin-bottom: 1rem;">
+            <span class="position-absolute top-45 start-90 translate-middle badge rounded-pill bg-primary"
+                style="z-index: 2;">
+                {{ req.nm }}
+            </span>
+
+            <div *ngIf="req.downloaded != true && req.url != null && req.comments == 'Descargado'"
+                style="position: absolute; z-index: 2; margin-left: 12%; ">
+                <div style="width: 3rem; height: 3rem; position: relative; text-align: center;">
+                    <label
+                        style=" font-family: inherit; color: white; z-index: 1; display: flex; align-self: center; position: absolute; margin-top: 35%; margin-left: 20%;">Nuevo</label>
+                    <fa-icon class="fa-4x" [icon]="faCertificate"
+                        style="color: #0E6FFD !important; display: flex; align-self: center;"></fa-icon>
+                </div>
+            </div>
+
+
+
+            <div class="Card" style="margin-bottom: 1rem;">
+                <div class="Card-head">
+                    <div class="Card-cover"
+                        style="background-image: url(../../../assets/documents/rfc.png);"></div>
+                </div>
+                <div class="Card-main">
+                    <h1 class="Card-titleContent" >REGISTRO FEDERAL <br> DE CONTRIBUYENTES
+                    </h1>
+
+                    <h2 class="Card-subTitleContent">{{ req.type }} - {{ req.createdAt | date:'dd/MM/yyyy' }} {{
+                        req.createdAt | date: 'h:mm a' }} </h2>
+                    <div class="Card-genre"> DATOS </div>
+                    <p class="Card-desc">{{ req.metadata }}</p>
+
+                    <label class="Card-filename" style="margin-top: 1rem;">{{ req.url || "Sin archivo" }}</label>
+                    <div class="row" style="margin-top: 0.5em;">
+                        <a class="btn btn-success" (click)="downloadActa(req.id, req.url)"
+                        *ngIf="req.url != null && req.comments == 'Descargado' && req.downloaded != true">
+                        <fa-icon [icon]="faFileArrowDown"></fa-icon>
+                        &nbsp;Descargar
+                    </a>
+
+                    <a class="btn btn-secondary" (click)="downloadActa(req.id, req.url)"
+                        *ngIf="req.url != null && req.comments == 'Descargado' && req.downloaded == true">
+                        <fa-icon [icon]="faCheckToSlot"></fa-icon>
+                        &nbsp;Descargado
+                    </a>
+
+                    <a class="btn btn-danger" (click)="showDetails(req.comments)"
+                        *ngIf="req.comments != 'Descargado' && req.comments != null">
+                        <fa-icon [icon]="faCircleXmark"></fa-icon>
+                        &nbsp;Detalles
+                    </a>
+                    <a class="btn btn-warning"
+                        *ngIf="req.comments == null && req.url == null || req.comments == 'Descargado' && req.url == null ">
+                        <fa-icon [icon]="faRotate"></fa-icon>
+                        &nbsp;En proceso
+                    </a>
+
+
+
+                    </div>
+
+
+                    <div
+                    *ngIf="myRol == 'Supervisor'  && req.url != null && req.comments == 'Descargado' || id == '1500'  && req.url != null && req.comments == 'Descargado' || id == '1585'  && req.url != null && req.comments == 'Enviado'  || myRol == 'Admin' && req.url != null && req.comments == 'Descargado'">
+                    <div *ngIf="req.idtranspose == null" (click)="obtainAllUsers(req.id)" class="row" style="margin-top: 0.5em;">
+                        <a class="btn btn-primary">
+                            <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>
+                            &nbsp;Re-Asignar Acta
+                        </a>
+                        </div>
+
+
+                        <div *ngIf="req.idtranspose != null" (click)="obtainAllUsers(req.id)" class="row"
+                            style="margin-top: 1em;">
+                            <a class="btn btn-secondary">
+                                <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>
+                                &nbsp;Acta Asignada
+                            </a>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <div class="row" style="margin-top: 1rem;">
         <div class="card animate__animated animate__fadeIn"
             style="width: 18rem; margin-right: 1rem; margin-bottom: 1rem;"
             *ngFor="let req of requests | pipeacta: valorabuscar">
@@ -294,7 +395,7 @@
 
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 
 

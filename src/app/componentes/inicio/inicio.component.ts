@@ -31,6 +31,11 @@ declare function loader(): any;
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent implements OnInit {
+
+  //Solicitudes
+  dates:any = [];
+  dateSelect:any = null;
+
   faCheckToSlot = faCheckToSlot;
   faPeopleArrowsLeftRight = faPeopleArrowsLeftRight;
   faCertificate = faCertificate;
@@ -152,7 +157,6 @@ export class InicioComponent implements OnInit {
 
   
   ngOnDestroy() {
-    console.log('ngOnDestroy: cleaning up...');
     clearInterval(this.interval);
   }
 
@@ -333,7 +337,7 @@ export class InicioComponent implements OnInit {
     }
 
     this.requests = [];
-    const data: any = await this.actasservice.obtainActasRequest().toPromise();
+    const data: any = await this.actasservice.getMyRequets(this.dateSelect).toPromise();
     for (let i = 0; i < data.length; i++) {
       let metadata = "";
       switch (data[i].type) {
@@ -413,6 +417,7 @@ export class InicioComponent implements OnInit {
   view() {
     this.requestsView = !this.requestsView;
     this.obtainARequests();
+    this.obtainDates();
   }
 
   async downloadActa(id: any, url: any) {
@@ -1298,6 +1303,23 @@ export class InicioComponent implements OnInit {
     this.usuario = arreglo[1];
 
   }
+
+
+
+  obtainDates(){
+    this.actasservice.getDates().subscribe((data:any) => {
+      this.dates = data;
+    });
+  }
+
+
+  selectDate(date:any){
+    this.dateSelect = date;
+    this.obtainARequests();
+  }
+
+
+  
 
 
 

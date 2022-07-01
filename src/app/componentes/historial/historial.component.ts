@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
@@ -30,8 +30,8 @@ import { faCalendarPlus } from '@fortawesome/free-solid-svg-icons';
 declare function loader(): any;
 declare function closeAlert(): any;
 declare function getArray(): any;
-declare function customAlerts(status:any, msg:any): any;
-declare function loaderMsg(msg:any):any;
+declare function customAlerts(status: any, msg: any): any;
+declare function loaderMsg(msg: any): any;
 
 @Component({
   selector: 'app-historial',
@@ -42,7 +42,7 @@ declare function loaderMsg(msg:any):any;
 
 export class HistorialComponent implements OnInit {
   //AgGrid
-  select:any = [];
+  select: any = [];
   //Icons
   faCircleCheck = faCircleCheck;
   faEraser = faEraser;
@@ -50,23 +50,25 @@ export class HistorialComponent implements OnInit {
   //Controls
 
   //Change Date
-  editDate:boolean = false;
-  newDateToChange:any;
+  editDate: boolean = false;
+  newDateToChange: any;
   //Dates
-  dates:any;
-  dateSelect:any = null;
+  dates: any;
+  dateSelect: any = null;
 
   //Re-Asignar Acta
-  showAlertReasign:boolean = false;
-  CibersToReasign:any;
+  showAlertReasign: boolean = false;
+  CibersToReasign: any;
   allUsers: any;
-  valorabuscarActa:string = "";
+  valorabuscarActa: string = "";
 
+  //Legend
+  SelectedRowLegend: string = "";
 
   //VARIABLES
   private gridApi!: GridApi;
- api = "https://actasalinstante.com:3030";
- sortingOrder: any;
+  api = "https://actasalinstante.com:3030";
+  sortingOrder: any;
   //cambios de vista
   rowData: any = [];
   papeleras: boolean = false;
@@ -76,12 +78,12 @@ export class HistorialComponent implements OnInit {
   hidden: boolean = false;
   hidden2: boolean = true;
   excel: boolean = false;
- 
+
   docPath: string = "";
   faPeopleArrowsLeftRight = faPeopleArrowsLeftRight;
   id: any;
   req: any;
-  valorabuscartranspose:string = "";
+  valorabuscartranspose: string = "";
   faRobot = faRobot;
   public imagePath: any;
   //Variables de iconos
@@ -128,7 +130,7 @@ export class HistorialComponent implements OnInit {
   pagePapelera: number = 0;
   myInfo: any;
   myRol: any;
-  MyrolCliente:boolean = false;
+  MyrolCliente: boolean = false;
   nombreProvedor: String = "";
   nombreEmpresa: string = "";
   nombreasesor: string = "";
@@ -141,12 +143,12 @@ export class HistorialComponent implements OnInit {
   responsableSearch: string = "";
   newResponsable: any;
   fecha: any;
-//variables del API
+  //variables del API
   gettraerPapelera2: any;
-  newTranspose:any = [];
+  newTranspose: any = [];
   public pinnedBottomRowData!: any[];
   @ViewChild("agGrid", { static: false }) agGrid: AgGridAngular | undefined;
-  selectedRows:any;
+  selectedRows: any;
   localeText: any;
   gridApis: any;
   gridColumnApi: any;
@@ -171,24 +173,24 @@ export class HistorialComponent implements OnInit {
 
   public rowSelection = 'multiple';
   //CONSTRUCTOR
-  constructor(private restService: RestService,private actasservice: ActasService, private router: Router, private database: DatabaseService, private http: HttpClient,private adminService: AdminService) {
+  constructor(private restService: RestService, private actasservice: ActasService, private router: Router, private database: DatabaseService, private http: HttpClient, private adminService: AdminService) {
     let AG_GRID_LOCALE_EN = getArray();
     this.localeText = AG_GRID_LOCALE_EN;
     this.columnDefs = [
-      
+
       // { field: "i", width: 80, headerName: "Id", filter: 'agSetColumnFilter' },
-      { field: "id", editable: true, width: 80, headerName: "Id", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
-      { field: "document", editable: true,width: 160, headerName: "Documento", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'}},
-      { field: "dataset", editable: true,headerName: "CURP", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
-      { field: "state", editable: true,width: 120, headerName: "Estado", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
-      { field: "nameinside", editable: true,headerName: "Nombre", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
-      { field: "seller.nombre", editable: true,headerName: "Vendedor", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
-      { field: "bought.nombre", editable: true,headerName: "Comprador", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
-      { field: "uploadBy.nombre", editable: true,width: 150, headerName: "Cragado Por", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
-      { field: "createdAt", editable: true,headerName: "Fecha y hora", filter: 'agSetColumnFilter' ,cellStyle: {fontSize: '12px'} },
-      { field: "corte", editable: true,headerName: "Fecha de corte", filter: 'agSetColumnFilter'  ,cellStyle: {fontSize: '12px'}},
-      
-    //   { field: "corte", headerName: "Fecha de corte", type: 'valueColumn', filter: 'agSetColumnFilter' },
+      { field: "id", editable: true, width: 80, headerName: "Id", filter: 'agSetColumnFilter', cellStyle: { fontSize: '12px' } },
+      { field: "document", editable: true, width: 160, headerName: "Documento", filter: 'agSetColumnFilter', cellStyle: { fontSize: '12px' } },
+      { field: "dataset", editable: true, headerName: "CURP", filter: 'agSetColumnFilter', cellStyle: { fontSize: '12px' } },
+      { field: "state", editable: true, width: 120, headerName: "Estado", filter: 'agSetColumnFilter', cellStyle: { fontSize: '12px' } },
+      { field: "nameinside", editable: true, headerName: "Nombre", filter: 'agSetColumnFilter', cellStyle: { fontSize: '12px' } },
+      { field: "seller.nombre", editable: true, headerName: "Vendedor", filter: 'agSetColumnFilter', cellStyle: { fontSize: '12px' } },
+      { field: "bought.nombre", editable: true, headerName: "Comprador", filter: 'agSetColumnFilter', cellStyle: { fontSize: '12px' } },
+      { field: "uploadBy.nombre", editable: true, width: 150, headerName: "Cragado Por", filter: 'agSetColumnFilter', cellStyle: { fontSize: '12px' } },
+      { field: "createdAt", editable: true, headerName: "Fecha y hora", filter: 'agSetColumnFilter', cellStyle: { fontSize: '12px' } },
+      { field: "corte", editable: true, headerName: "Fecha de corte", filter: 'agSetColumnFilter', cellStyle: { fontSize: '12px' } },
+
+      //   { field: "corte", headerName: "Fecha de corte", type: 'valueColumn', filter: 'agSetColumnFilter' },
     ];
     this.defaultColDef = {
       width: 200,
@@ -199,7 +201,7 @@ export class HistorialComponent implements OnInit {
       cellRendererParams: {
         checkbox: true,
       },
-      
+
     };
     document
     this.overlayLoadingTemplate = '<span class="ag-overlay-loading-center">Por favor espere, estamos cargando los datos</span>';
@@ -213,28 +215,44 @@ export class HistorialComponent implements OnInit {
       },
       nonEditableColumn: { editable: true },
     };
-
-    
-
-
-   }
-
-
-
-
-
-
-  EditarActaSeleccionada(){
-    this.fecha = this.select.createdAt;
-   }
-    
-
-   onSelectionChanged($event:any) {
-    this.select = this.gridApi.getSelectedRows();
-    console.log(this.select)
   }
-   
-   onFilterChanged(params: GridOptions): void {
+
+
+
+
+  EditarActaSeleccionada() {
+    this.fecha = this.select.createdAt;
+  }
+
+
+  onSelectionChanged($event: any) {
+    this.select = this.gridApi.getSelectedRows();
+    this.SelectedRowLegend = "";
+    let itemShow = 15;
+    if (this.select.length > 0) {
+      for (let i = 0; i < this.select.length; i++) {
+        if (this.select.length > 8) {
+          if (i < itemShow) {
+            this.SelectedRowLegend += this.select[i].id;
+            if (this.select.length > 1 && i < this.select.length - 1 && i != itemShow-1) {
+              this.SelectedRowLegend += ", ";
+            }
+          }
+          else if (i == itemShow) {
+            this.SelectedRowLegend += ` y ${this.select.length - i} más`;
+          }
+        }
+        else {
+          this.SelectedRowLegend += this.select[i].id;
+          if (this.select.length > 1 && i < this.select.length - 1) {
+            this.SelectedRowLegend += ", ";
+          }
+        }
+      }
+    }
+  }
+
+  onFilterChanged(params: GridOptions): void {
     this.filtrados = params.api?.getModel();
     this.onPinnedRowBottomCount();
   }
@@ -242,14 +260,14 @@ export class HistorialComponent implements OnInit {
   onGridReady(params: any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    
-
   }
+
   onPinnedRowBottomCount() {
     var rows = this.createData();
     this.gridApi.setPinnedBottomRowData(rows);
   }
-  //Creamos datos para saber el total del corte.
+
+
   createData() {
     var result = [];
     this.totalDocumentos = 0;
@@ -288,65 +306,14 @@ export class HistorialComponent implements OnInit {
     return result;
   }
 
-    //Mostramos todas las fechas
-    setDate(fecha: any) {
-      this.fechaSeleccionada = fecha;
-    }
-    onRemoveSelected() {
-      var selectedRowData = this.gridApi.getSelectedRows();
-      this.gridApi.applyTransaction({ remove: selectedRowData });
-    }
-
-  //Exportamos el excel 
-  onBtnExport() {
-    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('Імякористувача') || '{}', "Імякористувача");
-    let userName = usuario.toString(CryptoJS.enc.Utf8);
-    let arreglo = userName.split('"');
-
-    this.gridApi.exportDataAsCsv({ fileName: 'Corte-' + arreglo[1] + '.csv' });
-    Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'Corte de ' + arreglo[1] + ' descargado',
-      showConfirmButton: false,
-      timer: 1500
-    })
+  //Mostramos todas las fechas
+  setDate(fecha: any) {
+    this.fechaSeleccionada = fecha;
   }
-
-//vista excel
-  descargarexcelvista() {
-    this.excel = !this.excel;
+  onRemoveSelected() {
+    var selectedRowData = this.gridApi.getSelectedRows();
+    this.gridApi.applyTransaction({ remove: selectedRowData });
   }
-
-  //EXPORTAMOS EL EXCEL
-  exportexcel(): void {
-
-    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('Імякористувача') || '{}', "Імякористувача");
-    let userName = usuario.toString(CryptoJS.enc.Utf8);
-    let arreglo = userName.split('"');
-
-
-    /*PASAMOS EL ID DE L TABLA PARA PPSTERIORMENTE MANDARLO A LA BASE DE DATOS*/
-    let element = document.getElementById('excel-table');
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
-
-    /* generate workbook and add the worksheet */
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Corte');
-
-    /* save to file */
-    XLSX.writeFile(wb, "Historial-" + arreglo[1] + ".xlsx");
-    Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'Historial de ' + arreglo[1] + ' descargado',
-      showConfirmButton: false,
-      timer: 1500
-    })
-    this.reloadCurrentRoute();
-
-  }
-
 
   //RESETEAMOS LA PAGINA 
   resetPagination() {
@@ -367,8 +334,7 @@ export class HistorialComponent implements OnInit {
         showConfirmButton: false,
         timer: 1500
       }
-    )
-
+    );
     this.router.navigateByUrl('/historial');
     const body = new FormData();
     body.append("enterprise", this.ciberseleccionado);
@@ -378,22 +344,18 @@ export class HistorialComponent implements OnInit {
     body.append("state", this.info.estado);
     body.append("price", this.precioyasesor.precio);
     body.append("nameinside", this.info.nombre + " " + this.info.apellidos);
-
-
     let nombrecompleto;
     if (this.info.apellidos == undefined || this.info.apellidos == null || this.info.apellidos == "") {
       nombrecompleto = this.info.nombre
     } else {
       nombrecompleto = this.info.nombre + " " + this.info.apellidos;
     }
-
-    const data = await this.restService.enviarcta(this.ciberseleccionado, 
-      this.info.tipo, 
+    const data = await this.restService.enviarcta(this.ciberseleccionado,
+      this.info.tipo,
       this.info.curp,
-       this.info.estado, 
-       nombrecompleto,
-        this.fileTmp.fileName).toPromise();
-  
+      this.info.estado,
+      nombrecompleto,
+      this.fileTmp.fileName).toPromise();
     this.reloadCurrentRoute();
   }
 
@@ -407,140 +369,9 @@ export class HistorialComponent implements OnInit {
   }
 
   Volver() {
-
     this.router.navigateByUrl("/manual");
-
   }
 
-  //RECARGAMOS LA MISMA PAGINA DESPUES DE QUE SE MANDA A LA PAPELERA
-  reloadCurrentRouteLastDelete() {
-    const currentUrl = this.router.url;
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate([currentUrl]);
-    });
-
-  }
-  //EXPPRTAMOS A EXCEL LA TABLA
-  // onBtnExport() {
-  //   var usuario = CryptoJS.AES.decrypt(localStorage.getItem('Імякористувача') || '{}', "Імякористувача");
-  //   let userName = usuario.toString(CryptoJS.enc.Utf8);
-  //   let arreglo = userName.split('"');
-
-  //   this.gridApi.exportDataAsCsv({ fileName: 'Corte-' + arreglo[1] + '.csv' });
-  // }
-  //BORRAMOS UNA ACTA CON SU ID Y NOMBRE DE USUARIO
-
-  //EDITAMOS LA FECHA DE LOS REGISTROS DE LA TABLA
-
-  //RESTAURAMOS LAS ACTAS ELIMINADADAS DE LA PAPELERA
-  restaurarPapelera(id: any, document: any) {
-
-    let hiddensa: boolean = false;
-    Swal.fire({
-      title: 'Mover a papelera',
-      text: "Se movera :'" + document,
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, cambiar',
-      cancelButtonText: 'No, cancelar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
-        var token: any = i.toString(CryptoJS.enc.Utf8);
-        var parteuno = token.slice(1);
-        var final = parteuno.slice(0, -1);
-        let tokenfinal: string = final;
-        const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
-
-        this.http.put('https://actasalinstante.com:3030/api/actas/moveToTrash/', { id: id, hidden: hiddensa }, { headers }).subscribe(
-          (data: any) => {
-            Swal.fire(
-              {
-                position: 'center',
-                icon: 'success',
-                title: 'Se movio a la papelera',
-                showConfirmButton: false,
-                timer: 1500
-              }
-            );
-            this.reloadCurrentRoute();
-
-          },
-
-          (err: any) => {
-
-            Swal.fire(
-              {
-                position: 'center',
-                icon: 'error',
-                title: 'Contacta al equipo de soporte',
-                showConfirmButton: false,
-                timer: 1500
-              }
-            );
-          }
-        );
-
-      }
-    })
-  }
-
-  // BORRAMOS Y SE VA A LA PAPELERA
-  moveraPapelera(id: any, document: any) {
-
-    let hiddensa: boolean = true || false;
-    Swal.fire({
-      title: 'Mover a papelera',
-      text: "Se movera :'" + document,
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, cambiar',
-      cancelButtonText: 'No, cancelar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
-        var token: any = i.toString(CryptoJS.enc.Utf8);
-        var parteuno = token.slice(1);
-        var final = parteuno.slice(0, -1);
-        let tokenfinal: string = final;
-        const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
-
-        this.http.put('https://actasalinstante.com:3030/api/actas/moveToTrash/', { id: id, hidden: hiddensa }, { headers }).subscribe(
-          (data: any) => {
-            Swal.fire(
-              {
-                position: 'center',
-                icon: 'success',
-                title: 'Se movio a la papelera',
-                showConfirmButton: false,
-                timer: 1500
-              }
-            );
-            this.reloadCurrentRoute();
-
-          },
-
-          (err: any) => {
-
-            Swal.fire(
-              {
-                position: 'center',
-                icon: 'error',
-                title: 'Contacta al equipo de soporte',
-                showConfirmButton: false,
-                timer: 1500
-              }
-            );
-          }
-        );
-
-      }
-    })
-  }
   //Seleccionamos el tipo de acta
   setTipoDeActa(tipo: any) {
     this.tipo = tipo;
@@ -624,7 +455,7 @@ export class HistorialComponent implements OnInit {
       case "MICHOACAN DE OCAMPO":
         state = "mich";
         break;
-        
+
       case "TLAXCALA":
         state = "tlax";
         break;
@@ -710,27 +541,10 @@ export class HistorialComponent implements OnInit {
     if (this.info.estado.includes("ESTADOS")) {
       state = "ext";
     }
-  
-    //rutas api para enviar
     const precioyasesor = await this.restService.getprecioyasesor(documento, state, id).toPromise();
     this.precioyasesor = precioyasesor;
- 
     const data: any = await this.restService.getidsupervisor(this.precioyasesor.superviser).toPromise();
     this.nombreasesor = data?.data.nombre;
-
-  }
-
-  //TRAEMOS TODOS LOS DATOS DE LAS ACTAS DE PAPELERA
-  async gettraerPapelera() {
-
-    const data: any = await this.restService.Getpapelera().toPromise();
-
-    this.gettraerPapelera2 = data;
-
-    if (data.lenght != 0) {
-      closeAlert();
-    }
-
   }
 
   //CAMBIAMOS LA VISTA HACIA OTRA TABLA
@@ -739,7 +553,6 @@ export class HistorialComponent implements OnInit {
   }
   //DESINCRIPTAMOS EL TOKEN PARA OBTENER LOS DATOS Y EL ROL
   async descry() {
-
     var idlocal = localStorage.getItem("іди");
     var i = CryptoJS.AES.decrypt(idlocal || '{}', "іди");
     var id: any = i.toString(CryptoJS.enc.Utf8);
@@ -764,17 +577,14 @@ export class HistorialComponent implements OnInit {
       this.select = undefined;
     }
     this.vista = !this.vista;
-
   }
 
 
 
   ClienteVista() {
-    if (this.myRol != 'Cliente' && this.myRol != 'Sucursal' && this.myRol!='Empleado') {
+    if (this.myRol != 'Cliente' && this.myRol != 'Sucursal' && this.myRol != 'Empleado') {
       this.MyrolCliente = !this.MyrolCliente;
     }
-  
-    
   }
 
   //CAMBIAMOS LA VISTA DE LA TABLA DE DCOUMENTOS
@@ -794,17 +604,13 @@ export class HistorialComponent implements OnInit {
   //OCULTAMOS LA VISTA DE LOS BOTONES DE LA VISTA DE SUBIR DOCUMENTOS DE FORMA MANUAL
   changeView5() {
     this.router.navigateByUrl('papelera');
+  }
 
-  }
-  changeView6() {
-    this.excel = !this.excel;
-  }
   //REGRESAMOS A LA VISTA ACTUAL CON EL BOTON REGRESAR
   backUp() {
     this.preview = 0;
     this.fileTmp = null;
     this.reloadCurrentRoute();
-
   }
   //REGRESAMOS A LA VISTA ACTUAL CON EL BOTON REGRESAR
   backUp2() {
@@ -812,43 +618,23 @@ export class HistorialComponent implements OnInit {
     this.fileTmp = null;
     this.reloadCurrentRoute();
   }
-  ngAfterViewInit(): void {
-  }
+
+
   public files: NgxFileDropEntry[] = [];
   public dropped(files: NgxFileDropEntry[]) {
     this.files = files;
     for (const droppedFile of files) {
-      // Is it a file?
       if (droppedFile.fileEntry.isFile) {
         const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
         fileEntry.file((file: File) => {
-          /**
-          // You could upload it like this:
-          const formData = new FormData()
-          formData.append('logo', file, relativePath)
-
-          // Headers
-          const headers = new HttpHeaders({
-            'security-token': 'mytoken'
-          })
-
-          this.http.post('https://mybackend.com/api/upload/sanitize-and-save-logo', formData, { headers: headers, responseType: 'blob' })
-          .subscribe(data => {
-            // Sanitized logo returned from njjnjgfbnbnjdpdpnmcdjhjvbdvbvbhvhbvhbvhbd rvrbackend
-        
-          })
-          **/
-
         });
       } else {
-        // It was a directory (empty directories are added, otherwise only files)
         const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;
-
       }
     }
   }
-  Volver2() {
 
+  Volver2() {
     this.reloadCurrentRoute();
   }
 
@@ -869,21 +655,18 @@ export class HistorialComponent implements OnInit {
     reader.readAsDataURL(files[0]);
     reader.onload = (_event) => {
       this.imgURL = reader.result;
-
-
     }
   }
 
   //SOLTAMOS EL DOCUMENTO PDF AL APARTADO DE DOCUMENTOS
   getFile($event: any): void {
-    //TODO esto captura el archivo!
     const [file] = $event.target.files;
     this.fileTmp = {
       fileRaw: file,
       fileName: file?.name
     }
-    console.log(this.fileTmp);
   }
+
   //ENVIAMOS TODOS LOS DATOS SLICITADOS DEL DOCUMENTO PDF
   sendFile(): void {
     try {
@@ -914,19 +697,19 @@ export class HistorialComponent implements OnInit {
 
 
 
-  EditDateBoolean(){
+  EditDateBoolean() {
     this.editDate = !this.editDate;
   }
 
-  giveMeDates(){
-    this.database.getAllDates().subscribe((data:any) => {
-        this.dates = data;
-    }, (err:any) => {
+  giveMeDates() {
+    this.database.getAllDates().subscribe((data: any) => {
+      this.dates = data;
+    }, (err: any) => {
       customAlerts("info", "Sin fechas de corte");
     });
   }
 
-  SelectDate(date:any){
+  SelectDate(date: any) {
     this.dateSelect = date;
     this.getHistorial();
     this.select = undefined;
@@ -935,25 +718,22 @@ export class HistorialComponent implements OnInit {
   //Otenemos el Historial
   async getHistorial() {
     loader();
-      await this.database.HistorialDeRegistros(this.dateSelect).subscribe((data:any) => {
-        this.rowData = data;
-        this.onPinnedRowBottomCount();
-        closeAlert();
-      });
+    await this.database.HistorialDeRegistros(this.dateSelect).subscribe((data: any) => {
+      this.rowData = data;
+      this.onPinnedRowBottomCount();
+      closeAlert();
+    });
   }
 
 
-
-  //Controls Functions
-
   //Change Date
-  ChangeNewDate(){
+  ChangeNewDate() {
 
     let legend = "";
-    if(this.select.length > 1){
+    if (this.select.length > 1) {
       legend = ` ¿Estás seguro  de modificar la fecha a ${this.select.length.toString()} registros a ${this.newDateToChange}?`;
     }
-    else{
+    else {
       legend = `¿Estás seguro modificar la fecha para ${this.select[0].id} a ${this.newDateToChange}?`;
     }
 
@@ -965,29 +745,29 @@ export class HistorialComponent implements OnInit {
       denyButtonText: "No, cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-  
+
         for (let i = 0; i < this.select.length; i++) {
           loader();
-          this.restService.ChangeDate(this.select[i].id, this.newDateToChange).subscribe((data:any) => {
+          this.restService.ChangeDate(this.select[i].id, this.newDateToChange).subscribe((data: any) => {
             closeAlert();
-          }, (err:any) => {
+          }, (err: any) => {
             customAlerts("error", "Error en el servidor");
           });
         }
         customAlerts("success", "¡Actualizado!");
         this.clearVariablesFromRegisters();
         this.getHistorial();
-        
+
       }
     });
   }
 
-  ClearNewDate(){
+  ClearNewDate() {
     this.newDateToChange = undefined;
   }
 
 
-  clearVariablesFromRegisters(){
+  clearVariablesFromRegisters() {
     this.rowData = [];
     this.newDateToChange = undefined;
     this.select = undefined;
@@ -997,25 +777,25 @@ export class HistorialComponent implements OnInit {
 
 
   // Re-asignar 
-  AlertReasign(){
+  AlertReasign() {
     this.showAlertReasign = !this.showAlertReasign;
   }
-  
-  ObtainAllCibers(){
-    this.restService.getAllClients().subscribe((data:any) => {
+
+  ObtainAllCibers() {
+    this.restService.getAllClients().subscribe((data: any) => {
       this.allUsers = data;
     });
   }
-  
 
 
-  TransposeRegister(id:any){
+
+  TransposeRegister(id: any) {
     this.showAlertReasign = false;
     let legend = "";
-    if(this.select.length > 1){
+    if (this.select.length > 1) {
       legend = ` ¿Estás seguro de traspasar ${this.select.length.toString()} registros?`;
     }
-    else{
+    else {
       legend = `¿Estás seguro de traspasar el registro ${this.select[0].id}?`;
     }
 
@@ -1026,12 +806,12 @@ export class HistorialComponent implements OnInit {
       confirmButtonText: "Sí, proceder",
       denyButtonText: "No, cancelar",
     }).then((result) => {
-      if (result.isConfirmed) {     
+      if (result.isConfirmed) {
         for (let i = 0; i < this.select.length; i++) {
           loaderMsg(`Traspasando registro ${this.select[0].id}`);
-          this.restService.TransposeRegister(this.select[i].id, id).subscribe((data:any) => {
+          this.restService.TransposeRegister(this.select[i].id, id).subscribe((data: any) => {
             closeAlert();
-          }, (err:any) => {
+          }, (err: any) => {
             customAlerts("error", "Error en el servidor");
           });
         }
@@ -1045,12 +825,12 @@ export class HistorialComponent implements OnInit {
   }
 
 
-  DeleteRegister(){
+  DeleteRegister() {
     let legend = "";
-    if(this.select.length > 1){
+    if (this.select.length > 1) {
       legend = ` ¿Estás seguro de eliminar ${this.select.length.toString()} registros?`;
     }
-    else{
+    else {
       legend = `¿Estás seguro de eliminar el registro ${this.select[0].id}?`;
     }
     Swal.fire({
@@ -1060,12 +840,12 @@ export class HistorialComponent implements OnInit {
       confirmButtonText: "Sí, proceder",
       denyButtonText: "No, cancelar",
     }).then((result) => {
-      if (result.isConfirmed) {     
+      if (result.isConfirmed) {
         for (let i = 0; i < this.select.length; i++) {
           loaderMsg(`Elimando registro ${this.select[0].id}`);
-          this.restService.DeleteRegister(this.select[i].id).subscribe((data:any) => {
+          this.restService.DeleteRegister(this.select[i].id).subscribe((data: any) => {
             closeAlert();
-          }, (err:any) => {
+          }, (err: any) => {
             customAlerts("error", "Error en el servidor");
           });
         }
@@ -1079,26 +859,26 @@ export class HistorialComponent implements OnInit {
 
 
 
-    //PROTEGEMOS LAS VISTAS PARA NO SER HACKEADAS
+  //PROTEGEMOS LAS VISTAS PARA NO SER HACKEADAS
   async ngOnInit() {
 
-  
-      const token = localStorage.getItem('привіт');
 
-      var idlocal = localStorage.getItem("іди");
-      var i = CryptoJS.AES.decrypt(idlocal || '{}', "іди");
-      var id: any = i.toString(CryptoJS.enc.Utf8);
+    const token = localStorage.getItem('привіт');
 
-      this.result.push(id);
-      const data: any = await this.database.getmydata(id).toPromise();
-      this.myRol = data.data.rol;
-  
-      if (!token && this.myRol == 'Cliente'  && this.myRol == 'Sucursal'  && this.myRol=='Empleado') {
-        this.router.navigateByUrl('/login');
-      }
-        this.setDate(null);
-        this.ObtainAllCibers();
+    var idlocal = localStorage.getItem("іди");
+    var i = CryptoJS.AES.decrypt(idlocal || '{}', "іди");
+    var id: any = i.toString(CryptoJS.enc.Utf8);
+
+    this.result.push(id);
+    const data: any = await this.database.getmydata(id).toPromise();
+    this.myRol = data.data.rol;
+
+    if (!token && this.myRol == 'Cliente' && this.myRol == 'Sucursal' && this.myRol == 'Empleado') {
+      this.router.navigateByUrl('/login');
     }
+    this.setDate(null);
+    this.ObtainAllCibers();
+  }
 
 
 

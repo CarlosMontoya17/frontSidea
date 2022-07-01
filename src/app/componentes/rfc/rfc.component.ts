@@ -31,6 +31,11 @@ declare function loader(): any;
   styleUrls: ['./rfc.component.css']
 })
 export class RfcComponent implements OnInit {
+
+  //Solicitudes
+  dates:any = [];
+  dateSelect:any = null;
+
   faCheckToSlot = faCheckToSlot;
   faCertificate = faCertificate;
   faPeopleArrowsLeftRight = faPeopleArrowsLeftRight;
@@ -258,8 +263,7 @@ export class RfcComponent implements OnInit {
     }
 
     this.requests = [];
-    const data: any = await this.rfcservice.obtainAllRFCs().toPromise();
-
+    const data: any = await this.rfcservice.getMyRequets(this.dateSelect).toPromise();
     for (let i = 0; i < data.length; i++) {
       this.requests.push({
         "nm": i + 1,
@@ -273,36 +277,6 @@ export class RfcComponent implements OnInit {
         "downloaded": data[i].downloaded
       });
     }
-    // this.requests = [];
-    //  const data: any = await this.restservice.obtainActasRequest().toPromise();
-    // for (let i = 0; i < data.length; i++) {
-    //   let metadata = "";
-    //   switch (data[i].type) {
-    //     case "CURP":
-
-    //       metadata = "\nCURP: " + data[i].metadata.curp + "\nESTADO: " + data[i].metadata.state;
-    //       break;
-    //     case "RFC":
-
-    //       metadata = "\RFC: " + data[i].metadata.curp + "\nESTADO: " + data[i].metadata.state;
-    //       break;
-    //     default:
-    //       metadata = "";
-    //       break;
-    //   }
-    //   this.requests.push({
-    //     "nm": i + 1,
-    //     "id": data[i].id,
-    //     "type": data[i].type,
-    //     "metadata": metadata,
-    //     "createdAt": data[i].createdAt,
-    //     "send": data[i].send,
-    //     "comments": data[i].comments,
-    //     "url": data[i].url
-    //   });
-    // }
-    //  console.log(this.requests);
-
   }
 
   //RECARGAMOS LA PAGINA POR SI MISMA
@@ -337,6 +311,7 @@ export class RfcComponent implements OnInit {
   view() {
     this.requestsView = !this.requestsView;
     this.obtainARequests();
+    this.obtainDates();
   }
 
 
@@ -949,6 +924,17 @@ export class RfcComponent implements OnInit {
   }
 
 
+
+  obtainDates(){
+    this.rfcservice.getDates().subscribe((data:any) => {
+      this.dates = data;
+    });
+  }
+
+  selectDate(date:any){
+    this.dateSelect = date;
+    this.obtainARequests();
+  }
 
 
 

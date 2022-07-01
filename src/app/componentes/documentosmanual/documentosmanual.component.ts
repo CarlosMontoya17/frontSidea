@@ -447,6 +447,9 @@ export class DocumentosmanualComponent implements OnInit {
       case "CONSTANCIA DE NO INHABILITACIÓN":
         documento = "inh";
         break;
+      case "Estado de Cuenta Infonavit":
+        documento = "ecu";
+        break;
       default:
         documento = "";
         break;

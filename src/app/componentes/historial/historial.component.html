@@ -39,25 +39,29 @@
           (change)="getFile($event)" (change)="preview56(file.files)">
         <div class="dummy">
           <span class="success" style="font-weight: bold;">{{ fileTmp?.fileName }}</span>
-          <span (change)="getFile($event)" *ngIf="fileTmp==null || fileTmp.fileName == undefined" style="font-style: italic;">Arrastra tu Documento o da
+          <span (change)="getFile($event)" *ngIf="fileTmp==null || fileTmp.fileName == undefined"
+            style="font-style: italic;">Arrastra tu Documento o da
             click aqui para importarlo</span>
         </div>
       </div>
     </div>
     <div class="row align-items-center text-center" style="margin-top: 2rem;">
-      <div class="col file-area">        
+      <div class="col file-area">
 
-        <button  *ngIf="fileTmp == null || fileTmp.fileName == undefined" class="disabledMyStyle btn btn-success animate__animated animate__fadeIn myButtonStyle"
-         style="padding: 1rem; width: 10rem;" disabled>ENVIAR</button>
+        <button *ngIf="fileTmp == null || fileTmp.fileName == undefined"
+          class="disabledMyStyle btn btn-success animate__animated animate__fadeIn myButtonStyle"
+          style="padding: 1rem; width: 10rem;" disabled>ENVIAR</button>
 
-          <button  *ngIf="fileTmp != null && fileTmp.fileName != undefined" [ngModel]="tipodebusqueda" (ngModelChange)="onChange($event)" class="btn btn-success animate__animated animate__fadeIn myButtonStyle"
+        <button *ngIf="fileTmp != null && fileTmp.fileName != undefined" [ngModel]="tipodebusqueda"
+          (ngModelChange)="onChange($event)" class="btn btn-success animate__animated animate__fadeIn myButtonStyle"
           (click)="sendFile()" style="padding: 1rem; width: 10rem;">ENVIAR</button>
 
       </div>
       <div class="col file-area">
 
-          <button type="button" class="btn btn-success myButtonStyle" (click)="Volver()" style="padding: 1rem; width: 10rem;">CARGA
-            MANUAL</button>
+        <button type="button" class="btn btn-success myButtonStyle" (click)="Volver()"
+          style="padding: 1rem; width: 10rem;">CARGA
+          MANUAL</button>
 
 
       </div>
@@ -179,7 +183,7 @@
   </style>
 
   <div *ngIf="preview!=0 && !vista" class="animate__animated animate__bounceIn" id="container">
-    
+
     <div class="card">
       <div class="card card-header" style="background-color: #272727; color: #fff;">
         <h5>CIBERS</h5>
@@ -187,7 +191,8 @@
 
       <div class="card card-footer">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" [(ngModel)]="valorabuscarActa" name="valorabuscarActa" placeholder="Busca el ciber a asignar" aria-label="Recipient's username" aria-describedby="basic-addon2">
+          <input type="text" class="form-control" [(ngModel)]="valorabuscarActa" name="valorabuscarActa"
+            placeholder="Busca el ciber a asignar" aria-label="Recipient's username" aria-describedby="basic-addon2">
           <span class="input-group-text" id="basic-addon2">BUSCAR</span>
         </div>
 
@@ -195,7 +200,7 @@
         <ul class="list-group" *ngIf="valorabuscarActa.length > 0" style="max-height: 20rem; overflow-y: scroll;">
           <li class="list-group-item active" aria-current="true">Resultados</li>
           <li *ngFor="let user of allUsers | buscarciber: valorabuscarActa" class="list-group-item itemHoverMyStyle"
-          style="cursor: pointer;" (click)="clickciber(user.id, user.nombre)">{{ user.nombre }} - {{ user.rol }}</li>
+            style="cursor: pointer;" (click)="clickciber(user.id, user.nombre)">{{ user.nombre }} - {{ user.rol }}</li>
         </ul>
       </div>
 
@@ -203,12 +208,12 @@
 
 
     </div>
-    
+
     <div class="card">
       <div class="card card-header text-center" style="background-color: #272727; color: #fff;">
         <h5>RESUMEN</h5>
       </div>
-  
+
       <div class="card card-body">
         <div class="row">
           <div class="col">
@@ -239,23 +244,23 @@
                 <div class="form-outline">
                   <h5 style="color: #efb810; font-size: medium;" class="card-title">Estado</h5>
                   <li class="list-group-item">{{ info?.estado }}</li>
-  
+
                 </div>
               </div>
             </div>
           </div>
         </div>
-  
-  
+
+
         <div class="row">
           <div class="col">
             <div class="card h-100">
-  
+
               <div class="card-body">
                 <div class="form-outline">
                   <h5 style="color: #efb810; font-size: medium;" class="card-title">Nombre</h5>
                   <li class="list-group-item">{{ info?.nombre }}</li>
-  
+
                 </div>
               </div>
             </div>
@@ -271,7 +276,7 @@
               </div>
             </div>
           </div>
-  
+
           <div class="col">
             <div class="card h-100">
               <div class="card-body">
@@ -294,19 +299,21 @@
           </div>
         </div>
       </div>
-  
+
       <div class="card-footer">
         <div class="row text-center">
           <div class="col">
-            <button class="btn btn-success myButtonStyle" style="padding: 1rem; width: 10rem;" *ngIf="nombreasesor.length > 0" (click)="enviaracta()">Enviar</button>
+            <button class="btn btn-success myButtonStyle" style="padding: 1rem; width: 10rem;"
+              *ngIf="nombreasesor.length > 0" (click)="enviaracta()">Enviar</button>
           </div>
           <div class="col">
-            <button class="btn btn-success myButtonStyle" style="padding: 1rem; width: 10rem;" (click)="Volver2()">Regresar</button>
+            <button class="btn btn-success myButtonStyle" style="padding: 1rem; width: 10rem;"
+              (click)="Volver2()">Regresar</button>
           </div>
         </div>
       </div>
     </div>
-  
+
 
 
 
@@ -331,36 +338,39 @@
 
         <div class="row">
           <div class="col col-sm-2" style="border-right: 1px solid black;">
-              <span style="vertical-align: middle;">Fecha de corte: </span>
-              <div class="dropdown align-middle" style="margin-top: 0.5em;">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"
-                  data-bs-toggle="dropdown" aria-expanded="false">
-                  {{ dateSelect || "Actual" }}
-                </button>
-                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                  <li>
-                    <a *ngFor="let date of dates" class="dropdown-item" style="cursor: pointer;"
-                      (click)="SelectDate(date.corte)">
-                      {{ date.corte || "Actual" }}
-                    </a>
-                  </li>
-                </ul>
-              </div>
+            <span style="vertical-align: middle;">Fecha de corte: </span>
+            <div class="dropdown align-middle" style="margin-top: 0.5em;">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                {{ dateSelect || "Actual" }}
+              </button>
+              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                <li>
+                  <a *ngFor="let date of dates" class="dropdown-item" style="cursor: pointer;"
+                    (click)="SelectDate(date.corte)">
+                    {{ date.corte || "Actual" }}
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
           <div class="col">
             <div class="row" *ngIf="select != undefined" style="border-bottom: 2px solid black;">
               <span>
-              <label for="selection"
-              style="font-style: oblique; color: rgb(138, 138, 138);">Selección:&nbsp;</label>
-                  <label *ngFor="let selecting of select; let i = index" for="selection" style="font-weight: 700;">
+                <label for="selection" style="font-style: oblique; color: rgb(138, 138, 138);">Selección ({{
+                  select.length }}):&nbsp;</label>
+                <label for="selection" style="font-weight: 700;">
+                  {{SelectedRowLegend}}
+                </label>
+                <!-- <label *ngFor="let selecting of select; let i = index" for="selection" style="font-weight: 700;">
                       {{selecting.id}}<label *ngIf="select.length > 1 && i < select.length-1">,&nbsp;</label> 
-                  </label>
-                </span>
+                  </label> -->
+              </span>
             </div>
             <div class="row" *ngIf="select != undefined" style="margin-top: 0.5rem;">
               <div class="col text-center">
                 <button type="button" class="btn btn-primary" (click)="AlertReasign()">
-                  <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>&nbsp;Re-asignar
+                  <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>&nbsp;Re-Asignar
                 </button>
               </div>
               <div class="col text-center">
@@ -368,21 +378,24 @@
                   <fa-icon [icon]="faCalendarPlus"></fa-icon>&nbsp;Modificar Fecha
                 </button>
 
-                <div class="alert alert-primary" *ngIf="editDate && select != undefined" role="alert" style="z-index: 2;">
+                <div class="alert alert-primary" *ngIf="editDate && select != undefined" role="alert"
+                  style="z-index: 2;">
                   <div class="input-group mb-3" style="margin-top: 1rem; ">
                     <input type="date" class="form-control" placeholder="Recipient's username"
-                      aria-label="Recipient's username" aria-describedby="basic-addon2" [(ngModel)]="newDateToChange" name="newDateToChange">
-                    <button class="input-group-text btn btn-primary" type="button" id="basic-addon2" (click)="ChangeNewDate()" *ngIf="newDateToChange != undefined">
+                      aria-label="Recipient's username" aria-describedby="basic-addon2" [(ngModel)]="newDateToChange"
+                      name="newDateToChange">
+                    <button class="input-group-text btn btn-primary" type="button" id="basic-addon2"
+                      (click)="ChangeNewDate()" *ngIf="newDateToChange != undefined">
                       <fa-icon [icon]="faCircleCheck"></fa-icon>
                     </button>
-                    <button class="input-group-text btn btn-primary" type="button" id="basic-addon2" (click)="ClearNewDate()">
+                    <button class="input-group-text btn btn-primary" type="button" id="basic-addon2"
+                      (click)="ClearNewDate()">
                       <fa-icon [icon]="faEraser"></fa-icon>
                     </button>
                   </div>
                 </div>
 
               </div>
-
               <div class="col text-center">
                 <button type="button" class="btn btn-primary" (click)="DeleteRegister()">
                   <fa-icon [icon]="faTrashCan"></fa-icon>&nbsp;Eliminar
@@ -393,20 +406,9 @@
               <label style="font-size: 1.5rem;font-weight: 700;">SELECCIONA UN REGISTRO PARA PODER EDITARLO</label>
             </div>
           </div>
-
-
         </div>
-
-
       </div>
     </div>
-
-
-
-
-
-
-
 
     <ag-grid-angular style="height: 30rem;" class="ag-theme-alpine" #agGrid [pagination]="true" [rowData]="rowData"
       rowSelection="multiple" [defaultColDef]="defaultColDef" [defaultColGroupDef]="defaultColGroupDef"
@@ -426,47 +428,46 @@
 
 
 <div *ngIf="showAlertReasign" class="animate__animated animate__fadeIn"
-    style="width: 100%; height: 100%;  z-index: 5000;  background-color: #2121217a; position: fixed; top: 0px;">
-    <div class="card"
-        style="width: 50%; margin: auto; margin-top: 15%; position: sticky !important; top: 10px !important;">
-        <div class="card-header" style="background-color: #478edf;">
+  style="width: 100%; height: 100%;  z-index: 5000;  background-color: #2121217a; position: fixed; top: 0px;">
+  <div class="card"
+    style="width: 50%; margin: auto; margin-top: 15%; position: sticky !important; top: 10px !important;">
+    <div class="card-header" style="background-color: #478edf;">
 
-            <div class="row">
-                <div class="col">
-                    <div style="color: white; margin-left: 10rem; text-align: center;">
-                        Re-Asignar Acta
-                    </div>
-
-
-                </div>
-
-                <div class="col-2" style="text-align: right;">
-                    <a class="btn btn-danger" (click)="AlertReasign()">
-                        Cerrar
-                    </a>
-                </div>
-            </div>
-
-
-
-
+      <div class="row">
+        <div class="col">
+          <div style="color: white; margin-left: 10rem; text-align: center;">
+            Re-Asignar Acta
+          </div>
 
 
         </div>
-        <div class="card-body">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" [(ngModel)]="valorabuscartranspose" name="valorabuscartranspose"
-                    placeholder="Nuevo Ciber">
-            </div>
 
-            <div *ngIf="valorabuscartranspose.length > 0 "
-                style=" overflow: hidden; overflow-y: scroll; max-height: 30rem;">
-                <li class="list-group-item active" aria-current="true">Resultados:</li>
-                <li *ngFor="let user of allUsers | buscarciber: valorabuscartranspose" class="list-group-item"
-                    style="cursor: pointer;" (click)="TransposeRegister(user.id)" >{{ user.nombre }} - {{ user.rol }}</li>
-            </div>
-
+        <div class="col-2" style="text-align: right;">
+          <a class="btn btn-danger" (click)="AlertReasign()">
+            Cerrar
+          </a>
         </div>
+      </div>
+
+
+
+
+
 
     </div>
+    <div class="card-body">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" [(ngModel)]="valorabuscartranspose" name="valorabuscartranspose"
+          placeholder="Nuevo Ciber">
+      </div>
+
+      <div *ngIf="valorabuscartranspose.length > 0 " style=" overflow: hidden; overflow-y: scroll; max-height: 30rem;">
+        <li class="list-group-item active" aria-current="true">Resultados:</li>
+        <li *ngFor="let user of allUsers | buscarciber: valorabuscartranspose" class="list-group-item"
+          style="cursor: pointer;" (click)="TransposeRegister(user.id)">{{ user.nombre }} - {{ user.rol }}</li>
+      </div>
+
+    </div>
+
+  </div>
 </div>
