@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 import * as XLSX from 'xlsx'
 import Swal from 'sweetalert2';
 import { AdminService } from 'src/app/servicios/admin.service';
+import { LocalstorageService } from 'src/app/servicios/localstorage/localstorage.service';
 declare function onclick(): any;
 import { faRobot } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
@@ -108,15 +109,22 @@ export class PagosComponent implements OnInit {
     private restservice: RestService,
     private http: HttpClient,
     private database: DatabaseService,
-    private adminService: AdminService
+    private adminService: AdminService,
+    private localstorage:LocalstorageService
   ) {
     this.data$ = adminService.getSelect;
     var usuario = CryptoJS.AES.decrypt(localStorage.getItem('іди') || '{}', "іди");
     let userName = usuario.toString(CryptoJS.enc.Utf8);
     let arreglo = userName.split('"');
   }
+
+
+
   async getAllDates() {
-    this.fechasParaBuscarClientes = await this.database.getAllDates().toPromise();
+    await this.database.getAllDates().subscribe((data: any) => {
+      this.fechasParaBuscarClientes = data;
+    });
+
   }
   //DESINCRIPTAMOS EL TOKEN PARA OBTENER LOS DATOS Y EL ROL
   async descry() {
@@ -138,35 +146,35 @@ export class PagosComponent implements OnInit {
       this.MyrolCliente = !this.MyrolCliente;
     }
   }
-ExportExcel2(): void {
-  
-  var usuario = CryptoJS.AES.decrypt(localStorage.getItem('Імякористувача') || '{}', "Імякористувача");
-  let userName = usuario.toString(CryptoJS.enc.Utf8);
-  let arreglo = userName.split('"');
+  ExportExcel2(): void {
+
+    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('Імякористувача') || '{}', "Імякористувача");
+    let userName = usuario.toString(CryptoJS.enc.Utf8);
+    let arreglo = userName.split('"');
 
 
-  /*PASAMOS EL ID DE L TABLA PARA PPSTERIORMENTE MANDARLO A LA BASE DE DATOS*/
-  let element = document.getElementById('excel-table');
-  const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+    /*PASAMOS EL ID DE L TABLA PARA PPSTERIORMENTE MANDARLO A LA BASE DE DATOS*/
+    let element = document.getElementById('excel-table');
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 
-  /* generate workbook and add the worksheet */
-  const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
 
-  XLSX.utils.book_append_sheet(wb, ws, 'Corte');
+    XLSX.utils.book_append_sheet(wb, ws, 'Corte');
 
-  /* save to file */
-  XLSX.writeFile(wb, "Pagos-" + arreglo[1] + ".xlsx");
-  Swal.fire({
-    position: 'center',
-    icon: 'success',
-    title: 'Corte de ' + arreglo[1] + ' descargado',
-    showConfirmButton: true,
-    
-    //timer: 1500
-  })
-  
- this.reloadCurrentRoute();
-}
+    /* save to file */
+    XLSX.writeFile(wb, "Pagos-" + arreglo[1] + ".xlsx");
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Corte de ' + arreglo[1] + ' descargado',
+      showConfirmButton: true,
+
+      //timer: 1500
+    })
+
+    this.reloadCurrentRoute();
+  }
 
 
 
@@ -196,17 +204,17 @@ ExportExcel2(): void {
         }) */
   }
 
-Downloadexcel(){
-  this.ExportExcel2();
-  loader();
-   
-  closeAlert();
-  this.getCorte(this.ciberidselect, this.CiberSelect);
-}
+  Downloadexcel() {
+    this.ExportExcel2();
+    loader();
+
+    closeAlert();
+    this.getCorte(this.ciberidselect, this.CiberSelect);
+  }
 
   alert2() {
     this.ExportExcel2();
-   
+
     this.getCorte(this.ciberidselect, this.CiberSelect);
   }
   changeView() {
@@ -320,35 +328,6 @@ Downloadexcel(){
   }
 
   alert() {
-    // Swal.fire({
-    //   position: 'center',
-    //   icon: 'warning',
-    //   title: 'Enviar corte',//'Corte de ' + this.CiberSelect + ' descargado',
-    //   text: '¿Deseas enviar el corte?',
-    //   showCancelButton: true,
-    //   confirmButtonColor: '#3085d6',
-    //   cancelButtonColor: '#d33',
-    //   confirmButtonText: 'Si, enviar el corte',
-    // }).then(async (result) => {
-    //   if (result.isConfirmed) {
-    //     Swal.fire(
-    //       'Corte enviado!'
-    //     )
-    //     //Estatus a enviado
-    //     let date: string = "";
-    //     if (this.corteSeleccionado == "Actual") {
-    //       date = "null";
-    //     }
-    //     else {
-    //       date = this.corteSeleccionado;
-    //     }
-    //     console.log(date);
-    //     await this.adminService.cambiarstatus(this.ciberidselect, date, true).toPromise();
-    //     this.reloadCurrentRoute();
-    //     this.downloadCorte();
-    //   }
-    // })
-
     this.downloadCorte();
   }
 
@@ -458,9 +437,9 @@ Downloadexcel(){
 
 
 
-    this.adminService.getCorteByUserForDate(id, date).subscribe((data:any) => {
+    this.adminService.getCorteByUserForDate(id, date).subscribe((data: any) => {
       this.corteDelUsuario = data;
-    
+
 
 
 
@@ -519,23 +498,10 @@ Downloadexcel(){
   }
 
   async ngOnInit() {
-    const token = localStorage.getItem('привіт');
-    const usuario = localStorage.getItem('Імякористувача');
-
-    const un = CryptoJS.AES.decrypt(usuario || '{}', "Імякористувача");
-    const UserName = un.toString(CryptoJS.enc.Utf8);
-    const i = localStorage.getItem('іди');
-    const is = CryptoJS.AES.decrypt(i || '{}', "іди");
-    const id = is.toString(CryptoJS.enc.Utf8);
-
-    const array = UserName.split('"');
-    this.usernameLocal = array[1];
-
-    const data: any = await this.database.getmydata(id).toPromise();
-    this.myRol = data.data.rol;
+    this.descry();
+    let token = this.localstorage.TokenDesencrypt();
 
     if (this.myRol != 'Sucursal' && this.myRol != 'Empleado') {
-
 
       this.getAllDates();
       this.getClientsByDateSelected(null);
@@ -550,22 +516,23 @@ Downloadexcel(){
   }
 
   async getClientsByDateSelected(date: any) {
-    this.usuariosEnFecha = [];
     this.fechaDeUsuarioSeleccionada = date;
     this.CiberSelect = [];
+
+
     loader();
+
     if (date == null) {
       this.fechaDeUsuarioSeleccionada = "Actual";
     }
-    this.adminService.getMyClientForDate(date).subscribe(data => {
+
+    this.adminService.getMyClientForDate(date).subscribe((data:any) => {
       closeAlert();
-      
       this.usuariosEnFecha = data;
-
-
     },
       (error: any) => {
-        closeAlert()
+        closeAlert();
+        console.log(error);
       });
   }
 
@@ -619,7 +586,6 @@ Downloadexcel(){
   }
 
   getTodos() {
-
     this.data$.pipe(distinctUntilChanged()).subscribe(async (Data: any) => {
       let datos: any;
       if (Data === "POR ENVIAR") {
@@ -632,10 +598,11 @@ Downloadexcel(){
       this.CiberSelect = "";
       this.valordelobservable = Data;
       this.rowData = datos;
-
     });
-
   }
+
+
+
 
 
   createData() {

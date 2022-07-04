@@ -1223,7 +1223,7 @@ export class InicioComponent implements OnInit {
         
         case 'TS': {
           this.entidadValue = 28;
-          this.entidad = 'Entidad no disponible';
+          this.entidad = 'Tamaulipas';
           this.bdEstado = 'n27';
           this.nose = "28";
           break;
@@ -1237,7 +1237,7 @@ export class InicioComponent implements OnInit {
         }
         case 'VZ': {
           this.entidadValue = 30;
-          this.entidad = 'Entidad no disponibles';
+          this.entidad = 'Veracruz';
           this.bdEstado = 'n29';
           this.nose = "30";
           break;

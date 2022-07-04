@@ -100,6 +100,7 @@
                 <div class="contenedor" *ngIf="valordelobservable != 'Elige un corte'"
                     style="margin-top: 1rem; z-index: -1;">
                     <div class="row row-cols-auto">
+
                         <div class="col col-4 text-center panel-cibers"
                             style=" height: 37rem; border-radius: 0.25rem; background-color: rgb(58, 56, 56); width: 25rem;">
                             <div class="badge text-wrap"
@@ -114,14 +115,17 @@
                                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
                                     <li><a class="dropdown-item" style="cursor: pointer;"
                                             *ngFor="let fechas of fechasParaBuscarClientes"
-                                            (click)="getClientsByDateSelected(fechas.corte)">{{ fechas.corte || "Actual"
-                                            }}</a></li>
+                                            (click)="getClientsByDateSelected(fechas.corte)">{{ fechas.corte || "Actual"}}</a></li>
                                 </ul>
                             </div>
+
+
                             <div class="input-group" style="margin-top: 1em;">
                                 <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="ciberSearch"
                                     name="ciberSearch">
                             </div>
+
+
                             <ul class="list-group" style="margin-top: 1rem; margin-bottom: 1rem;">
                                 <li class="list-group-item active" aria-current="true"
                                     style="text-align: center; background: linear-gradient(0, rgb(36, 133, 163) 0%, rgba(34,165,223,1) 100%);">
@@ -145,6 +149,7 @@
 
                             </ul>
                         </div>
+
                         <div class="col col-8 text-center" *ngIf="CiberSelect.length == 0">
                             <div class="card" style="height: 37em; background-color: rgb(243, 243, 243);">
                                 <div class="card-body">
@@ -489,6 +494,7 @@
                             <button class="btn btn-success" (click)="alert3()"
                                 *ngIf="valordelobservable == 'ENVIADO'">Por enviar</button>
                         </div>
+
                     </div>
                     <div id="download">
                         <img #canvas>
