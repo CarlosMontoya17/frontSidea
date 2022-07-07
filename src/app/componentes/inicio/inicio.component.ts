@@ -196,8 +196,12 @@ export class InicioComponent implements OnInit {
     this.id = id;
     this.result.push(id);
     //getmydata
-    const data: any = await this.database.getmydata(id).toPromise();
-    this.myRol = data.data.rol;
+    this.database.getmydata(id).subscribe((data:any) => {
+      this.myRol = data.data.rol;
+    }, (err:any) => {
+      console.log(err);
+    });
+
   }
 
 
@@ -1281,6 +1285,11 @@ export class InicioComponent implements OnInit {
     this.tipodebusqueda = event;
     // console.log(event);
   }
+
+  switcheable(value:any){
+    this.tipodebusqueda = value;
+  }
+
   onChangeTwo(event: any) {
 
     this.actoRegistral = event;

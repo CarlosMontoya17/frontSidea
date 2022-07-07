@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+*{
+  font-family: "Inter", sans-serif;
+}
+.sidebar{
+
+  font-size: 1.1rem;
+  background-color: rgb(243, 246, 253);
+  width: 12rem;
+  padding: 1rem;
+  transition-duration: 0.2s;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+
+
+} 
+
+
+.header{
+  position: sticky;
+  background-color: rgb(165, 167, 172);
+  width: 100%;
+  top: 0;
+  height: 4rem;
+  padding-left: 12rem;
+
+}
+
+
+.titleText{
+  /* font-size: 1.3rem;
+  user-select: none;
+  letter-spacing: 0.1em;
+  font-weight: 720;  */
+
+  background-color: blueviolet;
+}
+
+.header-title {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+
+  background-color: aqua;
+  width: fit-content;
+  height: 100%;
+  vertical-align: middle;
+  
+}
+
+
+ 
+.side-title {
+  text-align: center;
+  user-select: none;
+  font-size: 12px;
+  letter-spacing: 0.07em;
+  margin-bottom: 24px;
+ }
+ 
+.side-menu{
+  margin-top: 10rem;
+}
+
+.row{
+  color: rgb(51, 49, 49);
+  margin-top: 1rem;
+  /*vertical-align: middle; */
+  padding: 0.1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: 0.5s;
+}
+
+
+.row:hover{
+  background-color: rgb(206, 211, 221);
+  transition: 0.1s;
+}
+
+.category{
+  width: min-content;
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 0.07em;
+  user-select: none;
+  cursor: pointer;
+}
+
+.icon{
+  font-size: 1.7rem;
+  text-align: center;
+  width: 3rem;  
+ }

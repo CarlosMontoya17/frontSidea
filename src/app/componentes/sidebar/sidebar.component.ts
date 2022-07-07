@@ -8,6 +8,10 @@ import { SocketService } from '../../servicios/socket/socket.service';
 import { ReadService } from '../inicio/models/read.service';
 import { RestService } from '../historial/rest.service';
 import {DatabaseService} from '../database/database.service';
+import { faFile } from '@fortawesome/free-solid-svg-icons';
+import { faGear } from '@fortawesome/free-solid-svg-icons';
+import { faBook } from '@fortawesome/free-solid-svg-icons';
+import { faSackDollar } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
 
 
@@ -20,6 +24,12 @@ declare function Notifications(msg:any, status:any): any;
   styleUrls: ['../sidebar/sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
+
+  //Iconos
+  faFile = faFile;
+  faGear = faGear; 
+  faBook = faBook;
+  faSackDollar = faSackDollar;
   usuario:any = "Usuario";
   contrasena: string = "";
   result:any = [];
@@ -27,10 +37,14 @@ export class SidebarComponent implements OnInit {
 
   CiberSelect:any;
   userid:string = "";
-
+  
+  sessionExpired:boolean = false;
 
   public data:any;
   public requests:any = [];
+
+
+
   constructor(private database: DatabaseService,private restservice:RestService,private read:ReadService, private router:Router, private loginservice:LoginService, private adminService:AdminService, private socketClient:SocketService) {
 
    }
@@ -38,6 +52,7 @@ export class SidebarComponent implements OnInit {
   public ngOnInit(): void {
     this.descry();
 
+    this.database.getmydata(this.userid).subscribe((data:any) => {
       this.socketClient.onNewNotify().subscribe( (data:any) => {
         
         if( this.userid ==  data.data.id_req ){
@@ -51,9 +66,19 @@ export class SidebarComponent implements OnInit {
       (err:any) => {
         console.log("");
       });
+    }, (err:any) => {
+      this.sessionExpired = true;
+    });
+
+
+
+
 
     
   }
+
+
+
 
 
   public async obtainARequests() {

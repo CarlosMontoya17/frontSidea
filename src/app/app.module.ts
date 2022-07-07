@@ -31,6 +31,8 @@ import { PipeactaPipe } from './servicios/database/PipeActa/pipeacta.pipe';
 import { PreferencesComponent } from './componentes/inicio/new/preferences/preferences.component';
 import { RfcComponent } from './componentes/rfc/rfc.component';
 import { DdMmYYYYDatePipe } from './dd-mm-yyyy-date.pipe';
+import { NavbarComponent } from './componentes/navbar/navbar.component';
+import { DesauthComponent } from './componentes/desauth/desauth.component';
 
 
 
@@ -58,7 +60,9 @@ import { DdMmYYYYDatePipe } from './dd-mm-yyyy-date.pipe';
     PipeactaPipe,
     PreferencesComponent,
     RfcComponent,
-    DdMmYYYYDatePipe
+    DdMmYYYYDatePipe,
+    NavbarComponent,
+    DesauthComponent
   ],
   imports: [
     BrowserModule,

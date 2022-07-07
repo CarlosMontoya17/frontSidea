@@ -14,6 +14,7 @@ import { DocumentosmanualComponent } from './componentes/documentosmanual/docume
 import { PapeleraComponent } from './componentes/papelera/papelera.component';
 import { PreferencesComponent } from './componentes/inicio/new/preferences/preferences.component';
 import { RfcComponent } from './componentes/rfc/rfc.component';
+import { DesauthComponent } from './componentes/desauth/desauth.component'; 
 const routes: Routes = [
   {
   path: '',
@@ -80,6 +81,11 @@ const routes: Routes = [
 {
   path: 'rfc',
   component: RfcComponent
+},
+
+{
+  path: 'sb',
+  component: DesauthComponent
 }
 
 
