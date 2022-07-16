@@ -316,6 +316,7 @@ export class ActasComponent implements OnInit {
           this.DatoEnviar = this.DatoEnviar.slice(0, 18);
         }
         else if (this.DatoEnviar.length == 18){
+          this.DatoEnviar = this.DatoEnviar.toUpperCase();
           this.SetState();
           
           if(this.verifyCurp() == false){
@@ -326,7 +327,6 @@ export class ActasComponent implements OnInit {
           }
           else{
             this.Lock = true;
-            this.DatoEnviar = this.DatoEnviar.toUpperCase();
             document.getElementById("solicitarReq")?.setAttribute("class", "myButtonOn");
             document.getElementById("alertState")?.setAttribute("style", "background-color: rgb(158, 240, 125); color:black;");
           }
