@@ -1221,10 +1221,7 @@ export class InicioComponent implements OnInit {
           this.bdEstado = 'n26';
           this.nose = "27";
           break;
-        }
-
-
-        
+        }        
         case 'TS': {
           this.entidadValue = 28;
           this.entidad = 'Tamaulipas';

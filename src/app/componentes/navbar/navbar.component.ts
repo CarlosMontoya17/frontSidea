@@ -36,7 +36,7 @@ export class NavbarComponent implements OnInit {
   myRol: any = "";
 
 
-  constructor(private local:LocalstorageService, private auth:AuthService) { }
+  constructor(private local:LocalstorageService, private auth:AuthService, private router:Router) { }
 
   ngOnInit(): void {
     this.GetMyUser();
@@ -48,8 +48,9 @@ export class NavbarComponent implements OnInit {
     this.auth.getUserInfo(id).subscribe((data:any) => {
       this.usuario = data.data.username;
       this.myRol = data.rol;
-      console.log(data);
     }, (err:any) => {
+      this.local.removeAll();
+      this.router.navigateByUrl("/")
       console.log(err);
     });
 

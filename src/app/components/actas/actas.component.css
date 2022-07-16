@@ -72,15 +72,22 @@
 }
 
 .mySubCard {
-    border-radius: 0.9rem;
+    overflow: hidden;
+    border-radius: 0.3rem;
+    margin-top: 1rem;
     /* position: relative; */
-    width: 30rem;
+    width: 45rem;
     height: fit-content;
     padding: 1rem;
     /* border: solid 4px #181717; */
 }
 
-
+.back1{
+    background-image: url(../../../assets/svgs/check.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+}
 
 .myBody {
     display: flex;
@@ -93,14 +100,14 @@
 }
 
 .mySubTitle {
-    text-align: center;
+    text-align: left;
     text-transform: uppercase;
     /* color: rgb(19, 18, 18); */
-    color: white !important;
-    font-size: 1.3rem;
+    color: rgb(255, 255, 255) !important;
+    font-size: 1.1rem;
     user-select: none;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.2em;
 }
 
 .mySubInfo {
@@ -111,16 +118,17 @@
     color: white !important;
 }
 
-.myButton {
+
+
+.myButtonOff {
     border-radius: 5px;
     transform: translate(-50%, 0);
-    cursor: pointer;
     user-select: none;
     position: relative;
     display: inline-block;
     padding: 10px 20px;
-    color: #111010;
-    background-color:  rgb(219,246,253);
+    color: #000000;
+    background: linear-gradient(0deg, rgba(204,204,204,1) 0%, rgba(204,204,204,1) 0%, rgba(145,145,145,1) 43%, rgba(196,196,196,1) 45%);
     font-size: 16px;
     text-decoration: none;
     text-transform: uppercase;
@@ -131,23 +139,44 @@
     /* background-color: rgb(12, 105, 130); */
 }
 
-.myButton:hover {
-    background: linear-gradient(0deg, rgba(31, 29, 29, 1) 0%, rgba(75, 75, 75, 1) 100%);
-    color: #fff;
-    box-shadow: 0 0 5px #2a2a2b;
+
+.myButtonOn {
+    border-radius: 5px;
+    transform: translate(-50%, 0);
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #111010;
+    background:  linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(240,240,240,1) 55%, rgba(255,255,255,1) 56%, rgba(255,255,255,1) 91%);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    margin-top: 1rem;
+    letter-spacing: 4px;
+    left: 50%;
+    /* background-color: rgb(12, 105, 130); */
 }
 
-.myButton span {
+.myButtonOn:hover {
+    background: linear-gradient(0deg, rgba(31, 29, 29, 1) 0%, rgba(75, 75, 75, 1) 100%);
+    color: #fff;
+    box-shadow: 0 0 10px #ffffff;
+}
+
+.myButtonOn span {
     position: absolute;
     display: block;
 }
 
-.myButton span:nth-child(1) {
+.myButtonOn span:nth-child(1) {
     top: 0;
     left: -100%;
     width: 100%;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #0c0c0c);
+    background: linear-gradient(90deg, transparent, #ffffff);
     animation: btn-anim1 1s linear infinite;
 }
 
@@ -163,12 +192,12 @@
 }
 
 
-.myButton span:nth-child(2) {
+.myButtonOn span:nth-child(2) {
     top: -100%;
     right: 0;
     width: 2px;
     height: 100%;
-    background: linear-gradient(180deg, transparent, #0c0c0c);
+    background: linear-gradient(180deg, transparent, #ffffff);
     animation: btn-anim2 1s linear infinite;
     animation-delay: .25s
 }
@@ -185,12 +214,12 @@
 }
 
 
-.myButton span:nth-child(3) {
+.myButtonOn span:nth-child(3) {
     bottom: 0;
     right: -100%;
     width: 100%;
     height: 2px;
-    background: linear-gradient(270deg, transparent, #0c0c0c);
+    background: linear-gradient(270deg, transparent, #ffffff);
     animation: btn-anim3 1s linear infinite;
     animation-delay: .5s
 }
@@ -206,12 +235,12 @@
     }
 }
 
-.myButton span:nth-child(4) {
+.myButtonOn span:nth-child(4) {
     bottom: -100%;
     left: 0;
     width: 2px;
     height: 100%;
-    background: linear-gradient(360deg, transparent, #0c0c0c);
+    background: linear-gradient(360deg, transparent, #ffffff);
     animation: btn-anim4 1s linear infinite;
     animation-delay: .75s
 }
@@ -366,18 +395,35 @@
     background-color: rgb(247, 247, 247);
     z-index: 1;
 }
-.tar{
+
+.myContainer{
+    width: 100%;
+    display: flex;
+    height: 100%;
+    background-color: rgba(1, 8, 31, 0.39);
+    backdrop-filter: blur(2px);
+}
+
+.myLegend{
+    width: 90%;
+    color: #a9aeb1;
+    vertical-align: middle;
+    text-transform: uppercase;
+}
+
+.Illustration{
+    position: absolute;
+    height: 10rem;
+}
+
+.myButt{
+    width: 30%;
+}
+/* .tar{
     background-color: #e1e1e1;
     
-}
-.logo{
-    background-color: orange;
-    position: relative;
-    top:-50px;
-    width: 30%;
-    left: 60px;
-    height: 100px;
-}
+} */
+
 /* .corte{
     background-color: blue;
     z-index: 10000;
@@ -404,3 +450,44 @@
     z-index: 15000;
     position: relative;
 } */
+
+.reqView{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+}
+.reqCard{
+    margin-top: 1rem;
+    width: 60rem;
+    height: fit-content;
+    padding: 1rem;
+    background-color: rgb(43, 54, 78);
+}
+.headerCard{
+    text-align: center;
+    text-transform: uppercase;
+    /* color: rgb(19, 18, 18); */
+    color: rgb(255, 255, 255) !important;
+    font-size: 1.1rem;
+    user-select: none;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+}
+
+.containerReq{
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.myInputReq{
+    width: 40%;
+}
+
+.selectionable:hover {
+    cursor: pointer;
+    outline: thick solid rgba(45, 209, 224, 0.226);;
+}
+

@@ -22,5 +22,9 @@ export class LocalstorageService {
     return i.toString(CryptoJS.enc.Utf8);
   }
 
+  removeAll(){
+    localStorage.clear();
+  }
+
 
 }
