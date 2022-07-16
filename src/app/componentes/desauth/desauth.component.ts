@@ -13,6 +13,7 @@ export class DesauthComponent implements OnInit {
   constructor(private router:Router) { }
 
   ngOnInit(): void {
+
     this.startTimer();
   }
 
@@ -20,8 +21,6 @@ export class DesauthComponent implements OnInit {
   goToHome(){
     localStorage.clear();
     this.router.navigateByUrl('/login');
-
-
   }
 
   startTimer() {
@@ -30,6 +29,7 @@ export class DesauthComponent implements OnInit {
         this.timeLeft--;
       } else {
         this.goToHome();
+        
       }
     },1000)
   }

@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from "../../servicios/login.service";
 import * as CryptoJS from 'crypto-js';
-import { AdminService } from 'src/app/servicios/admin.service';
 import { Observable } from 'rxjs';
 import { SocketService } from '../../servicios/socket/socket.service';
-import { ReadService } from '../inicio/models/read.service';
-import { RestService } from '../historial/rest.service';
-import {DatabaseService} from '../database/database.service';
+import { LocalstorageService } from 'src/app/services/manage/localstorage.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { faFile } from '@fortawesome/free-solid-svg-icons';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
 import { faSackDollar } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faHomeUser } from '@fortawesome/free-solid-svg-icons';
+import { faAddressCard } from '@fortawesome/free-solid-svg-icons';
+import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
 
 
@@ -25,22 +26,37 @@ export class NavbarComponent implements OnInit {
   faFile = faFile;
   faGear = faGear; 
   faBook = faBook;
+  faBars = faBars;
+  faHomeUser = faHomeUser;
   faSackDollar = faSackDollar;
-  usuario:any = "Usuario";
-  contrasena: string = "";
-  result:any = [];
-  myRol: any;
+  faAddressCard = faAddressCard;
+  faPowerOff = faPowerOff;
 
-  CiberSelect:any;
-  userid:string = "";
+  usuario:any = "";  
+  myRol: any = "";
 
 
-  public data:any;
-  public requests:any = [];
-
-  constructor() { }
+  constructor(private local:LocalstorageService, private auth:AuthService) { }
 
   ngOnInit(): void {
+    this.GetMyUser();
   }
+
+
+  GetMyUser(){
+    let id = this.local.GetId();
+    this.auth.getUserInfo(id).subscribe((data:any) => {
+      this.usuario = data.data.username;
+      this.myRol = data.rol;
+      console.log(data);
+    }, (err:any) => {
+      console.log(err);
+    });
+
+  }
+
+
+
+
 
 }

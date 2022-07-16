@@ -67,6 +67,7 @@ export class SidebarComponent implements OnInit {
         console.log("");
       });
     }, (err:any) => {
+      console.log(err);
       this.sessionExpired = true;
     });
 

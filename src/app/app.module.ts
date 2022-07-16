@@ -33,6 +33,7 @@ import { RfcComponent } from './componentes/rfc/rfc.component';
 import { DdMmYYYYDatePipe } from './dd-mm-yyyy-date.pipe';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { DesauthComponent } from './componentes/desauth/desauth.component';
+import { ActasComponent } from './components/actas/actas.component';
 
 
 
@@ -62,7 +63,8 @@ import { DesauthComponent } from './componentes/desauth/desauth.component';
     RfcComponent,
     DdMmYYYYDatePipe,
     NavbarComponent,
-    DesauthComponent
+    DesauthComponent,
+    ActasComponent
   ],
   imports: [
     BrowserModule,

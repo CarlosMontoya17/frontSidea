@@ -1297,6 +1297,7 @@ export class InicioComponent implements OnInit {
 
   ngOnInit(): void {
     const token = localStorage.getItem('привіт');
+    console.log(token);
     if (!token) {
       this.router.navigateByUrl('/login');
     }
@@ -1320,7 +1321,7 @@ export class InicioComponent implements OnInit {
       this.dates = data;
     });
   }
-
+ 
 
   selectDate(date:any){
     this.dateSelect = date;

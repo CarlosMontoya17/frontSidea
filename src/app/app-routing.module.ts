@@ -14,7 +14,8 @@ import { DocumentosmanualComponent } from './componentes/documentosmanual/docume
 import { PapeleraComponent } from './componentes/papelera/papelera.component';
 import { PreferencesComponent } from './componentes/inicio/new/preferences/preferences.component';
 import { RfcComponent } from './componentes/rfc/rfc.component';
-import { DesauthComponent } from './componentes/desauth/desauth.component'; 
+import { NavbarComponent } from './componentes/navbar/navbar.component';
+import { ActasComponent } from './components/actas/actas.component';
 const routes: Routes = [
   {
   path: '',
@@ -85,7 +86,11 @@ const routes: Routes = [
 
 {
   path: 'sb',
-  component: DesauthComponent
+  component: NavbarComponent
+},
+{
+  path: 'vc' ,
+  component: ActasComponent
 }
 
 

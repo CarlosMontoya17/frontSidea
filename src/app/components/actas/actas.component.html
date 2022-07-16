@@ -1,0 +1,223 @@
+<div class="myCard animate__animated animate__slideInLeft">
+
+    <div class="myTitle">
+        <label for="myTitle">ACTAS</label>
+    </div>
+
+    <div class="myBody space">
+
+
+        <div class="mySubCard tar" >
+            <div class="logo">logo</div>
+            <div class="mySubTitle">
+                <label for="mySubTitle">Solicitudes</label>
+            </div>
+            <div class="mySubInfo">
+                Para revisar o descargar tus solicitudes enviadas, da click en el bóton de abajo.
+            </div>
+            <div class="myButton" (click)="switcheableView(1)">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Ver Solicitudes
+            </div>
+        </div>
+        <div class="mySubCard" style="background-color: rgb(12, 105, 130);  color: white !important;">
+            <div class="mySubTitle">
+                <label for="mySubTitle">Nuevo</label>
+            </div>
+            <div class="mySubInfo">
+                Para solicitar un Acta de Nacimiento, Defunción, Divorcio y Matrimonio, da click en el bóton de abajo.
+            </div>
+
+            <div class="myButton">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Nueva Solicitud
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+    <div class="myBody  animate__animated animate__fadeInUp" *ngIf="view == 1">
+        <div class="mySubCard" style="background-color:  #494848;width: 100%;">
+            <div class="mySubTitle">
+                <label for="mySubTitle">FILTROS</label>
+            </div>
+
+            <div class="filters" style="margin-top: 1rem;" style="z-index: 100000000;">
+
+                <div class="filter" style="width: 50rem;">
+                    <h6 class="text-center" style="color: white;"> BUSCADOR </h6>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="BUSCAR POR DATOS PROPORCIONADOS"
+                            aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <span class="input-group-text" id="basic-addon2">
+                            <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="filter" style="width: 30rem;">
+                    <div class="dropdown text-center">
+                        <h6 class="text-center" style="color: white;"> SELECCIONAR CORTE </h6>
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" style="z-index: 100000000;"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ dateSelect || "Actual" }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark corte" aria-labelledby="dropdownMenuButton2" style="z-index: 100000000;">
+                            <li style="z-index: 100000000;">
+                                <a *ngFor="let date of dates" (click)="selectDate(date.corte)" class="dropdown-item"
+                                    style="cursor: pointer;" style="z-index: 100000000;">
+                                    {{ date.corte || "Actual" }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+    <div class="myContentFlex tarjetas">
+
+        <div *ngFor="let req of actas" class="animate__animated animate__fadeInUp"
+            style="max-width: 20rem; max-height: 31rem; margin-bottom: 1.5rem; width: 19rem; margin-right: 0.5rem; margin-top: 1rem; ">
+            
+            <span class="position-absolute top-45 start-90 translate-middle badge rounded-pill bg-primary"
+                style="z-index: -2222222;">
+                {{ req.nm }}
+            </span>
+
+            <div *ngIf="req.downloaded != true && req.url != null && req.comments == 'Enviado'"
+                style="position: absolute; z-index: 2; margin-left: 12%; ">
+                <div style="width: 3rem; height: 3rem; position: relative; text-align: center;">
+                    <label
+                        style=" font-family: inherit; color: white; z-index: 1; display: flex; align-self: center; position: absolute; margin-top: 35%; margin-left: 20%;">Nuevo</label>
+                    <fa-icon class="fa-4x" [icon]="faCertificate"
+                        style="color: #0E6FFD !important; display: flex; align-self: center;"></fa-icon>
+                </div>
+            </div>
+
+
+
+            <div class="Card" style="margin-bottom: 1rem;">
+                <div class="Card-head">
+                    <div class="Card-cover" *ngIf='req.metadata.includes("NACIMIENTO")'
+                        style="background-image: url(../../../assets/documents/nacimiento.png);"></div>
+                    <div *ngIf='req.metadata.includes("DEFUNCION")' class="Card-cover"
+                        style="background-image: url(../../../assets/documents/defuncion.png);"></div>
+                    <div *ngIf='req.metadata.includes("DIVORCIO")' class="Card-cover"
+                        style="background-image: url(../../../assets/documents/divorcio.png);"></div>
+                    <div *ngIf='req.metadata.includes("MATRIMONIO")' class="Card-cover"
+                        style="background-image: url(../../../assets/documents/matrimonio.png);"></div>
+                    <div *ngIf='req.metadata.includes("CADENA")' class="Card-cover"
+                        style="background-image: url(../../../assets/documents/desconocido.png);"></div>
+                </div>
+                <div class="Card-main tarjetas3">
+                    <h1 class="Card-titleContent" *ngIf='req.metadata.includes("NACIMIENTO")'>ACTA DE NACIMIENTO
+                    </h1>
+                    <h1 class="Card-titleContent" *ngIf='req.metadata.includes("DEFUNCION")'>ACTA DE DEFUNCIÓN
+                    </h1>
+                    <h1 class="Card-titleContent" *ngIf='req.metadata.includes("MATRIMONIO")'>ACTA DE MATRIMONIO
+                    </h1>
+                    <h1 class="Card-titleContent" *ngIf='req.metadata.includes("DIVORCIO")'>ACTA DE DIVORCIO
+                    </h1>
+                    <h1 class="Card-titleContent" *ngIf='req.metadata.includes("CADENA")'>DESCONOCIDO</h1>
+                    <h2 class="Card-subTitleContent">{{ req.type }} - {{ req.createdAt | date:'dd/MM/yyyy' }} {{
+                        req.createdAt | date: 'h:mm a' }} </h2>
+                    <div class="Card-genre"> DATOS </div>
+                    <p class="Card-desc">{{ req.metadata }}</p>
+
+                    <label class="Card-filename" style="margin-top: 1rem;">{{ req.url || "Sin archivo"
+                        }}</label>
+                    <div class="row" style="margin-top: 0.5em;">
+                        <a class="btn btn-success"
+                            *ngIf="req.url != null && req.comments == 'Enviado' && req.downloaded != true ">
+                            <fa-icon [icon]="faFileArrowDown"></fa-icon>
+
+                            &nbsp;Descargar
+                        </a>
+
+                        <a class="btn btn-secondary"
+                            *ngIf="req.url != null && req.comments == 'Enviado' && req.downloaded == true">
+                            <fa-icon [icon]="faCheckToSlot"></fa-icon>
+                            &nbsp;Descargado
+                        </a>
+
+                        <a class="btn btn-danger"
+                            *ngIf="req.comments != 'Enviado' && req.comments != null && req.comments != '.'">
+                            <fa-icon [icon]="faCircleXmark"></fa-icon>
+
+                            &nbsp;Detalles
+                        </a>
+
+                        <a class="btn btn-warning"
+                            *ngIf="req.comments == null && req.url == null || req.comments == 'Enviado' && req.url == null ">
+                            <fa-icon [icon]="faRotate"></fa-icon>
+
+                            &nbsp;En proceso
+                        </a>
+                    </div>
+
+
+                    <div>
+                        <div *ngIf="req.idtranspose == null" class="row" style="margin-top: 0.5em;">
+                            <a class="btn btn-primary">
+                                <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>
+                                &nbsp;Re-Asignar Acta
+                            </a>
+                        </div>
+
+
+                        <div *ngIf="req.idtranspose != null" class="row" style="margin-top: 0.5em;">
+                            <a class="btn btn-secondary">
+                                <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>
+                                &nbsp;Acta Asignada
+                            </a>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+</div>
+
+
