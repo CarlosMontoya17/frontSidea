@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
         var usuario = CryptoJS.AES.encrypt(JSON.stringify(data.username), "Імякористувача");
 
         var id = CryptoJS.AES.encrypt(JSON.stringify(data.id), "іди");
+        
         var token = CryptoJS.AES.encrypt(JSON.stringify(data.token), "привіт");
 
         var idC = CryptoJS.AES.decrypt(id || '{}', "іди");

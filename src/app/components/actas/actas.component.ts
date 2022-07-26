@@ -53,7 +53,6 @@ export class ActasComponent implements OnInit {
   }
 
 
-
   switcheableView(i: number) {
     //1 = Solicitudes
     //2 = Nueva
@@ -69,11 +68,9 @@ export class ActasComponent implements OnInit {
     }
   }
 
-
   getServices() {
     this.view = 2;
   }
-
 
   // Dates
   getDates() {
@@ -293,7 +290,6 @@ export class ActasComponent implements OnInit {
     }
   }
 
-
   KeyupData() {
     switch (this.MetodoBusqueda) {
       case "CADENA":
@@ -370,6 +366,8 @@ export class ActasComponent implements OnInit {
         this.ActoRegistral = "ACTA REGISTRAL";
         this.MetodoBusqueda = "MÉTODO DE BUSQUEDA";
         this.DatoEnviar = "";
+        this.Lock = false;
+        document.getElementById("solicitarReq")?.setAttribute("class", "myButtonOff");
       }, (err:any) => {
         this.auth.Unauth();
         console.log(err);
@@ -381,6 +379,8 @@ export class ActasComponent implements OnInit {
         this.ActoRegistral = "ACTA REGISTRAL";
         this.MetodoBusqueda = "MÉTODO DE BUSQUEDA";
         this.DatoEnviar = "";
+        this.Lock = false;
+        document.getElementById("solicitarReq")?.setAttribute("class", "myButtonOff");
       }, (err:any) => {
         this.auth.Unauth();
         console.log(err);
@@ -391,13 +391,11 @@ export class ActasComponent implements OnInit {
     
   }
 
-
   Solicitar(){
     if(this.Lock){
       this.ModalReq = true;
     }
   }
-
 
   DownloadActa(id:any, name:any){
     if(name != null){

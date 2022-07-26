@@ -1,3 +1,14 @@
+
+
+
+
+<!-- LOADER PAGE -->
+<div class="c-loaderPage" id="loaderPage">
+  <div class="c-loader"></div>
+</div>
+
+
+
 <!-- NAVBAR -->
 <div class="navbar">
   <div class="title">
@@ -42,22 +53,22 @@
 
   <div class="side-menu">
     <div class="col">
-      <div class="row">
+      <div class="row" (click)="SelectOption(0)">
         <fa-icon [icon]="faHomeUser" class="icon"></fa-icon> <label for="row" class="category">INICIO</label>
       </div>
-      <div class="row">
+      <div class="row" (click)="SelectOption(1)">
         <fa-icon [icon]="faGear" class="icon"></fa-icon> <label for="row" class="category">ADMINISTRAR</label>
       </div>
-      <div class="row">
+      <div class="row" (click)="SelectOption(2)">
         <fa-icon [icon]="faFile" class="icon"></fa-icon> <label for="row" class="category">ACTAS</label>
       </div>
-      <div class="row">
+      <div class="row" (click)="SelectOption(3)">
         <fa-icon [icon]="faFile" class="icon"></fa-icon> <label for="row" class="category">RFC</label>
       </div>
-      <div class="row">
+      <div class="row" (click)="SelectOption(4)">
         <fa-icon [icon]="faSackDollar" class="icon"></fa-icon> <label for="row" class="category">CORTE</label>
       </div>
-      <div class="row">
+      <div class="row" (click)="SelectOption(5)">
         <fa-icon [icon]="faBook" class="icon"></fa-icon> <label for="row" class="category">DOCUMENTOS</label>
       </div>
     </div>
@@ -67,8 +78,12 @@
 
 <!-- CONTENTS -->
 
-<div class="myContent">
-  <app-actas></app-actas>
+<div class="myContent" [ngSwitch]="option">
+  <app-home *ngSwitchCase="0"></app-home>
+  <app-management *ngSwitchCase="1"></app-management>
+  <app-actas *ngSwitchCase="2"></app-actas>
+  <app-pays *ngSwitchCase="4"></app-pays>
+  <app-documents *ngSwitchCase="5"></app-documents>
 </div>
 
 

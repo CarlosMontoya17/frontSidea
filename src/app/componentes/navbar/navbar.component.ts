@@ -34,7 +34,9 @@ export class NavbarComponent implements OnInit {
 
   usuario:any = "";  
   myRol: any = "";
-
+ 
+  //Selectable
+  option:Number = 0;
 
   constructor(private local:LocalstorageService, private auth:AuthService, private router:Router) { }
 
@@ -48,6 +50,7 @@ export class NavbarComponent implements OnInit {
     this.auth.getUserInfo(id).subscribe((data:any) => {
       this.usuario = data.data.username;
       this.myRol = data.rol;
+      document.getElementById("loaderPage")?.setAttribute("style", "display: none;");
     }, (err:any) => {
       this.local.removeAll();
       this.router.navigateByUrl("/")
@@ -57,6 +60,10 @@ export class NavbarComponent implements OnInit {
   }
 
 
+  SelectOption(option:number){
+    this.option = option;
+
+  }
 
 
 

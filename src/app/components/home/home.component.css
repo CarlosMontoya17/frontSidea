@@ -1,0 +1,50 @@
+.myCard {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: white;
+}
+
+
+.myCard::-webkit-scrollbar {
+    width: 0.8rem;
+}
+
+
+.myCard::-webkit-scrollbar-thumb {
+    background: linear-gradient(0deg, rgba(31, 29, 29, 1) 0%, rgba(75, 75, 75, 1) 100%);
+    border-radius: 1rem;
+}
+
+.myCard::-webkit-scrollbar-thumb:active {
+    background-color: #999999;
+}
+
+.myCard::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(61deg, rgba(128, 133, 133, 1) 0%, rgb(88, 88, 87) 100%);
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.myCard::-webkit-scrollbar-track {
+    background: #e1e1e1;
+    border-radius: 1rem;
+}
+
+.myCard::-webkit-scrollbar-track:hover,
+.myCard::-webkit-scrollbar-track:active {
+    background: #d4d4d4;
+}
+
+
+.myHeader{
+    padding: 1rem;
+    margin: 1rem;
+    background-color: #1b1b1b;
+    color: white;
+}
+
+.myHeader p{
+    font-weight: 700;
+    font-size: 1.5rem;
+}

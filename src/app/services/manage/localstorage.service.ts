@@ -22,6 +22,13 @@ export class LocalstorageService {
     return i.toString(CryptoJS.enc.Utf8);
   }
 
+  getUsername(){
+    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('Імякористувача') || '{}', "Імякористувача");
+    let userName = usuario.toString(CryptoJS.enc.Utf8);
+    let arreglo = userName?.split('"');
+    return arreglo[1];
+  }
+
   removeAll(){
     localStorage.clear();
   }

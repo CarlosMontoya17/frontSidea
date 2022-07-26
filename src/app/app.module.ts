@@ -34,6 +34,10 @@ import { DdMmYYYYDatePipe } from './dd-mm-yyyy-date.pipe';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { DesauthComponent } from './componentes/desauth/desauth.component';
 import { ActasComponent } from './components/actas/actas.component';
+import { HomeComponent } from './components/home/home.component';
+import { DocumentsComponent } from './components/documents/documents.component';
+import { PaysComponent } from './components/pays/pays.component';
+import { ManagementComponent } from './components/management/management.component';
 
 
 
@@ -64,7 +68,11 @@ import { ActasComponent } from './components/actas/actas.component';
     DdMmYYYYDatePipe,
     NavbarComponent,
     DesauthComponent,
-    ActasComponent
+    ActasComponent,
+    HomeComponent,
+    DocumentsComponent,
+    PaysComponent,
+    ManagementComponent
   ],
   imports: [
     BrowserModule,
