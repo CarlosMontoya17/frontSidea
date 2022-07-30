@@ -27,8 +27,8 @@ const routes: Routes = [
   component: LoginComponent
 },
 {
-  path: 'inicio',
-  component: InicioComponent
+  path: 'app',
+  component: NavbarComponent
 },
 {
   path: 'administrar',
@@ -86,7 +86,7 @@ const routes: Routes = [
 
 {
   path: 'sb',
-  component: NavbarComponent
+  component: InicioComponent 
 },
 {
   path: 'vc' ,

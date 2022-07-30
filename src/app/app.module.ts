@@ -38,6 +38,7 @@ import { HomeComponent } from './components/home/home.component';
 import { DocumentsComponent } from './components/documents/documents.component';
 import { PaysComponent } from './components/pays/pays.component';
 import { ManagementComponent } from './components/management/management.component';
+import { RfcsComponent } from './components/rfcs/rfcs.component';
 
 
 
@@ -72,7 +73,8 @@ import { ManagementComponent } from './components/management/management.componen
     HomeComponent,
     DocumentsComponent,
     PaysComponent,
-    ManagementComponent
+    ManagementComponent,
+    RfcsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,465 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+* {
+    font-family: "Inter", sans-serif;
+}
+
+.myCard {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+
+.myCard::-webkit-scrollbar {
+    width: 0.8rem;
+}
+
+
+.myCard::-webkit-scrollbar-thumb {
+    background: linear-gradient(0deg, rgba(31, 29, 29, 1) 0%, rgba(75, 75, 75, 1) 100%);
+    border-radius: 1rem;
+}
+
+.myCard::-webkit-scrollbar-thumb:active {
+    background-color: #999999;
+}
+
+.myCard::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(61deg, rgba(128, 133, 133, 1) 0%, rgb(88, 88, 87) 100%);
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.myCard::-webkit-scrollbar-track {
+    background: #e1e1e1;
+    border-radius: 1rem;
+}
+
+.myCard::-webkit-scrollbar-track:hover,
+.myCard::-webkit-scrollbar-track:active {
+    background: #d4d4d4;
+}
+
+
+
+.myBackground {
+    z-index: -1;
+    float: left;
+    width: 100%;
+    height: 10rem;
+    overflow: hidden;
+    vertical-align: top;
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+}
+
+
+.myTitle {
+    color: rgb(68, 67, 66);
+    position: relative;
+    margin-top: 2rem;
+    margin-left: 2rem;
+    font-size: 1.3rem;
+    user-select: none;
+    letter-spacing: 0.1em;
+    font-weight: 720;
+}
+
+.space {
+    justify-content: space-around;
+}
+
+.mySubCard {
+    border-radius: 0.3rem;
+    margin-top: 1rem;
+    /* position: relative; */
+    width: 45rem;
+    height: fit-content;
+    padding: 1rem;
+    /* border: solid 4px #181717; */
+}
+
+.back1{
+    background-image: url(../../../assets/svgs/check.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+.myBody {
+    display: flex;
+    list-style: none;
+    flex-flow: wrap;
+    margin-top: 2rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    /* position: relative; */
+}
+
+.mySubTitle {
+    text-align: left;
+    text-transform: uppercase;
+    /* color: rgb(19, 18, 18); */
+    color: rgb(255, 255, 255) !important;
+    font-size: 1.1rem;
+    user-select: none;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+}
+
+.mySubInfo {
+    user-select: none;
+    cursor: default;
+    text-align: justify;
+    /* color: rgb(63, 60, 60); */
+    color: white !important;
+}
+
+
+
+.myButtonOff {
+    border-radius: 5px;
+    transform: translate(-50%, 0);
+    user-select: none;
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #000000;
+    background: linear-gradient(0deg, rgba(204,204,204,1) 0%, rgba(204,204,204,1) 0%, rgba(145,145,145,1) 43%, rgba(196,196,196,1) 45%);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    margin-top: 1rem;
+    letter-spacing: 4px;
+    left: 50%;
+    /* background-color: rgb(12, 105, 130); */
+}
+
+
+.myButtonOn {
+    border-radius: 5px;
+    transform: translate(-50%, 0);
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #111010;
+    background:  linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(240,240,240,1) 55%, rgba(255,255,255,1) 56%, rgba(255,255,255,1) 91%);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    margin-top: 1rem;
+    letter-spacing: 4px;
+    left: 50%;
+    /* background-color: rgb(12, 105, 130); */
+}
+
+.myButtonOn:hover {
+    background: linear-gradient(0deg, rgba(31, 29, 29, 1) 0%, rgba(75, 75, 75, 1) 100%);
+    color: #fff;
+    box-shadow: 0 0 10px #ffffff;
+}
+
+.myButtonOn span {
+    position: absolute;
+    display: block;
+}
+
+.myButtonOn span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ffffff);
+    animation: btn-anim1 1s linear infinite;
+}
+
+@keyframes btn-anim1 {
+    0% {
+        left: -100%;
+    }
+
+    50%,
+    100% {
+        left: 100%;
+    }
+}
+
+
+.myButtonOn span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #ffffff);
+    animation: btn-anim2 1s linear infinite;
+    animation-delay: .25s
+}
+
+@keyframes btn-anim2 {
+    0% {
+        top: -100%;
+    }
+
+    50%,
+    100% {
+        top: 100%;
+    }
+}
+
+
+.myButtonOn span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, #ffffff);
+    animation: btn-anim3 1s linear infinite;
+    animation-delay: .5s
+}
+
+@keyframes btn-anim3 {
+    0% {
+        right: -100%;
+    }
+
+    50%,
+    100% {
+        right: 100%;
+    }
+}
+
+.myButtonOn span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #ffffff);
+    animation: btn-anim4 1s linear infinite;
+    animation-delay: .75s
+}
+
+@keyframes btn-anim4 {
+    0% {
+        bottom: -100%;
+    }
+
+    50%,
+    100% {
+        bottom: 100%;
+    }
+}
+
+
+
+.filters {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.filter {
+    display: table-cell;
+}
+
+
+
+
+
+/* MY CARD REQUESTS */  
+/* My Cards Requests Style*/
+.viewCard{
+    margin-top: 1rem;
+    width: 31rem;
+    height: fit-content;
+    max-width: 20rem;
+    max-height: 31rem;
+}
+.Card{
+    max-width: 340px;
+    overflow-x: hidden;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    transition: 0.3s;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.2);
+    outline: 4px solid rgba(94, 94, 94, 0.171);
+  }
+  
+  
+  .Card:hover{
+    box-shadow: 0 0 0 8px rgba(0, 132, 255, 0.363);
+  }
+  
+  .Card-head {
+    position: relative;
+    display: flex;
+    height: 200px;
+    width: 100%;
+    transition: 0.3s;
+  }
+  
+  .Card-cover {
+    width: 100%;
+    height: 100%;
+    position: absolute; 
+    height: 220px;
+    top: -20%;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    filter: blur(0.5px);
+    transform: scale(1.2);
+    transition: 0.5s;
+  }
+  
+  .Card-filename{
+    text-align: center;
+    line-height: 1.6;
+    color: #636b6f;
+    font-size: 13px;
+    margin-left: 1rem;
+    font-weight: 400;
+    white-space: nowrap;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    opacity: 0.7;
+  
+  }
+  
+  .Card-main {
+    background-color: #fff;
+    position: relative;
+    flex: 1;
+    display: flex;
+    padding-top: 10px;
+    flex-direction: column;
+  }
+  
+  .Card-genre {
+    margin-left: 1rem;
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+  
+  .Card-titleContent {
+    margin-left: 1rem;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 8px;
+    text-align: center;
+    white-space: nowrap;
+  }
+  
+  .Card-subTitleContent {
+    margin-left: 1rem;
+    font-weight: 700;
+    font-size: 12px;
+    opacity: 0.9;
+    margin-bottom: 8px;
+    text-align: center;
+    white-space: nowrap;
+  }
+  
+  .Card-desc {
+    line-height: 1.6;
+    color: #636b6f;
+    font-size: 14px;
+    margin-left: 1rem;
+    line-height: 1.6;
+    color: #636b6f;
+    font-size: 13px;
+    margin-left: 1rem;
+    font-weight: 400;
+    white-space: nowrap;
+    font-weight: 500;
+    opacity: 0.7;
+    white-space: pre-line;
+  }
+  
+
+.myContentFlex{
+    margin-left: 1rem;
+    margin-right: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    justify-content: space-around;
+    background-color: rgb(247, 247, 247);
+    z-index: 1;
+} 
+
+.myContainer{
+    width: 100%;
+    display: flex;
+    height: 100%;
+    background-color: rgba(1, 8, 31, 0.39);
+    backdrop-filter: blur(2px);
+}
+
+.myLegend{
+    width: 90%;
+    color: #a9aeb1;
+    vertical-align: middle;
+    text-transform: uppercase;
+}
+
+.Illustration{
+    position: absolute;
+    height: 10rem;
+}
+
+.myButt{
+    width: 30%;
+}
+
+
+.reqView{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+}
+.reqCard{
+    margin-top: 1rem;
+    width: 60rem;
+    height: fit-content;
+    padding: 1rem;
+    background-color: rgb(43, 54, 78);
+}
+.headerCard{
+    text-align: center;
+    text-transform: uppercase;
+    /* color: rgb(19, 18, 18); */
+    color: rgb(255, 255, 255) !important;
+    font-size: 1.1rem;
+    user-select: none;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+}
+
+.containerReq{
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.myInputReq{
+    width: 40%;
+}
+
+.selectionable:hover {
+    cursor: pointer;
+    outline: thick solid rgba(45, 209, 224, 0.226);;
+}
+

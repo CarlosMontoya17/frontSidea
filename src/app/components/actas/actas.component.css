@@ -72,7 +72,6 @@
 }
 
 .mySubCard {
-    overflow: hidden;
     border-radius: 0.3rem;
     margin-top: 1rem;
     /* position: relative; */
@@ -259,8 +258,9 @@
 
 
 .filters {
+    position: relative;
     width: 100%;
-    display: table;
+    display: flex;
     justify-content: space-around;
 }
 
@@ -274,10 +274,15 @@
 
 /* MY CARD REQUESTS */  
 /* My Cards Requests Style*/
+.viewCard{
+    margin-top: 1rem;
+    width: 31rem;
+    height: fit-content;
+    max-width: 20rem;
+    max-height: 31rem;
+}
 .Card{
-
     max-width: 340px;
-    z-index: -1000;
     overflow-x: hidden;
     background-color: rgb(255, 255, 255);
     display: flex;
@@ -297,20 +302,17 @@
     position: relative;
     display: flex;
     height: 200px;
-    flex-shrink: 0;
     width: 100%;
     transition: 0.3s;
-  
   }
   
   .Card-cover {
     width: 100%;
     height: 100%;
-    position: absolute;
+    position: absolute; 
     height: 220px;
     top: -20%;
     left: 0;
-    will-change: top;
     background-size: cover;
     background-position: center;
     filter: blur(0.5px);
@@ -385,7 +387,7 @@
   }
   
 
-  .myContentFlex{
+.myContentFlex{
     margin-left: 1rem;
     margin-right: 1rem;
     display: flex;
@@ -394,7 +396,7 @@
     justify-content: space-around;
     background-color: rgb(247, 247, 247);
     z-index: 1;
-}
+} 
 
 .myContainer{
     width: 100%;
@@ -419,37 +421,7 @@
 .myButt{
     width: 30%;
 }
-/* .tar{
-    background-color: #e1e1e1;
-    
-} */
 
-/* .corte{
-    background-color: blue;
-    z-index: 10000;
-    position: abosulte;
-}
-
-.tarjetas{
-    background-color: #0c0c0c;
-    z-index: -1;
-}
-.tarjetas2{
-    background-color: aqua;
-}
-.tarjetas3{
-    background-color: aquamarine;
-}
-.tarjetas4{
-    background-color: red;
-    position: absolute;
-    z-index: -1000;
-}
-.liCorte{
-    background-color: green;
-    z-index: 15000;
-    position: relative;
-} */
 
 .reqView{
     display: flex;
@@ -459,7 +431,7 @@
 }
 .reqCard{
     margin-top: 1rem;
-    width: 80rem;
+    width: 60rem;
     height: fit-content;
     padding: 1rem;
     background-color: rgb(43, 54, 78);

@@ -6,7 +6,9 @@ import * as CryptoJS from 'crypto-js';
 })
 export class LocalstorageService {
 
+
   constructor() { }
+
 
   TokenDesencrypt(){
     var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
@@ -32,6 +34,8 @@ export class LocalstorageService {
   removeAll(){
     localStorage.clear();
   }
+
+
 
 
 }

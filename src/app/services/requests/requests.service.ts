@@ -15,7 +15,6 @@ export class RequestsService {
 
 
   //ACTAS
-
   getMyDatesActasRequest(){
     let token = this.local.TokenDesencrypt();
     const headers = new HttpHeaders({ 'x-access-token': token! });
@@ -38,4 +37,26 @@ export class RequestsService {
     return this.http.get(urlApi+'/api/actas/requests/getMyActa/'+id, { responseType: 'blob'});
   }
 
+  //RFCs
+  SendRFCRequest(search:any, data:any, clasification:any){
+    let token = this.local.TokenDesencrypt();
+    const headers = new HttpHeaders({ 'x-access-token': token! });
+    return this.http.post(urlApi+'/api/rfc/requests/news/', { search, data, clasification },{ headers });
+  }
+
+  getAllRFCRequest(date:any){
+    let token = this.local.TokenDesencrypt();
+    const headers = new HttpHeaders({ 'x-access-token': token! });
+    return this.http.get(urlApi+'/api/rfc/requests/myRequests/'+date, { headers });
+  }
+
+  getMyDatesRFCRequest(){
+    let token = this.local.TokenDesencrypt();
+    const headers = new HttpHeaders({ 'x-access-token': token! });
+    return this.http.get(urlApi+'/api/rfc/requests/myDates/', { headers });
+  }
+
+  DownloadRFC(id:any){
+    return this.http.get(urlApi+'/api/rfc/request/donwload/'+id, { responseType: 'blob'});
+  }
 }

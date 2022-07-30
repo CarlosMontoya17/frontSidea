@@ -56,7 +56,7 @@
       <div class="row" (click)="SelectOption(0)">
         <fa-icon [icon]="faHomeUser" class="icon"></fa-icon> <label for="row" class="category">INICIO</label>
       </div>
-      <div class="row" (click)="SelectOption(1)">
+      <div class="row" (click)="SelectOption(1)" *ngIf="myRol == 'Admin' || myRol == 'Supervisor'">
         <fa-icon [icon]="faGear" class="icon"></fa-icon> <label for="row" class="category">ADMINISTRAR</label>
       </div>
       <div class="row" (click)="SelectOption(2)">
@@ -68,8 +68,11 @@
       <div class="row" (click)="SelectOption(4)">
         <fa-icon [icon]="faSackDollar" class="icon"></fa-icon> <label for="row" class="category">CORTE</label>
       </div>
-      <div class="row" (click)="SelectOption(5)">
+      <div class="row" (click)="SelectOption(5)" *ngIf="myRol == 'Admin' || myRol == 'Supervisor'">
         <fa-icon [icon]="faBook" class="icon"></fa-icon> <label for="row" class="category">DOCUMENTOS</label>
+      </div>
+      <div class="row" (click)="SelectOption(6)">
+        <fa-icon [icon]="faPersonWalkingArrowRight" class="icon"></fa-icon> <label for="row" class="category">SALIR</label>
       </div>
     </div>
   </div>
@@ -82,6 +85,7 @@
   <app-home *ngSwitchCase="0"></app-home>
   <app-management *ngSwitchCase="1"></app-management>
   <app-actas *ngSwitchCase="2"></app-actas>
+  <app-rfcs *ngSwitchCase="3"></app-rfcs>
   <app-pays *ngSwitchCase="4"></app-pays>
   <app-documents *ngSwitchCase="5"></app-documents>
 </div>

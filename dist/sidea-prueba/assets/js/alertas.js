@@ -13,9 +13,7 @@ function loader() {
             clearInterval(timerInterval)
         }
     }).then((result) => {
-
     })
-
 }
 
 function loaderMsg(msg) {
@@ -35,11 +33,6 @@ function loaderMsg(msg) {
 }
 
 
-function closeAlert() {
-    Swal.close();
-
-}
-
 
 function QuestionAlert(msg, confirmMsg, denyMsg){
     Swal.fire({
@@ -56,9 +49,6 @@ function QuestionAlert(msg, confirmMsg, denyMsg){
         }
       });
 }
-
-
-
 
 function showDetailsActas(comments) {
     Swal.fire({
@@ -102,8 +92,6 @@ function ShowImageAd(id, tipo) {
     edit();
 }
 
-
-
 function customAlerts(status, msg){   
     Swal.fire({
         position: 'center',
@@ -113,7 +101,6 @@ function customAlerts(status, msg){
         timer: 1500
       });
 }
-
 
 function download(url, tipo) {
     axios({
@@ -131,7 +118,6 @@ function download(url, tipo) {
     });
 }
 
-
 function Notifications(message, status) {
     const Toast = Swal.mixin({
         toast: true,
@@ -146,4 +132,62 @@ function Notifications(message, status) {
     }).then((result) => {
         return result;
     });
+}
+
+//New Asset
+
+function LoaderModal() {
+    let timerInterval
+    Swal.fire({
+        title: 'Procesando',
+        text: 'Espere porfavor',
+        didOpen: () => {
+            Swal.showLoading()
+        },
+        willClose: () => {
+            clearInterval(timerInterval)
+        }
+    }).then((result) => {
+    })
+}
+
+function closeAlert() {
+    Swal.close();
+}
+
+function QuestionAlertModal(Title, confirmMsg, denyMsg){
+    Swal.fire({
+        title: Title,
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: confirmMsg,
+        denyButtonText: denyMsg,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          return true
+        } else if (result.isDenied) {
+          return false;
+        }
+      });
+}
+
+
+function OkStatus(msg){
+    Swal.fire({
+        position: 'center',
+        icon: "success",
+        title: msg,
+        showConfirmButton: false,
+        timer: 1500
+      });
+}
+
+function ErrorStatus(msg){
+    Swal.fire({
+        position: 'center',
+        icon: "error",
+        title: msg,
+        showConfirmButton: false,
+        timer: 1500
+      });
 }

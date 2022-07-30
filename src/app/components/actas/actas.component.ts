@@ -1,9 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
+
+import { RequestsService } from 'src/app/services/requests/requests.service';
+//Icons
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faCertificate } from '@fortawesome/free-solid-svg-icons';
 import { faFileArrowDown } from '@fortawesome/free-solid-svg-icons';
-import { RequestsService } from 'src/app/services/requests/requests.service';
 import { faCheckToSlot } from '@fortawesome/free-solid-svg-icons';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { faRotate } from '@fortawesome/free-solid-svg-icons';
@@ -11,7 +13,8 @@ import { faPeopleArrowsLeftRight } from '@fortawesome/free-solid-svg-icons';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
 import { faFileCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
-
+//Models
+import { myData } from 'src/app/models/myData.model';
 @Component({
   selector: 'app-actas',
   templateUrl: './actas.component.html',
@@ -38,6 +41,10 @@ export class ActasComponent implements OnInit {
   //Actas
   actas: any;
 
+  //MyRol
+  myRol:string = "";
+  id:string = "";
+
   //NewRequest
   ActoRegistral: string = "ACTA REGISTRAL";
   MetodoBusqueda: string = "MÉTODO DE BUSQUEDA";
@@ -50,6 +57,7 @@ export class ActasComponent implements OnInit {
 
   ngOnInit(): void {
     // document.getElementById("typeReq")?.setAttribute("*ngIf", "false");
+    this.GetMyData();
   }
 
 
@@ -71,6 +79,14 @@ export class ActasComponent implements OnInit {
   getServices() {
     this.view = 2;
   }
+
+  GetMyData(){
+    this.auth.GetMyData.subscribe(data => {
+      this.myRol = data.rol;
+      this.id = data.id.toString();
+    });
+  }
+
 
   // Dates
   getDates() {
@@ -244,7 +260,7 @@ export class ActasComponent implements OnInit {
         break;
       }        
       case 'TS': {
-        this.Estado = 'Tamaulipas';
+        this.Estado = 'TAMAULIPAS';
         break;
       }
       case 'TL': {
@@ -252,7 +268,7 @@ export class ActasComponent implements OnInit {
         break;
       }
       case 'VZ': {
-        this.Estado = 'Veracruz';
+        this.Estado = 'VERACRUZ';
         break;
       }
       case 'YN': {
@@ -344,13 +360,18 @@ export class ActasComponent implements OnInit {
   SelectMetodoBusqueda(newValue: any) {
     if (newValue != "MÉTODO DE BUSQUEDA") {
       this.DatoEnviar = "";
+      document.getElementsByName("ActoRegistral")[0]?.removeAttribute("disabled");
+
+      if(newValue == "CADENA"){
+        this.ActoRegistral = "ACTA REGISTRAL";
+        document.getElementsByName("ActoRegistral")[0]?.setAttribute("disabled", "");
+      }
     }
+
   }
 
   SelectActaRegistral(newValue: any) {
     if (newValue != "ACTA REGISTRAL") {
-      const metodo = document.getElementById("method");
-      metodo?.removeAttribute("disabled");
     }
   }
 

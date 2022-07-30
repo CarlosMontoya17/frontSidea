@@ -13,7 +13,9 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faHomeUser } from '@fortawesome/free-solid-svg-icons';
 import { faAddressCard } from '@fortawesome/free-solid-svg-icons';
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
-import Swal from 'sweetalert2';
+import { faPersonWalkingArrowRight } from '@fortawesome/free-solid-svg-icons';
+//Models
+import { myData } from 'src/app/models/myData.model';
 
 
 @Component({
@@ -22,6 +24,10 @@ import Swal from 'sweetalert2';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+
+  //Observables
+  myData$: Observable<myData>;
+
   //Iconos
   faFile = faFile;
   faGear = faGear; 
@@ -31,6 +37,7 @@ export class NavbarComponent implements OnInit {
   faSackDollar = faSackDollar;
   faAddressCard = faAddressCard;
   faPowerOff = faPowerOff;
+  faPersonWalkingArrowRight = faPersonWalkingArrowRight;
 
   usuario:any = "";  
   myRol: any = "";
@@ -38,31 +45,42 @@ export class NavbarComponent implements OnInit {
   //Selectable
   option:Number = 0;
 
-  constructor(private local:LocalstorageService, private auth:AuthService, private router:Router) { }
+  constructor(private local:LocalstorageService, private auth:AuthService, private router:Router) {
+    this.myData$ = auth.GetMyData;
+   }
 
   ngOnInit(): void {
+
     this.GetMyUser();
+    // try{
+    //   this.option = Number(localStorage.getItem("aych24sdTi"));
+    // }
+    // catch{
+    //   this.option = 0;
+    // }
   }
 
 
   GetMyUser(){
-    let id = this.local.GetId();
-    this.auth.getUserInfo(id).subscribe((data:any) => {
-      this.usuario = data.data.username;
+    this.auth.getUserInfo().subscribe( data => {
+      this.auth.SaveMyData = data;
+      this.usuario = data.username;
       this.myRol = data.rol;
       document.getElementById("loaderPage")?.setAttribute("style", "display: none;");
-    }, (err:any) => {
+    }, err=> {
       this.local.removeAll();
-      this.router.navigateByUrl("/")
-      console.log(err);
+      this.router.navigateByUrl("/");
     });
-
   }
 
 
   SelectOption(option:number){
     this.option = option;
-
+    if(option == 6){
+      this.local.removeAll();
+      this.router.navigateByUrl("/");
+    }
+    // localStorage.setItem("aych24sdTi", option.toString());
   }
 
 

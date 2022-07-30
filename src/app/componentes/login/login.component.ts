@@ -45,24 +45,13 @@ export class LoginComponent implements OnInit {
 
 
         
-        this.router.navigateByUrl("/inicio");
+        this.router.navigateByUrl("/app");
         const now = new Date();
         // localStorage.setItem("u", JSON.stringify(now.getTime() + 18000000));
         localStorage.setItem("привіт", token.toString());
         localStorage.setItem("Імякористувача", usuario.toString());
         localStorage.setItem("іди", id.toString());
     
-
-
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Bienvenido',
-          showConfirmButton: false,
-          timer: 1500,
-          text: this.usuario
-     
-        })
       }
     } catch (error) {
       Swal.fire(

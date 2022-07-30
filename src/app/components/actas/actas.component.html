@@ -91,6 +91,9 @@
 
     </div>
 
+    <div class="myRequests">
+
+    </div>
 
     <!-- <div class="myBody  animate__animated animate__fadeInUp" *ngIf="view == 1">
         <div class="mySubCard" style="background-color:  #494848;width: 100%;">
@@ -137,13 +140,13 @@
 
     <div [ngSwitch]="view">
         <div *ngSwitchCase=1>
-            <div class="myBody  animate__animated animate__fadeInUp" *ngIf="view == 1">
+            <div class="myBody" *ngIf="view == 1">
                 <div class="mySubCard" style="background-color:  #494848;width: 100%;">
                     <div class="mySubTitle">
                         <label for="mySubTitle">FILTROS</label>
                     </div>
 
-                    <div class="filters" style="margin-top: 1rem;" style="z-index: 100000000;">
+                    <div class="filters" style="margin-top: 1rem;">
 
                         <div class="filter" style="width: 50rem;">
                             <h6 class="text-center" style="color: white;"> BUSCADOR </h6>
@@ -159,16 +162,15 @@
                         <div class="filter" style="width: 30rem;">
                             <div class="dropdown text-center">
                                 <h6 class="text-center" style="color: white;"> SELECCIONAR CORTE </h6>
-                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                    id="dropdownMenuLink" style="z-index: 100000000;" data-bs-toggle="dropdown"
+                                <a class="btn btn-secondary dropdown-toggle" role="button"
+                                    id="dropdownMenuLink" data-bs-toggle="dropdown"
                                     aria-expanded="false">
                                     {{ dateSelect || "Actual" }}
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-dark corte" aria-labelledby="dropdownMenuButton2"
-                                    style="z-index: 100000000;">
-                                    <li style="z-index: 100000000;">
+                                <ul class="dropdown-menu dropdown-menu-dark corte" aria-labelledby="dropdownMenuButton2">
+                                    <li>
                                         <a *ngFor="let date of dates" (click)="selectDate(date.corte)"
-                                            class="dropdown-item" style="cursor: pointer;" style="z-index: 100000000;">
+                                            class="dropdown-item" style="cursor: pointer;">
                                             {{ date.corte || "Actual" }}
                                         </a>
                                     </li>
@@ -181,113 +183,113 @@
                 </div>
             </div>
             <div class="myContentFlex">
-                <div *ngFor="let req of actas" class="animate__animated animate__fadeInUp"
-                    style="max-width: 20rem; max-height: 31rem; margin-bottom: 1.5rem; width: 19rem; margin-right: 0.5rem; margin-top: 1rem; ">
+                <div *ngFor="let req of actas" class="viewCard animate__animated animate__fadeInUp">
+                <span class="position-absolute top-45 start-90 translate-middle badge rounded-pill bg-primary"
+                    style="z-index: 2;">
+                    {{ req.nm }}
+                </span>
 
-                    <span class="position-absolute top-45 start-90 translate-middle badge rounded-pill bg-primary">
-                        {{ req.nm }}
-                    </span>
-
-                    <div *ngIf="req.downloaded != true && req.url != null && req.comments == 'Enviado'"
-                        style="position: absolute; z-index: 2; margin-left: 12%; ">
-                        <div style="width: 3rem; height: 3rem; position: relative; text-align: center;">
-                            <label
-                                style=" font-family: inherit; color: white; z-index: 1; display: flex; align-self: center; position: absolute; margin-top: 35%; margin-left: 20%;">Nuevo</label>
-                            <fa-icon class="fa-4x" [icon]="faCertificate"
-                                style="color: #0E6FFD !important; display: flex; align-self: center;"></fa-icon>
-                        </div>
+                <div *ngIf="req.downloaded != true && req.url != null && req.comments == 'Enviado'"
+                    style="position: absolute; z-index: 2; margin-left: 12%; ">
+                    <div style="width: 3rem; height: 3rem; position: relative; text-align: center;">
+                        <label
+                            style=" font-family: inherit; color: white; z-index: 1; display: flex; align-self: center; position: absolute; margin-top: 35%; margin-left: 20%;">Nuevo</label>
+                        <fa-icon class="fa-4x" [icon]="faCertificate"
+                            style="color: #0E6FFD !important; display: flex; align-self: center;"></fa-icon>
                     </div>
+                </div>
 
 
 
-                    <div class="Card" style="margin-bottom: 1rem;">
-                        <div class="Card-head">
-                            <div class="Card-cover" *ngIf='req.metadata.includes("NACIMIENTO")'
-                                style="background-image: url(../../../assets/documents/nacimiento.png);"></div>
-                            <div *ngIf='req.metadata.includes("DEFUNCION")' class="Card-cover"
-                                style="background-image: url(../../../assets/documents/defuncion.png);"></div>
-                            <div *ngIf='req.metadata.includes("DIVORCIO")' class="Card-cover"
-                                style="background-image: url(../../../assets/documents/divorcio.png);"></div>
-                            <div *ngIf='req.metadata.includes("MATRIMONIO")' class="Card-cover"
-                                style="background-image: url(../../../assets/documents/matrimonio.png);"></div>
-                            <div *ngIf='req.metadata.includes("CADENA")' class="Card-cover"
-                                style="background-image: url(../../../assets/documents/desconocido.png);"></div>
+                <div class="Card" style="margin-bottom: 1rem;">
+                    <div class="Card-head">
+                        <div *ngIf='req.metadata.includes("NACIMIENTO")' class="Card-cover"
+                            style="background-image: url(../../../assets/documents/nacimiento.png);"></div>
+                        <div *ngIf='req.metadata.includes("DEFUNCION")' class="Card-cover"
+                            style="background-image: url(../../../assets/documents/defuncion.png);"></div>
+                        <div *ngIf='req.metadata.includes("DIVORCIO")' class="Card-cover"
+                            style="background-image: url(../../../assets/documents/divorcio.png);"></div>
+                        <div *ngIf='req.metadata.includes("MATRIMONIO")' class="Card-cover"
+                            style="background-image: url(../../../assets/documents/matrimonio.png);"></div>
+                        <div *ngIf='req.metadata.includes("CADENA")' class="Card-cover"
+                            style="background-image: url(../../../assets/documents/desconocido.png);"></div>
+                    </div>
+                    <div class="Card-main">
+                        <h1 class="Card-titleContent" *ngIf='req.metadata.includes("NACIMIENTO")'>ACTA DE NACIMIENTO
+                        </h1>
+                        <h1 class="Card-titleContent" *ngIf='req.metadata.includes("DEFUNCION")'>ACTA DE DEFUNCIÓN</h1>
+                        <h1 class="Card-titleContent" *ngIf='req.metadata.includes("MATRIMONIO")'>ACTA DE MATRIMONIO
+                        </h1>
+                        <h1 class="Card-titleContent" *ngIf='req.metadata.includes("DIVORCIO")'>ACTA DE DIVORCIO</h1>
+                        <h1 class="Card-titleContent" *ngIf='req.metadata.includes("CADENA")'>DESCONOCIDO</h1>
+                        <h2 class="Card-subTitleContent">{{ req.type }} - {{ req.createdAt | date:'dd/MM/yyyy' }} {{
+                            req.createdAt | date: 'h:mm a' }} </h2>
+                        <div class="Card-genre"> DATOS </div>
+                        <p class="Card-desc">{{ req.metadata }}</p>
+
+                        <label class="Card-filename" style="margin-top: 1rem;">{{ req.url || "Sin archivo" }}</label>
+                        <div class="row" style="margin-top: 0.5em;">
+                            <a class="btn btn-success" (click)="DownloadActa(req.id, req.url)"
+                                *ngIf="req.url != null && req.comments == 'Enviado' && req.downloaded != true ">
+                                <fa-icon [icon]="faFileArrowDown"></fa-icon>
+
+                                &nbsp;Descargar
+                            </a>
+
+                            <a class="btn btn-secondary" (click)="DownloadActa(req.id, req.url)"
+                                *ngIf="req.url != null && req.comments == 'Enviado' && req.downloaded == true">
+                                <fa-icon [icon]="faCheckToSlot"></fa-icon>
+                                &nbsp;Descargado
+                            </a>
+
+                            <a class="btn btn-danger"
+                                *ngIf="req.comments != 'Enviado' && req.comments != null && req.comments != '.'">
+                                <fa-icon [icon]="faCircleXmark"></fa-icon>
+
+                                &nbsp;Detalles
+                            </a>
+
+                            <a class="btn btn-warning"
+                                *ngIf="req.comments == null && req.url == null || req.comments == 'Enviado' && req.url == null ">
+                                <fa-icon [icon]="faRotate"></fa-icon>
+
+                                &nbsp;En proceso
+                            </a>
                         </div>
-                        <div class="Card-main">
-                            <h1 class="Card-titleContent" *ngIf='req.metadata.includes("NACIMIENTO")'>ACTA DE NACIMIENTO
-                            </h1>
-                            <h1 class="Card-titleContent" *ngIf='req.metadata.includes("DEFUNCION")'>ACTA DE DEFUNCIÓN
-                            </h1>
-                            <h1 class="Card-titleContent" *ngIf='req.metadata.includes("MATRIMONIO")'>ACTA DE MATRIMONIO
-                            </h1>
-                            <h1 class="Card-titleContent" *ngIf='req.metadata.includes("DIVORCIO")'>ACTA DE DIVORCIO
-                            </h1>
-                            <h1 class="Card-titleContent" *ngIf='req.metadata.includes("CADENA")'>DESCONOCIDO</h1>
-                            <h2 class="Card-subTitleContent">{{ req.type }} - {{ req.createdAt | date:'dd/MM/yyyy' }} {{
-                                req.createdAt | date: 'h:mm a' }} </h2>
-                            <div class="Card-genre"> DATOS </div>
-                            <p class="Card-desc">{{ req.metadata }}</p>
 
-                            <label class="Card-filename" style="margin-top: 1rem;">{{ req.url || "Sin archivo"
-                                }}</label>
-                            <div class="row" style="margin-top: 0.5em;">
-                                <a class="btn btn-success" (click)="DownloadActa(req.id, req.url)"
-                                    *ngIf="req.url != null && req.comments == 'Enviado' && req.downloaded != true ">
-                                    <fa-icon [icon]="faFileArrowDown"></fa-icon>
 
-                                    &nbsp;Descargar
-                                </a>
-
-                                <a class="btn btn-secondary" (click)="DownloadActa(req.id, req.url)"
-                                    *ngIf="req.url != null && req.comments == 'Enviado' && req.downloaded == true">
-                                    <fa-icon [icon]="faCheckToSlot"></fa-icon>
-                                    &nbsp;Descargado
-                                </a>
-
-                                <a class="btn btn-danger"
-                                    *ngIf="req.comments != 'Enviado' && req.comments != null && req.comments != '.'">
-                                    <fa-icon [icon]="faCircleXmark"></fa-icon>
-
-                                    &nbsp;Detalles
-                                </a>
-
-                                <a class="btn btn-warning"
-                                    *ngIf="req.comments == null && req.url == null || req.comments == 'Enviado' && req.url == null ">
-                                    <fa-icon [icon]="faRotate"></fa-icon>
-
-                                    &nbsp;En proceso
+                        <div
+                            *ngIf="myRol == 'Supervisor'  && req.url != null && req.comments == 'Enviado' || id == '1500'  && req.url != null && req.comments == 'Enviado' || id == '1585'  && req.url != null && req.comments == 'Enviado'  || myRol == 'Admin' && req.url != null && req.comments == 'Enviado'">
+                            <div *ngIf="req.idtranspose == null"  class="row"
+                                style="margin-top: 0.5em;">
+                                <a class="btn btn-primary">
+                                    <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>
+                                    &nbsp;Re-Asignar Acta
                                 </a>
                             </div>
 
 
-                            <div>
-                                <div *ngIf="req.idtranspose == null" class="row" style="margin-top: 0.5em;">
-                                    <a class="btn btn-primary">
-                                        <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>
-                                        &nbsp;Re-Asignar Acta
-                                    </a>
-                                </div>
-
-
-                                <div *ngIf="req.idtranspose != null" class="row" style="margin-top: 0.5em;">
-                                    <a class="btn btn-secondary">
-                                        <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>
-                                        &nbsp;Acta Asignada
-                                    </a>
-                                </div>
+                            <div *ngIf="req.idtranspose != null" class="row"
+                                style="margin-top: 0.5em;">
+                                <a class="btn btn-secondary">
+                                    <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>
+                                    &nbsp;Acta Asignada
+                                </a>
                             </div>
-
-
-
-
-
-
-
                         </div>
+
+
+
+
+
+
+
                     </div>
                 </div>
             </div>
+            </div>
         </div>
+        
         <div class="reqView animate__animated animate__fadeInUp" *ngSwitchCase=2>
             <div class="reqCard">
                 <div class="headerCard">
@@ -300,21 +302,23 @@
 
                     <div class="containerReq">
                         <select class="form-select myInputReq" aria-label="Default select example"
+                        [(ngModel)]="MetodoBusqueda" (ngModelChange)="SelectMetodoBusqueda($event)"
+                        name="MetodoBusqueda">
+                        <option disabled selected>MÉTODO DE BUSQUEDA</option>
+                        <option value="CURP">CURP</option>
+                        <option value="CADENA">CADENA</option>
+                    </select>
+
+                        <select class="form-select myInputReq" aria-label="Default select example"
                             [(ngModel)]="ActoRegistral" (ngModelChange)="SelectActaRegistral($event)"
-                            name="ActoRegistral">
+                            name="ActoRegistral" disabled>
                             <option disabled selected>ACTA REGISTRAL</option>
                             <option value="NACIMIENTO">NACIMIENTO</option>
                             <option value="DEFUNCIÓN">DEFUNCIÓN</option>
                             <option value="MATRIMONIO">MATRIMONIO</option>
                             <option value="DIVORCIO">DIVORCIO</option>
                         </select>
-                        <select disabled class="form-select myInputReq" aria-label="Default select example" id="method"
-                            [(ngModel)]="MetodoBusqueda" (ngModelChange)="SelectMetodoBusqueda($event)"
-                            name="MetodoBusqueda">
-                            <option disabled selected>MÉTODO DE BUSQUEDA</option>
-                            <option value="CURP">CURP</option>
-                            <option value="CADENA">CADENA</option>
-                        </select>
+
 
                     </div>
 
