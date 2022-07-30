@@ -294,10 +294,9 @@ export class RfcsComponent implements OnInit {
           }
       }).then((result) => {
       });
-      
+
       this.req.SendRFCRequest(this.MetodoBusqueda, this.DatoEnviar, this.Persona).subscribe( data => {
         closeAlert();
-        OkStatus("Enviado");
         this.restartVariables();
       }, err => {
         closeAlert();
