@@ -148,7 +148,7 @@ function LoaderModal() {
             clearInterval(timerInterval)
         }
     }).then((result) => {
-    })
+    });
 }
 
 function closeAlert() {

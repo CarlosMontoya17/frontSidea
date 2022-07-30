@@ -281,7 +281,20 @@ export class RfcsComponent implements OnInit {
 
   Send(){
     if(document.getElementById("solicitarReq")?.getAttribute("class") == "myButtonOn"){
-      LoaderModal();
+
+      let timerInterval: number;
+      Swal.fire({
+          title: 'Procesando',
+          text: 'Espere porfavor',
+          didOpen: () => {
+              Swal.showLoading()
+          },
+          willClose: () => {
+              clearInterval(timerInterval)
+          }
+      }).then((result) => {
+      });
+      
       this.req.SendRFCRequest(this.MetodoBusqueda, this.DatoEnviar, this.Persona).subscribe( data => {
         closeAlert();
         OkStatus("Enviado");
