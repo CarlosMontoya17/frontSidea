@@ -322,7 +322,7 @@
 
                     </div>
 
-                    <div [ngSwitch]="MetodoBusqueda">
+                    <div [ngSwitch]="MetodoBusqueda" *ngIf="CanInput">
                         <div *ngSwitchCase="'CADENA'" class="input-group" style="margin-top: 1rem;">
                             <span class="input-group-text">CADENA</span>
                             <input type="text" class="form-control" [(ngModel)]="DatoEnviar" name="DatoEnviar"

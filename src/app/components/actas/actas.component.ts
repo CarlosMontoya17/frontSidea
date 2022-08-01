@@ -52,6 +52,7 @@ export class ActasComponent implements OnInit {
   DatoEnviar: string = "";
   Lock:boolean = false;
   ModalReq:boolean = false;
+  CanInput:boolean = false;
 
   constructor(private reqService: RequestsService, private auth:AuthService) { }
 
@@ -290,15 +291,14 @@ export class ActasComponent implements OnInit {
     let iniciales = this.DatoEnviar.charAt(0) + this.DatoEnviar.charAt(1) +  this.DatoEnviar.charAt(2) + this.DatoEnviar.charAt(3);
     let año = this.DatoEnviar.charAt(4) + this.DatoEnviar.charAt(5) + this.DatoEnviar.charAt(6) + this.DatoEnviar.charAt(7) + this.DatoEnviar.charAt(8) + this.DatoEnviar.charAt(9);
     let clave = this.DatoEnviar.charAt(10) + this.DatoEnviar.charAt(11) + this.DatoEnviar.charAt(12) + this.DatoEnviar.charAt(13) + this.DatoEnviar.charAt(14) + this.DatoEnviar.charAt(15);
-    let numbers = this.DatoEnviar.charAt(16) + this.DatoEnviar.charAt(17);
+
     var hasNumber = /\d/;
     var hasString = /[A-Za-z]/;
 
     let one = hasNumber.test(iniciales);
     let two = hasString.test(año);
     let three = hasNumber.test(clave);
-    let four = hasString.test(numbers);
-    if(!one && !two && !three && !four){
+    if(!one && !two && !three ){
       return true;
     }
     else{
@@ -358,13 +358,20 @@ export class ActasComponent implements OnInit {
   }
 
   SelectMetodoBusqueda(newValue: any) {
+    this.CanInput = false;
     if (newValue != "MÉTODO DE BUSQUEDA") {
       this.DatoEnviar = "";
       document.getElementsByName("ActoRegistral")[0]?.removeAttribute("disabled");
 
       if(newValue == "CADENA"){
-        this.ActoRegistral = "ACTA REGISTRAL";
+        this.ActoRegistral = "CADENA";
+        this.CanInput = true;
         document.getElementsByName("ActoRegistral")[0]?.setAttribute("disabled", "");
+      }
+      else if(newValue == "CURP"){
+        this.ActoRegistral = "ACTA REGISTRAL";
+        this.CanInput = false;
+        document.getElementsByName("ActoRegistral")[0]?.removeAttribute("disabled");
       }
     }
 
@@ -372,6 +379,7 @@ export class ActasComponent implements OnInit {
 
   SelectActaRegistral(newValue: any) {
     if (newValue != "ACTA REGISTRAL") {
+      this.CanInput = true;
     }
   }
 

@@ -213,21 +213,20 @@ export class RfcsComponent implements OnInit {
   }
 
   verifyCurp() {
-    let iniciales = this.DatoEnviar.charAt(0) + this.DatoEnviar.charAt(1) + this.DatoEnviar.charAt(2) + this.DatoEnviar.charAt(3);
+    let iniciales = this.DatoEnviar.charAt(0) + this.DatoEnviar.charAt(1) +  this.DatoEnviar.charAt(2) + this.DatoEnviar.charAt(3);
     let año = this.DatoEnviar.charAt(4) + this.DatoEnviar.charAt(5) + this.DatoEnviar.charAt(6) + this.DatoEnviar.charAt(7) + this.DatoEnviar.charAt(8) + this.DatoEnviar.charAt(9);
     let clave = this.DatoEnviar.charAt(10) + this.DatoEnviar.charAt(11) + this.DatoEnviar.charAt(12) + this.DatoEnviar.charAt(13) + this.DatoEnviar.charAt(14) + this.DatoEnviar.charAt(15);
-    let numbers = this.DatoEnviar.charAt(16) + this.DatoEnviar.charAt(17);
+
     var hasNumber = /\d/;
     var hasString = /[A-Za-z]/;
 
     let one = hasNumber.test(iniciales);
     let two = hasString.test(año);
     let three = hasNumber.test(clave);
-    let four = hasString.test(numbers);
-    if (!one && !two && !three && !four) {
+    if(!one && !two && !three ){
       return true;
     }
-    else {
+    else{
       return false;
     }
   }
