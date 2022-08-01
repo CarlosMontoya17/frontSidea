@@ -385,7 +385,6 @@ export class ActasComponent implements OnInit {
 
   EnviarSolicitud(preferences:string){
     this.ModalReq = false;
-
     let metadata = {};
 
     if(this.MetodoBusqueda == "CURP")
@@ -396,6 +395,8 @@ export class ActasComponent implements OnInit {
         this.MetodoBusqueda = "MÉTODO DE BUSQUEDA";
         this.DatoEnviar = "";
         this.Lock = false;
+        this.CanInput = false;
+        document.getElementsByName("ActoRegistral")[0]?.setAttribute("disabled", "");
         document.getElementById("solicitarReq")?.setAttribute("class", "myButtonOff");
       }, (err:any) => {
         this.auth.Unauth();
@@ -408,8 +409,10 @@ export class ActasComponent implements OnInit {
         this.ActoRegistral = "ACTA REGISTRAL";
         this.MetodoBusqueda = "MÉTODO DE BUSQUEDA";
         this.DatoEnviar = "";
+        this.CanInput = false;
         this.Lock = false;
         document.getElementById("solicitarReq")?.setAttribute("class", "myButtonOff");
+        document.getElementsByName("ActoRegistral")[0]?.setAttribute("disabled", "");
       }, (err:any) => {
         this.auth.Unauth();
         console.log(err);
