@@ -1,3 +1,5 @@
+
+
 <div class="myCard animate__animated animate__fadeInUp">
     <div class="myHeader">
         <p>
@@ -9,25 +11,18 @@
 
 
     <div class="myControllers" *ngIf="myRol == 'Admin'">
-
-        <div class="mySubcard onWarning">
+        <!-- <div class="mySubcard onWarning">
             <div class="myTitle">
                 <p> ROBOT NAME'S </p>
-            </div>
-
-
-
-                <img src="../../../assets/icons/caution.png" alt="En Espera" class="myIcon" draggable="false" ondragstart="return false;">
+            </div> -->
+                <!-- <img src="../../../assets/icons/caution.png" alt="En Espera" class="myIcon" draggable="false" ondragstart="return false;"> -->
                 <!-- <img src="../../../assets/icons/forbidden.png" alt="Apagado" class="myIcon">
                 <img src="../../../assets/icons/shield.png" alt="Funcionando" class="myIcon"> -->
 
-            <div class="myDetails">
+            <!-- <div class="myDetails">
                 <p> STATUS - ACTAS </p>
             </div>
-
             <div class="myOptions">
-
-
                 <p> Ingresa el Captcha </p>
                 <img [src]="imageToShow" alt="Captcha" class="captcha" draggable="false" ondragstart="return false;">
                 <input type="text" class="form-control" placeholder="Captcha">
@@ -39,60 +34,123 @@
                     Enviar
                 </div>
             </div>
-        </div>
-
-
-
-        <!-- <div class="mySubcard onSuccess">
-            <div class="myTitle">
-                <p> ROBOT NAME'S </p>
-            </div>
-                <img src="../../../assets/icons/shield.png" alt="Funcionando" class="myIcon"> 
-            <div class="myDetails">
-                <p> STATUS - ACTAS </p>
-            </div>
-
-            <div class="myOptions">
-                <ul class="list-group">
-                    <li class="list-group-item active" aria-current="true">Dar Instrucción</li>
-                    <li class="list-group-item">
-                      <fa-icon [icon]="faPowerOff"></fa-icon>  Apagar
-                    </li>
-                    <li class="list-group-item">
-                        <fa-icon [icon]="faPowerOff"></fa-icon> Cambiar Credenciales
-                      </li>
-                </ul>
-            </div>
         </div> -->
 
+        <ng-container  *ngFor="let robot of robothandle">
+            <div class="mySubcard onSuccess">
+                <div class="myTitle">
+                    <p>{{ robot.name }} </p>
+                </div>
+                <div [ngSwitch]="robot.status">
+                    <img *ngSwitchCase="'Esperando Solicitudes'" src="../../../assets/icons/shield.png" alt="En Funcionando" class="myIcon" draggable="false" ondragstart="return false;">
+                    <img *ngSwitchCase="'En peticion'" src="../../../assets/icons/shield.png" alt="En Funcionando" class="myIcon" draggable="false" ondragstart="return false;">
+                    <img *ngSwitchCase="'En espera'" src="../../../assets/icons/caution.png" alt="En Apagado" class="myIcon" draggable="false" ondragstart="return false;">
+                    <img *ngSwitchCase="'Apagado'" src="../../../assets/icons/forbidden.png" alt="En Espera" class="myIcon" draggable="false" ondragstart="return false;">
+                    <img *ngSwitchCase="'Apagando'" src="../../../assets/icons/forbidden.png" alt="En Espera" class="myIcon" draggable="false" ondragstart="return false;">
 
-        <!-- <div class="mySubcard onDanger">
-            <div class="myTitle">
-                <p> ROBOT NAME'S </p>
+                </div>
+                <div class="myDetails">
+                    <p style="font-weight: 700;">{{ robot.status }} - {{ robot.system }}</p>
+                </div>
+                <div class="myOptions">
+                    <ul class="list-group">
+                        <li class="list-group-item active">Nueva Instrucción</li>
+
+                            <li *ngIf="robot.status == 'Apagado' || robot.status == 'Apagando'" class="list-group-item myButtonList" style="cursor: pointer; color: rgb(25, 156, 25); user-select: none;" (click)="Instruction('on', robot)"><fa-icon [icon]="faPowerOff"></fa-icon>&nbsp;Encender</li>
+                            <li *ngIf="robot.status != 'Apagado' && robot.status != 'Apagando'" class="list-group-item myButtonList" style="cursor: pointer; color: rgb(206, 50, 50); user-select: none;" (click)="Instruction('off', robot)"><fa-icon [icon]="faPowerOff"></fa-icon>&nbsp;Apagar</li>
+                            <ng-container *ngIf="robot.status != 'Apagado' && robot.status != 'Apagando'">
+                                <li *ngIf="robot.system == 'SIDEA' || robot.system == 'SAT'" class="list-group-item myButtonList" style="cursor: pointer; color: rgb(32, 32, 32); user-select: none;"><fa-icon [icon]="faAddressCard"></fa-icon>&nbsp;Cambiar Credenciales</li>
+                                <li *ngIf="robot.system == 'SID'" class="list-group-item myButtonList" style="cursor: pointer; color: rgb(32, 32, 32); user-select: none;" (click)="Instruction('changeAccessToken', robot)"><fa-icon [icon]="faKey"></fa-icon>&nbsp;Cambiar Token</li>
+                            </ng-container> 
+                      </ul>
+                </div>
             </div>
-                <img src="../../../assets/icons/forbidden.png" alt="Apagado" class="myIcon">
-            <div class="myDetails">
-                <p> STATUS - ACTAS </p>
-            </div>
-
-            <div class="myOptions">
-                <ul class="list-group">
-                    <li class="list-group-item active" aria-current="true">Dar Instrucción</li>
-                    <li class="list-group-item">
-                      <fa-icon [icon]="faPowerOff"></fa-icon>  Encender
-                    </li>
-                    <li class="list-group-item">
-                        <fa-icon [icon]="faPowerOff"></fa-icon> Cambiar Credenciales
-                    </li>
-                </ul>
-            </div>
-        </div> -->
-
-
-
-
+        </ng-container>
 
     </div>
+
+</div>
+
+
+<div class="modalInput" id="modal" style="display: none;">
+    
+
+    <div class="card" id="changeToken" style="display: none;">
+        <div class="card-header">
+            <label for="card-header">CAMBIAR TOKEN</label>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon2">Nuevo Token</span>
+                    <input [(ngModel)]="NewAccessToken" name="NewAccessToken" type="text" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                  </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="myButtonOn" (click)="NextStep()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Enviar
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="myButtonOn" (click)="CancelModal()" style="background: linear-gradient(0deg, rgb(115, 21, 21) 0%, rgb(115, 21, 21) 50%, rgb(126, 29, 29) 51%, rgb(115, 21, 21) 100%);">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Cancelar
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card" id="confirmRequest" style="display: none;">
+        <div class="card-header">
+            <label for="card-header">Confirmar</label>
+        </div>
+        <div class="card-body">
+            <div class="row text-center">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon2">¿SEGURO QUE QUIERES ENVIAR LA PETICIÓN?</span>
+                  </div>
+                  <label for="row"> INSTRUCCION PARA {{ instruction[1]?.name }} </label>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="myButtonOn" (click)="Send()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Si, enviar
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="myButtonOn" (click)="CancelModal()" style="background: linear-gradient(0deg, rgb(115, 21, 21) 0%, rgb(115, 21, 21) 50%, rgb(126, 29, 29) 51%, rgb(115, 21, 21) 100%);">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Cancelar
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
 
 
 

@@ -295,20 +295,15 @@
                 <div class="headerCard">
                     NUEVA SOLICITUD
                 </div>
-
-
                 <div class="grupReq" style="margin-top: 1rem;">
-
-
                     <div class="containerReq">
                         <select class="form-select myInputReq" aria-label="Default select example"
                         [(ngModel)]="MetodoBusqueda" (ngModelChange)="SelectMetodoBusqueda($event)"
                         name="MetodoBusqueda">
                         <option disabled selected>MÉTODO DE BUSQUEDA</option>
                         <option value="CURP">CURP</option>
-                        <option value="CADENA">CADENA</option>
+                        <!-- <option value="CADENA">CADENA</option> -->
                     </select>
-
                         <select class="form-select myInputReq" aria-label="Default select example"
                             [(ngModel)]="ActoRegistral" (ngModelChange)="SelectActaRegistral($event)"
                             name="ActoRegistral" disabled>
@@ -318,10 +313,7 @@
                             <option value="MATRIMONIO">MATRIMONIO</option>
                             <option value="DIVORCIO">DIVORCIO</option>
                         </select>
-
-
                     </div>
-
                     <div [ngSwitch]="MetodoBusqueda" *ngIf="CanInput">
                         <div *ngSwitchCase="'CADENA'" class="input-group" style="margin-top: 1rem;">
                             <span class="input-group-text">CADENA</span>
