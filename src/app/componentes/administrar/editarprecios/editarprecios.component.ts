@@ -48,6 +48,8 @@ export class EditarpreciosComponent implements OnInit {
   reset: number = 0;
   arfc: number = 0;
   dnac: number =  0;
+  curp:number = 0;
+  cfe:number = 0;
   vista: boolean = false;
 
   BAJACALIFORNIA: number = 0;
@@ -181,6 +183,8 @@ export class EditarpreciosComponent implements OnInit {
         "reset":this.reset,
         "arfc": this.arfc,
         "dnac": this.dnac,
+        "curp": this.curp,
+        "cfe": this.cfe
       }
     }
     
@@ -202,6 +206,8 @@ export class EditarpreciosComponent implements OnInit {
         "reset": this.reset,
         "arfc":  this.arfc,
         "dnac":  this.dnac,
+        "curp": this.curp,
+        "cfe": this.cfe
       }
     }
 
@@ -369,6 +375,8 @@ export class EditarpreciosComponent implements OnInit {
     this.reset = this.precios.reset;
     this.arfc = this.precios.arfc;
     this.dnac = this.precios.dnac;
+    this.curp = this.precios.curp;
+    this.cfe = this.precios.cfe;
 
     this.Negocio = this.usuarios.nombre;
     this.tipoNegocio = this.usuarios.type;

@@ -60,8 +60,11 @@ export class AdministrarComponent implements OnInit {
   reset: number = 0;
   arfc: number = 0;
   dnac: number = 0;
+  curp:number= 0;
+  cfe:number= 0;
+  //Others
   myRol: any;
-
+  
   vista: boolean = false;
   //Lista de precios por estado
   BAJACALIFORNIA: number = 140;
@@ -188,6 +191,8 @@ export class AdministrarComponent implements OnInit {
       this.reset = 650;
       this.arfc = 1700;
       this.dnac = 1700;
+      this.cfe = 20;
+      this.curp = 20;
       //Estados
       this.BAJACALIFORNIA = 130;
       this.YUCATAN = 125;
@@ -240,6 +245,8 @@ export class AdministrarComponent implements OnInit {
       this.reset = 650;
       this.arfc = 1700;
       this.dnac = 1700;
+      this.cfe = 20;
+      this.curp = 20;
       //Estados
       this.BAJACALIFORNIA = 140;
       this.YUCATAN = 135;
@@ -291,6 +298,8 @@ export class AdministrarComponent implements OnInit {
       this.reset = 650;
       this.arfc = 1700;
       this.dnac = 1800;
+      this.cfe = 20;
+      this.curp = 20;
       //Estados
       this.BAJACALIFORNIA = 140;
       this.YUCATAN = 135;
@@ -446,6 +455,8 @@ export class AdministrarComponent implements OnInit {
           "reset": this.reset,
           "arfc": this.arfc,
           "dnac": this.dnac,
+          "curp": this.curp,
+          "cfe": this.cfe
         }
       }
       else {
@@ -465,6 +476,8 @@ export class AdministrarComponent implements OnInit {
           "reset": this.reset,
           "arfc": this.arfc,
           "dnac": this.dnac,
+          "curp": this.curp,
+          "cfe": this.cfe
         }
       }
       let idSuper;
@@ -529,6 +542,8 @@ export class AdministrarComponent implements OnInit {
           && this.reset != 0
           && this.arfc != 0
           && this.dnac != 0
+          && this.curp != 0
+          && this.cfe != 0
 
         ) {
           this.alert = [];
@@ -544,7 +559,9 @@ export class AdministrarComponent implements OnInit {
           && this.ecu != 0
           && this.reset != 0
           && this.arfc != 0
-          && this.dnac != 0) {
+          && this.dnac != 0
+          && this.curp != 0
+          && this.cfe != 0) {
           this.alert = [];
           this.currentStep++;
         }

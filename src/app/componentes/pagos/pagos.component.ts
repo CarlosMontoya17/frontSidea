@@ -110,7 +110,7 @@ export class PagosComponent implements OnInit {
     private http: HttpClient,
     private database: DatabaseService,
     private adminService: AdminService,
-    private localstorage:LocalstorageService
+    private localstorage: LocalstorageService
   ) {
     this.data$ = adminService.getSelect;
     var usuario = CryptoJS.AES.decrypt(localStorage.getItem('іди') || '{}', "іди");
@@ -126,6 +126,15 @@ export class PagosComponent implements OnInit {
     });
 
   }
+
+  exportExcel() {
+    const workBook = XLSX.utils.book_new(); // create a new blank book
+    const workSheet = XLSX.utils.json_to_sheet(this.usuariosEnFecha);
+    XLSX.utils.book_append_sheet(workBook, workSheet, 'Clientes');
+    XLSX.writeFile(workBook, 'Clientes.xlsx');
+  }
+
+
   //DESINCRIPTAMOS EL TOKEN PARA OBTENER LOS DATOS Y EL ROL
   async descry() {
     var idlocal = localStorage.getItem("іди");
@@ -526,7 +535,7 @@ export class PagosComponent implements OnInit {
       this.fechaDeUsuarioSeleccionada = "Actual";
     }
 
-    this.adminService.getMyClientForDate(date).subscribe((data:any) => {
+    this.adminService.getMyClientForDate(date).subscribe((data: any) => {
       closeAlert();
       this.usuariosEnFecha = data;
     },
