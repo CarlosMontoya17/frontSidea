@@ -450,6 +450,9 @@ export class DocumentosmanualComponent implements OnInit {
       case "Estado de Cuenta Infonavit":
         documento = "ecu";
         break;
+      case "CFE":
+        documento = "cfe";
+        break;
       default:
         documento = "";
         break;
