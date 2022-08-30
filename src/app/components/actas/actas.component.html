@@ -285,16 +285,16 @@
                         name="MetodoBusqueda">
                         <option disabled selected>MÉTODO DE BUSQUEDA</option>
                         <option value="CURP">CURP</option>
-                        <option value="CADENA">CADENA</option>
+                        <!-- <option value="CADENA">CADENA</option> -->
                     </select>
                         <select class="form-select myInputReq" aria-label="Default select example"
                             [(ngModel)]="ActoRegistral" (ngModelChange)="SelectActaRegistral($event)"
                             name="ActoRegistral" disabled>
                             <option disabled selected>ACTA REGISTRAL</option>
                             <option value="NACIMIENTO">NACIMIENTO</option>
-                            <option value="DEFUNCION">DEFUNCION</option>
+                            <!-- <option value="DEFUNCION">DEFUNCION</option>
                             <option value="MATRIMONIO">MATRIMONIO</option>
-                            <option value="DIVORCIO">DIVORCIO</option>
+                            <option value="DIVORCIO">DIVORCIO</option> -->
                         </select>
                     </div>
                     <div [ngSwitch]="MetodoBusqueda" *ngIf="CanInput">
@@ -315,14 +315,14 @@
                         </div>
                     </div>
 
-                    <div class="myButtonOn" (click)="verifyCurp()">
+                    <!-- <div class="myButtonOn" (click)="verifyCurp()">
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
                         <fa-icon [icon]="faPaperPlane"></fa-icon> Verificar CURP
-                        <!-- <fa-icon [icon]="faMagnifyingGlass"></fa-icon> BUSCAR ACTA -->
-                    </div>
+                       <fa-icon [icon]="faMagnifyingGlass"></fa-icon> BUSCAR ACTA
+                    </div> -->
 
                     <div class="myButtonOff" id="solicitarReq" (click)="Solicitar()">
                         <span></span>
