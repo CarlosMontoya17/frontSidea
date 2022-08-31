@@ -149,12 +149,12 @@
                         </a>
     
                         <a class="btn btn-danger"
-                            *ngIf="req.comments != 'Descargado' && req.comments != null">
+                            *ngIf="req.comments != 'Descargado' && req.comments != null && req.comments != '' ">
                             <fa-icon [icon]="faCircleXmark"></fa-icon>
                             &nbsp;Detalles
                         </a>
                         <a class="btn btn-warning"
-                            *ngIf="req.comments == null && req.url == null || req.comments == 'Descargado' && req.url == null ">
+                            *ngIf="req.comments == null && req.url == null || req.comments == 'Descargado' && req.url == null || req.comments == '' && req.url == null ">
                             <fa-icon [icon]="faRotate"></fa-icon>
                             &nbsp;En proceso
                         </a>
