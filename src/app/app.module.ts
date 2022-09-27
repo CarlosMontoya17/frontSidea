@@ -39,6 +39,7 @@ import { DocumentsComponent } from './components/documents/documents.component';
 import { PaysComponent } from './components/pays/pays.component';
 import { ManagementComponent } from './components/management/management.component';
 import { RfcsComponent } from './components/rfcs/rfcs.component';
+import { RegistroComponent } from './componente/registro/registro.component';
 
 
 
@@ -74,7 +75,8 @@ import { RfcsComponent } from './components/rfcs/rfcs.component';
     DocumentsComponent,
     PaysComponent,
     ManagementComponent,
-    RfcsComponent
+    RfcsComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,

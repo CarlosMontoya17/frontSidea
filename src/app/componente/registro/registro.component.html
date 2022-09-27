@@ -1,0 +1,103 @@
+
+        <div class="animate__animated animate__fadeIn imgContainer"
+        style="width: 100%; height: 100%; position: fixed; top: 0px;">
+    
+        <div style="width: 100%; height: 100%;  z-index: 1; background-color: rgba(0, 0, 0, 0.26); position: fixed; top: 0px;">
+    
+        </div>
+    
+        <div class="fondo" style="z-index: -20000;">
+        </div>
+    
+    
+            <form  style="z-index: 1; ">
+    
+                <h3>Registro</h3>
+        
+                <input  name="name" type="text" placeholder="Nom bre del negocio" id="name" style="margin-top: 10px;">
+                <input  name="giro" type="text" placeholder="Giro de negocio" id="giro" style="margin-top: 10px;">
+                <div id="historial" class=" animate__animated animate__fadeIn align-items-center" >
+                    <div class="row text-center">
+                        <h6>
+                          <b>
+                            <div class="animate__animated animate__fadeInDown">&bull; INE &bull;</div>
+                          </b>
+                        </h6>
+                    </div>
+                    <div class="row" style="margin-top: 2rem;">
+                      <div class="form-group areaFile">
+                        <input #file type="file" name="pdfs" id="pdfs" required="required" accept="application/image"
+                         (change)="getFile($event)" (change)="preview56(file.files)">
+                        <div class="dummy">
+                          <span class="success" style="font-weight: bold;">{{ fileTmp?.fileName }}</span>
+                          <span (change)="getFile($event)" *ngIf="fileTmp==null || fileTmp.fileName == undefined"
+                            style="font-style: italic;">Arrastra tu Documento o da
+                            click aqui para importarlo</span>
+                        </div>
+                      </div>
+                    </div>
+                   
+                  </div>
+        
+                  <div id="historial" class=" animate__animated animate__fadeIn align-items-center" >
+                    <div class="row text-center">
+                        <h6>
+                          <b>
+                            <div class="animate__animated animate__fadeInDown">&bull; Comprobante de domicilio &bull;</div>
+                          </b>
+                        </h6>
+                    </div>
+                    <div class="row" style="margin-top: 2rem;">
+                      <div class="form-group areaFile">
+                        <input #filedomi type="file" name="Domi" id="Domi" required="required" accept="application/image"
+                          (change)="getdDomi($event)" (change)="previewDOMI(filedomi.files)">
+                        <div class="dummy">
+                          <span class="success" style="font-weight: bold;">{{ fileTmpDomi?.fileName }}</span>
+                          <span (change)="getdDomi($event)" *ngIf="fileTmpDomi==null || fileTmpDomi.fileName == undefined"
+                            style="font-style: italic;">Arrastra tu Documento o da
+                            click aqui para importarlo</span>
+                        </div>
+                      </div>
+                    </div>
+                   
+                  </div>
+        
+                       <div id="historial" class=" animate__animated animate__fadeIn align-items-center" >
+                    <div class="row text-center">
+                        <h6>
+                          <b>
+                            <div class="animate__animated animate__fadeInDown">&bull; Fotografia &bull;</div>
+                          </b>
+                        </h6>
+                    </div>
+                    <div class="row" style="margin-top: 2rem;">
+                      <div class="form-group areaFile">
+                        <input #filefoto type="file" name="pdfs" id="pdfs" required="required" accept="application/image"
+                          (change)="getfOTO($event)" (change)="previewFOTO(filefoto.files)">
+                        <div class="dummy">
+                          <span class="success" style="font-weight: bold;">{{ fileTmpfoto?.fileName }}</span>
+                          <span (change)="getfOTO($event)" *ngIf="fileTmpfoto==null || fileTmpfoto.fileName == undefined"
+                            style="font-style: italic;">Arrastra tu Documento o da
+                            click aqui para importarlo</span>
+                        </div>
+                      </div>
+                    </div>
+                   
+                  </div>
+                  
+        
+                <!-- <input name="contrasena" type="password" placeholder="Contraseña" id="password"  style="margin-top: 50px;"> -->
+
+                
+             <button (click)="send()">Registro</button> 
+        
+            </form>
+    
+        
+        
+    </div>
+
+
+
+    
+
