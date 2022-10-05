@@ -16,6 +16,7 @@ import { PreferencesComponent } from './componentes/inicio/new/preferences/prefe
 import { RfcComponent } from './componentes/rfc/rfc.component';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { ActasComponent } from './components/actas/actas.component';
+import { RegistroComponent } from './componente/registro/registro.component';
 const routes: Routes = [
   {
   path: '',
@@ -91,7 +92,12 @@ const routes: Routes = [
 {
   path: 'vc' ,
   component: ActasComponent
+},
+{
+  path: 're' ,
+  component: RegistroComponent
 }
+
 
 
 

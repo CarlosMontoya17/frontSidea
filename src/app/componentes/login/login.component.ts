@@ -66,7 +66,11 @@ export class LoginComponent implements OnInit {
       );
     }
   }
+reg(){
+  this.router.navigateByUrl("/re");
 
+
+}
 
 
 }
