@@ -419,12 +419,12 @@ export class ActasComponent implements OnInit {
       metadata = 
       { 
         type:this.Class.value, 
-        state: this.Estado, curp: 
-        this.DatoEnviar  
+        state: this.Estado, 
+        curp: this.CURP.value  
       };
       this.reqService.SendARequest(this.Type.value, metadata, preferences).subscribe((data:any) => {
         this.ResetAll();
-
+        this.view = 0;
       }, (err:any) => {
         if(err.error.includes("Session Closed!") || err.error.includes("No token provided")){
           this.auth.Unauth();
