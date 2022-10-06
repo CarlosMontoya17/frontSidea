@@ -420,7 +420,7 @@ export class ActasComponent implements OnInit {
       { 
         type:this.Class.value, 
         state: this.Estado, 
-        curp: this.CURP.value  
+        curp: this.CURP.value.toUpperCase()  
       };
       this.reqService.SendARequest(this.Type.value, metadata, preferences).subscribe((data:any) => {
         this.ResetAll();
