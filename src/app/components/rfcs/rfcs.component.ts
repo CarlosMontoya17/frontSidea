@@ -294,10 +294,20 @@ export class RfcsComponent implements OnInit {
       }).then((result) => {
       });
 
-      this.req.SendRFCRequest(this.MetodoBusqueda, this.DatoEnviar, this.Persona).subscribe( data => {
-        Swal.close();
+      this.req.SendRFCRequest(this.MetodoBusqueda, this.DatoEnviar, this.Persona).subscribe( (data:any) => {
+        closeAlert();
+        Swal.fire(
+          {
+            position: 'center',
+            icon: 'success',
+            title: 'Enviado',
+            showConfirmButton: false,
+            timer: 1500,
+            text: 'Solicitud enviada' 
+          }
+        );
         this.restartVariables();
-      }, err => {
+      }, (err: any) => {
         closeAlert();
         Swal.fire(
           {
@@ -313,7 +323,7 @@ export class RfcsComponent implements OnInit {
       );
 
     }
-    console.log(document.getElementById("solicitarReq")?.getAttribute("class"));
+
   }
 
 
@@ -324,7 +334,7 @@ export class RfcsComponent implements OnInit {
       this.selectDate(data[0].corte);
     }, (err: any) => {
       //No Identificated!
-      console.log(err.error.message);
+
     });
   }
 

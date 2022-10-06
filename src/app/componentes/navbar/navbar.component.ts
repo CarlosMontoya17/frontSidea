@@ -43,7 +43,7 @@ export class NavbarComponent implements OnInit {
   myRol: any = "";
  
   //Selectable
-  option:Number = 4;
+  option:Number = 0;
 
   constructor(private local:LocalstorageService, private auth:AuthService, private router:Router) {
     this.myData$ = auth.GetMyData;

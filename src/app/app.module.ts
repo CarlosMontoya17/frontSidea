@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './componentes/login/login.component';
@@ -40,6 +40,7 @@ import { PaysComponent } from './components/pays/pays.component';
 import { ManagementComponent } from './components/management/management.component';
 import { RfcsComponent } from './components/rfcs/rfcs.component';
 import { RegistroComponent } from './componente/registro/registro.component';
+import { TurnControlDirective } from './directives/Turn-control/turn-control.directive';
 
 
 
@@ -76,7 +77,8 @@ import { RegistroComponent } from './componente/registro/registro.component';
     PaysComponent,
     ManagementComponent,
     RfcsComponent,
-    RegistroComponent
+    RegistroComponent,
+    TurnControlDirective
   ],
   imports: [
     BrowserModule,
@@ -87,8 +89,8 @@ import { RegistroComponent } from './componente/registro/registro.component';
     NgxFileDropModule,
     FontAwesomeModule,
     NgxPaginationModule,
-    AgGridModule.withComponents([])
-
+    AgGridModule.withComponents([]),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

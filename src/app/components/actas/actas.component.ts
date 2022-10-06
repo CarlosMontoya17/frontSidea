@@ -15,6 +15,8 @@ import { faFileCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 //Models
 import { myData } from 'src/app/models/myData.model';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ValidateCURP } from 'src/app/validators/curp.validator';
 @Component({
   selector: 'app-actas',
   templateUrl: './actas.component.html',
@@ -54,13 +56,34 @@ export class ActasComponent implements OnInit {
   ModalReq:boolean = false;
   CanInput:boolean = false;
 
-  constructor(private reqService: RequestsService, private auth:AuthService) { }
+  //Form
+  Formulario!: FormGroup;
+  StartLabels = {
+    Type: 'METODO DE BUSQUEDA',
+    Class: 'ACTA REGISTRAL'
+  };
+  CURP = new FormControl('', [Validators.required, Validators.maxLength(18), Validators.minLength(18), ValidateCURP()]);
+  Type = new FormControl('', [Validators.required]);
+  Class = new FormControl('', [Validators.required]);
+
+  constructor(private reqService: RequestsService, private auth:AuthService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     // document.getElementById("typeReq")?.setAttribute("*ngIf", "false");
     this.GetMyData();
+    this.Formulario = this.formBuilder.group({
+      CURP: this.CURP,
+      Type: this.Type,
+      Class: this.Class
+    });
+
   }
 
+  verifyForm(){
+    if(this.Formulario.valid){
+      this.ModalReq = true;
+    }
+  }
 
   switcheableView(i: number) {
     //1 = Solicitudes
@@ -76,19 +99,16 @@ export class ActasComponent implements OnInit {
         break;
     }
   }
-
   getServices() {
     this.view = 2;
+    this.CURP.setValue('');
   }
-
   GetMyData(){
     this.auth.GetMyData.subscribe(data => {
       this.myRol = data.rol;
       this.id = data.id.toString();
     });
   }
-
-
   // Dates
   getDates() {
     this.reqService.getMyDatesActasRequest().subscribe((data: any) => {
@@ -97,10 +117,9 @@ export class ActasComponent implements OnInit {
       this.selectDate(data[0].corte);
     }, (err: any) => {
       //No Identificated!
-      console.log(err.error.message);
+
     });
   }
-
   selectDate(date: any) {
     this.dateSelect = date;
     this.reqService.getAllActasRequest(this.dateSelect).subscribe((data: any) => {
@@ -145,148 +164,151 @@ export class ActasComponent implements OnInit {
         });
       }
     }, (err: any) => {
-      console.log(err.error.message);
+
     });
   }
-
   SetState(){
-    let res = this.DatoEnviar.charAt(11) + this.DatoEnviar.charAt(12);
-    switch (res) {
-      case 'AS': {
-        this.Estado = 'AGUASCALIENTES';
-        break;
-      }
-      case 'BC': {
-        this.Estado = 'BAJA CALIFORNIA';
-        break;
-      }
-      case 'BS': {
-        this.Estado = 'BAJA CALIFORNIA SUR';
-        break;
-      }
-      case 'CC': {
-        this.Estado = 'CAMPECHE';
-        break;
-      }
-      case "CS": {
-        this.Estado = 'CHIAPAS';
-        break;
-      }
-      case 'CH': {
-        this.Estado = 'CHIHUAHUA';
-        break;
-      }
-      case 'DF': {
-        this.Estado = 'DISTRITO FEDERAL';
-        break;
-      }
-      case 'CL': {
-        this.Estado = 'COAHUILA DE ZARAGOZA';
-        break;
-      }
-      case 'CM': {
-        this.Estado = 'COLIMA';
-        break;
-      }
-      case 'DG': {
-        this.Estado = 'DURANGO';
-        break;
-      }
-      case 'GT': {
-        this.Estado = 'GUANAJUATO';
-        break;
-      }
-      case 'GR': {
-        this.Estado = 'GUERRERO';
-        break;
-      }
-      case 'HG': {
-        this.Estado = 'HIDALGO';
-        break;
-      }
-      case 'JC': {
-        this.Estado = 'JALISCO';
-        break;
-      }
-      case 'MC': {
-        this.Estado = 'MEXICO';
-        break;
-      }
-      case 'MN': {
-        this.Estado = 'MICHOACAN';
-        break;
-      }
-      case 'MS': {
-        this.Estado = 'MORELOS';
-        break;
-      }
-      case 'NT': {
-        this.Estado = 'NAYARIT';
-        break;
-      }
-      case 'NL': {
-        this.Estado = 'NUEVO LEON';
-        break;
-      }
-      case 'OC': {
-        this.Estado = 'OAXACA';
-        break;
-      }
-      case 'PL': {
-        this.Estado = 'PUEBLA';
-        break;
-      }
-      case 'QT': {
-        this.Estado = 'QUERETARO';
-        break;
-      }
-      case 'QR': {
-        this.Estado = 'QUINTANA ROO';
-        break;
-      }
-      case 'SP': {
-        this.Estado = 'SAN LUIS POTOSI';
-        break;
-      }
-      case 'SL': {
-        this.Estado = 'SINALOA';
-        break;
-      }
-      case 'SR': {
-        this.Estado = 'SONORA';
-        break;
-      }
-      case 'TC': {
-        this.Estado = 'TABASCO';
-        break;
-      }        
-      case 'TS': {
-        this.Estado = 'TAMAULIPAS';
-        break;
-      }
-      case 'TL': {
-        this.Estado = 'TLAXCALA';
-        break;
-      }
-      case 'VZ': {
-        this.Estado = 'VERACRUZ';
-        break;
-      }
-      case 'YN': {
-        this.Estado = 'YUCATAN';
-        break;
-      }
-      case 'ZS': {
-        this.Estado = 'ZACATECAS';
-        break;
-      }
-      default: {
-        this.Estado = 'NACIDO EN EL EXTRANJERO';
-        break;
+    if(this.CURP.value.length == 18){
+      let res = this.CURP.value.charAt(11) + this.CURP.value.charAt(12);
+      document.getElementById("alertState")?.setAttribute("style", "background-color: rgb(158, 240, 125); color:black;");
+      switch (res) {
+        case 'AS': {
+          this.Estado = 'AGUASCALIENTES';
+          break;
+        }
+        case 'BC': {
+          this.Estado = 'BAJA CALIFORNIA';
+          break;
+        }
+        case 'BS': {
+          this.Estado = 'BAJA CALIFORNIA SUR';
+          break;
+        }
+        case 'CC': {
+          this.Estado = 'CAMPECHE';
+          break;
+        }
+        case "CS": {
+          this.Estado = 'CHIAPAS';
+          break;
+        }
+        case 'CH': {
+          this.Estado = 'CHIHUAHUA';
+          break;
+        }
+        case 'DF': {
+          this.Estado = 'DISTRITO FEDERAL';
+          break;
+        }
+        case 'CL': {
+          this.Estado = 'COAHUILA DE ZARAGOZA';
+          break;
+        }
+        case 'CM': {
+          this.Estado = 'COLIMA';
+          break;
+        }
+        case 'DG': {
+          this.Estado = 'DURANGO';
+          break;
+        }
+        case 'GT': {
+          this.Estado = 'GUANAJUATO';
+          break;
+        }
+        case 'GR': {
+          this.Estado = 'GUERRERO';
+          break;
+        }
+        case 'HG': {
+          this.Estado = 'HIDALGO';
+          break;
+        }
+        case 'JC': {
+          this.Estado = 'JALISCO';
+          break;
+        }
+        case 'MC': {
+          this.Estado = 'MEXICO';
+          break;
+        }
+        case 'MN': {
+          this.Estado = 'MICHOACAN';
+          break;
+        }
+        case 'MS': {
+          this.Estado = 'MORELOS';
+          break;
+        }
+        case 'NT': {
+          this.Estado = 'NAYARIT';
+          break;
+        }
+        case 'NL': {
+          this.Estado = 'NUEVO LEON';
+          break;
+        }
+        case 'OC': {
+          this.Estado = 'OAXACA';
+          break;
+        }
+        case 'PL': {
+          this.Estado = 'PUEBLA';
+          break;
+        }
+        case 'QT': {
+          this.Estado = 'QUERETARO';
+          break;
+        }
+        case 'QR': {
+          this.Estado = 'QUINTANA ROO';
+          break;
+        }
+        case 'SP': {
+          this.Estado = 'SAN LUIS POTOSI';
+          break;
+        }
+        case 'SL': {
+          this.Estado = 'SINALOA';
+          break;
+        }
+        case 'SR': {
+          this.Estado = 'SONORA';
+          break;
+        }
+        case 'TC': {
+          this.Estado = 'TABASCO';
+          break;
+        }        
+        case 'TS': {
+          this.Estado = 'TAMAULIPAS';
+          break;
+        }
+        case 'TL': {
+          this.Estado = 'TLAXCALA';
+          break;
+        }
+        case 'VZ': {
+          this.Estado = 'VERACRUZ';
+          break;
+        }
+        case 'YN': {
+          this.Estado = 'YUCATAN';
+          break;
+        }
+        case 'ZS': {
+          this.Estado = 'ZACATECAS';
+          break;
+        }
+        default: {
+          this.Estado = 'NACIDO EN EL EXTRANJERO';
+          document.getElementById("alertState")?.setAttribute("style", "background-color: rgb(240, 125, 125); color:black;");
+          break;
+        }
       }
     }
-  }
 
+  }
   verifyCurp(){
     let iniciales = this.DatoEnviar.charAt(0) + this.DatoEnviar.charAt(1) +  this.DatoEnviar.charAt(2) + this.DatoEnviar.charAt(3);
     let año = this.DatoEnviar.charAt(4) + this.DatoEnviar.charAt(5) + this.DatoEnviar.charAt(6) + this.DatoEnviar.charAt(7) + this.DatoEnviar.charAt(8) + this.DatoEnviar.charAt(9);
@@ -305,7 +327,6 @@ export class ActasComponent implements OnInit {
       return false;
     }
   }
-
   KeyupData() {
     switch (this.MetodoBusqueda) {
       case "CADENA":
@@ -356,7 +377,6 @@ export class ActasComponent implements OnInit {
 
 
   }
-
   SelectMetodoBusqueda(newValue: any) {
     this.CanInput = false;
     if (newValue != "MÉTODO DE BUSQUEDA") {
@@ -376,51 +396,57 @@ export class ActasComponent implements OnInit {
     }
 
   }
-
   SelectActaRegistral(newValue: any) {
     if (newValue != "ACTA REGISTRAL") {
       this.CanInput = true;
     }
+  }
+  ResetAll(){
+    this.Lock = false;
+    this.CanInput = false;
+    this.CURP.setValue('');
+    this.Class.setValue('');
+    this.Type.setValue('');
   }
 
   EnviarSolicitud(preferences:string){
     this.ModalReq = false;
     let metadata = {};
 
-    if(this.MetodoBusqueda == "CURP")
+
+    if(this.Type.value == "CURP")
     {
-      metadata = { type:this.ActoRegistral, state: this.Estado, curp: this.DatoEnviar  }
-      this.reqService.SendARequest(this.MetodoBusqueda, metadata, preferences).subscribe((data:any) => {
-        this.ActoRegistral = "ACTA REGISTRAL";
-        this.MetodoBusqueda = "MÉTODO DE BUSQUEDA";
-        this.DatoEnviar = "";
-        this.Lock = false;
-        this.CanInput = false;
-        document.getElementsByName("ActoRegistral")[0]?.setAttribute("disabled", "");
-        document.getElementById("solicitarReq")?.setAttribute("class", "myButtonOff");
+      metadata = 
+      { 
+        type:this.Class.value, 
+        state: this.Estado, curp: 
+        this.DatoEnviar  
+      };
+      this.reqService.SendARequest(this.Type.value, metadata, preferences).subscribe((data:any) => {
+        this.ResetAll();
+
       }, (err:any) => {
-        this.auth.Unauth();
-        console.log(err);
+        if(err.error.includes("Session Closed!") || err.error.includes("No token provided")){
+          this.auth.Unauth();
+        }
+        // 
       });
     }
-    else if(this.MetodoBusqueda == "CADENA"){
-      metadata = { cadena: this.DatoEnviar  }
-      this.reqService.SendARequest("Cadena Digital", metadata, preferences).subscribe((data:any) => {
-        this.ActoRegistral = "ACTA REGISTRAL";
-        this.MetodoBusqueda = "MÉTODO DE BUSQUEDA";
-        this.DatoEnviar = "";
-        this.CanInput = false;
-        this.Lock = false;
-        document.getElementById("solicitarReq")?.setAttribute("class", "myButtonOff");
-        document.getElementsByName("ActoRegistral")[0]?.setAttribute("disabled", "");
-      }, (err:any) => {
-        this.auth.Unauth();
-        console.log(err);
-      });
-    }
-
-
-    
+    // else if(this.MetodoBusqueda == "CADENA"){
+    //   metadata = { cadena: this.DatoEnviar  }
+    //   this.reqService.SendARequest("Cadena Digital", metadata, preferences).subscribe((data:any) => {
+    //     this.ActoRegistral = "ACTA REGISTRAL";
+    //     this.MetodoBusqueda = "MÉTODO DE BUSQUEDA";
+    //     this.DatoEnviar = "";
+    //     this.CanInput = false;
+    //     this.Lock = false;
+    //     document.getElementById("solicitarReq")?.setAttribute("class", "myButtonOff");
+    //     document.getElementsByName("ActoRegistral")[0]?.setAttribute("disabled", "");
+    //   }, (err:any) => {
+    //     this.auth.Unauth();
+    //     console.log(err);
+    //   });
+    // }
   }
 
   Solicitar(){

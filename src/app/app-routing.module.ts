@@ -17,6 +17,7 @@ import { RfcComponent } from './componentes/rfc/rfc.component';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { ActasComponent } from './components/actas/actas.component';
 import { RegistroComponent } from './componente/registro/registro.component';
+import { FormsModule } from '@angular/forms';
 const routes: Routes = [
   {
   path: '',
@@ -89,14 +90,7 @@ const routes: Routes = [
   path: 'sb',
   component: InicioComponent 
 },
-{
-  path: 'vc' ,
-  component: ActasComponent
-},
-{
-  path: 're' ,
-  component: RegistroComponent
-}
+
 
 
 
@@ -106,7 +100,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }), FormsModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
